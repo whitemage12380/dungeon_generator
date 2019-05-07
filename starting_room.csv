@@ -1,0 +1,4 @@
+probability	passages	doors	description	destination
+1	4	0	Square, 20 x 20 ft.; passage on each wall
+1	1	2	Square, 20 x 20 ft; door on two walls, passage in third wall
+1	0	3	Square, 40 x 40 ft; doors on three walls
