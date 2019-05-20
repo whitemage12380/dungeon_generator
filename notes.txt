@@ -1,0 +1,9 @@
+Ideas on creating actual, mappable/mapped 2D dungeon:
+- Each passage segment can be stored as a 2D text string representing the open spaces and connection points
+- Or they could be represented by instruction, more dynamically handling things like passage width
+- Chambers make a lot of sense handled dynamically, though non-rectangular rooms become quite tricky
+- Could do both, having the trickier stuff be handled manually
+- I need to be able to rotate whatever I end up with
+- There probably needs to be a giant 2D array keeping track of everything, so collision detection can work out.
+- Ideally there should also be a structure that keeps track of each room/corridor and linking doors, etc.
+- I wonder if I should fish out some of my procedural home generation logic, as it did some similar stuff.

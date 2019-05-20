@@ -1,0 +1,12 @@
+probability	passages	doors	description	destination
+2	1	0	Continue straight 30 ft., no doors or side passages
+1	1	1	Continue straight 20 ft., door to the right, then an additional 10 ft. ahead
+1	1	1	Continue straight 20 ft., door to the left, then an additional 10 ft. ahead
+1	0	1	Continue straight 20 ft., passage ends in a door
+2	2	0	Continue straight 20 ft., side passage to the right, then an additional 10 ft. ahead
+2	2	0	Continue straight 20 ft., side passage to the left, then an additional 10 ft. ahead
+1	0	0	Continue straight 20 ft., comes to a dead end, 10 percent chance of a secret door	secret door
+2	1	0	Continue straight 20 ft., then the passage turns left and continues 10 ft.
+2	1	0	Continue straight 20 ft., then the passage turns right and continues 10 ft.
+5	0	0	Chamber	chamber
+1	0	0	Stairs	stairs
