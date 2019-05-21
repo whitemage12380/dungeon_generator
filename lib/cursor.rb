@@ -9,9 +9,11 @@ class Cursor
     @facing = facing
   end
 
-  def facing(turn)
+  def facing(turn = :forward)
     facing_i = FACINGS.index(@facing)
     case turn
+    when :forward
+      return @facing
     when :left
       facing_i -= 1
     when :right

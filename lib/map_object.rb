@@ -1,16 +1,16 @@
 require_relative 'map_object_square'
+require_relative 'connector'
 
 class MapObject
-  @map = []
-  @grid = []
-  @connectors = []
-  @doors = []
+  attr_reader :map, :grid, :connectors, :doors
 
   MAX_SIZE = 20
 
   def initialize(map, size = MAX_SIZE)
     @map = map
     @grid = Array.new(size) {Array.new(size)}
+    @connectors = []
+    @doors = []
   end
 
   def [] (x, y)
