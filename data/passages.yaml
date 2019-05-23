@@ -8,7 +8,7 @@ passages:
     description: "Continue straight 20 ft., door to the right, then an additional 10 ft. ahead"
     passage:
       - "FORWARD 20"
-      - split:
+      - "SPLIT":
         - "TURN RIGHT"
         - "DOOR"
       - "FORWARD 10"
@@ -17,7 +17,7 @@ passages:
     description: "Continue straight 20 ft., door to the left, then an additional 10 ft. ahead"
     passage:
       - "FORWARD 20"
-      - split:
+      - "SPLIT":
         - "TURN LEFT"
         - "DOOR"
       - "FORWARD 10"
@@ -32,5 +32,12 @@ passages:
     passage:
       - "FORWARD 20"
       - "TURN LEFT"
+      - "FORWARD 10"
+      - "CONNECTOR"
+  - probability: 2
+    description: "Continue straight 20 ft., then the passage turns right and continues 10 ft."
+    passage:
+      - "FORWARD 20"
+      - "TURN RIGHT"
       - "FORWARD 10"
       - "CONNECTOR"

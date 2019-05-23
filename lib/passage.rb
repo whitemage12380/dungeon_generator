@@ -19,11 +19,16 @@ class Passage < MapObject
       distance = (instruction.scan(/\d+/).first.to_i) / 5
       draw_forward(distance)
     when "TURN LEFT"
-      #turn = instruction.split(/\s/).last.downcase
       draw_forward(@width)
       add_wall_width()
       @cursor.back!(@width - 1)
       @cursor.turn!(:left)
+      remove_wall_width()
+    when "TURN RIGHT"
+      draw_forward(@width)
+      add_wall_width()
+      @cursor.turn!(:right)
+      @cursor.forward!(@width - 1)
       remove_wall_width()
     when "CONNECTOR"
       connector = Connector.new(self)
