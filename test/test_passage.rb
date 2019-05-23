@@ -30,7 +30,7 @@ end
 test_passage(passage_index: 0, width: 2)
 #test_passage(passage_index: 4, width: 2)
 #test_passage(passage_index: 4, width: 4)
-test_passage(passage_index: 5, width: 4)
+test_passage(passage_index: 3, width: 2) # Width 1 doesn't work yet
 
 #test_passage_rotate(passage_index: 0, width: 2, turn: :back)
 #test_passage_rotate(passage_index: 4, width: 2, turn: 5)

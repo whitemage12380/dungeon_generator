@@ -1,4 +1,5 @@
 require_relative 'connector'
+require_relative 'door'
 
 class MapObjectSquare
   attr_reader :edges, :space
@@ -28,6 +29,19 @@ class MapObjectSquare
     return false
   end
 
+  def add_door(facing, door)
+    @edges[facing] = door
+  end
+
+  def remove_door(facing)
+    @edges[facing] = nil if @edges[facing].kind_of? Door
+  end
+
+  def has_door()
+    @edges.each_value { |e| return true if e.kind_of? Door }
+    return false
+  end
+
   def rotate()
   end
   def rotate!()
@@ -35,6 +49,7 @@ class MapObjectSquare
 
   def to_character()
     return 'C' if has_connector
+    return 'D' if has_door
     return '#'
   end
   def to_s()

@@ -34,6 +34,13 @@ class Passage < MapObject
       connector = Connector.new(self)
       @connectors << connector
       add_connector_width(connector)
+    when "DOOR"
+      door_width = 2
+      door_width = 1 if @width == 1
+      door_y = (@width - 2) / 2
+      door = Door.new(self)
+      @doors << door
+      add_door(door, door_width, door_y)
     end
   end
 
@@ -74,11 +81,20 @@ class Passage < MapObject
   end
 
   def add_connector_width(connector)
-    self[@cursor.pos].add_connector(@cursor.facing(:left), connector)
+    self[@cursor.pos].add_connector(@cursor.facing, connector)
     for i in 1...@width do
       @cursor.shift!(:right)
-      self[@cursor.pos].add_connector(@cursor.facing(:left), connector)
+      self[@cursor.pos].add_connector(@cursor.facing, connector)
     end
     @cursor.shift!(:left, @width-1)
+  end
+
+  def add_door(door, door_width, door_y)
+    @cursor.shift!(:right, door_y)
+    self[@cursor.pos].add_door(@cursor.facing, door)
+    for i in 1...door_width do
+      @cursor.shift!(:right)
+      self[@cursor.pos].add_door(@cursor.facing, door)
+    end
   end
 end
