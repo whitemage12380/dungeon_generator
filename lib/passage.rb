@@ -6,12 +6,11 @@ class Passage < MapObject
   def initialize(map, width, instructions)
     super(map)
     @width = width
-    @cursor = Cursor.new(map, 0, (ylength / 2) - ((width-1) / 2), :east)
-    self[@cursor.pos] = MapObjectSquare.new
+    @cursor = Cursor.new(map, -1, (ylength / 2) - ((width-1) / 2), :east)
+    #self[@cursor.pos] = MapObjectSquare.new
     instructions.each { |instruction|
       process_passage_instruction(instruction)
     }
-    puts self.to_s
   end
 
   def process_passage_instruction(instruction)
@@ -19,6 +18,13 @@ class Passage < MapObject
     when /^FORWARD [1-9]\d*$/
       distance = (instruction.scan(/\d+/).first.to_i) / 5
       draw_forward(distance)
+    when "TURN LEFT"
+      #turn = instruction.split(/\s/).last.downcase
+      draw_forward(@width)
+      add_wall_width()
+      @cursor.back!(@width - 1)
+      @cursor.turn!(:left)
+      remove_wall_width()
     when "CONNECTOR"
       connector = Connector.new(self)
       @connectors << connector
@@ -27,7 +33,6 @@ class Passage < MapObject
   end
 
   def draw_forward(distance)
-    draw_width()
     for i in 1..distance do
       @cursor.forward!()
       draw_width()
@@ -42,6 +47,24 @@ class Passage < MapObject
       self[@cursor.pos] = MapObjectSquare.new()
     end
     self[@cursor.pos].add_wall(@cursor.right)
+    @cursor.shift!(:left, @width-1)
+  end
+
+  def add_wall_width()
+    self[@cursor.pos].add_wall(@cursor.facing)
+    for i in 1...@width do
+      @cursor.shift!(:right)
+      self[@cursor.pos].add_wall(@cursor.facing)
+    end
+    @cursor.shift!(:left, @width-1)
+  end
+
+  def remove_wall_width()
+    self[@cursor.pos].remove_wall(@cursor.facing)
+    for i in 1...@width do
+      @cursor.shift!(:right)
+      self[@cursor.pos].remove_wall(@cursor.facing)
+    end
     @cursor.shift!(:left, @width-1)
   end
 

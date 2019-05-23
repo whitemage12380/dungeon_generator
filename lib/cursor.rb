@@ -59,6 +59,12 @@ class Cursor
     @facing = facing(turn)
   end
 
+  def back!(distance = 1)
+    turn!(:back)
+    forward!(distance)
+    turn!(:back)
+  end
+
   def shift!(turn, distance = 1)
     turn!(turn)
     forward!(distance)

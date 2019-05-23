@@ -40,15 +40,29 @@ class MapObject
     return @grid[0].length
   end
 
-  def rotate()
-    rotated_grid = Array.new
-    @grid.transpose.each { |row|
-      rotated_grid << row.reverse
-    }
-    return rotated_grid
+  def square_empty?(coordinates)
+    return self[coordinates].nil?
   end
-  def rotate!()
-    @grid = @grid.rotate
+
+  def rotate!(turn = :left)
+    # TODO: Rotate each individual square so the walls are correct
+    case turn
+    when :left
+      rotation_count = 1
+    when :back
+      rotation_count = 2
+    when :right
+      rotation_count = 3
+    when Integer
+      rotation_count = turn
+    end
+    rotation_count.times do
+      rotated_grid = Array.new
+      @grid.transpose.each { |row|
+        rotated_grid << row.reverse
+      }
+      @grid = rotated_grid
+    end
   end
 
   def to_s()
@@ -61,6 +75,5 @@ class MapObject
       output.concat("\n")
     end
     output
-    #@grid.to_s
   end
 end
