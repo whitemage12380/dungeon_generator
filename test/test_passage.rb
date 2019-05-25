@@ -27,12 +27,15 @@ def test_passage_rotate(passage_index:, width:, map_size: 40, turn: :left)
   puts p.to_s
 end
 
-test_passage(passage_index: 0, width: 2)
+
 #test_passage(passage_index: 4, width: 2)
 #test_passage(passage_index: 4, width: 4)
-test_passage(passage_index: 3, width: 2) # Width 1 doesn't work yet
+test_passage(passage_index: 0, width: 2)
 test_passage(passage_index: 1, width: 2) # DOOR RIGHT
 test_passage(passage_index: 2, width: 2) # DOOR LEFT
+test_passage(passage_index: 3, width: 2) # Width 1 doesn't work yet
+test_passage(passage_index: 4, width: 2)
+test_passage(passage_index: 5, width: 2)
 test_passage(passage_index: 6, width: 2) # SIDE PASSAGE RIGHT
 test_passage(passage_index: 7, width: 2) # SIDE PASSAGE RIGHT
 #test_passage_rotate(passage_index: 0, width: 2, turn: :back)

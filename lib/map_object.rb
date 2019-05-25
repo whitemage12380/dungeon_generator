@@ -65,6 +65,18 @@ class MapObject
     end
   end
 
+  def compact!()
+    # Remove empty columns
+    (@grid.length - 1).downto(0) { |x|
+      @grid.slice!(x) if not @grid[x].any?
+    }
+    # Remove empty rows
+    (@grid[0].length - 1).downto(0) { |y|
+      # Slice the y for each x IF there are not any x's for which the y is not nil
+      @grid.each {|x| x.slice!(y)} if not @grid.select {|x| not x[y].nil?}.any?
+    }
+  end
+
   def to_s()
     output = ""
     for y in 0...@grid[0].length do

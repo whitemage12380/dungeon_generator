@@ -11,9 +11,14 @@ class Passage < MapObject
     instructions.each { |instruction|
       process_passage_instruction(instruction)
     }
+    compact!()
   end
 
   def process_passage_instruction(instruction, cursor: @cursor)
+    # TODO:
+    # Chance of secret door
+    # Chamber
+    # Stairs
     case instruction
     when /^FORWARD [1-9]\d*$/
       distance = (instruction.scan(/\d+/).first.to_i) / 5

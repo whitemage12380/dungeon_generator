@@ -7,3 +7,17 @@ Ideas on creating actual, mappable/mapped 2D dungeon:
 - There probably needs to be a giant 2D array keeping track of everything, so collision detection can work out.
 - Ideally there should also be a structure that keeps track of each room/corridor and linking doors, etc.
 - I wonder if I should fish out some of my procedural home generation logic, as it did some similar stuff.
+
+
+
+Project tracking:
+
+- Passage Instructions: 75%
+-- Chance of secret door
+-- Chamber
+-- Stairs
+- Connecting Passages: 10%
+-- Connect logically
+-- Connect physically on map
+- Putting passages on map: 0%
+- Collision handling: 10%
