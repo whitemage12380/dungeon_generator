@@ -49,6 +49,14 @@ class Passage < MapObject
       add_door(door, 2, 0, cursor: cursor)
       cursor.shift!(:right)
       cursor.turn!(:right)
+    when "DOOR RIGHT"
+      cursor.turn!(:right)
+      cursor.forward!(@width - 1)
+      door = Door.new(self)
+      @doors << door
+      add_door(door, 2, 0, cursor: cursor)
+      cursor.back!(@width - 1)
+      cursor.turn!(:left)
     when Array
       new_cursor = Cursor.new(map, cursor.x.clone, cursor.y.clone, cursor.facing.clone)
       instruction.each { |split_instruction|
