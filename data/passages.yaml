@@ -44,3 +44,10 @@ passages:
       - "CONNECTOR RIGHT"
       - "FORWARD 10"
       - "CONNECTOR"
+  - probability: 2
+    description: "Continue straight 20 ft., side passage to the left, then an additional 10 ft. ahead"
+    passage:
+      - "FORWARD 20"
+      - "CONNECTOR LEFT"
+      - "FORWARD 10"
+      - "CONNECTOR"

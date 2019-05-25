@@ -34,6 +34,24 @@ class Passage < MapObject
       connector = Connector.new(self)
       @connectors << connector
       add_connector_width(connector, cursor: cursor)
+    # A passage that branches from another passage is either 5ft (16% chance) or 10ft (84% chance).
+    # For now I can assume 10ft and add the ability to do 5ft corridors as a future feature.
+    when "CONNECTOR LEFT"
+      cursor.turn!(:left)
+      cursor.shift!(:left)
+      connector = Connector.new(self)
+      @connectors << connector
+      add_connector(connector, 2, 0, cursor: cursor)
+      cursor.shift!(:right)
+      cursor.turn!(:right)
+    when "CONNECTOR RIGHT"
+      cursor.turn!(:right)
+      cursor.forward!(@width - 1)
+      connector = Connector.new(self)
+      @connectors << connector
+      add_connector(connector, 2, 0, cursor: cursor)
+      cursor.back!(@width - 1)
+      cursor.turn!(:left)
     when "DOOR"
       door_width = 2
       door_width = 1 if @width == 1
@@ -85,11 +103,6 @@ class Passage < MapObject
 
   def add_wall_width(cursor: @cursor)
     return if not square_empty?(cursor.pos_forward)
-    puts cursor.to_s
-    puts square_empty?(cursor.pos)
-    puts cursor.pos_forward
-    puts square_empty?(cursor.pos_forward)
-    puts to_s
     self[cursor.pos].add_wall(cursor.facing)
     for i in 1...@width do
       cursor.shift!(:right)
@@ -114,6 +127,16 @@ class Passage < MapObject
       self[cursor.pos].add_connector(cursor.facing, connector)
     end
     cursor.shift!(:left, @width-1)
+  end
+
+  def add_connector(connector, connector_width, connector_offset, cursor: @cursor)
+    cursor.shift!(:right, connector_offset)
+    self[cursor.pos].add_connector(cursor.facing, connector)
+    for i in 1...connector_width do
+      cursor.shift!(:right)
+      self[cursor.pos].add_connector(cursor.facing, connector)
+    end
+    cursor.shift!(:left, connector_width + connector_offset - 1)
   end
 
   def add_door(door, door_width, door_offset, cursor: @cursor)
