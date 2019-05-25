@@ -42,6 +42,19 @@ class Cursor
     {x: @x, y: @y}
   end
 
+  def pos_forward(distance = 1)
+    case @facing
+    when :north
+      return {x: @x.clone, y: @y.clone - distance}
+    when :east
+      return {x: @x.clone + distance, y: @y.clone}
+    when :south
+      return {x: @x.clone, y: @y.clone + distance}
+    when :west
+      return {x: @x.clone - distance, y: @y.clone}
+    end
+  end
+
   def forward!(distance = 1)
     case @facing
     when :north
