@@ -34,6 +34,20 @@ This means (x, y) on the cursor returns (-1, 10),
 and (map_x, map_y) returns (15, 15) if those functions just add the offset.
 Let's say the cursor then goes forward 1 space. coordinates are (0,10) now, map coordinates are (16,15). I think that works.
 
+It's important to note, though, that the relationship changes if/when we compact the map object.
+What if we started compact? As in, each passage dictating size and starting coordinates? Well let's think about whether that's necessary.
+The map primarily needs to be able to draw the object. It can only do that if it has an accurate offset.
+If we compact, that necessarily changes the offset.
+But offset from what? The cursor's offset isn't exactly what we want; we don't want to retrace all the steps in the map object, we want to transplant
+the map object's grid onto the map. So we want the offset of the upper-left square of the map object.
+Let's say we put the cursor to (0,0) on the map object. The offset (16, 5) would imply that (0,0) on the map_object is (16, 5) on the map.
+Is that true? Yes, I believe it is. So the cursor offset and the map_object offset are one and the same.
+So let's not compact, but maybe allow a smaller 
+We may ultimately want to compact the map itself, though we may run into similar problems.
+Setting length and width would have to assume max passage width (40?), and there is no way to set starting coordinates in the yaml because it depends
+on width (not to mention facing).
+
+
 
 
 Project tracking:

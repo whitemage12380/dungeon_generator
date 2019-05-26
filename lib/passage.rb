@@ -4,14 +4,36 @@ require_relative 'cursor'
 class Passage < MapObject
 
   def initialize(map:, width:, facing: :east, instructions: nil)
-    super(map)
+    # For all passage possibilities in the DMG, this size is sufficient.
+    # To allow for larger passage styles, this should be modified or able to be overridden
+    # by a value in the YAML
+    size = 10 + width
+    super(map, size)
     @width = width
-    @cursor = Cursor.new(map, -1, (ylength / 2) - ((width-1) / 2), facing)
-    #self[@cursor.pos] = MapObjectSquare.new
+    cursor_pos = initial_cursor_pos(facing)
+    @cursor = Cursor.new(map, cursor_pos[:x], cursor_pos[:y], facing)
     instructions.each { |instruction|
       process_passage_instruction(instruction)
     }
-    compact!()
+    #compact!()
+  end
+
+  def initial_cursor_pos(facing)
+    case facing
+    when :north
+      x = (xlength / 2) - (@width - 1)
+      y = ylength
+    when :east
+      x = -1
+      y = (ylength / 2) - (@width - 1)
+    when :south
+      x = (xlength / 2) + (@width - 2)
+      y = -1
+    when :west
+      x = xlength
+      y = (ylength / 2) + (@width - 2)
+    end
+    return {x: x, y: y}
   end
 
   def process_passage_instruction(instruction, cursor: @cursor)

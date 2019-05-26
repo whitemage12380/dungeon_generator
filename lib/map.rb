@@ -1,13 +1,13 @@
 require_relative 'map_object'
 
 class Map
-  attr_accessor :grid, :objects
+  attr_accessor :grid, :map_objects
 
   MAX_SIZE = 500
 
   def initialize(size = MAX_SIZE)
     @grid = Array.new(size) {Array.new(size)}
-    @objects = Array.new
+    @map_objects = Array.new
   end
 
   def [] (x, y)
@@ -48,7 +48,12 @@ class Map
     # it can figure out x, y, and facing and it can randomize width based on the connector as well.
     # The passage can then do the rest of the work.
     # The passage itself should figure out its instructions if not given.
-    @objects << Passage.new(map: self, width: width, facing: facing, instructions: instructions)
+
+    # TODO: Logic for calculating things based on connector
+
+    @map_objects << Passage.new(map: self, width: width, facing: facing, instructions: instructions)
+
+    # TODO: Draw passage on map
 
   end
 
