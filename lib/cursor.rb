@@ -1,12 +1,14 @@
 class Cursor
-  attr_accessor :x, :y, :facing
+  attr_accessor :x, :y, :facing, :map_offset_x, :map_offset_y
 
   FACINGS = [:north, :east, :south, :west]
 
-  def initialize(map, x, y, facing)
+  def initialize(map, x, y, facing, map_offset_x = nil, map_offset_y = nil)
     @x = x
     @y = y
     @facing = facing
+    @map_offset_x = map_offset_x
+    @map_offset_y = map_offset_y
   end
 
   def facing(turn = :forward)
@@ -53,6 +55,16 @@ class Cursor
     when :west
       return {x: @x.clone - distance, y: @y.clone}
     end
+  end
+
+  def map_x()
+    @x + @map_offset_x
+  end
+  def map_y()
+    @y + @map_offset_y
+  end
+  def map_pos()
+    {x: map_x, y: map_y}
   end
 
   def forward!(distance = 1)

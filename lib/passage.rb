@@ -3,7 +3,7 @@ require_relative 'cursor'
 
 class Passage < MapObject
 
-  def initialize(map, width, instructions)
+  def initialize(map:, width:, instructions: nil)
     super(map)
     @width = width
     @cursor = Cursor.new(map, -1, (ylength / 2) - ((width-1) / 2), :east)

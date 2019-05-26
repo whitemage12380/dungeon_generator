@@ -9,6 +9,32 @@ Ideas on creating actual, mappable/mapped 2D dungeon:
 - I wonder if I should fish out some of my procedural home generation logic, as it did some similar stuff.
 
 
+Connecting Passages:
+
+Will the logic to add new passages be from map objects or the map? They will be in relation to both.
+A map knows all of its objects. What we need to do when adding a passage is:
+- Place the connector on the map
+- Create the passage
+- Rotate the passage as necessary
+- Draw the passage on the map
+This could be a problem. The passage needs to know what it will collide with *as it is being drawn* so it can
+shorten its length to accommodate. Can we rotate as necessary prior to drawing?
+Should be easy, just gotta set the cursor starting position and facing appropriately.
+But the passage has to simultaneously understand the current cursor in relation to the map object grid and
+the map grid at the same time. If a beginning relationship is established this should be possible.
+Perhaps that relationship is established from the initial placement of the cursor? Perhaps the cursor could
+get map_x and map_y functions that can use that relationship, so the cursor can tell you its position from
+either reference.
+
+Thinking this through:
+
+On a 2-width passage pointing East, a cursor's initial coordinates are (-1, 10) (this will change based on width but we can account for this)
+Let's say this is place on the map at (15,15). Let's call the cursor's offset (16, 5) and see what happens.
+This means (x, y) on the cursor returns (-1, 10),
+and (map_x, map_y) returns (15, 15) if those functions just add the offset.
+Let's say the cursor then goes forward 1 space. coordinates are (0,10) now, map coordinates are (16,15). I think that works.
+
+
 
 Project tracking:
 
