@@ -3,10 +3,10 @@ require_relative 'cursor'
 
 class Passage < MapObject
 
-  def initialize(map:, width:, instructions: nil)
+  def initialize(map:, width:, facing: :east, instructions: nil)
     super(map)
     @width = width
-    @cursor = Cursor.new(map, -1, (ylength / 2) - ((width-1) / 2), :east)
+    @cursor = Cursor.new(map, -1, (ylength / 2) - ((width-1) / 2), facing)
     #self[@cursor.pos] = MapObjectSquare.new
     instructions.each { |instruction|
       process_passage_instruction(instruction)

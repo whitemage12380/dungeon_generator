@@ -35,7 +35,7 @@ def test_map_passage(passage_index:, width:, map_size: 40)
   puts passage_instructions
 
   m = Map.new(map_size)
-  m.add_passage(width: width, instructions: passage_instructions)
+  m.add_passage(width: width, facing: :east, instructions: passage_instructions)
   puts m.objects[0].to_s
 end
 

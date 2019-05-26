@@ -48,7 +48,8 @@ class Map
     # it can figure out x, y, and facing and it can randomize width based on the connector as well.
     # The passage can then do the rest of the work.
     # The passage itself should figure out its instructions if not given.
-    @objects << Passage.new(map: self, width: width, instructions: instructions)
+    @objects << Passage.new(map: self, width: width, facing: facing, instructions: instructions)
+
   end
 
   def draw_map_object(map_object)
