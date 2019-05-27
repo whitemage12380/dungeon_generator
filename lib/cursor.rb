@@ -66,6 +66,10 @@ class Cursor
   def map_pos()
     {x: map_x, y: map_y}
   end
+  def map_pos_forward(distance = 1)
+    pos = pos_forward(distance)
+    return {x: pos[:x] + @map_offset_x, y: pos[:y] + @map_offset_y}
+  end
 
   def forward!(distance = 1)
     case @facing

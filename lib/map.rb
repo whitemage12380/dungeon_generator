@@ -31,6 +31,7 @@ class Map
   end
 
   def square_available?(x:, y:)
+    puts "#{x},#{y}"
     return false if x < 0 or y < 0
     return false if xlength <= x or ylength <= y
     return false if @grid[x][y]

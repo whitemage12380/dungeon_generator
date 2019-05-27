@@ -18,7 +18,10 @@ class Passage < MapObject
     @map_offset_y = connector_y - cursor_pos[:y]
     @cursor = Cursor.new(map: map, x: cursor_pos[:x], y: cursor_pos[:y], facing: facing, map_offset_x: @map_offset_x, map_offset_y: @map_offset_y)
     instructions.each { |instruction|
-      process_passage_instruction(instruction)
+      if not process_passage_instruction(instruction)
+        add_wall_width()
+        break
+      end
     }
     #compact!()
   end
@@ -49,15 +52,15 @@ class Passage < MapObject
     case instruction
     when /^FORWARD [1-9]\d*$/
       distance = (instruction.scan(/\d+/).first.to_i) / 5
-      draw_forward(distance)
+      return false if not draw_forward(distance)
     when "TURN LEFT"
-      draw_forward(@width, cursor: cursor)
+      return false if not draw_forward(@width, cursor: cursor)
       add_wall_width(cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
       remove_wall_width(cursor: cursor)
     when "TURN RIGHT"
-      draw_forward(@width, cursor: cursor)
+      return false if not draw_forward(@width, cursor: cursor)
       add_wall_width(cursor: cursor)
       cursor.turn!(:right)
       cursor.forward!(@width - 1)
@@ -110,6 +113,7 @@ class Passage < MapObject
         process_passage_instruction(split_instruction, cursor: new_cursor)
       }
     end
+    return true
   end
 
   def create_connector(width = @width)
@@ -125,13 +129,15 @@ class Passage < MapObject
 
   def draw_forward(distance, cursor: @cursor)
     for i in 1..distance do
+      return false if not @map.square_available?(cursor.map_pos_forward)
       cursor.forward!()
       draw_width()
     end
+    return true
   end
 
   def draw_width(cursor: @cursor)
-    return if not @map.square_available?(cursor.pos)
+    #return false if not @map.square_available?(cursor.map_pos)
     self[@cursor.pos] = MapObjectSquare.new({@cursor.left => :wall})
     for i in 1...@width do
       @cursor.shift!(:right)

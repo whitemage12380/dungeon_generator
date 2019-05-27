@@ -20,6 +20,13 @@ def test_passage(passage_index:, width:, map_size: 40)
   return p
 end
 
+def read_passage_instructions(passage_index)
+  passages_data = YAML.load(File.read("#{__dir__}/../data/passages.yaml"))
+  passage_data = passages_data["passages"][passage_index]
+  passage_instructions = passage_data["passage"]
+  return passage_instructions
+end
+
 def test_passage_rotate(passage_index:, width:, map_size: 40, turn: :left)
   p = test_passage(passage_index: passage_index, width: width, map_size: map_size)
   puts "----------------- Rotating #{turn} -------------------"
@@ -28,9 +35,7 @@ def test_passage_rotate(passage_index:, width:, map_size: 40, turn: :left)
 end
 
 def test_map_passage(passage_index:, width:, facing: :east, map_size: 40)
-  passages_data = YAML.load(File.read("#{__dir__}/../data/passages.yaml"))
-  passage_data = passages_data["passages"][passage_index]
-  passage_instructions = passage_data["passage"]
+  passage_instructions = read_passage_instructions(passage_index)
 
   puts passage_instructions
 
@@ -43,9 +48,7 @@ def test_map_passage(passage_index:, width:, facing: :east, map_size: 40)
 end
 
 def test_map_connected_passage(passage_index:, width:, facing: :east, map_size: 40)
-  passages_data = YAML.load(File.read("#{__dir__}/../data/passages.yaml"))
-  passage_data = passages_data["passages"][passage_index]
-  passage_instructions = passage_data["passage"]
+  passage_instructions = read_passage_instructions(passage_index)
 
   puts passage_instructions
 
@@ -58,6 +61,14 @@ def test_map_connected_passage(passage_index:, width:, facing: :east, map_size: 
   puts "---"
   puts m.map_objects[1].to_s
   puts "--------MAP-------------"
+  puts m.to_s
+end
+
+def test_map_conflicted_passage()
+  passage_instructions = read_passage_instructions(0)
+  m = Map.new(30)
+  m.add_passage(width: 2, facing: :east, x: 12, y: 12, instructions: passage_instructions)
+  m.add_passage(width: 2, facing: :north, x: 14, y: 15, instructions: passage_instructions)
   puts m.to_s
 end
 
@@ -82,7 +93,9 @@ end
 #test_map_passage(passage_index: 0, width: 2, facing: :south)
 #test_map_passage(passage_index: 0, width: 2, facing: :west)
 
-test_map_connected_passage(passage_index: 0, width: 2, facing: :north)
-test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
-test_map_connected_passage(passage_index: 0, width: 2, facing: :south)
-test_map_connected_passage(passage_index: 0, width: 2, facing: :west)
+#test_map_connected_passage(passage_index: 0, width: 2, facing: :north)
+#test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
+#test_map_connected_passage(passage_index: 0, width: 2, facing: :south)
+#test_map_connected_passage(passage_index: 4, width: 2, facing: :west)
+
+test_map_conflicted_passage()

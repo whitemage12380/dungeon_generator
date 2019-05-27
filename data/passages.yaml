@@ -24,17 +24,17 @@ passages:
       - "FORWARD 20"
       - "DOOR"
   - probability: 2
-    description: "Continue straight 20 ft., then the passage turns left and continues 10 ft."
-    passage:
-      - "FORWARD 20"
-      - "TURN LEFT"
-      - "FORWARD 10"
-      - "CONNECTOR"
-  - probability: 2
     description: "Continue straight 20 ft., then the passage turns right and continues 10 ft."
     passage:
       - "FORWARD 20"
       - "TURN RIGHT"
+      - "FORWARD 10"
+      - "CONNECTOR"
+  - probability: 2
+    description: "Continue straight 20 ft., then the passage turns left and continues 10 ft."
+    passage:
+      - "FORWARD 20"
+      - "TURN LEFT"
       - "FORWARD 10"
       - "CONNECTOR"
   - probability: 2
