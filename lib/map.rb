@@ -49,8 +49,12 @@ class Map
     # it can figure out x, y, and facing and it can randomize width based on the connector as well.
     # The passage can then do the rest of the work.
     # The passage itself should figure out its instructions if not given.
-
-    # TODO: Logic for calculating things based on connector
+    if connector
+      width = connector.width if not width
+      x = connector.map_x if not x
+      y = connector.map_y if not y
+      facing = connector.facing if not facing
+    end
 
     passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
 
@@ -66,12 +70,6 @@ class Map
     map_object.grid.each_with_index { |x_obj, x|
       x_obj.each_with_index { |y_obj, y|
         next if x_obj[y].nil?
-        puts "---"
-        puts x
-        puts y
-        puts offset_x
-        puts offset_y
-        #self[x - offset_x][y - offset_y] = y_obj
         self[x + offset_x, y + offset_y] = y_obj
       }
     }

@@ -3,7 +3,7 @@ class Cursor
 
   FACINGS = [:north, :east, :south, :west]
 
-  def initialize(map, x, y, facing, map_offset_x = nil, map_offset_y = nil)
+  def initialize(map:, x:, y:, facing:, map_offset_x: nil, map_offset_y: nil)
     @x = x
     @y = y
     @facing = facing

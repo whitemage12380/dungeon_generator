@@ -16,7 +16,7 @@ class Passage < MapObject
     # TODO: This may be 1 square off, make sure this is right
     @map_offset_x = connector_x - cursor_pos[:x]
     @map_offset_y = connector_y - cursor_pos[:y]
-    @cursor = Cursor.new(map, cursor_pos[:x], cursor_pos[:y], facing)
+    @cursor = Cursor.new(map: map, x: cursor_pos[:x], y: cursor_pos[:y], facing: facing, map_offset_x: @map_offset_x, map_offset_y: @map_offset_y)
     instructions.each { |instruction|
       process_passage_instruction(instruction)
     }
@@ -63,24 +63,21 @@ class Passage < MapObject
       cursor.forward!(@width - 1)
       remove_wall_width(cursor: cursor)
     when "CONNECTOR"
-      connector = Connector.new(self)
-      @connectors << connector
+      connector = create_connector()
       add_connector_width(connector, cursor: cursor)
     # A passage that branches from another passage is either 5ft (16% chance) or 10ft (84% chance).
     # For now I can assume 10ft and add the ability to do 5ft corridors as a future feature.
     when "CONNECTOR LEFT"
       cursor.turn!(:left)
       cursor.shift!(:left)
-      connector = Connector.new(self)
-      @connectors << connector
+      connector = create_connector(2)
       add_connector(connector, 2, 0, cursor: cursor)
       cursor.shift!(:right)
       cursor.turn!(:right)
     when "CONNECTOR RIGHT"
       cursor.turn!(:right)
       cursor.forward!(@width - 1)
-      connector = Connector.new(self)
-      @connectors << connector
+      connector = create_connector(2)
       add_connector(connector, 2, 0, cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
@@ -113,6 +110,17 @@ class Passage < MapObject
         process_passage_instruction(split_instruction, cursor: new_cursor)
       }
     end
+  end
+
+  def create_connector(width = @width)
+    connector = Connector.new(map_object: self,
+                                  square: self[cursor.pos],
+                                   map_x: @cursor.map_x.clone,
+                                   map_y: @cursor.map_y.clone,
+                                  facing: @cursor.facing.clone,
+                                   width: width)
+    @connectors << connector
+    return connector
   end
 
   def draw_forward(distance, cursor: @cursor)

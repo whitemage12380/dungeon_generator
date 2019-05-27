@@ -15,13 +15,15 @@ class MapObject
     @doors = []
   end
 
-  def [] (x, y)
-    @grid[x][y]
-  end
+  # TODO: Create functions that allow for coordinates OR x, y, right now this is inconsistent
 
-  def []= (x, y, value)
-    @grid[x][y] = value
-  end
+  #def [] (x, y)
+  #  @grid[x][y]
+  #end
+
+  #def []= (x, y, value)
+  #  @grid[x][y] = value
+  #end
 
   def [] (coordinates)
     @grid[coordinates[:x]][coordinates[:y]]

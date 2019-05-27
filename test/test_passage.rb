@@ -42,6 +42,25 @@ def test_map_passage(passage_index:, width:, facing: :east, map_size: 40)
   puts m.to_s
 end
 
+def test_map_connected_passage(passage_index:, width:, facing: :east, map_size: 40)
+  passages_data = YAML.load(File.read("#{__dir__}/../data/passages.yaml"))
+  passage_data = passages_data["passages"][passage_index]
+  passage_instructions = passage_data["passage"]
+
+  puts passage_instructions
+
+  m = Map.new(map_size)
+  m.add_passage(width: width, facing: facing, x: 12, y: 12, instructions: passage_instructions)
+  connector = m.map_objects[0].connectors[0]
+  m.add_passage(width: width, connector: connector, instructions: passage_instructions)
+  puts "------MAP OBJECTS-------"
+  puts m.map_objects[0].to_s
+  puts "---"
+  puts m.map_objects[1].to_s
+  puts "--------MAP-------------"
+  puts m.to_s
+end
+
 
 #test_passage(passage_index: 4, width: 2)
 #test_passage(passage_index: 4, width: 4)
@@ -58,7 +77,12 @@ end
 #test_passage_rotate(passage_index: 0, width: 2, turn: :back)
 #test_passage_rotate(passage_index: 4, width: 2, turn: 5)
 
-test_map_passage(passage_index: 0, width: 2, facing: :north)
-test_map_passage(passage_index: 0, width: 2, facing: :east)
-test_map_passage(passage_index: 0, width: 2, facing: :south)
-test_map_passage(passage_index: 0, width: 2, facing: :west)
+#test_map_passage(passage_index: 0, width: 2, facing: :north)
+#test_map_passage(passage_index: 0, width: 2, facing: :east)
+#test_map_passage(passage_index: 0, width: 2, facing: :south)
+#test_map_passage(passage_index: 0, width: 2, facing: :west)
+
+test_map_connected_passage(passage_index: 0, width: 2, facing: :north)
+test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
+test_map_connected_passage(passage_index: 0, width: 2, facing: :south)
+test_map_connected_passage(passage_index: 0, width: 2, facing: :west)
