@@ -3,7 +3,9 @@ require_relative 'cursor'
 
 class Passage < MapObject
 
-  def initialize(map:, width:, facing: :east, instructions: nil)
+  attr_reader :width, :cursor
+
+  def initialize(map:, width:, facing: :east, connector_x: nil, connector_y: nil, instructions: nil)
     # For all passage possibilities in the DMG, this size is sufficient.
     # To allow for larger passage styles, this should be modified or able to be overridden
     # by a value in the YAML
@@ -11,6 +13,9 @@ class Passage < MapObject
     super(map, size)
     @width = width
     cursor_pos = initial_cursor_pos(facing)
+    # TODO: This may be 1 square off, make sure this is right
+    @map_offset_x = connector_x - cursor_pos[:x]
+    @map_offset_y = connector_y - cursor_pos[:y]
     @cursor = Cursor.new(map, cursor_pos[:x], cursor_pos[:y], facing)
     instructions.each { |instruction|
       process_passage_instruction(instruction)

@@ -18,19 +18,20 @@ class Map
     @grid[x][y] = value
   end
 
-  def [] (coordinates)
-    @grid[coordinates[:x]][coordinates[:y]]
-  end
-
-  def []=(coordinates, value)
-    @grid[coordinates[:x]][coordinates[:y]] = value
-  end
+  #def [] (coordinates)
+  #  @grid[coordinates[:x]][coordinates[:y]]
+  #end
+#
+#  def []=(coordinates, value)
+#    @grid[coordinates[:x]][coordinates[:y]] = value
+#  end
 
   def square(x:, y:)
     @grid[x][y]
   end
 
   def square_available?(x:, y:)
+    return false if x < 0 or y < 0
     return false if xlength <= x or ylength <= y
     return false if @grid[x][y]
     return true
@@ -51,12 +52,40 @@ class Map
 
     # TODO: Logic for calculating things based on connector
 
-    @map_objects << Passage.new(map: self, width: width, facing: facing, instructions: instructions)
+    passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
 
-    # TODO: Draw passage on map
+    @map_objects << passage
+
+    draw_map_object(passage)
 
   end
 
   def draw_map_object(map_object)
+    offset_x = map_object.map_offset_x
+    offset_y = map_object.map_offset_y
+    map_object.grid.each_with_index { |x_obj, x|
+      x_obj.each_with_index { |y_obj, y|
+        next if x_obj[y].nil?
+        puts "---"
+        puts x
+        puts y
+        puts offset_x
+        puts offset_y
+        #self[x - offset_x][y - offset_y] = y_obj
+        self[x + offset_x, y + offset_y] = y_obj
+      }
+    }
+  end
+
+  def to_s()
+    output = ""
+    for y in 0...@grid[0].length do
+      for x in 0...@grid.length do
+        square = @grid[x][y]
+        output.concat(square ? square.to_character : '.')
+      end
+      output.concat("\n")
+    end
+    output
   end
 end
