@@ -72,6 +72,16 @@ def test_map_conflicted_passage()
   puts m.to_s
 end
 
+def test_map_boundary_passage()
+  passage_instructions = read_passage_instructions(0)
+  m = Map.new(20)
+  m.add_passage(width: 2, facing: :north, x: 10, y: 2, instructions: passage_instructions)
+  m.add_passage(width: 2, facing: :east, x: 18, y: 10, instructions: passage_instructions)
+  m.add_passage(width: 2, facing: :south, x: 10, y: 18, instructions: passage_instructions)
+  m.add_passage(width: 2, facing: :west, x: 2, y: 10, instructions: passage_instructions)
+  puts m.to_s
+end
+
 
 #test_passage(passage_index: 4, width: 2)
 #test_passage(passage_index: 4, width: 4)
@@ -94,8 +104,9 @@ end
 #test_map_passage(passage_index: 0, width: 2, facing: :west)
 
 #test_map_connected_passage(passage_index: 0, width: 2, facing: :north)
-#test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
+test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
 #test_map_connected_passage(passage_index: 0, width: 2, facing: :south)
 #test_map_connected_passage(passage_index: 4, width: 2, facing: :west)
 
-test_map_conflicted_passage()
+#test_map_conflicted_passage()
+#test_map_boundary_passage()

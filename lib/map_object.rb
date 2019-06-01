@@ -1,14 +1,16 @@
 require_relative 'map_object_square'
+require_relative 'cursor'
 require_relative 'connector'
 
 class MapObject
-  attr_reader :map, :grid, :map_offset_x, :map_offset_y, :connectors, :doors
+  attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors
 
   MAX_SIZE = 20
 
-  def initialize(map, size = MAX_SIZE, offset_x = nil, offset_y = nil)
+  def initialize(map:, size: MAX_SIZE, starting_connector: nil, offset_x: nil, offset_y: nil)
     @map = map
     @grid = Array.new(size) {Array.new(size)}
+    @starting_connector = starting_connector
     @map_offset_x = offset_x
     @map_offset_y = offset_y
     @connectors = []

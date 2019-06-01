@@ -1,9 +1,12 @@
 class Cursor
   attr_accessor :x, :y, :facing, :map_offset_x, :map_offset_y
+  attr_reader :map
 
   FACINGS = [:north, :east, :south, :west]
+  TURNS = [:forward, :right, :back, :left]
 
   def initialize(map:, x:, y:, facing:, map_offset_x: nil, map_offset_y: nil)
+    @map = map
     @x = x
     @y = y
     @facing = facing
@@ -28,6 +31,22 @@ class Cursor
     facing_i += FACINGS.length if facing_i < 0
     facing_i -= FACINGS.length if facing_i >= FACINGS.length
     return FACINGS[facing_i]
+  end
+
+  def facing_to_turn(new_facing)
+    facing_i = FACINGS.index(@facing)
+    new_facing_i = FACINGS.index(new_facing)
+    diff = new_facing_i - facing_i
+    case diff
+    when 0
+      return :forward
+    when 1, 3
+      return :right
+    when -2, 2
+      return :back
+    when -1, -3
+      return :left
+    end
   end
 
   def left()
@@ -103,6 +122,15 @@ class Cursor
     when :right
       turn!(:left)
     end
+  end
+
+  def copy()
+    return Cursor.new(map: @map,
+                        x: @x.clone,
+                        y: @y.clone,
+                   facing: @facing.clone,
+             map_offset_x: @map_offset_x.clone,
+             map_offset_y: @map_offset_y.clone)
   end
 
   def to_s()

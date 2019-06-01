@@ -1,29 +1,38 @@
 require_relative 'map_object'
-require_relative 'cursor'
+
 
 class Passage < MapObject
 
-  attr_reader :width, :cursor
+  attr_reader :width
 
-  def initialize(map:, width:, facing: :east, connector_x: nil, connector_y: nil, instructions: nil)
+  def initialize(map:, width: nil, facing: :east, starting_connector: nil, connector_x: nil, connector_y: nil, instructions: nil)
+    if starting_connector
+      width = starting_connector.width if not width
+      connector_x = starting_connector.map_x if not connector_x
+      connector_y = starting_connector.map_y if not connector_y
+    end
     # For all passage possibilities in the DMG, this size is sufficient.
     # To allow for larger passage styles, this should be modified or able to be overridden
     # by a value in the YAML
     size = 10 + width
-    super(map, size)
+    super(map: map, size: size, starting_connector: starting_connector)
     @width = width
     cursor_pos = initial_cursor_pos(facing)
-    # TODO: This may be 1 square off, make sure this is right
     @map_offset_x = connector_x - cursor_pos[:x]
     @map_offset_y = connector_y - cursor_pos[:y]
-    @cursor = Cursor.new(map: map, x: cursor_pos[:x], y: cursor_pos[:y], facing: facing, map_offset_x: @map_offset_x, map_offset_y: @map_offset_y)
+    @cursor = Cursor.new(map: map,
+                           x: cursor_pos[:x],
+                           y: cursor_pos[:y],
+                      facing: facing,
+                map_offset_x: @map_offset_x,
+                map_offset_y: @map_offset_y)
     instructions.each { |instruction|
       if not process_passage_instruction(instruction)
+        # We hit a map edge or another map object; wall it off and be done
         add_wall_width()
         break
       end
     }
-    #compact!()
   end
 
   def initial_cursor_pos(facing)
@@ -107,11 +116,11 @@ class Passage < MapObject
       add_door(door, 2, 0, cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
-    when Array
-      new_cursor = Cursor.new(map, cursor.x.clone, cursor.y.clone, cursor.facing.clone)
-      instruction.each { |split_instruction|
-        process_passage_instruction(split_instruction, cursor: new_cursor)
-      }
+    #when Array
+    #  new_cursor = Cursor.new(map, cursor.x.clone, cursor.y.clone, cursor.facing.clone)
+    #  instruction.each { |split_instruction|
+    #    process_passage_instruction(split_instruction, cursor: new_cursor)
+    #  }
     end
     return true
   end

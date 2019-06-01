@@ -50,8 +50,75 @@ on width (not to mention facing).
 When adding a new passage to the map, it needs an x and y, either given directly or figured out through the connector.
 This needs to be the connector coordinates.
 
+On to chambers. Chambers have a defined width and length.
+Similarly to passages, chambers must be shrunk if a side would collide with something.
+I think it needs to use cursors just like passages, essentially acting like really wide passages.
+With passages, I can get away with just shortening the one end.
+With chambers, I should think about each side, potentially even shifting instead of shrinking, for it to fit.
+Additionally, figuring out the position of doors and connectors will be more challenging than with passages.
+And then non-rectangular shapes will be a nightmare.
+
+Chambers can have an exact map object grid size if I want. Whether I do want that depends on how I handle the fitting of the chamber.
+To place the chamber (centered? right-aligned? left-aligned? random?) do I tinker with the wall boundaries in the map object,
+or do I tinker with the map offsets?
+Unlike with passages, I think the spacing needs to be figured out before the drawing starts, not during.
+I could have the map do this, and have the map figure out and provide the cursor offset.
+But the cursor is the easiest way to do that check, which the map has yet to have to use.
+
+Figuring out what to shrink and shift intelligently is actually fairly tricky. When do you reduce length? When do you reduce width?
+Having simple clearance number results can give you an extremely rudimentary solution that will likely do silly things from time to time.
+
+When do I figure out what to prefer in terms of starting point relative to the new chamber? Could always prefer centered, or randomize it at the
+beginning. The placing algorithm depends on it. I'll start by preferring centered, that will likely get the best, if slightly predictable, results.
+
+START
+Probe outward from starting point
+CLEAR
+  Probe outward 1/2 width in both directions
+  CLEAR
+    Draw chamber; Done
+  BLOCKED
+    Get distance to blocked in both directions
+    LOOP
+BLOCKED
+  Reduce chamber length until not blocked
+  If length < 15 ft, cancel room
+  Start over
+
+So far this has been somewhat helpful, but what if I gather a bunch of data instead of doing this exploratory probing and such?
+For each point from starting point to length of room, probe width-wise in both directions and get distances.
+The primary goal as we walk the algorithm is to figure out room size that is as large as possible, up to its original intended size.
+A secondary design goal is to minimize small gaps between objects; aligning objects to other objects is preferred.
+The below algorithm, in the case of a conflict, produce many chamber proposals and then decide between them.
+Stop if the point out from the starting point is actively blocked, and reduce length of room accordingly.
+Check if all distances are at least 1/2 width. If they are, the room needs no shifting or shrinking and can be placed.
+Now walk through from beginning to end Look at the two distances for that length point.
+For each point:
+  If both distances are at least 1/2 width, skip; we already know we can't do the normal unshifted room so this gives us no info.
+  If the sum of the distances are less than width, add a chamber proposal with the reduced width if possible.
+  If the sum of the distances are width or more, add a chamber proposal for each of (sum - width), each one a shifted version of the chamber, skipping impossible proposals
+  NOTE: Track number of alignment points each proposal has, for weighting purposes.
+Find the largest possible chamber from the proposals. In the case of a tie, choose the one with the largest number of alignment points.
+
+When proposing a chamber:
+  Start with how far up and down from your length point you are drawing the chamber.
+  Draw that same width back to the starting point. If any are impossible, abort.
+  Draw that same width outward until either the length is reached, or an obstacle is hit. If an obstacle is hit, reduce length accordingly.
+  Record beginning-left point, width, length, and number of connections.
 
 
+
+......
+......
+....++
+......
+......
+------
+......
++++...
+......
+......
+......
 
 Project tracking:
 

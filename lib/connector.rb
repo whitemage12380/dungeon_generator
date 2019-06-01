@@ -8,6 +8,7 @@ class Connector
     @map_object = map_object
     @facing = facing if facing
     @square = square if square
+    @width = width
     @map_x = map_x if map_x
     @map_y = map_y if map_y
   end
