@@ -29,7 +29,7 @@ either reference.
 Thinking this through:
 
 On a 2-width passage pointing East, a cursor's initial coordinates are (-1, 10) (this will change based on width but we can account for this)
-Let's say this is place on the map at (15,15). Let's call the cursor's offset (16, 5) and see what happens.
+Let's say this is placed on the map at (15,15). Let's call the cursor's offset (16, 5) and see what happens.
 This means (x, y) on the cursor returns (-1, 10),
 and (map_x, map_y) returns (15, 15) if those functions just add the offset.
 Let's say the cursor then goes forward 1 space. coordinates are (0,10) now, map coordinates are (16,15). I think that works.
@@ -104,7 +104,12 @@ When proposing a chamber:
   Start with how far up and down from your length point you are drawing the chamber.
   Draw that same width back to the starting point. If any are impossible, abort.
   Draw that same width outward until either the length is reached, or an obstacle is hit. If an obstacle is hit, reduce length accordingly.
-  Record beginning-left point, width, length, and number of connections.
+  Record beginning-left point, width, length, and number of alignments.
+
+WARNING: The above doesn't take into account the fact that connectors are going to be 2 squares or more wide. The main difference is how far we look in each direction, and how many proposals get created per point in length.
+To get width out: First, subtract entrance width from chamber width. If the result is negative, we need to decide what to do with that (fail for now)
+For the remainder, divide that by 2. Look that number left, and connector width + that right. If odd, give left (or better, random) the extra square.
+In addition, when doing the initial check, I need to check out from all parts of the connector width.
 
 
 

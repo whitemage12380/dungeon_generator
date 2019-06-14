@@ -101,16 +101,19 @@ class Cursor
     when :west
       @x -= distance
     end
+    return self
   end
 
   def turn!(turn)
     @facing = facing(turn)
+    return self
   end
 
   def back!(distance = 1)
     turn!(:back)
     forward!(distance)
     turn!(:back)
+    return self
   end
 
   def shift!(turn, distance = 1)
@@ -122,6 +125,7 @@ class Cursor
     when :right
       turn!(:left)
     end
+    return self
   end
 
   def copy()
