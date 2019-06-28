@@ -5,7 +5,7 @@ class Cursor
   FACINGS = [:north, :east, :south, :west]
   TURNS = [:forward, :right, :back, :left]
 
-  def initialize(map:, x:, y:, facing:, map_offset_x: nil, map_offset_y: nil)
+  def initialize(map:, x:, y:, facing:, map_offset_x: 0, map_offset_y: 0)
     @map = map
     @x = x
     @y = y
@@ -138,7 +138,7 @@ class Cursor
   end
 
   def to_s()
-    return {x: @x, y: @y, facing: @facing}.to_s
+    return {x: @x, y: @y, facing: @facing, map_offset_x: @map_offset_x, map_offset_y: @map_offset_y}.to_s
   end
 end
 

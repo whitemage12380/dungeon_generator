@@ -79,12 +79,30 @@ class Chamber < MapObject
     }
   end
 
+  def initial_cursor_pos(facing)
+    case facing
+    when :north
+      x = 0
+      y = @length
+    when :east
+      x = -1
+      y = 0
+    when :south
+      x = @width
+      y = -1
+    when :west
+      x = @length
+      y = @width
+    end
+    return {x: x, y: y}
+  end
+
   def clear_distance(cursor, max_distance, width = 1)
     tmp_cursor = cursor.copy
     distances = Array.new
     for width_point in 0...width do
       for distance in 1..max_distance do
-        if not @map.square_available?(tmp_cursor.pos_forward(distance))
+        unless @map.square_available?(tmp_cursor.pos_forward(distance))
           distances[width_point] = distance - 1
           break
         end
@@ -108,23 +126,49 @@ class Chamber < MapObject
     cursor = Cursor.new(map: map,
                           x: map_x,
                           y: map_y,
-                     facing: facing,
-               map_offset_x: 0,
-               map_offset_y: 0)
+                     facing: facing)
     length_distance = clear_distance(cursor, @length, entrance_width)
-    puts length_distance
+    puts "Length distance: #{length_distance}"
     # Check if room can be placed with no shifting
+    # Assume room is centered from entrance, erring left if perfect centering is impossible
     horizontal_offset = 0
     width = @width.clone
     width_from_connector = width - entrance_width
     width_from_connector_left = (width_from_connector/2.to_f).ceil - horizontal_offset
     width_from_connector_right = (width_from_connector/2) + entrance_width + horizontal_offset
     place_as_is = true
+    puts "Width left: #{width_from_connector_left}"
+    puts "Width right: #{width_from_connector_right}"
     for length_point in 1..length_distance
-      place_as_is = false if not sides_clear?(cursor, width_from_connector_left, width_from_connector_right)
+      puts "Trying length point #{length_point}"
+      cursor.forward!()
+      unless sides_clear?(cursor, width_from_connector_left, width_from_connector_right)
+        place_as_is = false
+        break
+      end
     end
     if place_as_is
       # Width and length unchanged. Have to record beginning-left point, or some other way to indicate how to draw the room.
+      # Best bet: Set object's cursor to beginning-left point.
+      cursor_pos = initial_cursor_pos(facing)
+      offset_cursor = Cursor.new(map: map,
+                            x: map_x - cursor_pos[:x],
+                            y: map_y - cursor_pos[:y],
+                       facing: facing)
+      offset_cursor.shift!(:left, width_from_connector_left)
+      @map_offset_x = offset_cursor.x
+      @map_offset_y = offset_cursor.y
+      puts @map_offset_x
+      puts @map_offset_y
+      @cursor = Cursor.new(map: map,
+                             x: cursor_pos[:x],
+                             y: cursor_pos[:y],
+                        facing: facing,
+                  map_offset_x: @map_offset_x,
+                  map_offset_y: @map_offset_y)
+      puts @cursor.to_s
+      # I also need to indicate where the connector/door is, because the drawing needs to understand that.
+      # That said, it technically already knows because it has the starting connector's map x and y coordinates.
     end
     chamber_proposals = Array.new
 

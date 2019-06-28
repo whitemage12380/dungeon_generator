@@ -106,12 +106,46 @@ When proposing a chamber:
   Draw that same width outward until either the length is reached, or an obstacle is hit. If an obstacle is hit, reduce length accordingly.
   Record beginning-left point, width, length, and number of alignments.
 
-WARNING: The above doesn't take into account the fact that connectors are going to be 2 squares or more wide. The main difference is how far we look in each direction, and how many proposals get created per point in length.
+(Note: resolved) WARNING: The above doesn't take into account the fact that connectors are going to be 2 squares or more wide. The main difference is how far we look in each direction, and how many proposals get created per point in length.
 To get width out: First, subtract entrance width from chamber width. If the result is negative, we need to decide what to do with that (fail for now)
 For the remainder, divide that by 2. Look that number left, and connector width + that right. If odd, give left (or better, random) the extra square.
 In addition, when doing the initial check, I need to check out from all parts of the connector width.
 
+On giving a chamber the proper information to be able to draw it in the correct spot:
+The chamber needs to line up such that the entrance comes right before the decided-on point of contact.
+How do we get that point? Well we have left and right widths. If we shift a cursor right equal to the left width, we should get that point.
+But then how does that translate to the correct map offsets?
 
+........
+........
+..xxxx..
+##xxxx..
+##xxxx..
+..xxxx..
+........
+........
+
+This is a 4x4 room with a left width of 1. The left entrance coordinate is (1,3). The map offset for the chamber is (2,2). (note: bad logic ->) Well actually (1,2) because it starts before the first drawn coordinate. So to get the offset, we start with the left entrance coordinate, and shift left the distance of the left width. Which is obvious in retrospect.
+The problem is that we aren't currently working with cursors; we simply have x and y coordinates.
+I'm currently using initial_cursor_pos, which gets the x and y on the chamber grid in which the cursor starts. In the above example, initial cursor coordinates are (-1, 0). I'm going to use another example to gain perspective.
+
+........
+........
+..xxxx..
+..xxxx##
+..xxxx##
+..xxxx..
+........
+........
+
+4x4 room, left width 1, left entrance coordinate is (6,4) on the map grid. Initial cursor coordinates are (4,3) on the chamber grid. Map offset should be (2,2), as it should've been in the first example - I forgot that the map offset is a very simple translator from chamber grid to map grid, nothing to do with cursor or starting before the first drawn coordinate.
+The first example is really left entrance minus initial cursor coordinates, then shifted left equal to left width.
+Second example should be too. So (6,4) - (4,3) = (2,1), shifted left 1 while facing West = (2,2). Correct.
+So either I need annoying math to add or subtract the right number, or I can create a temporary cursor since my cursor logic already does that.
+I created a temporary cursor and am now to the point where the place-as-is part seems to work.
+
+
+---
 
 ......
 ......
