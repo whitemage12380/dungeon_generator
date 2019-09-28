@@ -7,15 +7,15 @@ class Chamber < MapObject
   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil)
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
-    @width = width
-    @length = length
-    @facing = facing
     if starting_connector
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
       facing = starting_connector.facing if not facing
       entrance_width = starting_connector.width if not entrance_width
     end
+    @width = width
+    @length = length
+    @facing = facing
     proposal = create_proposal(width: width,
                               length: length,
                                map_x: connector_x,
@@ -120,6 +120,14 @@ class Chamber < MapObject
     end
     # STEP 2A: Place as-is
     if place_as_is
+      proposal = ChamberProposal.new(chamber: self,
+          cursor: cursor,
+          width_left: width_from_connector_left,
+          width: width,
+          length: length,
+          length_threshold: length,
+      )
+      return proposal
       # Width and length unchanged. Have to record beginning-left point, or some other way to indicate how to draw the room.
       # Best bet: Set object's cursor to beginning-left point.
       cursor_pos = initial_cursor_pos(facing)
@@ -177,7 +185,6 @@ class Chamber < MapObject
         chamber_proposals << proposal if proposal and not chamber_proposals.collect { |p| p.to_h }.include? proposal.to_h
       end
     end
-    puts chamber_proposals.length
     chamber_proposals.each { |p| puts p.to_h}
     # To be replaced with a more nuanced selection mechanism at a later time
     chosen_proposal = chamber_proposals.sort_by {|p| p.score }.last
@@ -208,9 +215,9 @@ class Chamber < MapObject
   end
 
   def draw_chamber()
-    puts     "Not implemented yet"
     # Supposed to draw back wall first, but not implemented yet
     draw_forward(@length)
+    # Supposed to draw back wall, but not implemented yet
     #add_wall_width()
   end
 

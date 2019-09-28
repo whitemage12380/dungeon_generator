@@ -44,7 +44,7 @@ class Map
     return @grid[0].length
   end
 
-  def add_passage(connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)
+  def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)
     # If given a connector (which outside of dev/testing will always be true),
     # it can figure out x, y, and facing and it can randomize width based on the connector as well.
     # The passage can then do the rest of the work.
@@ -55,18 +55,15 @@ class Map
     #  y = connector.map_y if not y
     #  facing = connector.facing if not facing
     #end
-    if connector
-      passage = Passage.new(map: self, starting_connector: connector, instructions: instructions)
-    else
-      passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
+    if passage.nil?
+      if connector
+        passage = Passage.new(map: self, starting_connector: connector, instructions: instructions)
+      else
+        passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
+      end
     end
-
-    #passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
-    #passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
     @map_objects << passage
-
     draw_map_object(passage)
-
   end
 
   def add_chamber(connector: nil, width: nil, length: nil, x: nil, y: nil, facing: nil, entrance_width: nil)

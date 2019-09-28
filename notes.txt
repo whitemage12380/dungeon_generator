@@ -316,6 +316,9 @@ And align_weight and area_weight should be configurable, as well configuration a
 ......
 ......
 
+
+Currently, there is a bug in the algorithm where, if there isn't enough width for a given point, no proposals are attempted. This is bad because it can lead to scenarios where the algorithm could refuse to place a room in consistently-cramped-enough quarters, instead of creating a smaller room. What it should do is, if it doesn't have enough width, create one proposal that fills the entirety of the width that's available.
+
 Project tracking:
 
 - Passage Instructions: 75%

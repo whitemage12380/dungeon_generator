@@ -12,5 +12,13 @@ class Connector
     @map_x = map_x if map_x
     @map_y = map_y if map_y
   end
+
+  def to_s()
+    output = "Connector: "
+    output += "Connects from a map object. " if map_object
+    output += "Connects to a map object. " if connecting_map_object
+    output += "facing: #{facing}, width: #{width}, coordinates: (#{map_x}, #{map_y})."
+    return output
+  end
 end
   

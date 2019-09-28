@@ -36,11 +36,24 @@ def test_map_chamber_with_passages(passages:, chamber_index:, x:, y:, facing:, e
   chamber_length = chamber_data["length"]
   m = Map.new(map_size)
   passages.each {|p|
-    puts p.to_s
     passage_instructions = read_passage_instructions(p[:passage_index])
     m.add_passage(width: p[:width], facing: p[:facing], x: p[:x], y: p[:y], instructions: passage_instructions)
   }
   m.add_chamber(width: chamber_width, length: chamber_length, x: x, y: y, facing: facing, entrance_width: entrance_width)
+  puts m.to_s
+end
+
+def test_connected_map_chamber(passage:, chamber_index:, map_size: 40)
+  chambers_data = YAML.load(File.read("#{__dir__}/../data/chambers.yaml"))
+  chamber_data = chambers_data["chambers"][chamber_index]
+  chamber_width = chamber_data["width"]
+  chamber_length = chamber_data["length"]
+  m = Map.new(map_size)
+  passage_instructions = read_passage_instructions(passage[:passage_index])
+  p = Passage.new(map: m, width: passage[:width], facing: passage[:facing], connector_x: passage[:x], connector_y: passage[:y], instructions: passage_instructions)
+  m.add_passage(passage: p)
+  puts p.connectors.first.to_s
+  m.add_chamber(width: chamber_width, length: chamber_length, connector: p.connectors.first)
   puts m.to_s
 end
 
@@ -58,13 +71,18 @@ end
 #test_chamber(chamber_index: 0, x: 20, y: 20, facing: :west, map_size: 40)
 #test_chamber(chamber_index: 0, x: 20, y: 20, facing: :south, map_size: 40)
 
-test_map_chamber_with_passages(
-  passages: [
-    {width: 2, facing: :east, x: -1, y: 1, passage_index: 0},
-    {width: 2, facing: :south, x: 3, y: 6, passage_index: 0},
-  ],
-  chamber_index: 2,
-  x: -1,
-  y: 4,
-  facing: :east,
-)
+#test_map_chamber_with_passages(
+#  passages: [
+#    {width: 2, facing: :east, x: -1, y: 1, passage_index: 0},
+#    {width: 2, facing: :south, x: 3, y: 6, passage_index: 0},
+#  ],
+#  chamber_index: 2,
+#  x: -1,
+#  y: 4,
+#  facing: :east,
+#)
+
+test_connected_map_chamber(
+    passage: {width: 2, facing: :east, x: -1, y: 5, passage_index: 0},
+    chamber_index: 2,
+  )
