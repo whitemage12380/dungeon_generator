@@ -136,35 +136,7 @@ class Passage < MapObject
     return connector
   end
 
-  def draw_forward(distance, cursor: @cursor)
-    for i in 1..distance do
-      return false if not @map.square_available?(cursor.map_pos_forward)
-      cursor.forward!()
-      draw_width()
-    end
-    return true
-  end
 
-  def draw_width(cursor: @cursor)
-    #return false if not @map.square_available?(cursor.map_pos)
-    self[@cursor.pos] = MapObjectSquare.new({@cursor.left => :wall})
-    for i in 1...@width do
-      @cursor.shift!(:right)
-      self[@cursor.pos] = MapObjectSquare.new()
-    end
-    self[@cursor.pos].add_wall(@cursor.right)
-    @cursor.shift!(:left, @width-1)
-  end
-
-  def add_wall_width(cursor: @cursor)
-    return if not square_empty?(cursor.pos_forward)
-    self[cursor.pos].add_wall(cursor.facing)
-    for i in 1...@width do
-      cursor.shift!(:right)
-      self[cursor.pos].add_wall(cursor.facing)
-    end
-    cursor.shift!(:left, @width-1)
-  end
 
   def remove_wall_width(cursor: @cursor)
     self[cursor.pos].remove_wall(cursor.facing)

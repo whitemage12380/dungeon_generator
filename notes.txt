@@ -92,7 +92,7 @@ A secondary design goal is to minimize small gaps between objects; aligning obje
 The below algorithm, in the case of a conflict, produce many chamber proposals and then decide between them.
 Stop if the point out from the starting point is actively blocked, and reduce length of room accordingly.
 Check if all distances are at least 1/2 width. If they are, the room needs no shifting or shrinking and can be placed.
-Now walk through from beginning to end Look at the two distances for that length point.
+Now walk through from beginning to end. Look at the two side distances for that length point.
 For each point:
   If both distances are at least 1/2 width, skip; we already know we can't do the normal unshifted room so this gives us no info.
   If the sum of the distances are less than width, add a chamber proposal with the reduced width if possible.
@@ -144,6 +144,163 @@ Second example should be too. So (6,4) - (4,3) = (2,1), shifted left 1 while fac
 So either I need annoying math to add or subtract the right number, or I can create a temporary cursor since my cursor logic already does that.
 I created a temporary cursor and am now to the point where the place-as-is part seems to work.
 
+How does the algorithm handle an issue like this?
+
+#####.......
+#####.......
+............
+............
+#...........
+#...........
+............
+.......#####
+.......#####
+..##...#####
+..##...#####
+..##........
+
+Attempting to position a room width 6 length 8 at the end of the passage shown.
+1: 
+  Left distance < half width
+  Sum of distances >= width; adding (sum - width) proposals: (2 + 6) - 6 = 2 proposals. There should be 3.
+
+What is it missing? Maybe it meant passage width, but if so that's still wrong.
+In this case it's from 0 to left distance - 0, 1, and 2. If right width were, say, 5, it'd be just 1 and 2 left.
+Maybe it's (left distance + 1) - (width - right distance). That's (2+1)-(6-4) = 1. Still don't got it.
+No, I must've been mostly right the first time, I just forgot that the two distances don't include the square it starts on, so it's + 1.
+Dammit it still doesn't work when adding the right distance limitation - the proposals get reduced by 2 instead of 1.
+The problem is it shouldn't be checking all 6 squares to the right, only 5.
+It should be checking (width - passage width) to the left and (width - 1) to the right.
+So that sum would be 2 + 5 here, or 4 + 5 if it were totally open. If totally open, there would be 5 options.
+Gotta get back to this.
+Let's try: sum - (width - entrance_width)
+All open: 4 + 5 - (6 - 2)  = 9 - 4 = 5
+Current example: 2 + 5 - (6 - 2) = 7 - 4 = 3
+With extra obstacle: 2 + 4 - (6 - 2) = 6 - 4 = 2
+If it were a 4-width passage: 2 + 4 - (6 - 4) = 4. Should actually be 2.
+4-width passage that is open: 4 + 5 - (6 - 4) = 7. Should actually be 3.
+Nope that doesn't work. Increased passage width should either not change it, or reduce options if the left side is open.
+The algorithm just isn't simple enough to be condensed to such a basic arithmetic solution; impacts depend on right vs left.
+Hold on - what about minimum of (left width from connector + 1, right width from connector + 1)?
+All open: min(4+1, 4+1) = 5
+Current example: min(2+1, 4+1) = 3
+Withe extra obstacle: min(2+1, 3+1) = 3. Ugh, nope still not worky. In reality, the obstacle to the right impacts the possibilities to the left.
+Oh yeah, let's revisit this: "If both distances are at least 1/2 width, skip"
+Is that still true given the new distance maxes? I don't think it's quite right.
+What I'm really trying to say is, "is it possible to draw the chamber centered here?"
+
+
+Let's try this again:
+
+1: 
+  Left distance < half width
+  Sum of distances >= width; adding (sum + 1 - width) proposals: (2 + 6 + 1) - 6 = 3 proposals.
+  Proposal 1: start left 2; width 6, length 5, align 2
+  Proposal 2: start left 1; width 6, length 5, align 1
+  Proposal 3: start left 0; width 6, length 5, align 1
+
+Coming back to this after a hiatus. What the heck do I mean about sum of distances? The passage width crucially affects this.
+Logic through... Start by pretending the easiest scenario and then add in each complication.
+Best case, our proposals are gotten by starting where the room is aligned to the right edge of the entrance and ending where it's aligned to left.
+For width 4, entrance width 2, that's 3 proposals. For width 5 that's 4 proposals and so on.
+So for that simple model (width + 1 - pwidth) is a working algorithm. Every point of width adds an opportunity, every pwidth restricts it.
+The "+1" option is the zero-shift option.
+Now let's add in obstacles. Let's go back to width 6. and assume the Northern obstacle in the test situation above.
+That takes the proposals from 5 to 3. For every space away from the left passage edge it increases proposals to a max of 5.
+Every space closer, it decreases them to a min of 1. Determining factor is that distance between it and the left edge.
+Distance below 0 doesn't matter. Distance above (width - pwidth) doesn't matter
+So it reduces proposals by  min(1, min(empty_spaces_from_entrance, width - pwidth))
+But of course then there is the right side, and the two sides can interact with each other.
+Let's assume the 2nd length point in the above picture, where an obstacle sits 4 spaces away from the right edge.
+Let's try using the same formula.
+min(1, min(empty_spaces_from_entrance, width - pwidth)) = min(1, min(3, 6 - 2)) = 3. Nope can't do it that simply (it should be 1) 
+Wait I got things twisted around; distance from entrance should increase possibilities, not reduce them.
+Also doing the two subtractions doesn't make sense; you can limit the proposals down to 1 from the left side and then it ceases
+to matter what the right side looks like. Wait that's not true, if the right side also reduces possibilities, that reduces length.
+So maybe subtractions are right.
+(width - pwidth) - clear spaces from entrance is what determines how much  is reduced.
+or better: width - min(clear_spaces_from_right_entrance_edge, width)
+
+Full Algorithm: (width + 1 - pwidth) - (width - min(clear_left + pwidth, width)) - (width - min(clear_right + pwidth, width))
+
+Let's assume width 6 pwidth 2, adding in obstacles from the example above
+No obstacles: (width + 1 - pwidth) = 6 + 1 - 2 = 5
+Left obstacle: (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_right)) = (6 + 1 - 2) - (6 - (2 + 2)) = 5 - 2 = 3
+Right obstacle: (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_left)) = (6 + 1 - 2) - (6 - (2 + 3)) = 5 - 1 = 4
+Both obstacles: (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_right)) - (width - min(clear_spaces_from_entrance_left)) 
+   = (6 + 1 - 2) - (6 - (2 + 2)) - (6 - (2 + 3)) = 5 - 2 - 1 = 2
+That's correct! Now we're getting somewhere. Let's say there are obstacles directly on each side of the entrance. You'd get:
+5 - (6-2) - (6-2) = -3. The width is 6 but can only support 2. The reason it's -3 and not -4 is that there are 4 fewer than 1 options.
+
+Okay, *now* we're ready for a logical walkthrough.
+
+#####.......
+#####.......
+............
+............
+#...........
+#...........
+............
+.......#####
+.......#####
+..##...#####
+..##...#####
+..##........
+
+
+1:
+  Obstacles?:        Yes, Left distance < half width
+  Clearance:         (2, 6)
+  Proposals:         5 - 2 - 0 = 3
+  Proposal 1:        start left 2; width 6, length 5, align 7
+  Proposal 2:        start left 1; width 6, length 5, align 4
+  Proposal 3:        start left 0; width 6, length 1, align 2 -> align 3
+2:
+  Obstacles?:        Yes, Right distance < half width
+  Clearance:         (2, 3)
+  Proposals:         5 - 2 - 1 = 2
+  Proposal 1:        start left 2; width 6, length 5, align 7
+  Proposal 2:        start left 1; width 6, length 5, align 4
+3:
+  Obstacles?:        Yes, Right distance < half width
+  Clearance:         (2, 3)
+  Proposals:         5 - 2 - 1 = 2
+  Proposal 1:        start left 2; width 6, length 5, align 7
+  Proposal 2:        start left 1; width 6, length 5, align 4
+4:
+  Obstacles?:        Yes, Left distance < half width
+  Clearance:         (2, 6)
+  Proposals:         5 - 2 - 0 = 3
+  Proposal 1:        start left 2; width 6, length 5, align 7
+  Proposal 2:        start left 1; width 6, length 5, align 4
+  Proposal 3:        start left 0; ABORT (cannot trace back to start) -> left 0, width 5, length 5, align 5
+5:
+  Obstacles?:        No
+6:
+  Obstacles?:        No
+7:
+  Obstacles?:        Yes, Right distance < half width
+  Clearance:         (6, 1)
+  Proposals:         5 - 0 - 3 = 2
+  Proposal 1:        start left 4; ABORT (cannot trace back to start) -> left 2, width 4, length 8, align 4
+  Proposal 2:        start left 3; ABORT (cannot trace back to start) -> left 2, width 5, length 8, align 6
+8:
+  Obstacles?:        Yes, Right distance < half width
+  Clearance:         (6, 1)
+  Proposals:         5 - 0 - 3 = 2
+  Proposal 1:        start left 4; ABORT (cannot trace back to start) -> left 2, width 4, length 8, align 4
+  Proposal 2:        start left 3; ABORT (cannot trace back to start) -> left 2, width 5, length 8, align 6
+
+The winning proposal will be left 2, width 6, length 5.
+A proposal that would have won if it were considered would have been left 2, width 5, length 8.
+A more minor note: The algorith could reasonably look up whether a proposal of a certain nature already exists before adding it again.
+How to make it just a little smarter? Maybe have it look deeper on cases where it would abort.
+The aborts will always be width-related. So what I would do instead of aborting:
+  Draw the room with the specified length and left. When an obstacle is found to the left of the entrance, change width and left to get past it.
+  When an obstacle is found to the right of the entrance, change width to get past it.
+  I am adding the results of the new logic to all the abort lines above.
+I should also add an align bonus if left is max or 0.
+And align_weight and area_weight should be configurable, as well configuration around randomly choosing less optimal positionings.
 
 ---
 

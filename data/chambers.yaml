@@ -2,3 +2,9 @@ chambers:
   - probability: 2
     width: 6
     length: 6
+  - probability: 2
+    width: 4
+    length: 8
+  - probability: 2
+    width: 6
+    length: 8

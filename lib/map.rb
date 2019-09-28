@@ -69,6 +69,17 @@ class Map
 
   end
 
+  def add_chamber(connector: nil, width: nil, length: nil, x: nil, y: nil, facing: nil, entrance_width: nil)
+    if connector
+      chamber = Chamber.new(map: self, starting_connector: connector, width: width, length: length)
+    else
+      chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+    end
+    @map_objects << chamber
+    draw_map_object(chamber)
+  end
+  #   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil)
+
   def draw_map_object(map_object)
     offset_x = map_object.map_offset_x
     offset_y = map_object.map_offset_y
