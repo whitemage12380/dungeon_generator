@@ -64,6 +64,7 @@ class Map
     end
     @map_objects << passage
     draw_map_object(passage)
+    return passage
   end
 
   def add_chamber(connector: nil, width: nil, length: nil, x: nil, y: nil, facing: nil, entrance_width: nil)
@@ -74,8 +75,8 @@ class Map
     end
     @map_objects << chamber
     draw_map_object(chamber)
+    return chamber
   end
-  #   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil)
 
   def draw_map_object(map_object)
     offset_x = map_object.map_offset_x

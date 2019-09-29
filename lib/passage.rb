@@ -8,6 +8,7 @@ class Passage < MapObject
   def initialize(map:, width: nil, facing: :east, starting_connector: nil, connector_x: nil, connector_y: nil, instructions: nil)
     if starting_connector
       width = starting_connector.width if not width
+      facing = starting_connector.facing
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
     end
@@ -75,21 +76,21 @@ class Passage < MapObject
       cursor.forward!(@width - 1)
       remove_wall_width(cursor: cursor)
     when "CONNECTOR"
-      connector = create_connector()
+      connector = create_connector(cursor)
       add_connector_width(connector, cursor: cursor)
     # A passage that branches from another passage is either 5ft (16% chance) or 10ft (84% chance).
     # For now I can assume 10ft and add the ability to do 5ft corridors as a future feature.
     when "CONNECTOR LEFT"
       cursor.turn!(:left)
       cursor.shift!(:left)
-      connector = create_connector(2)
+      connector = create_connector(cursor, 2)
       add_connector(connector, 2, 0, cursor: cursor)
       cursor.shift!(:right)
       cursor.turn!(:right)
     when "CONNECTOR RIGHT"
       cursor.turn!(:right)
       cursor.forward!(@width - 1)
-      connector = create_connector(2)
+      connector = create_connector(cursor, 2)
       add_connector(connector, 2, 0, cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
@@ -125,7 +126,7 @@ class Passage < MapObject
     return true
   end
 
-  def create_connector(width = @width)
+  def create_connector(cursor = @cursor, width = @width)
     connector = Connector.new(map_object: self,
                                   square: self[cursor.pos],
                                    map_x: @cursor.map_x.clone,
@@ -133,6 +134,7 @@ class Passage < MapObject
                                   facing: @cursor.facing.clone,
                                    width: width)
     @connectors << connector
+    puts "Creating connector for passage at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
     return connector
   end
 

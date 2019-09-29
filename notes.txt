@@ -319,6 +319,21 @@ And align_weight and area_weight should be configurable, as well configuration a
 
 Currently, there is a bug in the algorithm where, if there isn't enough width for a given point, no proposals are attempted. This is bad because it can lead to scenarios where the algorithm could refuse to place a room in consistently-cramped-enough quarters, instead of creating a smaller room. What it should do is, if it doesn't have enough width, create one proposal that fills the entirety of the width that's available.
 
+Next task is getting it all connected together. Some tasks related to this:
+* Have doors and connectors inherit from a parent (probably)
+* Figure out algorithm to go from nothing to full dungeon
+* Lots of generation logic
+* Logic for figuring out where doors/connectors go in a chamber, and logic to replace those parts of the wall
+
+Starting area is hard. Let's simplify it to a passage for now.
+
+
+The macro algorithm:
+
+Start by creating a "starting area". Technically this should use a custom starting-room roll, based on the DMG. It might be a chamber or a passage.
+  Determine starting location and facing for this area. Consider making this entirely random, or just slap it in the center or on a side.
+Generate exits. For a passage this is figured out already. For a chamber, roll chamber exits, and location and type for each.
+
 Project tracking:
 
 - Passage Instructions: 75%
