@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../lib/map'
-require_relative '../lib/chamber'
-require_relative '../lib/passage'
+require_relative '../lib/map_generator'
 require 'yaml'
 
 def read_passage_instructions(passage_index)
@@ -23,11 +21,18 @@ def test_connected_passages(starting_passage:, passages:, map_size: 60)
   puts m.to_s
 end
 
-test_connected_passages(
-  starting_passage: {width: 2, facing: :east, x: -1, y: 20, passage_index: 0},
-  passages: [
-    {width: 2, passage_index: 0},
-    {width: 2, passage_index: 4},
-    {width: 2, passage_index: 5},
-  ],
-)
+def test_map_generator()
+  m = MapGenerator.generate_map()
+  puts m.to_s
+end
+
+#test_connected_passages(
+#  starting_passage: {width: 2, facing: :east, x: -1, y: 20, passage_index: 0},
+#  passages: [
+#    {width: 2, passage_index: 0},
+#    {width: 2, passage_index: 4},
+#    {width: 2, passage_index: 5},
+#  ],
+#)
+
+test_map_generator()

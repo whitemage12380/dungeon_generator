@@ -1,4 +1,7 @@
+require_relative 'map_generator'
 require_relative 'map_object'
+require_relative 'passage'
+require_relative 'chamber'
 
 class Map
   attr_accessor :grid, :map_objects
@@ -87,6 +90,15 @@ class Map
         self[x + offset_x, y + offset_y] = y_obj
       }
     }
+  end
+
+  def generate_starting_area()
+    # For now, pretend starting area is just a passage, for simplicity's sake
+    configuration = MapGenerator.generate_starting_area_configuration()
+    location      = MapGenerator.generate_starting_area_location(self)
+    instructions  = configuration["passage"]
+    width         = configuration["width"]
+    add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
   end
 
   def to_s()
