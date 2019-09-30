@@ -28,11 +28,25 @@ class MapObject
   #end
 
   def [] (coordinates)
-    @grid[coordinates[:x]][coordinates[:y]]
+    begin
+      @grid[coordinates[:x]][coordinates[:y]]
+    rescue Exception => e
+      puts "Erroring coordinates: #{coordinates.to_s}"
+      puts to_s
+      puts map.to_s
+      raise
+    end
   end
 
   def []=(coordinates, value)
-    @grid[coordinates[:x]][coordinates[:y]] = value
+    begin
+      @grid[coordinates[:x]][coordinates[:y]] = value
+    rescue Exception => e
+      puts "Erroring coordinates: #{coordinates.to_s}"
+      puts to_s
+      puts map.to_s
+      raise
+    end
   end
 
   def square(x:, y:)
@@ -105,12 +119,21 @@ class MapObject
 
   def add_wall_width(cursor: @cursor)
     return if not square_empty?(cursor.pos_forward)
-    self[cursor.pos].add_wall(cursor.facing)
-    for i in 1...@width do
-      cursor.shift!(:right)
+    # This line is possibly a stop-gap or a partial solution for passages that can't even begin to draw
+    return if not @grid[cursor.pos[:x]] or not @grid[cursor.pos[:x]][cursor.pos[:y]]
+    begin
       self[cursor.pos].add_wall(cursor.facing)
+      for i in 1...@width do
+        cursor.shift!(:right)
+        self[cursor.pos].add_wall(cursor.facing)
+      end
+      cursor.shift!(:left, @width-1)
+    rescue Exception => e
+      puts "Erroring cursor: #{cursor.to_s}"
+      puts to_s
+      puts map.to_s
+      raise
     end
-    cursor.shift!(:left, @width-1)
   end
 
   def to_s()

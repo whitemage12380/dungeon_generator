@@ -51,3 +51,6 @@ passages:
       - "CONNECTOR LEFT"
       - "FORWARD 10"
       - "CONNECTOR"
+  - probability: 5
+    description: "Chamber"
+    passage: "chamber"

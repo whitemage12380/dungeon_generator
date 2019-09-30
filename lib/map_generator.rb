@@ -7,6 +7,7 @@ class MapGenerator
     def generate_map(map_size = 60)
       map = Map.new(map_size)
       starting_area = map.generate_starting_area
+      starting_area.connectors.each {|c| generate_passage_recursive(c)}
       return map
     end
     def generate_starting_area_configuration()
@@ -63,6 +64,24 @@ class MapGenerator
       facing = random_facing(facing_exceptions) unless facing
       # Location generated
       return {x: rand_x, y: rand_y, facing: facing}
+    end
+
+    def generate_passage_recursive(connector)
+      map = connector.map_object.map
+      passage_data = yaml_data("passages")
+      puts passage_data.to_s
+      case passage_data["passage"]
+      when "chamber"
+        puts "Would have put down a chamber, trying again instead"
+        generate_passage_recursive(connector)
+      when "stairs"
+        puts "Not implemented"
+      else
+        passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
+        passage.connectors.each {|c|
+          generate_passage_recursive(c)
+        }
+      end
     end
 
     def random_facing(exceptions = [])
