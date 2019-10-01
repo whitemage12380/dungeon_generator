@@ -72,8 +72,10 @@ class MapGenerator
       puts passage_data.to_s
       case passage_data["passage"]
       when "chamber"
-        puts "Would have put down a chamber, trying again instead"
-        generate_passage_recursive(connector)
+        chamber_data = yaml_data("chambers")
+        width = chamber_data["width"]
+        length = chamber_data["length"]
+        chamber = map.add_chamber(connector: connector, width: width, length: length)
       when "stairs"
         puts "Not implemented"
       else
