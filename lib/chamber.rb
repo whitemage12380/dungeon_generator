@@ -40,11 +40,11 @@ class Chamber < MapObject
       x = -1
       y = 0
     when :south
-      x = @width
+      x = @width - 1
       y = -1
     when :west
       x = @length
-      y = @width
+      y = @width - 1
     end
     return {x: x, y: y}
   end
@@ -91,10 +91,9 @@ class Chamber < MapObject
     # STEP 1: Check distance from entrance; reduce or fail if shorter than necessary
     puts "Checking how clear it is outward from entrance (length: #{length}, entrance_width: #{entrance_width})"
     puts "Cursor: #{cursor.to_s}"
-    length_distance = clear_distance(cursor, length, entrance_width)
-    #@length = length_distance
-    puts "Length distance: #{length_distance}"
-    if length_distance < 2
+    length = clear_distance(cursor, length, entrance_width)
+    puts "Length after initial truncate: #{length}"
+    if length < 2
       puts "Cannot place chamber (not enough space outward from entrance)"
       return
     end
@@ -109,7 +108,7 @@ class Chamber < MapObject
     puts "Width left: #{width_from_connector_left}"
     puts "Width right: #{width_from_connector_right}"
     tmp_cursor = cursor.copy
-    for length_point in 1..length_distance # Start at base of room (from entrance) and move outward
+    for length_point in 1..length # Start at base of room (from entrance) and move outward
       puts "Trying length point #{length_point}"
       tmp_cursor.forward!()
       unless sides_clear?(tmp_cursor, width_from_connector_left, width_from_connector_right)
@@ -127,36 +126,14 @@ class Chamber < MapObject
           length: length,
           length_threshold: length,
       )
+      puts "Placing as-is: #{proposal.to_h}"
       return proposal
-      # Width and length unchanged. Have to record beginning-left point, or some other way to indicate how to draw the room.
-      # Best bet: Set object's cursor to beginning-left point.
-      cursor_pos = initial_cursor_pos(facing)
-      offset_cursor = Cursor.new(map: map,
-                            x: map_x - cursor_pos[:x],
-                            y: map_y - cursor_pos[:y],
-                       facing: facing)
-      offset_cursor.shift!(:left, width_from_connector_left)
-      @map_offset_x = offset_cursor.x
-      @map_offset_y = offset_cursor.y
-      puts @map_offset_x
-      puts @map_offset_y
-      @cursor = Cursor.new(map: map,
-                             x: cursor_pos[:x],
-                             y: cursor_pos[:y],
-                        facing: facing,
-                  map_offset_x: @map_offset_x,
-                  map_offset_y: @map_offset_y)
-      puts @cursor.to_s
-      # I also need to indicate where the connector/door is, because the drawing needs to understand that.
-      # That said, it technically already knows because it has the starting connector's map x and y coordinates.
-      puts "Chamber was able to be placed as-is"
-      return
     end
     # STEP 3: Check each point in length and generate proposals
     chamber_proposals = Array.new
     tmp_cursor = cursor.copy
-    for length_point in 1..length_distance
-      puts "Checking at length point #{length_point} (of #{length_distance})"
+    for length_point in 1..length
+      puts "Checking at length point #{length_point} (of #{length})"
       # STEP 3A: Advance to the next point along the room and get clearance
       tmp_cursor.forward!()
       puts "Cursor: #{tmp_cursor.to_s}"

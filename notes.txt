@@ -334,6 +334,25 @@ Start by creating a "starting area". Technically this should use a custom starti
   Determine starting location and facing for this area. Consider making this entirely random, or just slap it in the center or on a side.
 Generate exits. For a passage this is figured out already. For a chamber, roll chamber exits, and location and type for each.
 
+
+Rolling chamber exits. I need to create a yaml file or two. It rolls for location, and then I need to decide where on the wall to put it.
+In order to do this, I need to understand the width. For doors this is easy; for passages it is more challenging because that needs to be generated. Maybe not too tough; it isn't actually the passage width that needs to be determined, it's the connector width. And then later when passages are generated, the passage gets to use the connector width.
+Best thought for algorithm is to figure out how many positions are possible and weight them:
+- Possibly higher weight for central passage
+- Higher weight if there's a room or passage on the other side, so it can connect
+- Disallow if part of the door/connector leads to room/passage, and another part leads to empty space
+
+Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to diasgreement about how "width right" works - left of starting square vs left of connector as a whole.
+Okay it looks like a problem with the cursor being passed in.
+RESOLVED. Turns out initial_cursor_pos provided bad coordinates for chambers facing South and West.
+
+Bug - it is possible for a chamber to get to y=-1, wrapping around to the other end of the grid.
+Okay now _this_ may be due to disagreement about how "width right" works.
+RESOLVED (I think). Tricky to reproduce, but I believe I forgot to remove "-1" modifiers for proposal checks when length point is past length threshold.
+
+Bug - there's something wacky chamber logic issue causing width to become 1.
+RESOLVED . There was a problem where the length prior to shortening is used when placing as-is or generating proposals, which caused proposals to examine areas off of the map and finding collisions on both sides.
+
 Project tracking:
 
 - Passage Instructions: 75%

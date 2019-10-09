@@ -101,20 +101,22 @@ class MapObject
     for i in 1..distance do
       return false if not @map.square_available?(cursor.map_pos_forward)
       cursor.forward!()
-      draw_width()
+      draw_width(cursor: cursor)
     end
     return true
   end
 
   def draw_width(cursor: @cursor)
     #return false if not @map.square_available?(cursor.map_pos)
-    self[@cursor.pos] = MapObjectSquare.new({@cursor.left => :wall})
+    puts "Cursor to draw: #{cursor}"
+    puts "VS:             #{@cursor}"
+    self[cursor.pos] = MapObjectSquare.new({cursor.left => :wall})
     for i in 1...@width do
-      @cursor.shift!(:right)
-      self[@cursor.pos] = MapObjectSquare.new()
+      cursor.shift!(:right)
+      self[cursor.pos] = MapObjectSquare.new()
     end
-    self[@cursor.pos].add_wall(@cursor.right)
-    @cursor.shift!(:left, @width-1)
+    self[cursor.pos].add_wall(cursor.right)
+    cursor.shift!(:left, @width-1)
   end
 
   def add_wall_width(cursor: @cursor)
