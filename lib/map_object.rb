@@ -108,8 +108,7 @@ class MapObject
 
   def draw_width(cursor: @cursor)
     #return false if not @map.square_available?(cursor.map_pos)
-    puts "Cursor to draw: #{cursor}"
-    puts "VS:             #{@cursor}"
+    puts "Cursor to draw width: #{cursor}"
     self[cursor.pos] = MapObjectSquare.new({cursor.left => :wall})
     for i in 1...@width do
       cursor.shift!(:right)

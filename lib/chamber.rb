@@ -82,13 +82,34 @@ class Chamber < MapObject
     return true
   end
 
+  def default_proposal(cursor:, width_from_connector_left:, width_from_connector_right:, width:, length:)
+    tmp_cursor = cursor.copy
+    for length_point in 1..length # Start at base of room (from entrance) and move outward
+      puts "Trying length point #{length_point}"
+      tmp_cursor.forward!()
+      unless sides_clear?(tmp_cursor, width_from_connector_left, width_from_connector_right)
+        puts "Sides not clear at point #{length_point}"
+        return nil
+      end
+    end
+    puts "Placing as-is."
+    proposal = ChamberProposal.new(chamber: self,
+        cursor: cursor,
+        width_left: width_from_connector_left,
+        width: width,
+        length: length,
+        length_threshold: length,
+    )
+    puts "Proposal: #{proposal.to_h}"
+    return proposal
+  end
+
   def create_proposal(width:, length:, map_x:, map_y:, facing:, entrance_width:)
-    # SETUP
+    # SETUP: Cursor, length, width-related calculations
     cursor = Cursor.new(map: map,
                           x: map_x,
                           y: map_y,
                      facing: facing)
-    # STEP 1: Check distance from entrance; reduce or fail if shorter than necessary
     puts "Checking how clear it is outward from entrance (length: #{length}, entrance_width: #{entrance_width})"
     puts "Cursor: #{cursor.to_s}"
     length = clear_distance(cursor, length, entrance_width)
@@ -97,58 +118,39 @@ class Chamber < MapObject
       puts "Cannot place chamber (not enough space outward from entrance)"
       return
     end
-    # STEP 2: Check if room can be placed with no shifting
-    #         Assume room is centered from entrance, erring left if perfect centering is impossible
     horizontal_offset = 0
-    #width = @width.clone
     width_from_connector = width - entrance_width
     width_from_connector_left = (width_from_connector/2.to_f).ceil - horizontal_offset
     width_from_connector_right = (width_from_connector/2) + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
-    place_as_is = true
     puts "Width left: #{width_from_connector_left}"
     puts "Width right: #{width_from_connector_right}"
-    tmp_cursor = cursor.copy
-    for length_point in 1..length # Start at base of room (from entrance) and move outward
-      puts "Trying length point #{length_point}"
-      tmp_cursor.forward!()
-      unless sides_clear?(tmp_cursor, width_from_connector_left, width_from_connector_right)
-        puts "Sides not clear at point #{length_point}"
-        place_as_is = false
-        break
-      end
-    end
-    # STEP 2A: Place as-is
-    if place_as_is
-      proposal = ChamberProposal.new(chamber: self,
-          cursor: cursor,
-          width_left: width_from_connector_left,
-          width: width,
-          length: length,
-          length_threshold: length,
+    # STEP 1: Use default layout proposal if possible
+    p = default_proposal( cursor: cursor,
+       width_from_connector_left: width_from_connector_left,
+      width_from_connector_right: width_from_connector_right,
+                           width: width,
+                          length: length,
       )
-      puts "Placing as-is: #{proposal.to_h}"
-      return proposal
-    end
-    # STEP 3: Check each point in length and generate proposals
+    return p if p
+    # STEP 2: Check each point in length and generate proposals
     chamber_proposals = Array.new
     tmp_cursor = cursor.copy
     for length_point in 1..length
       puts "Checking at length point #{length_point} (of #{length})"
-      # STEP 3A: Advance to the next point along the room and get clearance
+      # STEP 2A: Advance to the next point along the room and get clearance
       tmp_cursor.forward!()
-      puts "Cursor: #{tmp_cursor.to_s}"
+      puts "  Cursor: #{tmp_cursor.to_s}"
       clearance = side_clearance(tmp_cursor, (width-entrance_width), (width-1))
-      # STEP 3B: Skip from consideration if there are no left/right obstacles
-      puts "Skipping from consideration" if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
+      # STEP 2B: Skip from consideration if there are no left/right obstacles
+      puts "  Skipping from consideration" if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
       next if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
-      # STEP 3C: Get the number of proposals and first left starting point
+      # STEP 2C: Get the number of proposals and first left starting point
       # (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_right))
       left_proposal_restriction = width - [clearance[:left] + entrance_width, width].min
       right_proposal_restriction = width - [clearance[:right] + entrance_width, width].min
       point_proposals = (width + 1 - entrance_width) - left_proposal_restriction - right_proposal_restriction
       starting_point_offset = clearance[:left]
-      #puts "#{width} - [#{clearance[:left] + entrance_width}, #{width}].min"
-      puts "#{point_proposals} proposals for this point, with starting offset of #{starting_point_offset}"
+      puts "  #{point_proposals} proposals for this point, with starting offset of #{starting_point_offset}"
       # STEP 3D: Try to build each proposal
       for proposal_num in 0...point_proposals
         proposal = ChamberProposal.new(chamber: self,
@@ -158,11 +160,12 @@ class Chamber < MapObject
           length: length,
           length_threshold: length_point,
           )
-        puts "Proposal created: #{proposal.to_h}"
+        puts "  Proposal created: #{proposal.to_h}"
         chamber_proposals << proposal if proposal and not chamber_proposals.collect { |p| p.to_h }.include? proposal.to_h
       end
     end
     chamber_proposals.each { |p| puts p.to_h}
+    # STEP 3: Choose a proposal
     # To be replaced with a more nuanced selection mechanism at a later time
     chosen_proposal = chamber_proposals.sort_by {|p| p.score }.last
     puts "CHOSEN: #{chosen_proposal.to_h}"

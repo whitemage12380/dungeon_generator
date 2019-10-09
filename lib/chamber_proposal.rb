@@ -30,16 +30,16 @@ class ChamberProposal
       aligns += 1 if align_clearance[:right] < width_right+1
       # Get actual clearance
       clearance = @chamber.side_clearance(cursor, width_left, width_right)
-      puts "  Clearances for point #{length_point}: (#{clearance[:left]}/#{width_left}, #{clearance[:right]}/#{width_right})"
+      puts "    Clearances for point #{length_point}: (#{clearance[:left]}/#{width_left}, #{clearance[:right]}/#{width_right})"
       if length_point < length_threshold
         # If there is an obstacle at this length, shrink width as necessary and continue
         if clearance[:left] < width_left
-          puts "  Obstacle found at point #{length_point} (left). Reducing width by #{width_left} - #{clearance[:left]} = #{width_left - clearance[:left]}"
+          puts "    Obstacle found at point #{length_point} (left). Reducing width by #{width_left} - #{clearance[:left]} = #{width_left - clearance[:left]}"
           width -= (width_left - clearance[:left])
           width_left = clearance[:left]
         end
         if clearance[:right] < width_right
-          puts "  Obstacle found at point #{length_point} (right). Reducing width by #{width_right} - #{clearance[:right]} = #{width_right - clearance[:right]}"
+          puts "    Obstacle found at point #{length_point} (right). Reducing width by #{width_right} - #{clearance[:right]} = #{width_right - clearance[:right]}"
           width -= (width_right - clearance[:right])
           width_right = clearance[:right]
         end
@@ -47,7 +47,7 @@ class ChamberProposal
         # If there is an obstacle at this length, shrink length to right before it and finish
         if clearance[:left] < width_left or clearance[:right] < width_right
           length = length_point - 1
-          puts "  Obstacle found at point #{length_point}. Reducing length to #{length}"
+          puts "    Obstacle found at point #{length_point}. Reducing length to #{length}"
           cursor.back!()
           break
         end
