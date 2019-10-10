@@ -1,0 +1,13 @@
+exit_locations:
+  - probability: 7
+    description: "Wall opposite entrance"
+    facing: "forward"
+  - probability: 5
+    description: "Wall left of entrance"
+    facing: "left"
+  - probability: 5
+    description: "Wall right of entrance"
+    facing: "right"
+  - probability: 3
+    description: "Same wall as entrance"
+    facing: "back"

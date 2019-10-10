@@ -1,0 +1,10 @@
+exit_types:
+  - probability: 10
+    description: "Door"
+    type: "door"
+  - probability: 10
+    description: "Corridor, 10 ft. long"
+    type: "passage"
+    passage:
+      - "FORWARD 10"
+      - "CONNECTOR"

@@ -68,11 +68,11 @@ class MapGenerator
 
     def generate_passage_recursive(connector)
       map = connector.map_object.map
-      passage_data = yaml_data("passages")
+      passage_data = random_yaml_element("passages")
       puts passage_data.to_s
       case passage_data["passage"]
       when "chamber"
-        chamber_data = yaml_data("chambers")
+        chamber_data = random_yaml_element("chambers")
         width = chamber_data["width"]
         length = chamber_data["length"]
         chamber = map.add_chamber(connector: connector, width: width, length: length)
@@ -86,9 +86,26 @@ class MapGenerator
       end
     end
 
+    def random_chamber_exits(size_category)
+      exit_count = random_yaml_element("chamber_exits")[size_category]
+      exits = []
+      for i in 0...exit_count
+        exit_location = random_yaml_element("exit_locations")["facing"].to_sym
+        exit_type = random_yaml_element("exit_types")
+        exit_obj = {location: exit_location, type: exit_type["type"]}
+        exit_obj[:passage] = exit_type["passage"] if exit_type["type"] == "passage"
+        exits << exit_obj
+      end
+      return exits
+    end
+
     def random_facing(exceptions = [])
       available_facings = FACINGS - exceptions
       return available_facings.sample
+    end
+
+    def random_yaml_element(type)
+      yaml_data(type)
     end
 
     def yaml_data(type, index = nil)

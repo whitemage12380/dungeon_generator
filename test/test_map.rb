@@ -26,6 +26,13 @@ def test_map_generator()
   puts m.to_s
 end
 
+def test_random_exits()
+  puts "Normal test:"
+  puts MapGenerator.random_chamber_exits("normal")
+  puts "Large test:"
+  puts MapGenerator.random_chamber_exits("large")
+end
+
 #test_connected_passages(
 #  starting_passage: {width: 2, facing: :east, x: -1, y: 20, passage_index: 0},
 #  passages: [
@@ -36,3 +43,4 @@ end
 #)
 
 test_map_generator()
+test_random_exits()

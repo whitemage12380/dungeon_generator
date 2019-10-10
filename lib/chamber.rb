@@ -201,20 +201,18 @@ class Chamber < MapObject
     #add_wall_width()
   end
 
+  def size_category()
+    if (length * width) > 1600
+      return "large"
+    else
+      return "normal"
+    end
+  end
+
 #  def draw_back_wall()
 #
 #  end
 
-
-#  def add_wall_width(cursor: @cursor)
-#    return if not square_empty?(cursor.pos_forward)
-#    self[cursor.pos].add_wall(cursor.facing)
- #   for i in 1...@width do
- #     cursor.shift!(:right)
- #     self[cursor.pos].add_wall(cursor.facing)
- #   end
- #   cursor.shift!(:left, @width-1)
- # end
   ######
   ### CLASS METHODS
   ######
