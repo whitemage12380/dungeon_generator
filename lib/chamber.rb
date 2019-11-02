@@ -243,6 +243,9 @@ def add_exit(exit)
     puts "Proposal: #{proposal.to_h}"
     exit_proposals << proposal if proposal.exit_allowed?
   end
+  #puts exit_proposals.collect { |p| {proposal: p, "probability" => p.score} }
+  chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
+  puts "CHOSEN: #{chosen_proposal.to_h}"
 end
 
 def size_category()
