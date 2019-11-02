@@ -1,5 +1,6 @@
 require_relative 'map_object'
 require_relative 'chamber_proposal'
+require_relative 'exit_proposal'
 
 class Chamber < MapObject
   attr_reader :length
@@ -201,17 +202,56 @@ class Chamber < MapObject
     #add_wall_width()
   end
 
-  def size_category()
-    if (length * width) > 1600
-      return "large"
-    else
-      return "normal"
-    end
-  end
-
 #  def draw_back_wall()
 #
 #  end
+
+def add_exits(exits = MapGenerator.random_chamber_exits(size_category))
+  exits.each { |exit|
+    add_exit(exit)
+  }
+end
+
+def add_exit(exit)
+  location = exit[:location].to_sym
+  facing = @cursor.facing(location)
+  cursor_pos = initial_cursor_pos(facing)
+  cursor = Cursor.new( map: map,
+                         x: cursor_pos[:x],
+                         y: cursor_pos[:y],
+                    facing: facing,
+              map_offset_x: @map_offset_x,
+              map_offset_y: @map_offset_y)
+  # Walk it up to the opposite edge of the chamber
+  # distance needs to be either width or length depending on whether exit location is forward/back or left/right
+  if location == :forward or location == :back
+    forward_distance = @length
+    side_distance = @width
+  else
+    forward_distance = @width
+    side_distance = @length
+  end
+  cursor.forward!(forward_distance)
+  puts cursor.to_s
+  # Start creating proposals (new exit proposal object necessary)
+  exit_width = 2 # Temporary, until variable-width passages are better supported
+  exit_proposals = Array.new
+  puts "Forward: #{forward_distance}"
+  puts "Side:    #{side_distance}"
+  for width_point in 0..(side_distance - exit_width)
+    proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, chamber_width: side_distance, width: exit_width, distance_from_left: width_point)
+    puts "Proposal: #{proposal.to_h}"
+    exit_proposals << proposal if proposal.exit_allowed?
+  end
+end
+
+def size_category()
+  if (length * width) > 1600
+    return "large"
+  else
+    return "normal"
+  end
+end
 
   ######
   ### CLASS METHODS

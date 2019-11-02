@@ -57,6 +57,13 @@ def test_connected_map_chamber(passage:, chamber_index:, map_size: 40)
   puts m.to_s
 end
 
+def test_chamber_exit(map_size = 40)
+  m = Map.new(map_size)
+  c = m.add_chamber(width: 6, length: 6, x: 5, y:15, facing: :east, entrance_width: 2)
+  e = {location: :right, type: "door"}
+  c.add_exit(e)
+end
+
 def read_passage_instructions(passage_index)
   passages_data = YAML.load(File.read("#{__dir__}/../data/passages.yaml"))
   passage_data = passages_data["passages"][passage_index]
@@ -86,3 +93,5 @@ test_connected_map_chamber(
     passage: {width: 2, facing: :east, x: -1, y: 5, passage_index: 0},
     chamber_index: 2,
   )
+
+test_chamber_exit()
