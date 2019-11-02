@@ -2,6 +2,11 @@
 
 class ExitProposal
   attr_reader :width, :alignment_count, :cursor, :distance_from_left
+
+  BASE_WEIGHT = 3
+  ALIGN_WEIGHT = 10
+  CENTERED_WEIGHT = 10
+
   def initialize(map:, chamber:, cursor:, chamber_width:, width:, distance_from_left:)
     @map = map
     @chamber = chamber
@@ -18,7 +23,7 @@ class ExitProposal
     for width_point in 1..width
       return false if chamber.square_empty?(cursor.pos)
       return false unless square.edges[cursor.facing] == :wall
-      return false unless map.square_available?(tmp_cursor.map_pos_forward(1)) # should this be map_pos_forward?
+      return false unless map.square_available?(tmp_cursor.map_pos_forward(1))
       tmp_cursor.shift!(:right)
     end
     return true
@@ -54,9 +59,10 @@ class ExitProposal
   end
 
   def score()
-    align_score = aligns()
-    centered_score = centered?() ? 1 : 0
-    return align_score + centered_score
+    base_score = BASE_WEIGHT
+    align_score = aligns() * ALIGN_WEIGHT
+    centered_score = centered?() ? CENTERED_WEIGHT : 0
+    return align_score + centered_score + base_score
   end
 
   def to_h()
