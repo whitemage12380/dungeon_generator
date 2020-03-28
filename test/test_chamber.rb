@@ -5,6 +5,7 @@ require_relative '../lib/passage'
 require 'yaml'
 
 def test_chamber(chamber_index:, x:, y:, facing:, entrance_width: 2, map_size: 40)
+  puts "TEST: chamber"
   chambers_data = YAML.load(File.read("#{__dir__}/../data/chambers.yaml"))
   chamber_data = chambers_data["chambers"][chamber_index]
   chamber_width = chamber_data["width"]
@@ -14,6 +15,7 @@ def test_chamber(chamber_index:, x:, y:, facing:, entrance_width: 2, map_size: 4
 end
 
 def test_chamber_with_passages(passages:, chamber_index:, x:, y:, facing:, entrance_width: 2, map_size: 40)
+  puts "TEST: chamber_with_passages"
   chambers_data = YAML.load(File.read("#{__dir__}/../data/chambers.yaml"))
   chamber_data = chambers_data["chambers"][chamber_index]
   chamber_width = chamber_data["width"]
@@ -30,6 +32,7 @@ def test_chamber_with_passages(passages:, chamber_index:, x:, y:, facing:, entra
 end
 
 def test_map_chamber_with_passages(passages:, chamber_index:, x:, y:, facing:, entrance_width: 2, map_size: 40)
+  puts "TEST: map_chamber_with_passages"
   chambers_data = YAML.load(File.read("#{__dir__}/../data/chambers.yaml"))
   chamber_data = chambers_data["chambers"][chamber_index]
   chamber_width = chamber_data["width"]
@@ -44,6 +47,7 @@ def test_map_chamber_with_passages(passages:, chamber_index:, x:, y:, facing:, e
 end
 
 def test_connected_map_chamber(passage:, chamber_index:, map_size: 40)
+  puts "TEST: connected_map_chamber"
   chambers_data = YAML.load(File.read("#{__dir__}/../data/chambers.yaml"))
   chamber_data = chambers_data["chambers"][chamber_index]
   chamber_width = chamber_data["width"]
@@ -58,10 +62,15 @@ def test_connected_map_chamber(passage:, chamber_index:, map_size: 40)
 end
 
 def test_chamber_exit(map_size = 40)
+  puts "TEST: chamber_exit"
   m = Map.new(map_size)
   c = m.add_chamber(width: 6, length: 6, x: 5, y:15, facing: :east, entrance_width: 2)
   e = {location: :right, type: "door"}
+  puts c.to_s
+  puts c.connectors
   c.add_exit(e)
+  puts m.to_s
+  puts c.connectors
 end
 
 def read_passage_instructions(passage_index)
@@ -89,9 +98,9 @@ end
 #  facing: :east,
 #)
 
-test_connected_map_chamber(
-    passage: {width: 2, facing: :east, x: -1, y: 5, passage_index: 0},
-    chamber_index: 2,
-  )
+#test_connected_map_chamber(
+#    passage: {width: 2, facing: :east, x: -1, y: 5, passage_index: 0},
+#    chamber_index: 2,
+#  )
 
 test_chamber_exit()

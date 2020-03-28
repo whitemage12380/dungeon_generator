@@ -1,5 +1,5 @@
 class Cursor
-  attr_accessor :x, :y, :facing, :map_offset_x, :map_offset_y
+  attr_accessor :x, :y, :map_offset_x, :map_offset_y
   attr_reader :map
 
   FACINGS = [:north, :east, :south, :west]

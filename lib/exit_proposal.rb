@@ -65,6 +65,17 @@ class ExitProposal
     return align_score + centered_score + base_score
   end
 
+  def to_connector()
+    return Connector.new(
+      map_object: @chamber,
+      square: @map.square(@cursor.map_pos),
+      facing: @cursor.facing,
+      width: @width,
+      map_x: @cursor.map_pos[:x],
+      map_y: @cursor.map_pos[:y]
+    )
+  end
+
   def to_h()
     return {width: width, cursor_pos: cursor.pos, distance_from_left: distance_from_left, alignment_count: aligns, centered: centered?, score: score}
   end

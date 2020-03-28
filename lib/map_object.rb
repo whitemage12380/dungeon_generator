@@ -97,6 +97,40 @@ class MapObject
     }
   end
 
+  def create_connector(cursor = @cursor, width = @width)
+    connector = Connector.new(map_object: self,
+                                  square: self[cursor.pos],
+                                   map_x: cursor.map_x.clone,
+                                   map_y: cursor.map_y.clone,
+                                  facing: cursor.facing.clone,
+                                   width: width)
+    @connectors << connector
+    puts "Creating connector for map object at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
+    return connector
+  end
+
+  def add_connector(connector, connector_offset, cursor: @cursor)
+    cursor.shift!(:right, connector_offset)
+    self[cursor.pos].remove_wall(cursor.facing)
+    self[cursor.pos].add_connector(cursor.facing, connector)
+    for i in 1...connector.width do
+      cursor.shift!(:right)
+      self[cursor.pos].remove_wall(cursor.facing)
+      self[cursor.pos].add_connector(cursor.facing, connector)
+    end
+    cursor.shift!(:left, connector.width + connector_offset - 1)
+  end
+
+  def add_door(door, door_width, door_offset, cursor: @cursor)
+    cursor.shift!(:right, door_offset)
+    self[cursor.pos].add_door(cursor.facing, door)
+    for i in 1...door_width do
+      cursor.shift!(:right)
+      self[cursor.pos].add_door(cursor.facing, door)
+    end
+    cursor.shift!(:left, door_width + door_offset - 1)
+  end
+
   def draw_forward(distance, cursor: @cursor)
     for i in 1..distance do
       return false if not @map.square_available?(cursor.map_pos_forward)

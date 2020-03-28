@@ -6,8 +6,8 @@ class Connector
 
   def initialize(map_object:, square: nil, facing: nil, width: nil, map_x: nil, map_y: nil)
     @map_object = map_object
-    @facing = facing if facing
     @square = square if square
+    @facing = facing if facing
     @width = width
     @map_x = map_x if map_x
     @map_y = map_y if map_y

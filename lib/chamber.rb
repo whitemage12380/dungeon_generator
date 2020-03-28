@@ -206,6 +206,11 @@ class Chamber < MapObject
 #
 #  end
 
+def draw_exit(cursor, exit_proposal)
+  # Currently assumes cursor is at the left edge of the room we want to draw the exit on
+  add_connector(exit_proposal.to_connector, exit_proposal.distance_from_left, cursor: cursor) # Currently ignores doors; should be add_door for doors
+end
+
 def add_exits(exits = MapGenerator.random_chamber_exits(size_category))
   exits.each { |exit|
     add_exit(exit)
@@ -246,6 +251,9 @@ def add_exit(exit)
   #puts exit_proposals.collect { |p| {proposal: p, "probability" => p.score} }
   chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
   puts "CHOSEN: #{chosen_proposal.to_h}"
+  connector = chosen_proposal.to_connector()
+  connectors << connector
+  draw_exit(cursor, chosen_proposal)
 end
 
 def size_category()
