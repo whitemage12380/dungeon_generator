@@ -88,6 +88,7 @@ class MapGenerator
 
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]
+      puts "Exit count: #{exit_count}"
       exits = []
       for i in 0...exit_count
         exit_location = random_yaml_element("exit_locations")["facing"].to_sym
@@ -95,6 +96,7 @@ class MapGenerator
         exit_obj = {location: exit_location, type: exit_type["type"]}
         exit_obj[:passage] = exit_type["passage"] if exit_type["type"] == "passage"
         exits << exit_obj
+        puts "Generated exit: #{exit_obj.to_s}"
       end
       return exits
     end

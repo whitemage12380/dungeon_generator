@@ -152,17 +152,19 @@ class MapObject
     cursor.shift!(:left, @width-1)
   end
 
-  def add_wall_width(cursor: @cursor)
-    return if not square_empty?(cursor.pos_forward)
+  def add_wall_width(cursor: @cursor, width: @width, direction: :right)
+    # This line was added earlier but I'm not convinced it's a good idea so I'm commenting it out
+    # return if not square_empty?(cursor.pos_forward)
     # This line is possibly a stop-gap or a partial solution for passages that can't even begin to draw
     return if not @grid[cursor.pos[:x]] or not @grid[cursor.pos[:x]][cursor.pos[:y]]
+    puts "Adding wall width"
     begin
       self[cursor.pos].add_wall(cursor.facing)
-      for i in 1...@width do
-        cursor.shift!(:right)
+      for i in 1...width do
+        cursor.shift!(direction)
         self[cursor.pos].add_wall(cursor.facing)
       end
-      cursor.shift!(:left, @width-1)
+      cursor.shift!(:left, width-1)
     rescue Exception => e
       puts "Erroring cursor: #{cursor.to_s}"
       puts to_s

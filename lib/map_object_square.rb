@@ -16,6 +16,11 @@ class MapObjectSquare
     @edges[facing] = nil if @edges[facing] == :wall
   end
 
+  def has_wall()
+    @edges.each_value { |e| return true if e == :wall}
+    return false
+  end
+
   def add_connector(facing, connector)
     @edges[facing] = connector
   end
@@ -50,6 +55,7 @@ class MapObjectSquare
   def to_character()
     return 'C' if has_connector
     return 'D' if has_door
+    return '^' if has_wall
     return '#'
   end
   def to_s()

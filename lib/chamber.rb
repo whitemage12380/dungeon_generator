@@ -196,15 +196,23 @@ class Chamber < MapObject
   end
 
   def draw_chamber()
-    # Supposed to draw back wall first, but not implemented yet
+    initial_cursor = @cursor.copy()
     draw_forward(@length)
-    # Supposed to draw back wall, but not implemented yet
-    #add_wall_width()
+    draw_near_wall(cursor: initial_cursor)
+    draw_far_wall()
   end
 
-#  def draw_back_wall()
-#
-#  end
+  def draw_near_wall(cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    tmp_cursor.forward!
+    tmp_cursor.turn!(:back)
+    add_wall_width(cursor: tmp_cursor, direction: :left)
+  end
+
+  def draw_far_wall(cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    add_wall_width(cursor: tmp_cursor)
+  end
 
 def draw_exit(cursor, exit_proposal)
   # Currently assumes cursor is at the left edge of the room we want to draw the exit on
@@ -238,7 +246,7 @@ def add_exit(exit)
   end
   cursor.forward!(forward_distance)
   puts cursor.to_s
-  # Start creating proposals (new exit proposal object necessary)
+  # Create exit proposals
   exit_width = 2 # Temporary, until variable-width passages are better supported
   exit_proposals = Array.new
   puts "Forward: #{forward_distance}"
@@ -246,18 +254,29 @@ def add_exit(exit)
   for width_point in 0..(side_distance - exit_width)
     proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, chamber_width: side_distance, width: exit_width, distance_from_left: width_point)
     puts "Proposal: #{proposal.to_h}"
-    exit_proposals << proposal if proposal.exit_allowed?
+    if proposal.exit_allowed?
+      exit_proposals << proposal
+    else
+      puts "Exit proposal not allowed."
+    end
   end
-  #puts exit_proposals.collect { |p| {proposal: p, "probability" => p.score} }
+  # Choose an exit proposal
+  puts "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"
+  if exit_proposals.empty?
+    puts "Failed to create any successful proposals for exit: #{exit}"
+    puts "Skipping exit."
+    return
+  end
   chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
   puts "CHOSEN: #{chosen_proposal.to_h}"
+  # Put in the connector
   connector = chosen_proposal.to_connector()
   connectors << connector
   draw_exit(cursor, chosen_proposal)
 end
 
 def size_category()
-  if (length * width) > 1600
+  if (@length * @width) > 1600
     return "large"
   else
     return "normal"

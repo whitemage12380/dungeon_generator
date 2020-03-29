@@ -20,6 +20,7 @@ class ExitProposal
   def exit_allowed?(map: @map, chamber: @chamber, cursor: @cursor, width: @width)
     tmp_cursor = cursor.copy
     square = map.square(cursor.map_pos)
+    puts cursor.to_s
     for width_point in 1..width
       return false if chamber.square_empty?(cursor.pos)
       return false unless square.edges[cursor.facing] == :wall

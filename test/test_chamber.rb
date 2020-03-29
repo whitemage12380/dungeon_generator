@@ -73,6 +73,20 @@ def test_chamber_exit(map_size = 40)
   puts c.connectors
 end
 
+def test_chamber_random_exits(map_size = 40)
+  puts "TEST: random_chamber_exits"
+  m = Map.new(map_size)
+  c = m.add_chamber(width: 6, length: 6, x: 5, y:15, facing: :east, entrance_width: 2)
+  exits = MapGenerator.random_chamber_exits(c.size_category)
+  puts c.to_s
+  exits.each { |e|
+    c.add_exit(e)
+  }
+  puts m.to_s
+  puts c.connectors
+end
+
+
 def read_passage_instructions(passage_index)
   passages_data = YAML.load(File.read("#{__dir__}/../data/passages.yaml"))
   passage_data = passages_data["passages"][passage_index]
@@ -103,4 +117,6 @@ end
 #    chamber_index: 2,
 #  )
 
-test_chamber_exit()
+#test_chamber_exit()
+
+test_chamber_random_exits()
