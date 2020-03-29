@@ -19,8 +19,8 @@ class Passage < MapObject
     super(map: map, size: size, starting_connector: starting_connector)
     @width = width
     cursor_pos = initial_cursor_pos(facing)
-    @map_offset_x = connector_x - cursor_pos[:x]
-    @map_offset_y = connector_y - cursor_pos[:y]
+    @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0
+    @map_offset_y = connector_y ? connector_y - cursor_pos[:y] : 0
     @cursor = Cursor.new(map: map,
                            x: cursor_pos[:x],
                            y: cursor_pos[:y],
@@ -98,23 +98,22 @@ class Passage < MapObject
       door_width = 2
       door_width = 1 if @width == 1
       door_offset = (@width - 2) / 2
-      door = Door.new(self)
-      @doors << door
-      add_door(door, door_width, door_offset, cursor: cursor)
+      cursor.shift!(:right, door_offset)
+      door = create_door(cursor, door_width)
+      add_door(door, 0, cursor: cursor)
+      cursor.shift!(:left, door_offset)
     when "DOOR LEFT"
       cursor.turn!(:left)
       cursor.shift!(:left)
-      door = Door.new(self)
-      @doors << door
-      add_door(door, 2, 0, cursor: cursor)
+      door = create_door(cursor, 2)
+      add_door(door, 0, cursor: cursor)
       cursor.shift!(:right)
       cursor.turn!(:right)
     when "DOOR RIGHT"
       cursor.turn!(:right)
       cursor.forward!(@width - 1)
-      door = Door.new(self)
-      @doors << door
-      add_door(door, 2, 0, cursor: cursor)
+      door = create_door(cursor, 2)
+      add_door(door, 0, cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
     end

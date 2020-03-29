@@ -109,26 +109,38 @@ class MapObject
     return connector
   end
 
-  def add_connector(connector, connector_offset, cursor: @cursor)
-    cursor.shift!(:right, connector_offset)
-    self[cursor.pos].remove_wall(cursor.facing)
-    self[cursor.pos].add_connector(cursor.facing, connector)
-    for i in 1...connector.width do
-      cursor.shift!(:right)
-      self[cursor.pos].remove_wall(cursor.facing)
-      self[cursor.pos].add_connector(cursor.facing, connector)
-    end
-    cursor.shift!(:left, connector.width + connector_offset - 1)
+  def create_door(cursor = @cursor, width = 2)
+    door = Door.new(map_object: self,
+                        square: self[cursor.pos],
+                         map_x: cursor.map_x.clone,
+                         map_y: cursor.map_y.clone,
+                        facing: cursor.facing.clone,
+                         width: width)
+    @doors << door
+    puts "Creating door for map object at (#{door.map_x}, #{door.map_y}), facing #{door.facing}"
+    return door
   end
 
-  def add_door(door, door_width, door_offset, cursor: @cursor)
-    cursor.shift!(:right, door_offset)
-    self[cursor.pos].add_door(cursor.facing, door)
-    for i in 1...door_width do
-      cursor.shift!(:right)
-      self[cursor.pos].add_door(cursor.facing, door)
+  def add_connector(connector, connector_offset, cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    tmp_cursor.shift!(:right, connector_offset)
+    self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
+    self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
+    for i in 1...connector.width do
+      tmp_cursor.shift!(:right)
+      self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
+      self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     end
-    cursor.shift!(:left, door_width + door_offset - 1)
+  end
+
+  def add_door(door, door_offset, cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    tmp_cursor.shift!(:right, door_offset)
+    self[tmp_cursor.pos].add_door(tmp_cursor.facing, door)
+    for i in 1...door.width do
+      tmp_cursor.shift!(:right)
+      self[tmp_cursor.pos].add_door(tmp_cursor.facing, door)
+    end
   end
 
   def draw_forward(distance, cursor: @cursor)

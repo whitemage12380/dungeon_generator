@@ -235,7 +235,7 @@ def add_exit(exit)
                     facing: facing,
               map_offset_x: @map_offset_x,
               map_offset_y: @map_offset_y)
-  # Walk it up to the opposite edge of the chamber
+  # STEP 1: Walk cursor up to the opposite edge of the chamber
   # distance needs to be either width or length depending on whether exit location is forward/back or left/right
   if location == :forward or location == :back
     forward_distance = @length
@@ -245,23 +245,8 @@ def add_exit(exit)
     side_distance = @length
   end
   cursor.forward!(forward_distance)
-  puts cursor.to_s
-  # Create exit proposals
-  exit_width = 2 # Temporary, until variable-width passages are better supported
-  exit_proposals = Array.new
-  puts "Forward: #{forward_distance}"
-  puts "Side:    #{side_distance}"
-  for width_point in 0..(side_distance - exit_width)
-    proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, chamber_width: side_distance, width: exit_width, distance_from_left: width_point)
-    puts "Proposal: #{proposal.to_h}"
-    if proposal.exit_allowed?
-      exit_proposals << proposal
-    else
-      puts "Exit proposal not allowed."
-    end
-  end
-  # Choose an exit proposal
-  puts "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"
+  # STEP 2: Create exit proposals and choose a favorite
+  exit_proposals = create_exit_proposals(cursor: cursor, wall_width: side_distance) # Let exit_width default to 2 for now
   if exit_proposals.empty?
     puts "Failed to create any successful proposals for exit: #{exit}"
     puts "Skipping exit."
@@ -269,10 +254,33 @@ def add_exit(exit)
   end
   chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
   puts "CHOSEN: #{chosen_proposal.to_h}"
-  # Put in the connector
-  connector = chosen_proposal.to_connector()
-  connectors << connector
-  draw_exit(cursor, chosen_proposal)
+  # STEP 3: Attach the exit (door or passage)
+  case exit[:type]
+  when "passage"
+    connector = chosen_proposal.to_connector()
+    connectors << connector
+    add_connector(connector, chosen_proposal.distance_from_left, cursor: cursor)
+    connector.connect_to(Passage.new(map: @map, starting_connector: connector, instructions: exit[:passage]))
+  when "door"
+    door = chosen_proposal.to_door()
+    doors << door
+    add_door(door, chosen_proposal.distance_from_left, cursor: cursor)
+  end
+end
+
+def create_exit_proposals(cursor:, wall_width:, exit_width: 2)
+  exit_proposals = Array.new
+  for width_point in 0..(wall_width - exit_width)
+    proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, wall_width: wall_width, width: exit_width, distance_from_left: width_point)
+    puts "Proposal: #{proposal.to_h}"
+    if proposal.exit_allowed?
+      exit_proposals << proposal
+    else
+      puts "Exit proposal not allowed."
+    end
+  end
+  puts "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"
+  return exit_proposals
 end
 
 def size_category()

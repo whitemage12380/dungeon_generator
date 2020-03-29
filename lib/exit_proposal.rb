@@ -7,11 +7,11 @@ class ExitProposal
   ALIGN_WEIGHT = 10
   CENTERED_WEIGHT = 10
 
-  def initialize(map:, chamber:, cursor:, chamber_width:, width:, distance_from_left:)
+  def initialize(map:, chamber:, cursor:, wall_width:, width:, distance_from_left:)
     @map = map
     @chamber = chamber
     @cursor = cursor.copy
-    @chamber_width = chamber_width
+    @wall_width = wall_width
     @width = width
     @distance_from_left = distance_from_left
     @cursor.shift!(:right, distance_from_left)
@@ -46,15 +46,15 @@ class ExitProposal
   end
 
 # Centered means dead-center if possible, one of two possible central-ish positions otherwise
-  def centered?(chamber_width = @chamber_width, width = @width, distance_from_left = @distance_from_left)
-    if chamber_width % 2 == 0
-      return true if distance_from_left == (chamber_width / 2) - (width.to_f / 2).floor or
-                     distance_from_left == (chamber_width / 2) - (width.to_f / 2).ceil
+  def centered?(wall_width = @wall_width, width = @width, distance_from_left = @distance_from_left)
+    if wall_width % 2 == 0
+      return true if distance_from_left == (wall_width / 2) - (width.to_f / 2).floor or
+                     distance_from_left == (wall_width / 2) - (width.to_f / 2).ceil
     elsif width % 2 == 0
-      return true if distance_from_left == (chamber_width.to_f / 2).floor - (width / 2) or
-                     distance_from_left == (chamber_width.to_f / 2).ceil - (width / 2)
+      return true if distance_from_left == (wall_width.to_f / 2).floor - (width / 2) or
+                     distance_from_left == (wall_width.to_f / 2).ceil - (width / 2)
     else
-      return true if distance_from_left == (chamber_width / 2) - (width / 2)
+      return true if distance_from_left == (wall_width / 2) - (width / 2)
     end
     return false
   end
@@ -68,6 +68,17 @@ class ExitProposal
 
   def to_connector()
     return Connector.new(
+      map_object: @chamber,
+      square: @map.square(@cursor.map_pos),
+      facing: @cursor.facing,
+      width: @width,
+      map_x: @cursor.map_pos[:x],
+      map_y: @cursor.map_pos[:y]
+    )
+  end
+
+  def to_door()
+    return Door.new(
       map_object: @chamber,
       square: @map.square(@cursor.map_pos),
       facing: @cursor.facing,

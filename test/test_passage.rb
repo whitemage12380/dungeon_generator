@@ -86,10 +86,10 @@ end
 #test_passage(passage_index: 4, width: 2)
 #test_passage(passage_index: 4, width: 4)
 
-#test_passage(passage_index: 0, width: 2) # STRAIGHT
-#test_passage(passage_index: 1, width: 2) # DOOR RIGHT
-#test_passage(passage_index: 2, width: 2) # DOOR LEFT
-#test_passage(passage_index: 3, width: 2) # DOOR # Width 1 doesn't work yet
+test_passage(passage_index: 0, width: 2) # STRAIGHT
+test_passage(passage_index: 1, width: 2) # DOOR RIGHT
+test_passage(passage_index: 2, width: 2) # DOOR LEFT
+test_passage(passage_index: 3, width: 2) # DOOR # Width 1 doesn't work yet
 #test_passage(passage_index: 4, width: 2) # TURN RIGHT
 #test_passage(passage_index: 5, width: 2) # TURN LEFT
 #test_passage(passage_index: 6, width: 2) # SIDE PASSAGE RIGHT

@@ -13,6 +13,10 @@ class Connector
     @map_y = map_y if map_y
   end
 
+  def connect_to(map_object)
+    @connecting_map_object = map_object
+  end
+
   def to_s()
     output = "Connector: "
     output += "Connects from a map object. " if map_object

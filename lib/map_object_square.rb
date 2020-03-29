@@ -53,8 +53,8 @@ class MapObjectSquare
   end
 
   def to_character()
-    return 'C' if has_connector
     return 'D' if has_door
+    return 'C' if has_connector
     return '^' if has_wall
     return '#'
   end
