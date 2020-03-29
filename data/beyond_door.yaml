@@ -1,0 +1,15 @@
+beyond_door:
+  - probability: 0 # Haven't implemented TEE yet, use 2 once it's there
+    description: "Passage extending 10 ft., then T intersection extending 10 ft. to the right and left"
+    passage:
+      - "FORWARD 10"
+      - "TEE 10"
+  - probability: 6
+    description: "Passage 20 ft. straight ahead"
+    passage:
+      - "FORWARD 20"
+      - "CONNECTOR"
+  - probability: 10
+    description: "Chamber"
+    passage: "chamber"
+# Haven't implemented stairs or false door with trap

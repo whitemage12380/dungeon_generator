@@ -21,6 +21,7 @@ class ExitProposal
     tmp_cursor = cursor.copy
     square = map.square(cursor.map_pos)
     puts cursor.to_s
+    return false if square.nil?
     for width_point in 1..width
       return false if chamber.square_empty?(cursor.pos)
       return false unless square.edges[cursor.facing] == :wall

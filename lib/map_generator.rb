@@ -67,8 +67,18 @@ class MapGenerator
     end
 
     def generate_passage_recursive(connector)
+      #chamber_strategy = :wait # immediate: generate from chamber when it appears. 
+      #                         # wait: Generate from chambers after passages are complete
       map = connector.map_object.map
-      passage_data = random_yaml_element("passages")
+      if connector.connecting_map_object.nil?
+        if connector.kind_of? Door
+          passage_data = random_yaml_element("beyond_door")
+        else
+          passage_data = random_yaml_element("passages")
+        end
+      else
+        passage_data = {"passage" => "Already Exists"}
+      end
       puts passage_data.to_s
       case passage_data["passage"]
       when "chamber"
@@ -76,10 +86,24 @@ class MapGenerator
         width = chamber_data["width"]
         length = chamber_data["length"]
         chamber = map.add_chamber(connector: connector, width: width, length: length)
+        unless chamber.nil?
+          chamber.add_exits()
+          chamber.connectors.each { |c|
+            generate_passage_recursive(c)
+          }
+          chamber.doors.each { |d|
+            generate_passage_recursive(d)
+          }
+        end
       when "stairs"
         puts "Not implemented"
       else
-        passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
+        if connector.connecting_map_object.nil?
+          passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
+        else
+          # Won't work if connecting_map_object ends up being a chamber (not currently possible)
+          passage = map.add_passage(passage: connector.connecting_map_object)
+        end
         passage.connectors.each {|c|
           generate_passage_recursive(c)
         }
