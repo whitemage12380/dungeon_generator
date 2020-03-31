@@ -182,7 +182,8 @@ class Chamber < MapObject
         chamber_proposals << proposal if proposal and not chamber_proposals.collect { |p| p.to_h }.include? proposal.to_h
       end
     end
-    chamber_proposals.each { |p| puts p.to_h}
+    debug "Chamber Proposals:"
+    chamber_proposals.each { |p| debug "  #{p.to_h}"}
   end
 
   def set_attributes_from_proposal(proposal, map_x, map_y)
