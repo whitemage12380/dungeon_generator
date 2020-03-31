@@ -1,9 +1,11 @@
+require_relative 'configuration'
 require_relative 'map_generator'
 require_relative 'map_object'
 require_relative 'passage'
 require_relative 'chamber'
 
 class Map
+  include DungeonGeneratorHelper
   attr_accessor :grid, :map_objects
 
   MAX_SIZE = 500
@@ -30,6 +32,7 @@ class Map
 #  end
 
   def square(x:, y:)
+    return nil if @grid.nil? or @grid[x].nil?
     @grid[x][y]
   end
 

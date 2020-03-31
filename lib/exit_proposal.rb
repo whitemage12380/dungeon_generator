@@ -1,6 +1,7 @@
-
+require_relative 'configuration'
 
 class ExitProposal
+  include DungeonGeneratorHelper
   attr_reader :width, :alignment_count, :cursor, :distance_from_left
 
   BASE_WEIGHT = 3
@@ -20,7 +21,7 @@ class ExitProposal
   def exit_allowed?(map: @map, chamber: @chamber, cursor: @cursor, width: @width)
     tmp_cursor = cursor.copy
     square = map.square(cursor.map_pos)
-    puts cursor.to_s
+    debug cursor.to_s
     return false if square.nil?
     for width_point in 1..width
       return false if chamber.square_empty?(cursor.pos)

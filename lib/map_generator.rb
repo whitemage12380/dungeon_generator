@@ -1,22 +1,29 @@
+require_relative 'configuration'
 require_relative 'map'
 require 'yaml'
 
 class MapGenerator
   FACINGS = [:north, :east, :south, :west]
   class << self
+    include DungeonGeneratorHelper
+
     def generate_map(map_size = 60)
+      log "Beginning map generation"
       map = Map.new(map_size)
       starting_area = map.generate_starting_area
       starting_area.connectors.each {|c| generate_passage_recursive(c)}
       return map
     end
+
     def generate_starting_area_configuration()
       # Starting with a simple passage
       starting_area = yaml_data("passages", 0)
       starting_area["width"] = 2
       return starting_area
     end
+
     def generate_starting_area_location(map, width = 2)
+      log "Determining reasonable random location for starting area"
       map_size = map.xlength
       # Maximum length of starting area is 16 squares. To best accommodate, always choose a side if map is under 40 squares.
       if map_size < 40
@@ -33,14 +40,14 @@ class MapGenerator
       # Generate random location
       rand_x = rand(-1..map_size)
       rand_y = rand(-1..map_size)
-      puts "Random coordinates: (#{rand_x}, #{rand_y})"
+      log "Random coordinates: (#{rand_x}, #{rand_y})"
       # Get info based on whether x and y are close to map edges
       x_buffered, y_buffered = nil
       x_buffered = [edge_buffer, [rand_x, map_size - edge_buffer - 1].min].max if rand_x < edge_buffer or rand_x >= map_size - edge_buffer
       y_buffered = [edge_buffer, [rand_y, map_size - edge_buffer - 1].min].max if rand_y < edge_buffer or rand_y >= map_size - edge_buffer
-      puts "x_buffered: [#{edge_buffer}, [#{rand_x}, #{map_size} - #{edge_buffer} - 1].min].max}"
-      puts "y_buffered: [#{edge_buffer}, [#{rand_y}, #{map_size} - #{edge_buffer} - 1].min].max}"
-      puts "Buffered coordinates: (#{x_buffered}, #{y_buffered})" if x_buffered or y_buffered
+      debug "x_buffered: [#{edge_buffer}, [#{rand_x}, #{map_size} - #{edge_buffer} - 1].min].max}"
+      debug "y_buffered: [#{edge_buffer}, [#{rand_y}, #{map_size} - #{edge_buffer} - 1].min].max}"
+      log "Buffered coordinates: (#{x_buffered}, #{y_buffered})" if x_buffered or y_buffered
       # Corner case: Bump out x or y so that it is no longer in a corner
       if x_buffered and y_buffered
         if rand(1) == 0 # Flip a coin to determine whether to buffer out x or y
@@ -72,16 +79,20 @@ class MapGenerator
       map = connector.map_object.map
       if connector.connecting_map_object.nil?
         if connector.kind_of? Door
+          log "Generating new map object beyond door"
           passage_data = random_yaml_element("beyond_door")
         else
+          log "Generating new map object"
           passage_data = random_yaml_element("passages")
         end
       else
+        log "Found existing connected map object"
         passage_data = {"passage" => "Already Exists"}
       end
-      puts passage_data.to_s
+      debug "Data: #{passage_data.to_s}"
       case passage_data["passage"]
       when "chamber"
+        log "Type: Chamber"
         chamber_data = random_yaml_element("chambers")
         width = chamber_data["width"]
         length = chamber_data["length"]
@@ -96,8 +107,10 @@ class MapGenerator
           }
         end
       when "stairs"
-        puts "Not implemented"
+        log "Type: Stairs"
+        log "Stairs not implemented"
       else
+        log "Type: Passage"
         if connector.connecting_map_object.nil?
           passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
         else
@@ -107,12 +120,15 @@ class MapGenerator
         passage.connectors.each {|c|
           generate_passage_recursive(c)
         }
+          passage.doors.each { |d|
+            generate_passage_recursive(d)
+          }
       end
     end
 
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]
-      puts "Exit count: #{exit_count}"
+      log "Generating #{exit_count} exits for chamber"
       exits = []
       for i in 0...exit_count
         exit_location = random_yaml_element("exit_locations")["facing"].to_sym
@@ -120,7 +136,7 @@ class MapGenerator
         exit_obj = {location: exit_location, type: exit_type["type"]}
         exit_obj[:passage] = exit_type["passage"] if exit_type["type"] == "passage"
         exits << exit_obj
-        puts "Generated exit: #{exit_obj.to_s}"
+        log "Generated exit: #{exit_obj.to_s}"
       end
       return exits
     end

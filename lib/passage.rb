@@ -1,5 +1,5 @@
+require_relative 'configuration'
 require_relative 'map_object'
-
 
 class Passage < MapObject
 
@@ -27,6 +27,7 @@ class Passage < MapObject
                       facing: facing,
                 map_offset_x: @map_offset_x,
                 map_offset_y: @map_offset_y)
+    initial_cursor = @cursor.copy()
     instructions.each { |instruction|
       if not process_passage_instruction(instruction)
         # We hit a map edge or another map object; wall it off and be done
@@ -34,6 +35,7 @@ class Passage < MapObject
         break
       end
     }
+    draw_starting_connector(cursor: initial_cursor)
   end
 
   def initial_cursor_pos(facing)
@@ -57,7 +59,6 @@ class Passage < MapObject
   def process_passage_instruction(instruction, cursor: @cursor)
     # TODO:
     # Chance of secret door
-    # Chamber
     # Stairs
     case instruction
     when /^FORWARD [1-9]\d*$/

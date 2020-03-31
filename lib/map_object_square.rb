@@ -1,7 +1,9 @@
+require_relative 'configuration'
 require_relative 'connector'
 require_relative 'door'
 
 class MapObjectSquare
+  include DungeonGeneratorHelper
   attr_reader :edges, :space
 
   def initialize(edges = {north: nil, south: nil, east: nil, west: nil})

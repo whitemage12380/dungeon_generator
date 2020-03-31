@@ -1,4 +1,7 @@
+require_relative 'configuration'
+
 class Cursor
+  include DungeonGeneratorHelper
   attr_accessor :x, :y, :map_offset_x, :map_offset_y
   attr_reader :map
 

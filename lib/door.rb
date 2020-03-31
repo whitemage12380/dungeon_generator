@@ -1,3 +1,5 @@
+require_relative 'configuration'
+
 require_relative 'map_object'
 require_relative 'map_object_square'
 

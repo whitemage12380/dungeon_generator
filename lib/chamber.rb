@@ -1,3 +1,4 @@
+require_relative 'configuration'
 require_relative 'map_object'
 require_relative 'chamber_proposal'
 require_relative 'exit_proposal'
@@ -28,7 +29,7 @@ class Chamber < MapObject
       set_attributes_from_proposal(proposal, connector_x, connector_y)
       draw_chamber()
     else
-      puts "Failed to propose a chamber"
+      log "Failed to propose a chamber"
     end
   end
 
@@ -86,14 +87,14 @@ class Chamber < MapObject
   def default_proposal(cursor:, width_from_connector_left:, width_from_connector_right:, width:, length:)
     tmp_cursor = cursor.copy
     for length_point in 1..length # Start at base of room (from entrance) and move outward
-      puts "Trying length point #{length_point}"
+      debug "Trying length point #{length_point}"
       tmp_cursor.forward!()
       unless sides_clear?(tmp_cursor, width_from_connector_left, width_from_connector_right)
-        puts "Sides not clear at point #{length_point}"
+        debug "Sides not clear at point #{length_point}"
         return nil
       end
     end
-    puts "Placing as-is."
+    log "Placing as-is."
     proposal = ChamberProposal.new(chamber: self,
         cursor: cursor,
         width_left: width_from_connector_left,
@@ -101,7 +102,7 @@ class Chamber < MapObject
         length: length,
         length_threshold: length,
     )
-    puts "Proposal: #{proposal.to_h}"
+    debug "Proposal: #{proposal.to_h}"
     return proposal
   end
 
@@ -111,20 +112,20 @@ class Chamber < MapObject
                           x: map_x,
                           y: map_y,
                      facing: facing)
-    puts "Checking how clear it is outward from entrance (length: #{length}, entrance_width: #{entrance_width})"
-    puts "Cursor: #{cursor.to_s}"
+    debug "Checking how clear it is outward from entrance (length: #{length}, entrance_width: #{entrance_width})"
+    debug "Cursor: #{cursor.to_s}"
     length = clear_distance(cursor, length, entrance_width)
-    puts "Length after initial truncate: #{length}"
+    debug "Length after initial truncate: #{length}"
     if length < 2
-      puts "Cannot place chamber (not enough space outward from entrance)"
+      log "Cannot place chamber (not enough space outward from entrance)"
       return
     end
     horizontal_offset = 0
     width_from_connector = width - entrance_width
     width_from_connector_left = (width_from_connector/2.to_f).ceil - horizontal_offset
     width_from_connector_right = (width_from_connector/2) + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
-    puts "Width left: #{width_from_connector_left}"
-    puts "Width right: #{width_from_connector_right}"
+    debug "Width left: #{width_from_connector_left}"
+    debug "Width right: #{width_from_connector_right}"
     # STEP 1: Use default layout proposal if possible
     p = default_proposal( cursor: cursor,
        width_from_connector_left: width_from_connector_left,
@@ -134,16 +135,32 @@ class Chamber < MapObject
       )
     return p if p
     # STEP 2: Check each point in length and generate proposals
+    chamber_proposals = create_chamber_proposals(
+      cursor: cursor,
+      length: length,
+      width:  width,
+      entrance_width: entrance_width,
+      width_from_connector_left: width_from_connector_left,
+      width_from_connector_right: width_from_connector_right,
+    )
+    # STEP 3: Choose a proposal
+    # To be replaced with a more nuanced selection mechanism at a later time
+    chosen_proposal = chamber_proposals.sort_by {|p| p.score }.last
+    log "Chose chamber proposal: #{chosen_proposal.to_h}"
+    return chosen_proposal
+  end
+
+  def create_chamber_proposals(cursor:, length:, width:, entrance_width:, width_from_connector_left:, width_from_connector_right:)
     chamber_proposals = Array.new
     tmp_cursor = cursor.copy
     for length_point in 1..length
-      puts "Checking at length point #{length_point} (of #{length})"
+      debug "Checking at length point #{length_point} (of #{length})"
       # STEP 2A: Advance to the next point along the room and get clearance
       tmp_cursor.forward!()
-      puts "  Cursor: #{tmp_cursor.to_s}"
+      debug "  Cursor: #{tmp_cursor.to_s}"
       clearance = side_clearance(tmp_cursor, (width-entrance_width), (width-1))
       # STEP 2B: Skip from consideration if there are no left/right obstacles
-      puts "  Skipping from consideration" if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
+      debug "  Skipping from consideration" if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
       next if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
       # STEP 2C: Get the number of proposals and first left starting point
       # (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_right))
@@ -151,8 +168,8 @@ class Chamber < MapObject
       right_proposal_restriction = width - [clearance[:right] + entrance_width, width].min
       point_proposals = (width + 1 - entrance_width) - left_proposal_restriction - right_proposal_restriction
       starting_point_offset = clearance[:left]
-      puts "  #{point_proposals} proposals for this point, with starting offset of #{starting_point_offset}"
-      # STEP 3D: Try to build each proposal
+      debug "  #{point_proposals} proposals for this point, with starting offset of #{starting_point_offset}"
+      # STEP 2D: Try to build each proposal
       for proposal_num in 0...point_proposals
         proposal = ChamberProposal.new(chamber: self,
           cursor: cursor,
@@ -161,16 +178,11 @@ class Chamber < MapObject
           length: length,
           length_threshold: length_point,
           )
-        puts "  Proposal created: #{proposal.to_h}"
+        debug "  Proposal created: #{proposal.to_h}"
         chamber_proposals << proposal if proposal and not chamber_proposals.collect { |p| p.to_h }.include? proposal.to_h
       end
     end
     chamber_proposals.each { |p| puts p.to_h}
-    # STEP 3: Choose a proposal
-    # To be replaced with a more nuanced selection mechanism at a later time
-    chosen_proposal = chamber_proposals.sort_by {|p| p.score }.last
-    puts "CHOSEN: #{chosen_proposal.to_h}"
-    return chosen_proposal
   end
 
   def set_attributes_from_proposal(proposal, map_x, map_y)
@@ -184,15 +196,13 @@ class Chamber < MapObject
     offset_cursor.shift!(:left, proposal.width_left)
     @map_offset_x = offset_cursor.x
     @map_offset_y = offset_cursor.y
-    puts @map_offset_x
-    puts @map_offset_y
     @cursor = Cursor.new(map: map,
                            x: cursor_pos[:x],
                            y: cursor_pos[:y],
                       facing: @facing,
                 map_offset_x: @map_offset_x,
                 map_offset_y: @map_offset_y)
-    puts @cursor.to_s
+    debug @cursor.to_s
   end
 
   def draw_chamber()
@@ -200,6 +210,7 @@ class Chamber < MapObject
     draw_forward(@length)
     draw_near_wall(cursor: initial_cursor)
     draw_far_wall()
+    draw_starting_connector(cursor: initial_cursor)
   end
 
   def draw_near_wall(cursor: @cursor)
@@ -214,82 +225,82 @@ class Chamber < MapObject
     add_wall_width(cursor: tmp_cursor)
   end
 
-def draw_exit(cursor, exit_proposal)
-  # Currently assumes cursor is at the left edge of the room we want to draw the exit on
-  add_connector(exit_proposal.to_connector, exit_proposal.distance_from_left, cursor: cursor) # Currently ignores doors; should be add_door for doors
-end
-
-def add_exits(exits = MapGenerator.random_chamber_exits(size_category))
-  exits.each { |exit|
-    add_exit(exit)
-  }
-end
-
-def add_exit(exit)
-  location = exit[:location].to_sym
-  facing = @cursor.facing(location)
-  cursor_pos = initial_cursor_pos(facing)
-  cursor = Cursor.new( map: map,
-                         x: cursor_pos[:x],
-                         y: cursor_pos[:y],
-                    facing: facing,
-              map_offset_x: @map_offset_x,
-              map_offset_y: @map_offset_y)
-  # STEP 1: Walk cursor up to the opposite edge of the chamber
-  # distance needs to be either width or length depending on whether exit location is forward/back or left/right
-  if location == :forward or location == :back
-    forward_distance = @length
-    side_distance = @width
-  else
-    forward_distance = @width
-    side_distance = @length
+  def draw_exit(cursor, exit_proposal)
+    # Currently assumes cursor is at the left edge of the room we want to draw the exit on
+    add_connector(exit_proposal.to_connector, exit_proposal.distance_from_left, cursor: cursor) # Currently ignores doors; should be add_door for doors
   end
-  cursor.forward!(forward_distance)
-  # STEP 2: Create exit proposals and choose a favorite
-  exit_proposals = create_exit_proposals(cursor: cursor, wall_width: side_distance) # Let exit_width default to 2 for now
-  if exit_proposals.empty?
-    puts "Failed to create any successful proposals for exit: #{exit}"
-    puts "Skipping exit."
-    return
-  end
-  chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
-  puts "CHOSEN: #{chosen_proposal.to_h}"
-  # STEP 3: Attach the exit (door or passage)
-  case exit[:type]
-  when "passage"
-    connector = chosen_proposal.to_connector()
-    connectors << connector
-    add_connector(connector, chosen_proposal.distance_from_left, cursor: cursor)
-    connector.connect_to(Passage.new(map: @map, starting_connector: connector, instructions: exit[:passage]))
-  when "door"
-    door = chosen_proposal.to_door()
-    doors << door
-    add_door(door, chosen_proposal.distance_from_left, cursor: cursor)
-  end
-end
 
-def create_exit_proposals(cursor:, wall_width:, exit_width: 2)
-  exit_proposals = Array.new
-  for width_point in 0..(wall_width - exit_width)
-    proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, wall_width: wall_width, width: exit_width, distance_from_left: width_point)
-    puts "Proposal: #{proposal.to_h}"
-    if proposal.exit_allowed?
-      exit_proposals << proposal
+  def add_exits(exits = MapGenerator.random_chamber_exits(size_category))
+    exits.each { |exit|
+      add_exit(exit)
+    }
+  end
+
+  def add_exit(exit)
+    location = exit[:location].to_sym
+    facing = @cursor.facing(location)
+    cursor_pos = initial_cursor_pos(facing)
+    cursor = Cursor.new( map: map,
+                           x: cursor_pos[:x],
+                           y: cursor_pos[:y],
+                      facing: facing,
+                map_offset_x: @map_offset_x,
+                map_offset_y: @map_offset_y)
+    # STEP 1: Walk cursor up to the opposite edge of the chamber
+    # distance needs to be either width or length depending on whether exit location is forward/back or left/right
+    if location == :forward or location == :back
+      forward_distance = @length
+      side_distance = @width
     else
-      puts "Exit proposal not allowed."
+      forward_distance = @width
+      side_distance = @length
+    end
+    cursor.forward!(forward_distance)
+    # STEP 2: Create exit proposals and choose a favorite
+    exit_proposals = create_exit_proposals(cursor: cursor, wall_width: side_distance) # Let exit_width default to 2 for now
+    if exit_proposals.empty?
+      log "Failed to create any successful proposals for exit: #{exit}"
+      log "Skipping exit."
+      return
+    end
+    chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
+    log "Chose exit proposal: #{chosen_proposal.to_h}"
+    # STEP 3: Attach the exit (door or passage)
+    case exit[:type]
+    when "passage"
+      connector = chosen_proposal.to_connector()
+      connectors << connector
+      add_connector(connector, chosen_proposal.distance_from_left, cursor: cursor)
+      connector.connect_to(Passage.new(map: @map, starting_connector: connector, instructions: exit[:passage]))
+    when "door"
+      door = chosen_proposal.to_door()
+      doors << door
+      add_door(door, chosen_proposal.distance_from_left, cursor: cursor)
     end
   end
-  puts "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"
-  return exit_proposals
-end
 
-def size_category()
-  if (@length * @width) > 1600
-    return "large"
-  else
-    return "normal"
+  def create_exit_proposals(cursor:, wall_width:, exit_width: 2)
+    exit_proposals = Array.new
+    for width_point in 0..(wall_width - exit_width)
+      proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, wall_width: wall_width, width: exit_width, distance_from_left: width_point)
+      debug "Proposal: #{proposal.to_h}"
+      if proposal.exit_allowed?
+        exit_proposals << proposal
+      else
+        debug "Exit proposal not allowed."
+      end
+    end
+    debug "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"
+    return exit_proposals
   end
-end
+
+  def size_category()
+    if (@length * @width) > 1600
+      return "large"
+    else
+      return "normal"
+    end
+  end
 
   ######
   ### CLASS METHODS

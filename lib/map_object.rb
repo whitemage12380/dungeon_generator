@@ -1,8 +1,10 @@
+require_relative 'configuration'
 require_relative 'map_object_square'
 require_relative 'cursor'
 require_relative 'connector'
 
 class MapObject
+  include DungeonGeneratorHelper
   attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors
 
   MAX_SIZE = 20
@@ -31,8 +33,8 @@ class MapObject
     begin
       @grid[coordinates[:x]][coordinates[:y]]
     rescue Exception => e
-      puts "Erroring coordinates: #{coordinates.to_s}"
-      puts to_s
+      log_error "Erroring coordinates: #{coordinates.to_s}"
+      log_error to_s
       puts map.to_s
       raise
     end
@@ -42,8 +44,8 @@ class MapObject
     begin
       @grid[coordinates[:x]][coordinates[:y]] = value
     rescue Exception => e
-      puts "Erroring coordinates: #{coordinates.to_s}"
-      puts to_s
+      log_error "Erroring coordinates: #{coordinates.to_s}"
+      log_error to_s
       puts map.to_s
       raise
     end
@@ -105,7 +107,7 @@ class MapObject
                                   facing: cursor.facing.clone,
                                    width: width)
     @connectors << connector
-    puts "Creating connector for map object at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
+    log "Creating connector at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
     return connector
   end
 
@@ -117,7 +119,7 @@ class MapObject
                         facing: cursor.facing.clone,
                          width: width)
     @doors << door
-    puts "Creating door for map object at (#{door.map_x}, #{door.map_y}), facing #{door.facing}"
+    log "Creating door at (#{door.map_x}, #{door.map_y}), facing #{door.facing}"
     return door
   end
 
@@ -154,7 +156,7 @@ class MapObject
 
   def draw_width(cursor: @cursor)
     #return false if not @map.square_available?(cursor.map_pos)
-    puts "Cursor to draw width: #{cursor}"
+    debug "Drawing width #{@width} using cursor: #{cursor}"
     self[cursor.pos] = MapObjectSquare.new({cursor.left => :wall})
     for i in 1...@width do
       cursor.shift!(:right)
@@ -164,12 +166,30 @@ class MapObject
     cursor.shift!(:left, @width-1)
   end
 
+  def draw_starting_connector(cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    tmp_cursor.forward!
+    tmp_cursor.turn!(:back)
+    tmp_cursor.shift!(:right)
+    for i in 1..@width do
+      tmp_cursor.shift!(:left)
+      next if self[tmp_cursor.pos].nil?
+      if @map.square(tmp_cursor.map_pos_forward) and @map.square(tmp_cursor.map_pos_forward).edges[tmp_cursor.facing(:back)] == @starting_connector
+        if starting_connector.kind_of? Door
+          self[tmp_cursor.pos].add_door(tmp_cursor.facing, starting_connector)
+        else
+          self[tmp_cursor.pos].add_connector(tmp_cursor.facing, starting_connector)
+        end
+      end
+    end
+  end
+
   def add_wall_width(cursor: @cursor, width: @width, direction: :right)
     # This line was added earlier but I'm not convinced it's a good idea so I'm commenting it out
     # return if not square_empty?(cursor.pos_forward)
     # This line is possibly a stop-gap or a partial solution for passages that can't even begin to draw
     return if not @grid[cursor.pos[:x]] or not @grid[cursor.pos[:x]][cursor.pos[:y]]
-    puts "Adding wall width"
+    debug "Adding #{width}-square-wide wall"
     begin
       self[cursor.pos].add_wall(cursor.facing)
       for i in 1...width do
@@ -178,12 +198,13 @@ class MapObject
       end
       cursor.shift!(:left, width-1)
     rescue Exception => e
-      puts "Erroring cursor: #{cursor.to_s}"
-      puts to_s
+      log_error "Erroring cursor: #{cursor.to_s}"
+      log_error to_s
       puts map.to_s
       raise
     end
   end
+
 
   def to_s()
     output = ""

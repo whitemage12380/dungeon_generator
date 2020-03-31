@@ -1,5 +1,8 @@
 #!/bin/env ruby
 require 'yaml'
+require 'logger'
+require_relative 'dungeon_generator_helper'
+
 class Configuration < Hash
   def initialize()
     self.merge!(YAML.load_file(Configuration.configuration_path))

@@ -1,7 +1,9 @@
+require_relative 'configuration'
 require_relative 'map_object'
 require_relative 'map_object_square'
 
 class Connector
+  include DungeonGeneratorHelper
   attr_reader :map_object, :connecting_map_object, :square, :facing, :width, :map_x, :map_y
 
   def initialize(map_object:, square: nil, facing: nil, width: nil, map_x: nil, map_y: nil)
