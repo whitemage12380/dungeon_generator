@@ -17,6 +17,7 @@ class Passage < MapObject
     # by a value in the YAML
     size = 10 + width
     super(map: map, size: size, starting_connector: starting_connector)
+    log "Creating passage #{id}"
     @width = width
     cursor_pos = initial_cursor_pos(facing)
     @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0
@@ -36,6 +37,11 @@ class Passage < MapObject
       end
     }
     draw_starting_connector(cursor: initial_cursor)
+    log "Created passage #{id}"
+  end
+
+  def id()
+    map.passages.find_index(self)
   end
 
   def initial_cursor_pos(facing)

@@ -1,3 +1,7 @@
+app_mode: gui
+background_display: dark
+map_display: debug
+map_size: 50
 weights:
   align_weight: 1.0
   area_weight: 1.0

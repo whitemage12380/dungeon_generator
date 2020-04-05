@@ -17,8 +17,12 @@ class MapObject
     @map_offset_y = offset_y
     @connectors = []
     @doors = []
-
     @starting_connector.connect_to(self) if @starting_connector
+    map.map_objects << self
+  end
+
+  def id()
+    map.map_objects.find_index(self)
   end
 
   # TODO: Create functions that allow for coordinates OR x, y, right now this is inconsistent

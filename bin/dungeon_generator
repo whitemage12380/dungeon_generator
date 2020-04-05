@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/configuration'
+require_relative '../lib/map_generator'
+
+m = MapGenerator.generate_map()
+
+case $configuration['app_mode']
+when 'cli'
+  # TODO: Create a new "dungeon_generator_cli" class with options
+  puts m.to_s
+when 'gui'
+  require_relative '../lib/dungeon_generator_gui'
+  puts m.to_s
+  app = FXApp.new("Dungeon Generator", "Egan Neuhengen")
+  window = DungeonGeneratorGui.new(app, m)
+  app.create()
+  app.run()
+else
+  puts "Invalid app_mode: #{$configuration['app_mode']}"
+  exit 1
+end

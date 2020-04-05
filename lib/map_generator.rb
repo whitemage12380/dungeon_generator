@@ -7,11 +7,14 @@ class MapGenerator
   class << self
     include DungeonGeneratorHelper
 
-    def generate_map(map_size = 60)
+    def generate_map(map_size = $configuration['map_size'])
       log "Beginning map generation"
       map = Map.new(map_size)
       starting_area = map.generate_starting_area
       starting_area.connectors.each {|c| generate_passage_recursive(c)}
+      log "Completed map generation"
+      log "Passage count: #{map.passages.length}"
+      log "Chamber count: #{map.chambers.length}"
       return map
     end
 

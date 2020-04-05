@@ -15,6 +15,10 @@ class Map
     @map_objects = Array.new
   end
 
+  def size()
+    return @grid.length
+  end
+
   def [] (x, y)
     @grid[x][y]
   end
@@ -48,6 +52,14 @@ class Map
   end
   def ylength()
     return @grid[0].length
+  end
+
+  def passages()
+    map_objects.select { |mo| mo.kind_of? Passage }
+  end
+
+  def chambers()
+    map_objects.select { |mo| mo.kind_of? Chamber }
   end
 
   def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)

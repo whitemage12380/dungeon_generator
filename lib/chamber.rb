@@ -9,6 +9,7 @@ class Chamber < MapObject
   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil)
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
+    log "Creating chamber #{id}"
     if starting_connector
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
@@ -28,9 +29,14 @@ class Chamber < MapObject
     if proposal
       set_attributes_from_proposal(proposal, connector_x, connector_y)
       draw_chamber()
+      log "Created chamber #{id}"
     else
       log "Failed to propose a chamber"
     end
+  end
+
+  def id()
+    map.chambers.find_index(self)
   end
 
   def initial_cursor_pos(facing)
