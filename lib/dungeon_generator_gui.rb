@@ -76,7 +76,6 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def draw_map_square(shapes, x, y, square)
-#    return if square.nil?
     base_px = x * SQUARE_PIXELS
     base_py = y * SQUARE_PIXELS
     if square.nil?
@@ -86,10 +85,6 @@ class DungeonGeneratorGui < FXMainWindow
         )
         shape.foreground = FXColor::DimGray
         shapes.addShape(shape)
-        #fxdc = FXDCWindow.new(@canvas) do |dc|
-        #  dc.foreground = FXColor::DimGray
-        #  dc.fillRectangle(base_px, base_py, SQUARE_PIXELS, SQUARE_PIXELS)
-        #end
         return
       end
     end
