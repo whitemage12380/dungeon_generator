@@ -29,6 +29,21 @@ class MapObject
     @name ? @name : "Map Object #{id}"
   end
 
+  def type()
+    case self
+    when Chamber
+      return "chamber"
+    when Passage
+      return "passage"
+    else
+      return "map object"
+    end
+  end
+
+  def all_connectors()
+    @connectors.concat(@doors)
+  end
+
   # TODO: Create functions that allow for coordinates OR x, y, right now this is inconsistent
 
   #def [] (x, y)
@@ -118,7 +133,7 @@ class MapObject
                                    map_y: cursor.map_y.clone,
                                   facing: cursor.facing.clone,
                                    width: width)
-    @connectors << connector if add_to_connectors
+    @connectors << connector if add_to_connectors and not @connectors.include?(connector)
     log "Creating connector at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
     return connector
   end
@@ -130,7 +145,7 @@ class MapObject
                          map_y: cursor.map_y.clone,
                         facing: cursor.facing.clone,
                          width: width)
-    @doors << door if add_to_doors
+    @doors << door if add_to_doors and not @doors.include?(door)
     log "Creating door at (#{door.map_x}, #{door.map_y}), facing #{door.facing}"
     return door
   end
@@ -226,6 +241,39 @@ class MapObject
     end
     log "No incomplete connectors or doors for #{name}"
     return false
+  end
+
+  def blocked_connector_behavior(connector, type = nil, cursor: @cursor)
+    type = connector.type if type.nil?
+    if connector.can_connect_forward?()
+      # blocked_passage_behavior can be set via configuration
+      blocked_passage_behavior = $configuration['blocked_passage_behavior'] ? $configuration['blocked_passage_behavior'] : 'random'
+      # blocked_passage_behavior is randomly set based on blocked_passage_behavior.yaml if random (default)
+      if blocked_passage_behavior == 'random'
+        blocked_passage_behavior = MapGenerator.random_yaml_element('blocked_passage_behavior')['type']
+      end
+      # blocked_passage_behavior is set to whatever kind of connector we're given if that connector was already added to the map object
+      if blocked_passage_behavior != "wall" and all_connectors.include?(connector)
+        blocked_passage_behavior = connector.type
+      end
+      log "Able to connect blocked #{type} forward, chosen behavior is: #{blocked_passage_behavior}"
+      case blocked_passage_behavior
+      when 'wall'
+        log "Choosing to wall off blocked #{type}"
+        add_wall_width()
+      when 'connector'
+        log "Connecting #{name} to forward map object"
+        connector.connect_forward()
+        @connectors << connector unless @connectors.include?(connector)
+      when 'door'
+        log "Creating a door from #{name} to forward map object"
+        door = create_door(cursor, connector.width)
+        door.connect_forward()
+      end
+    else
+      log "Unable to connect blocked #{type} forward; walling it off"
+      add_wall_width()
+    end
   end
 
   def to_s()

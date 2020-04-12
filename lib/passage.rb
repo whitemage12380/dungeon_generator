@@ -34,28 +34,7 @@ class Passage < MapObject
         # We hit a map edge or another map object. Connect to the map object if possible, wall it off otherwise.
         # This needs to be generalized out, since it should try connecting even if it gets cut short
         connector = create_connector(@cursor, @width, false)
-        if connector.can_connect_forward?()
-          blocked_passage_behavior = $configuration['blocked_passage_behavior'] ? $configuration['blocked_passage_behavior'] : 'random'
-          if blocked_passage_behavior == 'random'
-            blocked_passage_behavior = MapGenerator.random_yaml_element('blocked_passage_behavior')
-          end
-          case blocked_passage_behavior
-          when 'wall'
-            log "Choosing to wall off blocked passage"
-            add_wall_width()
-          when 'connector'
-            log "Connecting #{name} to forward map object"
-            connector.connect_forward()
-            @connectors << connector
-          when 'door'
-            log "Creating a door from #{name} to forward map object"
-            door = create_door(@cursor, @width)
-            door.connect_forward()
-          end
-        else
-          log "Unable to connect blocked passage forward; walling it off"
-          add_wall_width()
-        end
+        blocked_connector_behavior(connector, type)
         break
       end
     }
