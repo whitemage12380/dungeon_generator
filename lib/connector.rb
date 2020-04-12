@@ -19,6 +19,76 @@ class Connector
     @connecting_map_object = map_object
   end
 
+  # Returns true if there is a map object in front of the connector that can be connected to
+  def can_connect_forward?()
+    unless connecting_map_object.nil?
+      debug "Cannot connect forward because connector is already connected"
+      return false
+    end
+    map = @map_object.map
+    cursor = Cursor.new(map: map,
+                          x: map_x,
+                          y: map_y,
+                     facing: facing)
+    cursor.forward!()
+    cursor.turn!(:back)
+    (@width-1).times do |p|
+      square = map.square(cursor.pos)
+      if square.nil?                                        # Squares must exist
+        debug "Cannot connect forward because square #{p} is not occupied"
+        return false
+      end
+      unless square.edges[cursor.facing] == :wall           # Squares must have a wall between them and the connector
+        debug "Cannot connect forward because square #{p} does not have a wall against the connector"
+        return false
+      end
+      unless square.edges[cursor.left].nil?                 # Squares must not have anything between themselves
+        debug "Cannot connect forward because square #{p} has a wall or connector between it and square #{p+1}"
+        return false
+      end
+      cursor.shift!(:left)
+    end
+    square = map.square(cursor.pos)
+    if square.nil?                                        # Last square must exist
+      debug "Cannot connect forward because square #{@width} is not occupied"
+      return false
+    end
+    unless square.edges[cursor.facing] == :wall           # Last square must have a wall between it and the connector
+      debug "Cannot connect forward because square #{@width} does not have a wall against the connector"
+      return false
+    end
+    return true
+  end
+
+  def connect_forward()
+    raise "Cannot connect forward!" unless can_connect_forward?
+    log "Connecting forward to existing object"
+    map = @map_object.map
+    cursor = Cursor.new(map: map,
+                          x: map_x,
+                          y: map_y,
+                     facing: facing)
+    cursor.forward!()
+    cursor.turn!(:back)
+    connecting_map_object = map.square(cursor.pos).map_object
+    log "Connecting to #{connecting_map_object.name}"
+    connect_to(connecting_map_object)
+    # Have other map object create connector and connect back to our map object
+    # Map coordinates are easy, but how do I figure out the correct map object coordinates?
+    # Are there special issues around potentially having to "redraw" a map object from the map's perspective?
+    # A simple redraw would draw any additions or changes to squares, but not erasures.
+    other_cursor = Cursor.new(map: map,
+                                x: cursor.x - connecting_map_object.map_offset_x,
+                                y: cursor.y - connecting_map_object.map_offset_y,
+                                facing: cursor.facing,
+                                map_offset_x: connecting_map_object.map_offset_x,
+                                map_offset_y: connecting_map_object.map_offset_y)
+    log "Creating reciprocal connection back to #{@map_object.name}"
+    other_connector = connecting_map_object.create_connector(other_cursor, @width)
+    connecting_map_object.add_connector(other_connector, cursor: other_cursor, direction: :left)
+    other_connector.connect_to(@map_object)
+  end
+
   def to_s()
     output = "Connector: "
     output += "Connects from a map object. " if map_object

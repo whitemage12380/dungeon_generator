@@ -353,6 +353,12 @@ RESOLVED (I think). Tricky to reproduce, but I believe I forgot to remove "-1" m
 Bug - there's something wacky chamber logic issue causing width to become 1.
 RESOLVED . There was a problem where the length prior to shortening is used when placing as-is or generating proposals, which caused proposals to examine areas off of the map and finding collisions on both sides.
 
+Bug - failed doors and connectors can create an odd case where one side of a wall is a connector and the other is a wall.
+I'd like to, based on logic and a random chance, either close it off and have both sides be walls, or open it up and have both sides be doors/connectors.
+IN PROGRESS. I need a method in map or map_object_square that returns the map object a square is a part of.
+
+Bug - Allowing objects to connect with existing objects can create a stack overflow by recursing to map objects that have already been recursed to.
+
 Project tracking:
 
 - Passage Instructions: 75%

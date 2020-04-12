@@ -17,7 +17,7 @@ class Passage < MapObject
     # by a value in the YAML
     size = 10 + width
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating passage #{id}"
+    log "Creating #{name}"
     @width = width
     cursor_pos = initial_cursor_pos(facing)
     @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0
@@ -31,8 +31,16 @@ class Passage < MapObject
     initial_cursor = @cursor.copy()
     instructions.each { |instruction|
       if not process_passage_instruction(instruction)
-        # We hit a map edge or another map object; wall it off and be done
-        add_wall_width()
+        # We hit a map edge or another map object. Connect to the map object if possible, wall it off otherwise.
+        # This needs to be generalized out, since it should try connecting even if it gets cut short
+        connector = create_connector(@cursor, @width)
+        if connector.can_connect_forward?()
+          log "Connecting #{name} to forward map object"
+          connector.connect_forward()
+          @connectors << connector
+        else
+          add_wall_width()
+        end
         break
       end
     }
@@ -42,6 +50,10 @@ class Passage < MapObject
 
   def id()
     map.passages.find_index(self)
+  end
+
+  def name()
+    @name ? @name : "Passage #{id}"
   end
 
   def initial_cursor_pos(facing)

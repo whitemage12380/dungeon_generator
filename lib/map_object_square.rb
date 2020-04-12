@@ -4,9 +4,10 @@ require_relative 'door'
 
 class MapObjectSquare
   include DungeonGeneratorHelper
-  attr_reader :edges, :space
+  attr_reader :map_object, :edges, :space
 
-  def initialize(edges = {north: nil, south: nil, east: nil, west: nil})
+  def initialize(map_object = nil, edges = {north: nil, south: nil, east: nil, west: nil})
+    @map_object = map_object
     @edges = edges
   end
 

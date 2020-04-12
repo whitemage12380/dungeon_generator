@@ -59,7 +59,7 @@ class Cursor
     facing(:right)
   end
   def back()
-    facing(:right)
+    facing(:back)
   end
 
   def pos()

@@ -119,6 +119,7 @@ class MapGenerator
         else
           # Won't work if connecting_map_object ends up being a chamber (not currently possible)
           passage = map.add_passage(passage: connector.connecting_map_object)
+          return unless passage.has_incomplete_connectors?
         end
         passage.connectors.each {|c|
           generate_passage_recursive(c)

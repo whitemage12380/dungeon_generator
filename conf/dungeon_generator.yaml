@@ -1,5 +1,6 @@
 app_mode: gui
 background_display: dark
+log_level: debug
 map_display: debug
 map_size: 50
 weights:

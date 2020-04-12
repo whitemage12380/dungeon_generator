@@ -5,7 +5,7 @@ module DungeonGeneratorHelper
 
   def init_logger()
     $log = Logger.new(STDOUT) if $log.nil?
-    $log.level = Logger::INFO
+    $log.level = $configuration['log_level'] ? $configuration['log_level'].upcase : Logger::INFO
   end
 
   def debug(message)

@@ -25,6 +25,10 @@ class MapObject
     map.map_objects.find_index(self)
   end
 
+  def name()
+    @name ? @name : "Map Object #{id}"
+  end
+
   # TODO: Create functions that allow for coordinates OR x, y, right now this is inconsistent
 
   #def [] (x, y)
@@ -37,7 +41,8 @@ class MapObject
 
   def [] (coordinates)
     begin
-      @grid[coordinates[:x]][coordinates[:y]]
+      square(coordinates)
+      #@grid[coordinates[:x]][coordinates[:y]]
     rescue Exception => e
       log_error "Erroring coordinates: #{coordinates.to_s}"
       log_error to_s
@@ -58,7 +63,8 @@ class MapObject
   end
 
   def square(x:, y:)
-    @grid[x][y]
+    return nil if @grid[x].nil?
+    return @grid[x][y]
   end
 
   def xlength()
@@ -105,14 +111,14 @@ class MapObject
     }
   end
 
-  def create_connector(cursor = @cursor, width = @width)
+  def create_connector(cursor = @cursor, width = @width, add_to_connectors = true)
     connector = Connector.new(map_object: self,
                                   square: self[cursor.pos],
                                    map_x: cursor.map_x.clone,
                                    map_y: cursor.map_y.clone,
                                   facing: cursor.facing.clone,
                                    width: width)
-    @connectors << connector
+    @connectors << connector if add_to_connectors
     log "Creating connector at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
     return connector
   end
@@ -129,24 +135,24 @@ class MapObject
     return door
   end
 
-  def add_connector(connector, connector_offset, cursor: @cursor)
+  def add_connector(connector, connector_offset = 0, cursor: @cursor, direction: :right)
     tmp_cursor = cursor.copy()
-    tmp_cursor.shift!(:right, connector_offset)
+    tmp_cursor.shift!(direction, connector_offset)
     self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
     self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     for i in 1...connector.width do
-      tmp_cursor.shift!(:right)
+      tmp_cursor.shift!(direction)
       self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
       self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     end
   end
 
-  def add_door(door, door_offset, cursor: @cursor)
+  def add_door(door, door_offset = 0, cursor: @cursor, direction: :right)
     tmp_cursor = cursor.copy()
-    tmp_cursor.shift!(:right, door_offset)
+    tmp_cursor.shift!(direction, door_offset)
     self[tmp_cursor.pos].add_door(tmp_cursor.facing, door)
     for i in 1...door.width do
-      tmp_cursor.shift!(:right)
+      tmp_cursor.shift!(direction)
       self[tmp_cursor.pos].add_door(tmp_cursor.facing, door)
     end
   end
@@ -161,15 +167,15 @@ class MapObject
   end
 
   def draw_width(cursor: @cursor)
+    tmp_cursor = cursor.copy()
     #return false if not @map.square_available?(cursor.map_pos)
-    debug "Drawing width #{@width} using cursor: #{cursor}"
-    self[cursor.pos] = MapObjectSquare.new({cursor.left => :wall})
+    debug "Drawing width #{@width} using cursor: #{tmp_cursor}"
+    self[tmp_cursor.pos] = MapObjectSquare.new(self, {tmp_cursor.left => :wall})
     for i in 1...@width do
-      cursor.shift!(:right)
-      self[cursor.pos] = MapObjectSquare.new()
+      tmp_cursor.shift!(:right)
+      self[tmp_cursor.pos] = MapObjectSquare.new(self)
     end
-    self[cursor.pos].add_wall(cursor.right)
-    cursor.shift!(:left, @width-1)
+    self[tmp_cursor.pos].add_wall(tmp_cursor.right)
   end
 
   def draw_starting_connector(cursor: @cursor)
@@ -211,6 +217,16 @@ class MapObject
     end
   end
 
+  def has_incomplete_connectors?()
+    incomplete_connectors = @connectors.select { |c| c.connecting_map_object.nil? }
+    incomplete_doors = @doors.select { |d| d.connecting_map_object.nil? }
+    if incomplete_connectors.length > 0 or incomplete_doors.length > 0
+      log "Incomplete for #{name}: #{incomplete_connectors.length} connectors, #{incomplete_doors.length} doors"
+      return true
+    end
+    log "No incomplete connectors or doors for #{name}"
+    return false
+  end
 
   def to_s()
     output = ""
