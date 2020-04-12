@@ -1,0 +1,7 @@
+blocked_passage_behavior:
+  - probability: 6
+    type: "wall"
+  - probability: 1
+    type: "connector"
+  - probability: 1
+    type: "door"

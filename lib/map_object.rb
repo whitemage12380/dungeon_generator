@@ -123,14 +123,14 @@ class MapObject
     return connector
   end
 
-  def create_door(cursor = @cursor, width = 2)
+  def create_door(cursor = @cursor, width = 2, add_to_doors = true)
     door = Door.new(map_object: self,
                         square: self[cursor.pos],
                          map_x: cursor.map_x.clone,
                          map_y: cursor.map_y.clone,
                         facing: cursor.facing.clone,
                          width: width)
-    @doors << door
+    @doors << door if add_to_doors
     log "Creating door at (#{door.map_x}, #{door.map_y}), facing #{door.facing}"
     return door
   end
