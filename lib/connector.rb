@@ -24,8 +24,38 @@ class Connector
     end
   end
 
+  def x()
+    map_x - map_object.map_offset_x
+  end
+
+  def y()
+    map_y - map_object.map_offset_y
+  end
+
+  def pos()
+    {x: x, y: y}
+  end
+
+  def map_pos()
+    {x: map_x, y: map_y}
+  end
+
+  def new_cursor()
+    return Cursor.new(map: map_object.map,
+                        x: x,
+                        y: y,
+                   facing: facing,
+             map_offset_x: map_object.map_offset_x,
+             map_offset_y: map_object.map_offset_y,
+      )
+  end
+
   def connect_to(map_object)
     @connecting_map_object = map_object
+  end
+
+  def disconnect()
+    @connecting_map_object = nil
   end
 
   # Returns true if there is a map object in front of the connector that can be connected to
@@ -100,8 +130,8 @@ class Connector
 
   def to_s()
     output = "Connector: "
-    output += "Connects from a map object. " if map_object
-    output += "Connects to a map object. " if connecting_map_object
+    output += "Connects from #{map_object.name} " if map_object
+    output += "Connects to #{connecting_map_object.name}. " if connecting_map_object
     output += "facing: #{facing}, width: #{width}, coordinates: (#{map_x}, #{map_y})."
     return output
   end

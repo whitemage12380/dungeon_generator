@@ -30,8 +30,12 @@ class Chamber < MapObject
       set_attributes_from_proposal(proposal, connector_x, connector_y)
       draw_chamber()
       log "Created #{name}"
+      @status = :success
     else
       log "Failed to propose a chamber"
+      starting_connector.disconnect()
+      starting_connector.map_object.blocked_connector_behavior(starting_connector)
+      @status = :failure
     end
   end
 

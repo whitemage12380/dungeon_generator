@@ -80,6 +80,7 @@ class Map
         passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
       end
     end
+    return nil unless passage.success?
     @map_objects << passage
     draw_map_object(passage)
     return passage
@@ -91,7 +92,7 @@ class Map
     else
       chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
     end
-    return nil if chamber.cursor.nil? # If cursor is nil, chamber didn't place and shouldn't be added or drawn
+    return nil unless chamber.success?
     @map_objects << chamber
     draw_map_object(chamber)
     return chamber

@@ -10,7 +10,7 @@ class MapGenerator
     def generate_map(map_size = $configuration['map_size'])
       log "Beginning map generation"
       map = Map.new(map_size)
-      starting_area = map.generate_starting_area
+      starting_area = map.generate_starting_area()
       starting_area.connectors.each {|c| generate_passage_recursive(c)}
       log "Completed map generation"
       log "Passage count: #{map.passages.length}"
@@ -119,14 +119,13 @@ class MapGenerator
         else
           # Won't work if connecting_map_object ends up being a chamber (not currently possible)
           passage = map.add_passage(passage: connector.connecting_map_object)
-          return unless passage.has_incomplete_connectors?
+          return unless passage and passage.has_incomplete_connectors?
         end
-        passage.connectors.each {|c|
-          generate_passage_recursive(c)
-        }
-          passage.doors.each { |d|
-            generate_passage_recursive(d)
+        unless passage.nil?
+          passage.all_connectors.each {|c|
+            generate_passage_recursive(c)
           }
+        end
       end
     end
 

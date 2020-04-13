@@ -29,17 +29,24 @@ class Passage < MapObject
                 map_offset_x: @map_offset_x,
                 map_offset_y: @map_offset_y)
     initial_cursor = @cursor.copy()
+    if width_blocked?
+      log "Could not start #{name} due to being blocked immediately; not placing connector"
+      starting_connector.disconnect()
+      starting_connector.map_object.blocked_connector_behavior(starting_connector)
+      @status = :failure
+      return
+    end
     instructions.each { |instruction|
       if not process_passage_instruction(instruction)
-        # We hit a map edge or another map object. Connect to the map object if possible, wall it off otherwise.
-        # This needs to be generalized out, since it should try connecting even if it gets cut short
-        connector = create_connector(@cursor, @width, false)
+        # We hit a map edge or another map object. Connect to the map object or wall it off.
+        connector = create_connector(@cursor, @width)
         blocked_connector_behavior(connector, type)
         break
       end
     }
     draw_starting_connector(cursor: initial_cursor)
-    log "Created passage #{id}"
+    log "Created #{name}"
+    @status = :success
   end
 
   def id()
@@ -66,6 +73,16 @@ class Passage < MapObject
       y = (ylength / 2) + (@width - 2)
     end
     return {x: x, y: y}
+  end
+
+  def width_blocked?(cursor: @cursor, width: @width)
+    tmp_cursor = cursor.copy()
+    return true unless map.square_available?(tmp_cursor.map_pos_forward)
+    for i in 1...@width do
+      tmp_cursor.shift!(:right)
+      return true unless map.square_available?(tmp_cursor.map_pos_forward)
+    end
+    return false
   end
 
   def process_passage_instruction(instruction, cursor: @cursor)

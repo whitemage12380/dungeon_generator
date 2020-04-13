@@ -5,7 +5,7 @@ require_relative 'connector'
 
 class MapObject
   include DungeonGeneratorHelper
-  attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors
+  attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors, :status
 
   MAX_SIZE = 20
 
@@ -40,8 +40,21 @@ class MapObject
     end
   end
 
+  def success?
+    status == :success
+  end
+
   def all_connectors()
     @connectors.concat(@doors)
+  end
+
+  def connector_list(connector)
+    case connector
+    when Door
+      connector_list = @doors
+    when Connector
+      connector_list = @connectors
+    end
   end
 
   # TODO: Create functions that allow for coordinates OR x, y, right now this is inconsistent
@@ -126,51 +139,42 @@ class MapObject
     }
   end
 
-  def create_connector(cursor = @cursor, width = @width, add_to_connectors = true)
+  def create_connector(cursor = @cursor, width = @width)
     connector = Connector.new(map_object: self,
                                   square: self[cursor.pos],
                                    map_x: cursor.map_x.clone,
                                    map_y: cursor.map_y.clone,
                                   facing: cursor.facing.clone,
                                    width: width)
-    @connectors << connector if add_to_connectors and not @connectors.include?(connector)
     log "Creating connector at (#{connector.map_x}, #{connector.map_y}), facing #{connector.facing}"
     return connector
   end
 
-  def create_door(cursor = @cursor, width = 2, add_to_doors = true)
+  def create_door(cursor = @cursor, width = 2)
     door = Door.new(map_object: self,
                         square: self[cursor.pos],
                          map_x: cursor.map_x.clone,
                          map_y: cursor.map_y.clone,
                         facing: cursor.facing.clone,
                          width: width)
-    @doors << door if add_to_doors and not @doors.include?(door)
     log "Creating door at (#{door.map_x}, #{door.map_y}), facing #{door.facing}"
     return door
   end
 
   def add_connector(connector, connector_offset = 0, cursor: @cursor, direction: :right)
+    connector_list = connector_list(connector)
+    connector_list << connector unless connector_list.include?(connector)
     tmp_cursor = cursor.copy()
     tmp_cursor.shift!(direction, connector_offset)
-    self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
     self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     for i in 1...connector.width do
       tmp_cursor.shift!(direction)
-      self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
       self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     end
+    return connector
   end
 
-  def add_door(door, door_offset = 0, cursor: @cursor, direction: :right)
-    tmp_cursor = cursor.copy()
-    tmp_cursor.shift!(direction, door_offset)
-    self[tmp_cursor.pos].add_door(tmp_cursor.facing, door)
-    for i in 1...door.width do
-      tmp_cursor.shift!(direction)
-      self[tmp_cursor.pos].add_door(tmp_cursor.facing, door)
-    end
-  end
+  alias add_door add_connector
 
   def draw_forward(distance, cursor: @cursor)
     for i in 1..distance do
@@ -232,6 +236,15 @@ class MapObject
     end
   end
 
+  def remove_connector(connector)
+    connector_list = connector_list(connector)
+    return false unless connector_list.include?(connector)
+    connector_list.delete(connector)
+    cursor = connector.new_cursor()
+    add_wall_width(cursor: cursor, width: connector.width)
+    return true
+  end
+
   def has_incomplete_connectors?()
     incomplete_connectors = @connectors.select { |c| c.connecting_map_object.nil? }
     incomplete_doors = @doors.select { |d| d.connecting_map_object.nil? }
@@ -260,19 +273,28 @@ class MapObject
       case blocked_passage_behavior
       when 'wall'
         log "Choosing to wall off blocked #{type}"
-        add_wall_width()
+        remove_connector(connector) || add_wall_width(width: connector.width)
       when 'connector'
         log "Connecting #{name} to forward map object"
+        log connector.to_s
+        log cursor.to_s
+        add_connector(connector, cursor: cursor) unless @connectors.include?(connector)
         connector.connect_forward()
-        @connectors << connector unless @connectors.include?(connector)
       when 'door'
-        log "Creating a door from #{name} to forward map object"
-        door = create_door(cursor, connector.width)
-        door.connect_forward()
+        if @doors.include?(connector)
+          log "Connecting door to forward map object"
+          connector.connect_forward()
+        else
+          log "Creating a door from #{name} to forward map object"
+          remove_connector(connector)
+          door = create_door(cursor, connector.width)
+          add_door(door, cursor: cursor)
+          door.connect_forward()
+        end
       end
     else
       log "Unable to connect blocked #{type} forward; walling it off"
-      add_wall_width()
+      remove_connector(connector) || add_wall_width(width: connector.width)
     end
   end
 

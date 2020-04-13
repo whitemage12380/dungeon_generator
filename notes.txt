@@ -342,6 +342,10 @@ Best thought for algorithm is to figure out how many positions are possible and 
 - Higher weight if there's a room or passage on the other side, so it can connect
 - Disallow if part of the door/connector leads to room/passage, and another part leads to empty space
 
+Most connectors are 1-way, and when two map objects connect, they use separate connectors butting up against each other. The special exception is the starting connector for map objects; this connector is passed from the originating map object to the new one, and both objects draw the same connector in slightly different places. The originating object's location is the canonical connector location.
+
+---------------
+
 Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to diasgreement about how "width right" works - left of starting square vs left of connector as a whole.
 Okay it looks like a problem with the cursor being passed in.
 RESOLVED. Turns out initial_cursor_pos provided bad coordinates for chambers facing South and West.
@@ -357,7 +361,7 @@ Bug - failed doors and connectors can create an odd case where one side of a wal
 I'd like to, based on logic and a random chance, either close it off and have both sides be walls, or open it up and have both sides be doors/connectors.
 IN PROGRESS. I need a method in map or map_object_square that returns the map object a square is a part of.
 
-Bug - Allowing objects to connect with existing objects can create a stack overflow by recursing to map objects that have already been recursed to.
+Bug - Allowing objects to connect with existing objects can create a stack overflow by recursing to map objects that have already been recursed to. Possibly related to connectors 
 
 Project tracking:
 
