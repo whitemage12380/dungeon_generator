@@ -276,8 +276,6 @@ class MapObject
         remove_connector(connector) || add_wall_width(width: connector.width)
       when 'connector'
         log "Connecting #{name} to forward map object"
-        log connector.to_s
-        log cursor.to_s
         add_connector(connector, cursor: cursor) unless @connectors.include?(connector)
         connector.connect_forward()
       when 'door'
