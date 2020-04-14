@@ -37,7 +37,8 @@ class Map
 
   def square(x:, y:)
     return nil if @grid.nil? or @grid[x].nil?
-    @grid[x][y]
+    return nil if x < 0 or y < 0
+    return @grid[x][y]
   end
 
   def square_available?(x:, y:)
@@ -116,6 +117,14 @@ class Map
     instructions  = configuration["passage"]
     width         = configuration["width"]
     add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
+  end
+
+  def save(filename = 'latest', filepath = $configuration['saved_map_directory'])
+    filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
+    log "Saving map to file: #{filepath}"
+    File.open("#{filepath}/#{filename}.yaml", "w") do |f|
+      YAML::dump(self, f)
+    end
   end
 
   def to_s()

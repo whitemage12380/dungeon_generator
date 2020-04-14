@@ -5,7 +5,7 @@ class Passage < MapObject
 
   attr_reader :width
 
-  def initialize(map:, width: nil, facing: :east, starting_connector: nil, connector_x: nil, connector_y: nil, instructions: nil)
+  def initialize(map:, width: nil, facing: :east, starting_connector: nil, connector_x: nil, connector_y: nil, instructions:)
     if starting_connector
       width = starting_connector.width if not width
       facing = starting_connector.facing
@@ -17,7 +17,7 @@ class Passage < MapObject
     # by a value in the YAML
     size = 10 + width
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating #{name}"
+    log "Creating #{name} at (#{connector_x}, #{connector_y}, facing #{facing}"
     @width = width
     cursor_pos = initial_cursor_pos(facing)
     @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0

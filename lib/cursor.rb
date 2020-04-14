@@ -79,6 +79,16 @@ class Cursor
     end
   end
 
+  def pos_valid?()
+    return false if x < 0 or
+                    y < 0 or
+                    map_x < 0 or
+                    map_y < 0 or
+                    map_x >= @map.xlength or
+                    map_y >= @map.ylength
+    return true
+  end
+
   def map_x()
     @x + @map_offset_x
   end

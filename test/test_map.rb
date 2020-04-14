@@ -34,10 +34,17 @@ def test_random_exits()
 end
 
 def test_connect_to_existing(map_size: 60)
+  puts "TEST: Connect passage to existing object"
   m = Map.new(map_size)
   m.add_chamber(width: 6, length: 6, x: 6, y: 6, facing: :east, entrance_width: 2)
   m.add_passage(width: 2, x: 3, y: 6, facing: :east, instructions: read_passage_instructions(0))
   puts m.to_s
+end
+
+def test_save(map_size: 60)
+  puts "TEST: Save map to file"
+  m = MapGenerator.generate_map()
+  m.save("testmap")
 end
 
 #test_connected_passages(
@@ -51,4 +58,5 @@ end
 
 #test_map_generator()
 #test_random_exits()
-test_connect_to_existing()
+#test_connect_to_existing()
+test_save()

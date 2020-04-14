@@ -10,6 +10,9 @@
 /test/version_tmp/
 /tmp/
 
+# Default saved maps location
+/data/maps
+
 # Used by dotenv library to load environment variables.
 # .env
 

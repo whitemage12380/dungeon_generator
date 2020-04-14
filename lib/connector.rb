@@ -74,7 +74,7 @@ class Connector
     (@width-1).times do |p|
       square = map.square(cursor.pos)
       if square.nil?                                        # Squares must exist
-        debug "Cannot connect forward because square #{p} is not occupied"
+        debug "Cannot connect forward because square #{p} is either solid rock or the end of the map"
         return false
       end
       unless square.edges[cursor.facing] == :wall           # Squares must have a wall between them and the connector
@@ -89,7 +89,7 @@ class Connector
     end
     square = map.square(cursor.pos)
     if square.nil?                                        # Last square must exist
-      debug "Cannot connect forward because square #{@width} is not occupied"
+      debug "Cannot connect forward because square #{@width} is either solid rock or the end of the map"
       return false
     end
     unless square.edges[cursor.facing] == :wall           # Last square must have a wall between it and the connector
@@ -123,7 +123,11 @@ class Connector
                                 map_offset_x: connecting_map_object.map_offset_x,
                                 map_offset_y: connecting_map_object.map_offset_y)
     log "Creating reciprocal connection back to #{@map_object.name}"
-    other_connector = connecting_map_object.create_connector(other_cursor, @width)
+    if self.kind_of? Door
+      other_connector = connecting_map_object.create_door(other_cursor, @width)
+    else
+      other_connector = connecting_map_object.create_connector(other_cursor, @width)
+    end
     connecting_map_object.add_connector(other_connector, cursor: other_cursor, direction: :left)
     other_connector.connect_to(@map_object)
   end

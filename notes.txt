@@ -364,6 +364,11 @@ RESOLVED. I now have new logic causing chambers and passages to more explicitly 
 Bug - Allowing objects to connect with existing objects can create a stack overflow by recursing to map objects that have already been recursed to.
 RESOLVED. I added a has_incomplete_connectors? method and used it to only recurse to passages that still have incomplete connectors.
 
+Bug - Array wraparound issue can (at least) cause failures connecting two existing map objects together. When a passage checks to see if it can connect forward on conflict, if it's at the edge of the map it can end up checking negative-numbered grid elements, which by default wrap around to the last array value. This caused an edge case where the map thought it could connect to an object on the other side of the map where really it was at the edge of the map and needed to be walled off.
+RESOLVED. Now the map.square function returns nil if x or y are below 0, instead of returning a grid value that wraps around the map.
+
+Bug - It is possible to end up with 5-foot corridors. This may be a result of a chamber overlapping a corridor or some other odd undesired behavior. This can cause a 2-width connector to only have 1 of the two squares of the resulting object connect back.
+
 Project tracking:
 
 - Passage Instructions: 75%
@@ -375,3 +380,32 @@ Project tracking:
 -- Connect physically on map
 - Putting passages on map: 20%
 - Collision handling: 10%
+
+TODO:
+  Chambers:
+    - Remaining rectangular chambers
+    - Pillars
+    - Circular chambers (probably won't get to)
+    - Trapezoidal chambers (probably won't get to)
+    - Octagonal chambers (probably won't get to)
+  Passages:
+    - Tee passage (for beyond door)
+    - 5-foot passages
+  Map:
+    - Stairs
+    - False door with trap
+  GUI:
+    - Show basic map object info
+    - Highlight map object on selection
+    - Show door info
+    - Map object rename interface
+    - Interactive step-by-step map generator
+  Flavor:
+    - Door material
+    - Chamber purpose
+    - Chamber contents
+  Extra:
+    - Save feature
+    - Load feature
+    - Loot
+    - Inhabitants
