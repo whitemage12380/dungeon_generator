@@ -15,6 +15,7 @@ class MapGenerator
       log "Completed map generation"
       log "Passage count: #{map.passages.length}"
       log "Chamber count: #{map.chambers.length}"
+      map.save()
       return map
     end
 
