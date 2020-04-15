@@ -6,6 +6,7 @@ require_relative 'chamber'
 
 class Map
   include DungeonGeneratorHelper
+  extend DungeonGeneratorHelper
   attr_accessor :grid, :map_objects
 
   MAX_SIZE = 500
@@ -137,5 +138,15 @@ class Map
       output.concat("\n")
     end
     output
+  end
+
+  def self.load(filename, filepath = $configuration['saved_map_directory'])
+    filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
+    log "Loading map from file: #{filepath}"
+    map = nil
+    File.open("#{filepath}/#{filename}.yaml", "r") do |f|
+      map = YAML::load(f)
+    end
+    return map
   end
 end

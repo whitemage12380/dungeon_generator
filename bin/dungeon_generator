@@ -3,7 +3,11 @@
 require_relative '../lib/configuration'
 require_relative '../lib/map_generator'
 
-m = MapGenerator.generate_map()
+if ARGV[0]
+  m = Map.load(ARGV[0])
+else
+  m = MapGenerator.generate_map()
+end
 
 case $configuration['app_mode']
 when 'cli'
