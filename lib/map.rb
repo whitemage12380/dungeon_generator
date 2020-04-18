@@ -120,14 +120,6 @@ class Map
     add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
   end
 
-  def save(filename = 'latest', filepath = $configuration['saved_map_directory'])
-    filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
-    log "Saving map to file: #{filepath}"
-    File.open("#{filepath}/#{filename}.yaml", "w") do |f|
-      YAML::dump(self, f)
-    end
-  end
-
   def to_s()
     output = ""
     for y in 0...@grid[0].length do
@@ -138,6 +130,14 @@ class Map
       output.concat("\n")
     end
     output
+  end
+
+  def save(filename = 'latest', filepath = $configuration['saved_map_directory'])
+    filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
+    log "Saving map to file: #{filepath}"
+    File.open("#{filepath}/#{filename}.yaml", "w") do |f|
+      YAML::dump(self, f)
+    end
   end
 
   def self.load(filename, filepath = $configuration['saved_map_directory'])

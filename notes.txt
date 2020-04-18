@@ -383,7 +383,6 @@ Project tracking:
 
 TODO:
   Chambers:
-    - Remaining rectangular chambers
     - Pillars
     - Circular chambers (probably won't get to)
     - Trapezoidal chambers (probably won't get to)

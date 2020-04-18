@@ -1,10 +1,22 @@
 chambers:
-  - probability: 22
+  - probability: 2
+    width: 4
+    length: 4
+  - probability: 2
     width: 6
     length: 6
   - probability: 2
-    width: 4
+    width: 8
     length: 8
-  - probability: 2
+  - probability: 3
+    width: 4
+    length: 6
+  - probability: 3
     width: 6
     length: 8
+  - probability: 2
+    width: 8
+    length: 10
+  - probability: 1
+    width: 10
+    length: 16
