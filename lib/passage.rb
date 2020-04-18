@@ -17,7 +17,7 @@ class Passage < MapObject
     # by a value in the YAML
     size = 10 + width
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating #{name} at (#{connector_x}, #{connector_y}, facing #{facing}"
+    log "Creating #{name} at (#{connector_x}, #{connector_y}, facing #{facing})"
     @width = width
     cursor_pos = initial_cursor_pos(facing)
     @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0
@@ -92,15 +92,15 @@ class Passage < MapObject
     case instruction
     when /^FORWARD [1-9]\d*$/
       distance = (instruction.scan(/\d+/).first.to_i) / 5
-      return false if not draw_forward(distance)
+      return false unless draw_forward(distance, cursor: cursor)
     when "TURN LEFT"
-      return false if not draw_forward(@width, cursor: cursor)
+      return false unless draw_forward(@width, cursor: cursor)
       add_wall_width(cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
       remove_wall_width(cursor: cursor)
     when "TURN RIGHT"
-      return false if not draw_forward(@width, cursor: cursor)
+      return false unless draw_forward(@width, cursor: cursor)
       add_wall_width(cursor: cursor)
       cursor.turn!(:right)
       cursor.forward!(@width - 1)
@@ -146,20 +146,31 @@ class Passage < MapObject
       add_door(door, 0, cursor: cursor)
       cursor.back!(@width - 1)
       cursor.turn!(:left)
+    when /^TEE [1-9]\d*$/
+      distance = (instruction.scan(/\d+/).first.to_i) / 5
+      return false unless draw_forward(@width, cursor: cursor)
+      add_wall_width()
+      left_cursor = cursor.copy()
+      right_cursor = cursor.copy()
+      # Get each cursor into place
+      left_cursor.turn!(:left)
+      left_cursor.shift!(:left, @width-1)
+      right_cursor.turn!(:right)
+      right_cursor.forward!(@width-1)
+      [left_cursor, right_cursor].each do |c|
+        remove_wall_width(cursor: c)
+        # Because a tee is desired even if the first branch is blocked,
+        # expressly invoke blocked connector behavior instead of returning
+        # false and letting initialize handle it
+        draw_forward_succeeded = draw_forward(distance, cursor: c)
+        connector = create_connector(c, @width)
+        if draw_forward_succeeded
+          add_connector(connector, 0, cursor: c)
+        else
+          blocked_connector_behavior(connector, type, cursor: c)
+        end
+      end
     end
     return true
   end
-
-  def remove_wall_width(cursor: @cursor)
-    self[cursor.pos].remove_wall(cursor.facing)
-    for i in 1...@width do
-      cursor.shift!(:right)
-      self[cursor.pos].remove_wall(cursor.facing)
-    end
-    cursor.shift!(:left, @width-1)
-  end
-
-  #def add_connector_width(connector, cursor: @cursor)
-  #  add_connector(connector, @width, 0, cursor: cursor)
-  #end
 end

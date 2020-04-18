@@ -82,14 +82,26 @@ def test_map_boundary_passage()
   puts m.to_s
 end
 
+def test_tee()
+  puts "TEST: Tee Intersection"
+  passage_instructions = ['FORWARD 10', 'TEE 10']
+  m = Map.new(20)
+  m.add_passage(width: 2, facing: :east, x: 2, y: 3, instructions: passage_instructions)
+  m.add_passage(width: 2, facing: :east, x: 2, y: 9, instructions: read_passage_instructions(0))
+  m.add_passage(width: 2, facing: :east, x: 2, y: 12, instructions: passage_instructions)
+  m.add_passage(width: 2, facing: :east, x: 12, y: 15, instructions: read_passage_instructions(0))
+  m.add_passage(width: 2, facing: :east, x: 12, y: 12, instructions: passage_instructions)
+  puts m.to_s
+end
+
 
 #test_passage(passage_index: 4, width: 2)
 #test_passage(passage_index: 4, width: 4)
 
-test_passage(passage_index: 0, width: 2) # STRAIGHT
-test_passage(passage_index: 1, width: 2) # DOOR RIGHT
-test_passage(passage_index: 2, width: 2) # DOOR LEFT
-test_passage(passage_index: 3, width: 2) # DOOR # Width 1 doesn't work yet
+#test_passage(passage_index: 0, width: 2) # STRAIGHT
+#test_passage(passage_index: 1, width: 2) # DOOR RIGHT
+#test_passage(passage_index: 2, width: 2) # DOOR LEFT
+#test_passage(passage_index: 3, width: 2) # DOOR # Width 1 doesn't work yet
 #test_passage(passage_index: 4, width: 2) # TURN RIGHT
 #test_passage(passage_index: 5, width: 2) # TURN LEFT
 #test_passage(passage_index: 6, width: 2) # SIDE PASSAGE RIGHT
@@ -104,9 +116,10 @@ test_passage(passage_index: 3, width: 2) # DOOR # Width 1 doesn't work yet
 #test_map_passage(passage_index: 0, width: 2, facing: :west)
 
 #test_map_connected_passage(passage_index: 0, width: 2, facing: :north)
-test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
+#test_map_connected_passage(passage_index: 0, width: 2, facing: :east)
 #test_map_connected_passage(passage_index: 0, width: 2, facing: :south)
 #test_map_connected_passage(passage_index: 4, width: 2, facing: :west)
 
 #test_map_conflicted_passage()
 #test_map_boundary_passage()
+test_tee()

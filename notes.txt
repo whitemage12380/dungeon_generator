@@ -399,12 +399,12 @@ TODO:
     - Show door info
     - Map object rename interface
     - Interactive step-by-step map generator
+    - Save UI
+    - Load UI
   Flavor:
     - Door material
     - Chamber purpose
     - Chamber contents
   Extra:
-    - Save feature
-    - Load feature
     - Loot
     - Inhabitants

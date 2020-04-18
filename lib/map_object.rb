@@ -140,6 +140,7 @@ class MapObject
   end
 
   def create_connector(cursor = @cursor, width = @width)
+    puts "Creating connector cursor: #{cursor}"
     connector = Connector.new(map_object: self,
                                   square: self[cursor.pos],
                                    map_x: cursor.map_x.clone,
@@ -222,17 +223,26 @@ class MapObject
     return if not @grid[cursor.pos[:x]] or not @grid[cursor.pos[:x]][cursor.pos[:y]]
     debug "Adding #{width}-square-wide wall"
     begin
-      self[cursor.pos].add_wall(cursor.facing)
+      tmp_cursor = cursor.copy()
+      self[tmp_cursor.pos].add_wall(tmp_cursor.facing)
       for i in 1...width do
-        cursor.shift!(direction)
-        self[cursor.pos].add_wall(cursor.facing)
+        tmp_cursor.shift!(direction)
+        self[tmp_cursor.pos].add_wall(tmp_cursor.facing)
       end
-      cursor.shift!(:left, width-1)
     rescue Exception => e
       log_error "Erroring cursor: #{cursor.to_s}"
       log_error to_s
       puts map.to_s
       raise
+    end
+  end
+
+  def remove_wall_width(cursor: @cursor, width: @width, direction: :right)
+    tmp_cursor = cursor.copy()
+    self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
+    for i in 1...width do
+      tmp_cursor.shift!(direction)
+      self[tmp_cursor.pos].remove_wall(tmp_cursor.facing)
     end
   end
 

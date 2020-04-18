@@ -1,5 +1,5 @@
 beyond_door:
-  - probability: 0 # Haven't implemented TEE yet, use 2 once it's there
+  - probability: 2
     description: "Passage extending 10 ft., then T intersection extending 10 ft. to the right and left"
     passage:
       - "FORWARD 10"
