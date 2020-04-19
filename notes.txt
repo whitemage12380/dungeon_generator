@@ -369,6 +369,8 @@ RESOLVED. Now the map.square function returns nil if x or y are below 0, instead
 
 Bug - It is possible to end up with 5-foot corridors. This may be a result of a chamber overlapping a corridor or some other odd undesired behavior. This can cause a 2-width connector to only have 1 of the two squares of the resulting object connect back.
 
+Bug - In a Tee passage, if the left passage ends up blocked, it doesn't wall off correctly. It ends up with a connector instead, which is not respected by the chamber on the other side.
+
 Project tracking:
 
 - Passage Instructions: 75%

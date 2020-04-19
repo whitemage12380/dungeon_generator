@@ -5,6 +5,7 @@ require_relative 'connector'
 
 class MapObject
   include DungeonGeneratorHelper
+  attr_accessor :description
   attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors, :status
 
   MAX_SIZE = 20
@@ -18,6 +19,7 @@ class MapObject
     @connectors = []
     @doors = []
     @starting_connector.connect_to(self) if @starting_connector
+    @description = "This #{type.downcase} does not have a description."
     map.map_objects << self
   end
 

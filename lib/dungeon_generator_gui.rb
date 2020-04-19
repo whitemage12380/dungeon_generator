@@ -34,7 +34,7 @@ class DungeonGeneratorGui < FXMainWindow
   include DungeonGeneratorHelper
 
   SQUARE_PIXELS = 16
-  SIDEBAR_PIXELS = 120
+  SIDEBAR_PIXELS = 200
   EDGE_COORDINATES = {
     north: [0, 0, 1, 0],
     east: [1, 0, 1, 1],
@@ -43,9 +43,10 @@ class DungeonGeneratorGui < FXMainWindow
   }
 
   def initialize(app, map)
+    @app = app
     canvas_length = (map.size+1) * SQUARE_PIXELS
-    window_width = canvas_length + SIDEBAR_PIXELS
-    window_height = canvas_length + 20
+    window_width = canvas_length + SIDEBAR_PIXELS + 20
+    window_height = canvas_length + 80
     super(app, "Dungeon Generator", :width => window_width, :height => window_height)
     # Menu bar
     menu_bar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
@@ -61,16 +62,33 @@ class DungeonGeneratorGui < FXMainWindow
       FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
       :padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)   
     @right_frame = FXVerticalFrame.new(@frame, 
-      FRAME_SUNKEN|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
-      :padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)
+      FRAME_SUNKEN|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH,
+      :width => SIDEBAR_PIXELS, :padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)
     # Left Pane
     @dungeon_name = FXLabel.new(@left_frame, "Dungeon", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
     FXHorizontalSeparator.new(@left_frame, SEPARATOR_GROOVE|LAYOUT_FILL_X)
     @canvas = ShapeCanvas.new(@left_frame, nil, 0,
-      LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT, 0, 0, canvas_length, canvas_length)
+      LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|LAYOUT_TOP|LAYOUT_LEFT, 0, 0, canvas_length, canvas_length)
     # Right Pane
     @info_title = FXLabel.new(@right_frame, "Info", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
     FXHorizontalSeparator.new(@right_frame, SEPARATOR_RIDGE|LAYOUT_FILL_X)
+
+    @info_panel = FXVerticalFrame.new(@right_frame,
+      LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X,
+      :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
+    @info_panel_sections = {
+      description: {
+        header: header(@info_panel, "Description"),
+        content: paragraph(@info_panel, "Nothing yet"),
+      },
+      exits: {
+        header: header(@info_panel, "Exits"),
+        content: paragraph(@info_panel, "Nothing yet"),
+      }
+    }
+    #header(@info_panel, "Description")
+    @info_panel.hide()
+
 
     draw_canvas(@canvas, map)
     connect_canvas(@canvas, map)
@@ -169,6 +187,35 @@ class DungeonGeneratorGui < FXMainWindow
     end
   end
 
+  def display_map_object_info(map_object)
+    #@info_display = FXVerticalFrame.new(@right_frame,
+    #   FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
+    #  )
+      #:padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)
+    #@info_display.backColor = FXColor::Blue
+    #header(@info_display, "Description")
+    @info_panel.show()
+  end
+
+  #def info_section(parent, header_text)
+  #  section = FXVerticalFrame.new(parent, LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X)
+  #end
+
+  def header(parent, text)
+    label = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
+    label.font = FXFont.new(@app, "helvetica,120,bold,normal,normal,iso8859-1,0")
+    return label
+  end
+
+  def paragraph(parent, text)
+    paragraph = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
+    paragraph.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
+    return paragraph
+  end
+
+  def list(parent, list_items)
+  end
+
   def connect_canvas(canvas, map)
     canvas.connect(SEL_LEFTBUTTONPRESS) do |sender, selector, event|
       selected_map_coordinates = {x: event.click_x / SQUARE_PIXELS, y: event.click_y / SQUARE_PIXELS}
@@ -180,6 +227,7 @@ class DungeonGeneratorGui < FXMainWindow
       selected_map_object = selected_square.map_object
       log "Selected #{selected_map_object.name}"
       @info_title.text = selected_map_object.name
+      display_map_object_info(selected_map_object)
     end
   end
 
