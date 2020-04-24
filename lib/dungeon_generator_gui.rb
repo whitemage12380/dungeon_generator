@@ -41,9 +41,22 @@ class DungeonGeneratorGui < FXMainWindow
     south: [1, 1, 0, 1],
     west: [0, 1, 0, 0]
   }
+  COLOR = {
+    connector: FXColor::BlanchedAlmond,
+    door: FXColor::CornflowerBlue,
+    dungeon_room: FXColor::WhiteSmoke,
+    dungeon_solid: FXColor::DimGray,
+    grid: FXColor::BlanchedAlmond,
+    window_background: Fox.FXRGB(212, 208, 200),
+  }
+  FONT = {
+    content: "helvetica,100,normal,normal,normal,iso8859-1,0",
+    header: "helvetica,120,bold,normal,normal,iso8859-1,0"
+  }
 
   def initialize(app, map)
     @app = app
+    @fonts = fonts()
     canvas_length = (map.size+1) * SQUARE_PIXELS
     window_width = canvas_length + SIDEBAR_PIXELS + 20
     window_height = canvas_length + 80
@@ -59,10 +72,10 @@ class DungeonGeneratorGui < FXMainWindow
       0, 0, 800, 800, 0, 0, 0, 0)
     @left_frame = FXVerticalFrame.new(@frame, 
       FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
-      :padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)   
+      padLeft: 10, padRight: 10, padTop: 10, padBottom: 10)   
     @right_frame = FXVerticalFrame.new(@frame, 
       FRAME_SUNKEN|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH,
-      :width => SIDEBAR_PIXELS, :padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)
+      width: SIDEBAR_PIXELS, padLeft: 10, padRight: 10, padTop: 10, padBottom: 10)
     # Left Pane
     @dungeon_name = FXLabel.new(@left_frame, "Dungeon", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
     FXHorizontalSeparator.new(@left_frame, SEPARATOR_GROOVE|LAYOUT_FILL_X)
@@ -73,10 +86,9 @@ class DungeonGeneratorGui < FXMainWindow
     FXHorizontalSeparator.new(@right_frame, SEPARATOR_RIDGE|LAYOUT_FILL_X)
 
     @info_panel = FXVerticalFrame.new(@right_frame,
-      LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X,
-      :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
+      LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, padTop: 10)
     @info_panel_sections = {
-      description: section(@info_panel, "Description", "Nothing yet", "text_area"),
+      description: section(@info_panel, nil, "Nothing yet", "text_area"),
       exits: section(@info_panel, "Exits", ["Nothing", "yet"]),
       position:  section(@info_panel, "Position", "Nothing yet"),
     }
@@ -87,9 +99,21 @@ class DungeonGeneratorGui < FXMainWindow
     connect_canvas(@canvas, map)
   end
 
+  def fonts()
+    fonts = Hash.new()
+    FONT.each_pair { |name, font|
+      fonts[name] = FXFont.new(@app, font)
+    }
+    return fonts
+  end
+
   def section(parent, header_text, content, content_type = nil)
-    frame = section_frame(parent)
-    header = header(frame, header_text)
+    if header_text.nil?
+      frame = section_frame(parent, FRAME_LINE)
+    else
+      frame = section_frame(parent)
+      header = header(frame, header_text)
+    end
     case content_type
     when "text_line"; content_ui = text_line(frame, content)
     when "text_area"; content_ui = text_area(frame, content)
@@ -110,10 +134,7 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def draw_canvas(canvas, map)
-    canvas.backColor = FXColor::White
-    if $configuration['background_display'] == 'dark'
-      canvas.backColor = FXColor::DimGray
-    end
+    canvas.backColor = COLOR[:dungeon_solid]
     shapes = ShapeGroup.new()
     draw_map(shapes, map)
     draw_grid(shapes, $configuration['map_size'], $configuration['map_size'])
@@ -135,7 +156,7 @@ class DungeonGeneratorGui < FXMainWindow
         px = x * SQUARE_PIXELS
         py = y * SQUARE_PIXELS
         dot = CircleShape.new(px, py, 0.5)
-        dot.foreground = FXColor::BlanchedAlmond
+        dot.foreground = COLOR[:grid]
         shapes.addShape(dot)
       }
     }
@@ -154,7 +175,7 @@ class DungeonGeneratorGui < FXMainWindow
     base_py = y * SQUARE_PIXELS
     return if square.nil?
     shape = FillRectangleShape.new(base_px, base_py, SQUARE_PIXELS, SQUARE_PIXELS)
-    shape.foreground = FXColor::WhiteSmoke
+    shape.foreground = COLOR[:dungeon_room]
     shapes.addShape(shape)
     if $configuration['map_display'] == 'debug'
       max_pixels = SQUARE_PIXELS - 1
@@ -179,11 +200,11 @@ class DungeonGeneratorGui < FXMainWindow
         unless $configuration['map_display'] == 'debug'
           edge_line.lineWidth = 4
         end
-        edge_line.foreground = FXColor::CornflowerBlue
+        edge_line.foreground = COLOR[:door]
         shapes.addShape(edge_line)
       when Connector
         if $configuration['map_display'] == 'debug'
-          edge_line.foreground = FXColor::BlanchedAlmond
+          edge_line.foreground = COLOR[:connector]
           shapes.addShape(edge_line)
         end
       end
@@ -193,13 +214,11 @@ class DungeonGeneratorGui < FXMainWindow
   def draw_empty_square(shapes, x, y)
     base_px = x * SQUARE_PIXELS
     base_py = y * SQUARE_PIXELS
-    if $configuration['background_display'] == 'dark'
-      shape = FillRectangleShape.new(
-        base_px, base_py, SQUARE_PIXELS, SQUARE_PIXELS
-      )
-      shape.foreground = FXColor::DimGray
-      shapes.addShape(shape)
-    end
+    shape = FillRectangleShape.new(
+      base_px, base_py, SQUARE_PIXELS, SQUARE_PIXELS
+    )
+    shape.foreground = COLOR[:dungeon_solid]
+    shapes.addShape(shape)
   end
 
   def display_map_object_info(map_object)
@@ -228,29 +247,30 @@ class DungeonGeneratorGui < FXMainWindow
     @info_panel_sections[:position][:content].text = text
   end
 
-  def section_frame(parent)
-    return FXVerticalFrame.new(parent,
-             LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X,
-             :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
+  def section_frame(parent, extra_opts = nil)
+    opts = LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X
+    opts = opts|extra_opts unless extra_opts.nil?
+    return FXVerticalFrame.new(parent, opts, padTop: 10, padBottom: 10)
   end
 
   def header(parent, text)
     label = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
-    label.font = FXFont.new(@app, "helvetica,120,bold,normal,normal,iso8859-1,0")
+    label.font = @fonts[:header]
     return label
   end
 
   def text_line(parent, text)
     text_line = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
-    text_line.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
+    text_line.font = @fonts[:content]
     return text_line
   end
 
   def text_area(parent, text)
-    text_area = FXText.new(parent, nil, 0, JUSTIFY_LEFT|LAYOUT_FILL_X)
+    text_area = FXText.new(parent, nil, 0, JUSTIFY_LEFT|LAYOUT_FILL_X|LAYOUT_FIX_HEIGHT|TEXT_WORDWRAP|HSCROLLER_NEVER,
+      0, 0, 0, 300)
     text_area.text = text
-    text_area.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
-    text_area.backColor = FXColor::LightSlateGray
+    text_area.font = @fonts[:content]
+    text_area.backColor = COLOR[:window_background]
     text_area.editable = false
     return text_area
   end
@@ -266,7 +286,7 @@ class DungeonGeneratorGui < FXMainWindow
     list.length.times { list.pop()}
     list_items.each { |li|
       label = FXLabel.new(parent, li, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
-      label.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
+      label.font = @fonts[:content]
       list << label
     }
   end
