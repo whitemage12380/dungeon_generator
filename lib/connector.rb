@@ -24,6 +24,22 @@ class Connector
     end
   end
 
+  def exit_string(starting_connector = false)
+    if type == "connector"
+      exit_type = "Exit"
+    else
+      exit_type = type.capitalize()
+    end
+    if starting_connector
+      connecting_to = map_object.name
+      facing_string = opposite_facing(facing)
+    else
+      connecting_to = connecting_map_object.name
+      facing_string = facing
+    end
+    return "#{exit_type} at (#{map_x}, #{map_y}) facing #{facing_string} to #{connecting_to}"
+  end
+
   def x()
     map_x - map_object.map_offset_x
   end

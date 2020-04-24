@@ -23,4 +23,14 @@ module DungeonGeneratorHelper
     $log.error(message)
   end
 
+  def opposite_facing(facing)
+    case facing
+    when :north; return :south
+    when :east; return :west
+    when :south; return :north
+    when :west; return :east
+    else return nil
+    end
+  end
+
 end

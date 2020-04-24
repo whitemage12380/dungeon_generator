@@ -371,6 +371,10 @@ Bug - It is possible to end up with 5-foot corridors. This may be a result of a 
 
 Bug - In a Tee passage, if the left passage ends up blocked, it doesn't wall off correctly. It ends up with a connector instead, which is not respected by the chamber on the other side.
 
+Bug - Chambers can choose an exit proposal in which only half of the resulting passage connects properly to the room. This was seen where a proposal for a right-hand exit (south) was chosen with an x-value of 0 with a passage; since the passage width draws right, the second square of the passage width was at x -1 for the chamber. This is almost reasonably valid, but the passage has a connector on the bit that juts out, leading into solid rock. It appears to be capable of causing more serious exit behavior as well, based on a more bizarre case that included the same symptom that I find difficult to describe (5-foot doors where they weren't supposed to be, etc).
+
+Bug - in the UI, some map objects repeat their exit descriptions the more they are clicked on. Other map objects do not have this problem. I don't yet know what differentiates them.
+
 Project tracking:
 
 - Passage Instructions: 75%

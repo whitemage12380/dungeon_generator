@@ -34,7 +34,7 @@ class DungeonGeneratorGui < FXMainWindow
   include DungeonGeneratorHelper
 
   SQUARE_PIXELS = 16
-  SIDEBAR_PIXELS = 200
+  SIDEBAR_PIXELS = 300
   EDGE_COORDINATES = {
     north: [0, 0, 1, 0],
     east: [1, 0, 1, 1],
@@ -56,7 +56,6 @@ class DungeonGeneratorGui < FXMainWindow
     # Main Window Structure
     @frame = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_SUNKEN|FRAME_THICK,
-      #FRAME_SUNKEN|FRAME_THICK,
       0, 0, 800, 800, 0, 0, 0, 0)
     @left_frame = FXVerticalFrame.new(@frame, 
       FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
@@ -77,21 +76,37 @@ class DungeonGeneratorGui < FXMainWindow
       LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X,
       :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
     @info_panel_sections = {
-      description: {
-        header: header(@info_panel, "Description"),
-        content: paragraph(@info_panel, "Nothing yet"),
-      },
-      exits: {
-        header: header(@info_panel, "Exits"),
-        content: paragraph(@info_panel, "Nothing yet"),
-      }
+      description: section(@info_panel, "Description", "Nothing yet", "text_area"),
+      exits: section(@info_panel, "Exits", ["Nothing", "yet"]),
+      position:  section(@info_panel, "Position", "Nothing yet"),
     }
-    #header(@info_panel, "Description")
     @info_panel.hide()
 
 
     draw_canvas(@canvas, map)
     connect_canvas(@canvas, map)
+  end
+
+  def section(parent, header_text, content, content_type = nil)
+    frame = section_frame(parent)
+    header = header(frame, header_text)
+    case content_type
+    when "text_line"; content_ui = text_line(frame, content)
+    when "text_area"; content_ui = text_area(frame, content)
+    when "list"; content_ui = list(frame, content)
+    end
+    if content_ui.nil?
+      case content
+      when String; content_ui = text_line(frame, content)
+      when Array; content_ui = list(frame, content)
+      when nil; content_ui = nil
+      end
+    end
+    return {
+      frame: frame,
+      header: header,
+      content: content_ui
+    }
   end
 
   def draw_canvas(canvas, map)
@@ -188,18 +203,36 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def display_map_object_info(map_object)
-    #@info_display = FXVerticalFrame.new(@right_frame,
-    #   FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
-    #  )
-      #:padLeft => 10, :padRight => 10, :padTop => 10, :padBottom => 10)
-    #@info_display.backColor = FXColor::Blue
-    #header(@info_display, "Description")
+    display_exit_info(map_object)
+    display_position_info(map_object)
     @info_panel.show()
   end
 
-  #def info_section(parent, header_text)
-  #  section = FXVerticalFrame.new(parent, LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X)
-  #end
+  def display_exit_info(map_object)
+    section = @info_panel_sections[:exits]
+    exit_descriptions = map_object.exits.collect { |exit| exit.exit_string }
+    exit_descriptions << map_object.starting_connector.exit_string(true)
+    set_list(section[:frame], section[:content], exit_descriptions)
+    section[:frame].create()
+    section[:frame].show()
+    section[:frame].recalc()
+  end
+
+  def display_position_info(map_object)
+    case map_object
+    when Chamber
+      text = "Pos: (#{map_object.map_offset_x}, #{map_object.map_offset_y}); Size: #{map_object.abs_width}x#{map_object.abs_length}"
+    when Passage
+      text = "Start: (#{map_object.starting_connector.map_x}, #{map_object.starting_connector.map_y}); Facing: #{map_object.starting_connector.facing.capitalize}; Width: #{map_object.width}"
+    end
+    @info_panel_sections[:position][:content].text = text
+  end
+
+  def section_frame(parent)
+    return FXVerticalFrame.new(parent,
+             LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X,
+             :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
+  end
 
   def header(parent, text)
     label = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
@@ -207,13 +240,35 @@ class DungeonGeneratorGui < FXMainWindow
     return label
   end
 
-  def paragraph(parent, text)
-    paragraph = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
-    paragraph.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
-    return paragraph
+  def text_line(parent, text)
+    text_line = FXLabel.new(parent, text, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
+    text_line.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
+    return text_line
+  end
+
+  def text_area(parent, text)
+    text_area = FXText.new(parent, nil, 0, JUSTIFY_LEFT|LAYOUT_FILL_X)
+    text_area.text = text
+    text_area.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
+    text_area.backColor = FXColor::LightSlateGray
+    text_area.editable = false
+    return text_area
   end
 
   def list(parent, list_items)
+    list = Array.new()
+    set_list(parent, list, list_items)
+    return list
+  end
+
+  def set_list(parent, list, list_items)
+    list.each { |li| parent.removeChild(li);}
+    list.length.times { list.pop()}
+    list_items.each { |li|
+      label = FXLabel.new(parent, li, nil, JUSTIFY_LEFT|LAYOUT_FILL_X)
+      label.font = FXFont.new(@app, "helvetica,100,normal,normal,normal,iso8859-1,0")
+      list << label
+    }
   end
 
   def connect_canvas(canvas, map)

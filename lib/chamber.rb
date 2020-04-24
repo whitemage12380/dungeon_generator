@@ -47,6 +47,20 @@ class Chamber < MapObject
     @name ? @name : "Chamber #{id}"
   end
 
+  def abs_width()
+    case @facing
+    when :north, :south; @width
+    when :east, :west;   @length
+    end
+  end
+
+  def abs_length()
+    case @facing
+    when :north, :south; @length
+    when :east, :west;   @width
+    end
+  end
+
   def initial_cursor_pos(facing)
     case facing
     when :north

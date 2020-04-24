@@ -50,6 +50,10 @@ class MapObject
     @connectors.concat(@doors)
   end
 
+  def exits()
+    @connectors.concat(@doors)
+  end
+
   def connector_list(connector)
     case connector
     when Door
