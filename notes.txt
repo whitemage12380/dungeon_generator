@@ -394,16 +394,14 @@ TODO:
     - Trapezoidal chambers (probably won't get to)
     - Octagonal chambers (probably won't get to)
   Passages:
-    - Tee passage (for beyond door)
     - 5-foot passages
   Map:
     - Stairs
     - False door with trap
   GUI:
-    - Show basic map object info
     - Highlight map object on selection
-    - Show door info
     - Map object rename interface
+    - Allow editing of map object description
     - Interactive step-by-step map generator
     - Save UI
     - Load UI

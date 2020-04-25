@@ -5,8 +5,10 @@ require_relative 'connector'
 
 class MapObject
   include DungeonGeneratorHelper
+
   attr_accessor :description
   attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors, :status
+  attr_writer :name
 
   MAX_SIZE = 20
 

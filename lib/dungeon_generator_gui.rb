@@ -57,6 +57,7 @@ class DungeonGeneratorGui < FXMainWindow
   def initialize(app, map)
     @app = app
     @fonts = fonts()
+    @selected_map_object = nil
     canvas_length = (map.size+1) * SQUARE_PIXELS
     window_width = canvas_length + SIDEBAR_PIXELS + 20
     window_height = canvas_length + 80
@@ -83,6 +84,9 @@ class DungeonGeneratorGui < FXMainWindow
       LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|LAYOUT_TOP|LAYOUT_LEFT, 0, 0, canvas_length, canvas_length)
     # Right Pane
     @info_title = FXLabel.new(@right_frame, "Info", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
+    @info_title_edit = FXTextField.new(@right_frame, 0, nil, 0, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
+    #@info_title_edit.hide()
+    connect_text_field_edit(@info_title, @info_title_edit, :map_object_name)
     FXHorizontalSeparator.new(@right_frame, SEPARATOR_RIDGE|LAYOUT_FILL_X)
 
     @info_panel = FXVerticalFrame.new(@right_frame,
@@ -266,8 +270,8 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def text_area(parent, text)
-    text_area = FXText.new(parent, nil, 0, JUSTIFY_LEFT|LAYOUT_FILL_X|LAYOUT_FIX_HEIGHT|TEXT_WORDWRAP|HSCROLLER_NEVER,
-      0, 0, 0, 300)
+    text_area = FXText.new(parent, opts: JUSTIFY_LEFT|LAYOUT_FILL_X|LAYOUT_FIX_HEIGHT|TEXT_WORDWRAP|HSCROLLER_NEVER,
+      height: 300)
     text_area.text = text
     text_area.font = @fonts[:content]
     text_area.backColor = COLOR[:window_background]
@@ -299,11 +303,36 @@ class DungeonGeneratorGui < FXMainWindow
         log "Clicked an empty square or outside the map boundary (#{selected_map_coordinates})"
         next
       end
-      selected_map_object = selected_square.map_object
-      log "Selected #{selected_map_object.name}"
-      @info_title.text = selected_map_object.name
-      display_map_object_info(selected_map_object)
+      @selected_map_object = selected_square.map_object
+      log "Selected #{@selected_map_object.name}"
+      @info_title.text = @selected_map_object.name
+      display_map_object_info(@selected_map_object)
     end
+  end
+
+  def connect_text_field_edit(label, text_field, method)
+    # Label turns into text field on click, text field confirms value on enter
+    label.connect(SEL_LEFTBUTTONPRESS) do |sender, selector, event|
+      text_field.text = self.send(method)
+      #text_field.text = @selected_map_object.name
+      label.hide()
+      text_field.show()
+    end
+    text_field.connect(SEL_COMMAND) do |sender, selector, event|
+      setter = [method, '='].join.to_sym
+      self.send(setter, text_field.text)
+      label.text = self.send(method)
+      text_field.hide()
+      label.show()
+    end
+  end
+
+  def map_object_name()
+    @selected_map_object.name
+  end
+
+  def map_object_name=(val)
+    @selected_map_object.name = val
   end
 
   def create
