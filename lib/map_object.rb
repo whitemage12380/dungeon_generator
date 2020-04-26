@@ -49,11 +49,11 @@ class MapObject
   end
 
   def all_connectors()
-    @connectors.concat(@doors)
+    @connectors + @doors
   end
 
   def exits()
-    @connectors.concat(@doors)
+    @connectors + @doors
   end
 
   def connector_list(connector)

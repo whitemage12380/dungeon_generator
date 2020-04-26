@@ -34,7 +34,7 @@ class DungeonGeneratorGui < FXMainWindow
   include DungeonGeneratorHelper
 
   SQUARE_PIXELS = 16
-  SIDEBAR_PIXELS = 300
+  SIDEBAR_PIXELS = 400
   EDGE_COORDINATES = {
     north: [0, 0, 1, 0],
     east: [1, 0, 1, 1],
@@ -63,10 +63,7 @@ class DungeonGeneratorGui < FXMainWindow
     window_height = canvas_length + 80
     super(app, "Dungeon Generator", :width => window_width, :height => window_height)
     # Menu bar
-    menu_bar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-    file_menu = FXMenuPane.new(self)
-    FXMenuCommand.new(file_menu, "&New...")
-    FXMenuTitle.new(menu_bar, "&File", nil, file_menu)
+    @menu_bar = menu_bar()
     # Main Window Structure
     @frame = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_SUNKEN|FRAME_THICK,
@@ -83,9 +80,10 @@ class DungeonGeneratorGui < FXMainWindow
     @canvas = ShapeCanvas.new(@left_frame, nil, 0,
       LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|LAYOUT_TOP|LAYOUT_LEFT, 0, 0, canvas_length, canvas_length)
     # Right Pane
-    @info_title = FXLabel.new(@right_frame, "Info", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
-    @info_title_edit = FXTextField.new(@right_frame, 0, nil, 0, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
-    #@info_title_edit.hide()
+    @info_title_frame = section_frame(@right_frame, padding: 0)
+    @info_title = FXLabel.new(@info_title_frame, "Info", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
+    @info_title_edit = FXTextField.new(@info_title_frame, 0, nil, 0, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
+    @info_title_edit.hide()
     connect_text_field_edit(@info_title, @info_title_edit, :map_object_name)
     FXHorizontalSeparator.new(@right_frame, SEPARATOR_RIDGE|LAYOUT_FILL_X)
 
@@ -96,6 +94,7 @@ class DungeonGeneratorGui < FXMainWindow
       exits: section(@info_panel, "Exits", ["Nothing", "yet"]),
       position:  section(@info_panel, "Position", "Nothing yet"),
     }
+    connect_text_area_edit(@info_panel_sections[:description][:content], :map_object_description)
     @info_panel.hide()
 
 
@@ -109,6 +108,29 @@ class DungeonGeneratorGui < FXMainWindow
       fonts[name] = FXFont.new(@app, font)
     }
     return fonts
+  end
+
+  def menu_bar()
+    menu_bar = Hash.new()
+    menu_bar[:widget] = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
+    menu_bar[:menus] = {
+      file: {
+        commands: {
+          "New Dungeon": nil,
+          "Quicksave": nil,
+          "Save...": nil,
+          "Open...": nil,
+        }
+      }
+    }
+    menu_bar[:menus].each_pair { |menu_name, menu|
+      menu[:pane] = FXMenuPane.new(self)
+      menu[:title] = FXMenuTitle.new(menu_bar[:widget], "&#{menu_name.capitalize}", nil, menu[:pane])
+      menu[:commands].each_pair { |command_name, command|
+        command = FXMenuTitle.new(menu[:pane], "&#{command_name}")
+      }
+    }
+    return menu_bar
   end
 
   def section(parent, header_text, content, content_type = nil)
@@ -226,19 +248,26 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def display_map_object_info(map_object)
+    display_description(map_object)
     display_exit_info(map_object)
     display_position_info(map_object)
     @info_panel.show()
   end
 
+  def display_description(map_object)
+    text_box = @info_panel_sections[:description][:content]
+    text_box.text = map_object.description ? map_object.description : "No description"
+    text_box.editable = false
+  end
+
   def display_exit_info(map_object)
     section = @info_panel_sections[:exits]
     exit_descriptions = map_object.exits.collect { |exit| exit.exit_string }
-    exit_descriptions << map_object.starting_connector.exit_string(true)
+    unless map_object.starting_connector.nil?
+      exit_descriptions << map_object.starting_connector.exit_string(true)
+    end
     set_list(section[:frame], section[:content], exit_descriptions)
-    section[:frame].create()
-    section[:frame].show()
-    section[:frame].recalc()
+    refresh_widget(section[:frame])
   end
 
   def display_position_info(map_object)
@@ -246,15 +275,19 @@ class DungeonGeneratorGui < FXMainWindow
     when Chamber
       text = "Pos: (#{map_object.map_offset_x}, #{map_object.map_offset_y}); Size: #{map_object.abs_width}x#{map_object.abs_length}"
     when Passage
-      text = "Start: (#{map_object.starting_connector.map_x}, #{map_object.starting_connector.map_y}); Facing: #{map_object.starting_connector.facing.capitalize}; Width: #{map_object.width}"
+      if map_object.starting_connector
+        text = "Start: (#{map_object.starting_connector.map_x}, #{map_object.starting_connector.map_y}); Facing: #{map_object.starting_connector.facing.capitalize}; Width: #{map_object.width}"
+      else
+        text = "Information unavailable"
+      end
     end
     @info_panel_sections[:position][:content].text = text
   end
 
-  def section_frame(parent, extra_opts = nil)
+  def section_frame(parent, extra_opts = nil, padding: 10)
     opts = LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X
     opts = opts|extra_opts unless extra_opts.nil?
-    return FXVerticalFrame.new(parent, opts, padTop: 10, padBottom: 10)
+    return FXVerticalFrame.new(parent, opts, padTop: padding, padBottom: padding)
   end
 
   def header(parent, text)
@@ -313,10 +346,12 @@ class DungeonGeneratorGui < FXMainWindow
   def connect_text_field_edit(label, text_field, method)
     # Label turns into text field on click, text field confirms value on enter
     label.connect(SEL_LEFTBUTTONPRESS) do |sender, selector, event|
-      text_field.text = self.send(method)
-      #text_field.text = @selected_map_object.name
+      text = self.send(method)
+      next if text.nil?
+      text_field.text = text
       label.hide()
       text_field.show()
+      refresh_widget(label.parent)
     end
     text_field.connect(SEL_COMMAND) do |sender, selector, event|
       setter = [method, '='].join.to_sym
@@ -324,15 +359,48 @@ class DungeonGeneratorGui < FXMainWindow
       label.text = self.send(method)
       text_field.hide()
       label.show()
+      refresh_widget(label.parent)
+    end
+  end
+
+  def connect_text_area_edit(text_area, method)
+    text_area.connect(SEL_LEFTBUTTONPRESS) do |sender, selector, event|
+      next if text_area.editable?
+      next if self.send(method).nil?
+      text_area.editable = true
+      puts "edit mode"
+    end
+    text_area.connect(SEL_RIGHTBUTTONPRESS) do |sender, selector, event|
+      next unless text_area.editable?
+      setter = [method, '='].join.to_sym
+      self.send(setter, text_area.text)
+      text_area.editable = false
+      puts "view mode"
     end
   end
 
   def map_object_name()
+    return nil if @selected_map_object.nil?
     @selected_map_object.name
   end
 
   def map_object_name=(val)
     @selected_map_object.name = val
+  end
+
+  def map_object_description()
+    return nil if @selected_map_object.nil?
+    @selected_map_object.description
+  end
+
+  def map_object_description=(val)
+    @selected_map_object.description = val
+  end
+
+  def refresh_widget(widget)
+    widget.create()
+    widget.show()
+    widget.recalc()
   end
 
   def create

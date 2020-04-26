@@ -63,6 +63,9 @@ class MapObjectSquare
   end
   def to_s()
     output_hash = Hash.new
+    if @map_object
+      output_hash[:map_object] = @map_object.name
+    end
     @edges.each { |dir, edge|
       case edge
       when Symbol
