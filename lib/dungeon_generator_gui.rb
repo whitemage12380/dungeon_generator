@@ -30,6 +30,13 @@ class FillRectangleShape < RectangleShape
   end
 end
 
+# ShapeGroup code has a broken removeShape method; fixing
+class ShapeGroup
+  def removeShape(shape)
+    @shapes.delete(shape)
+  end
+end
+
 class DungeonGeneratorGui < FXMainWindow
   include DungeonGeneratorHelper
 
@@ -47,6 +54,7 @@ class DungeonGeneratorGui < FXMainWindow
     dungeon_room: FXColor::WhiteSmoke,
     dungeon_solid: FXColor::DimGray,
     grid: FXColor::BlanchedAlmond,
+    text_edit_background: FXColor::WhiteSmoke,
     window_background: Fox.FXRGB(212, 208, 200),
   }
   FONT = {
@@ -57,10 +65,11 @@ class DungeonGeneratorGui < FXMainWindow
   def initialize(app, map)
     @app = app
     @fonts = fonts()
+    @map = map
     @selected_map_object = nil
-    canvas_length = (map.size+1) * SQUARE_PIXELS
-    window_width = canvas_length + SIDEBAR_PIXELS + 20
-    window_height = canvas_length + 80
+    @canvas_length = (@map.size+1) * SQUARE_PIXELS
+    window_width = @canvas_length + SIDEBAR_PIXELS + 20
+    window_height = @canvas_length + 80
     super(app, "Dungeon Generator", :width => window_width, :height => window_height)
     # Menu bar
     @menu_bar = menu_bar()
@@ -77,12 +86,12 @@ class DungeonGeneratorGui < FXMainWindow
     # Left Pane
     @dungeon_name = FXLabel.new(@left_frame, "Dungeon", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
     FXHorizontalSeparator.new(@left_frame, SEPARATOR_GROOVE|LAYOUT_FILL_X)
-    @canvas = ShapeCanvas.new(@left_frame, nil, 0,
-      LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|LAYOUT_TOP|LAYOUT_LEFT, 0, 0, canvas_length, canvas_length)
+    @canvas = canvas()
     # Right Pane
     @info_title_frame = section_frame(@right_frame, padding: 0)
     @info_title = FXLabel.new(@info_title_frame, "Info", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
     @info_title_edit = FXTextField.new(@info_title_frame, 0, nil, 0, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
+    @info_title_edit.backColor = COLOR[:text_edit_background]
     @info_title_edit.hide()
     connect_text_field_edit(@info_title, @info_title_edit, :map_object_name)
     FXHorizontalSeparator.new(@right_frame, SEPARATOR_RIDGE|LAYOUT_FILL_X)
@@ -98,8 +107,8 @@ class DungeonGeneratorGui < FXMainWindow
     @info_panel.hide()
 
 
-    draw_canvas(@canvas, map)
-    connect_canvas(@canvas, map)
+    #draw_canvas(@canvas, @map)
+    #connect_canvas(@canvas, @map)
   end
 
   def fonts()
@@ -116,21 +125,38 @@ class DungeonGeneratorGui < FXMainWindow
     menu_bar[:menus] = {
       file: {
         commands: {
-          "New Dungeon": nil,
-          "Quicksave": nil,
-          "Save...": nil,
-          "Open...": nil,
+          "New Dungeon" => nil,
+          "Quicksave" => nil,
+          "Save..." => nil,
+          "Open..." => nil,
         }
       }
     }
     menu_bar[:menus].each_pair { |menu_name, menu|
       menu[:pane] = FXMenuPane.new(self)
       menu[:title] = FXMenuTitle.new(menu_bar[:widget], "&#{menu_name.capitalize}", nil, menu[:pane])
-      menu[:commands].each_pair { |command_name, command|
-        command = FXMenuTitle.new(menu[:pane], "&#{command_name}")
+      menu[:commands].each_key { |command_name|
+        menu[:commands][command_name] = FXMenuCommand.new(menu[:pane], "&#{command_name}")
       }
     }
+    file_commands = menu_bar[:menus][:file][:commands]
+    file_commands["New Dungeon"].connect(SEL_COMMAND) do |sender, selector, event|
+      @selected_map_object = nil
+      @canvas.parent.removeChild(@canvas)
+      @map = MapGenerator.generate_map()
+      @canvas = canvas()
+      refresh_widget(@canvas.parent)
+      puts @map.to_s
+    end
     return menu_bar
+  end
+
+  def canvas(parent = @left_frame, map = @map, length = @canvas_length)
+    canvas = ShapeCanvas.new(parent, nil, 0,
+      LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|LAYOUT_TOP|LAYOUT_LEFT, 0, 0, length, length)
+    draw_canvas(canvas, map)
+    connect_canvas(canvas, map)
+    return canvas
   end
 
   def section(parent, header_text, content, content_type = nil)
@@ -308,6 +334,7 @@ class DungeonGeneratorGui < FXMainWindow
     text_area.text = text
     text_area.font = @fonts[:content]
     text_area.backColor = COLOR[:window_background]
+    text_area.cursorColor = COLOR[:window_background]
     text_area.editable = false
     return text_area
   end
@@ -350,6 +377,8 @@ class DungeonGeneratorGui < FXMainWindow
       next if text.nil?
       text_field.text = text
       label.hide()
+      text_field.selectAll()
+      text_field.setFocus()
       text_field.show()
       refresh_widget(label.parent)
     end
@@ -364,18 +393,21 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def connect_text_area_edit(text_area, method)
-    text_area.connect(SEL_LEFTBUTTONPRESS) do |sender, selector, event|
-      next if text_area.editable?
-      next if self.send(method).nil?
-      text_area.editable = true
-      puts "edit mode"
-    end
     text_area.connect(SEL_RIGHTBUTTONPRESS) do |sender, selector, event|
-      next unless text_area.editable?
-      setter = [method, '='].join.to_sym
-      self.send(setter, text_area.text)
-      text_area.editable = false
-      puts "view mode"
+      if text_area.editable?
+        setter = [method, '='].join.to_sym
+        self.send(setter, text_area.text)
+        text_area.backColor = COLOR[:window_background]
+        text_area.parent.backColor = COLOR[:window_background]
+        text_area.cursorColor = COLOR[:window_background]
+        text_area.editable = false
+      else
+        next if self.send(method).nil?
+        text_area.backColor = COLOR[:text_edit_background]
+        text_area.parent.backColor = COLOR[:text_edit_background]
+        text_area.cursorColor = FXColor::Black
+        text_area.editable = true
+      end
     end
   end
 

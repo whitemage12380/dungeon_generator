@@ -7,7 +7,7 @@ require_relative 'chamber'
 class Map
   include DungeonGeneratorHelper
   extend DungeonGeneratorHelper
-  attr_accessor :grid, :map_objects
+  attr_accessor :grid, :map_objects, :file
 
   MAX_SIZE = 500
 

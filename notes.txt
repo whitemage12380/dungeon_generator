@@ -376,6 +376,10 @@ Bug - Chambers can choose an exit proposal in which only half of the resulting p
 Bug - in the UI, some map objects repeat their exit descriptions the more they are clicked on. Other map objects do not have this problem. I don't yet know what differentiates them.
 RESOLVED. The bug was using the concat method to include doors in the total exit count, in map_objects.exits() and map_objects.all_connectors(). I used the + operator instead.
 
+Bug - the coordinates of the starting connector in the exits list need to be mirrored to correctly identify where the connector is from the perspective of the map object
+
+Bug - If the map object title is in edit mode when switching map objects, it remains in edit mode with the previous map object's text.
+
 Project tracking:
 
 - Passage Instructions: 75%
