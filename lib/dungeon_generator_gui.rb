@@ -148,6 +148,9 @@ class DungeonGeneratorGui < FXMainWindow
       refresh_widget(@canvas.parent)
       puts @map.to_s
     end
+    file_commands["Quicksave"].connect(SEL_COMMAND) do |sender, selector, event|
+      @map.save()
+    end
     return menu_bar
   end
 
