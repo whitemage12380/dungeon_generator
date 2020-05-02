@@ -133,18 +133,28 @@ class Map
   end
 
   def save(filename = 'latest', filepath = $configuration['saved_map_directory'])
-    filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
-    log "Saving map to file: #{filepath}"
-    File.open("#{filepath}/#{filename}.yaml", "w") do |f|
+    if filename =~ /^\/.*\.yaml$/
+      fullpath = filename
+    else
+      filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
+      fullpath = "#{filepath}/#{filename}.yaml"
+    end
+    log "Saving map to file: #{fullpath}"
+    File.open(fullpath, "w") do |f|
       YAML::dump(self, f)
     end
   end
 
   def self.load(filename, filepath = $configuration['saved_map_directory'])
-    filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
-    log "Loading map from file: #{filepath}"
+    if filename =~ /^\/.*\.yaml$/
+      fullpath = filename
+    else
+      filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
+      fullpath = "#{filepath}/#{filename}.yaml"
+    end
+    log "Loading map from file: #{fullpath}"
     map = nil
-    File.open("#{filepath}/#{filename}.yaml", "r") do |f|
+    File.open(fullpath, "r") do |f|
       map = YAML::load(f)
     end
     return map

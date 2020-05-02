@@ -151,6 +151,39 @@ class DungeonGeneratorGui < FXMainWindow
     file_commands["Quicksave"].connect(SEL_COMMAND) do |sender, selector, event|
       @map.save()
     end
+    file_commands["Save..."].connect(SEL_COMMAND) do |sender, selector, event|
+      save_filename = FXFileDialog.getSaveFilename(self, 'Save Dungeon...',"#{Configuration.project_path}/data/maps/")
+      case save_filename
+      when "" # Cancel
+        log "Save canceled"
+        next
+      when /\.yaml$/    # Extension correct (do nothing)
+      when /\.[^\/]*$/  # Extension incorrect (cancel)
+        log_error "Incorrect extension for file #{save_filename}"
+        next
+      else              # Extension missing (add extension)
+        save_filename = "#{save_filename}.yaml"
+      end
+      @map.save(save_filename)
+    end
+    file_commands["Open..."].connect(SEL_COMMAND) do |sender, selector, event|
+      load_filename = FXFileDialog.getOpenFilename(self, 'Load Dungeon...',"#{Configuration.project_path}/data/maps/")
+      case load_filename
+      when "" # Cancel
+        log "Load canceled"
+        next
+      when /\.yaml$/    # Extension correct (do nothing)
+      when /\.[^\/]*$/  # Extension incorrect (cancel)
+        log_error "Incorrect extension for file #{load_filename}"
+        next
+      end
+      @selected_map_object = nil
+      @canvas.parent.removeChild(@canvas)
+      @map = Map.load(load_filename)
+      @canvas = canvas()
+      refresh_widget(@canvas.parent)
+      puts @map.to_s
+    end
     return menu_bar
   end
 
