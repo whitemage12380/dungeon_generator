@@ -31,11 +31,11 @@ class Connector
       exit_type = type.capitalize()
     end
     if starting_connector
-      connecting_to = map_object.name
+      connecting_to = @map_object.name
       facing_string = opposite_facing(facing)
     else
-      connecting_to = connecting_map_object.name
-      facing_string = facing
+      connecting_to = @connecting_map_object ? @connecting_map_object.name : "nothing!"
+      facing_string = @facing
     end
     return "#{exit_type} at (#{map_x}, #{map_y}) facing #{facing_string} to #{connecting_to}"
   end

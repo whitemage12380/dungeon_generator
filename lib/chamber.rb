@@ -298,12 +298,10 @@ class Chamber < MapObject
     case exit[:type]
     when "passage"
       connector = chosen_proposal.to_connector()
-      connectors << connector
       add_connector(connector, chosen_proposal.distance_from_left, cursor: cursor)
       connector.connect_to(Passage.new(map: @map, starting_connector: connector, instructions: exit[:passage]))
     when "door"
       door = chosen_proposal.to_door()
-      doors << door
       add_door(door, chosen_proposal.distance_from_left, cursor: cursor)
     end
   end

@@ -21,14 +21,16 @@ class ExitProposal
   def exit_allowed?(map: @map, chamber: @chamber, cursor: @cursor, width: @width)
     tmp_cursor = cursor.copy
     square = map.square(cursor.map_pos)
-    debug cursor.to_s
+    debug "Checking whether exit is allowed at cursor: #{cursor.to_s}"
     return false if square.nil?
     for width_point in 1..width
-      return false if chamber.square_empty?(cursor.pos)
-      return false unless square.edges[cursor.facing] == :wall
+      return false unless tmp_cursor.pos_valid?()
+      return false if chamber.square_empty?(tmp_cursor.pos)
+      return false unless square.edges[tmp_cursor.facing] == :wall
       return false unless map.square_available?(tmp_cursor.map_pos_forward(1))
       tmp_cursor.shift!(:right)
     end
+    debug "Exit is allowed"
     return true
   end
 
