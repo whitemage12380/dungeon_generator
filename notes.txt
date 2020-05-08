@@ -368,14 +368,19 @@ Bug - Array wraparound issue can (at least) cause failures connecting two existi
 RESOLVED. Now the map.square function returns nil if x or y are below 0, instead of returning a grid value that wraps around the map.
 
 Bug - It is possible to end up with 5-foot corridors. This may be a result of a chamber overlapping a corridor or some other odd undesired behavior. This can cause a 2-width connector to only have 1 of the two squares of the resulting object connect back.
+RESOLVED PROBABLY. After fixing numerous other positioning bugs, this has yet to reappear.
 
 Bug - In a Tee passage, if the left passage ends up blocked, it doesn't wall off correctly. It ends up with a connector instead, which is not respected by the chamber on the other side.
+RESOLVED. 
 
 Bug - Chambers can choose an exit proposal in which only half of the resulting passage connects properly to the room. This was seen where a proposal for a right-hand exit (south) was chosen with an x-value of 0 with a passage; since the passage width draws right, the second square of the passage width was at x -1 for the chamber. This is almost reasonably valid, but the passage has a connector on the bit that juts out, leading into solid rock. It appears to be capable of causing more serious exit behavior as well, based on a more bizarre case that included the same symptom that I find difficult to describe (5-foot doors where they weren't supposed to be, etc).
+PROBABLY RESOLVED. same validity checkas as below probably resolved this one.
 
 Bug - Door (or probably connector) ends up at the edge of a chamber and half of it wraps around to the other side of the chamber. Likely the same bug as immediately above.
+RESOLVED. A check is made for coordinate validity that should prevent this from happening again.
 
 Bug - A chamber with a door leading to nowhere crashed the application when clicked on: connector.rb:37:in `exit_string': undefined method `name' for nil:NilClass
+MITIGATED. Now the buggy exit will simply say it leads nowhere. The underlying bug may still exist, however.
 
 Bug - in the UI, some map objects repeat their exit descriptions the more they are clicked on. Other map objects do not have this problem. I don't yet know what differentiates them.
 RESOLVED. The bug was using the concat method to include doors in the total exit count, in map_objects.exits() and map_objects.all_connectors(). I used the + operator instead.
@@ -383,6 +388,44 @@ RESOLVED. The bug was using the concat method to include doors in the total exit
 Bug - the coordinates of the starting connector in the exits list need to be mirrored to correctly identify where the connector is from the perspective of the map object
 
 Bug - If the map object title is in edit mode when switching map objects, it remains in edit mode with the previous map object's text.
+
+Bug - GUI crashes when Enter is pressed outside the context of the dungen title
+
+Bug - Chamber exits accidentally overlap with each other. When this happens one of them fails to lead anywhere because the other one has already done so, and ends up walling itself, and part of the other connector, off.
+RESOLVED. The map square, which was used in the validity check that would prevent this, was outside the loop it needed to be in, causing only the leftmost square to be checked for a wall.
+
+Bug - It appears to be possible for a map object to overlap with another, causing strange architecture and wall that don't match.
+
+Bug - When two passage run up against each other head on, if one has a connector that isn't yet explored (possible if the passage is the result of a chamber exit, I think?), the other may be able draw into that passage (and then fail to connect). Then later, the original passage gets its connector explored and sure enough, it can't build anything out so it walls off, creating a wall in the middle of the passage that pushed through it. This source of this bug, and possibly others, is that these passages get created separately from the usual map.add_passage code, so they don't get drawn on the map yet. So what can happen is, the exit passage gets created but not drawn on the map, an earlier exit branches out in a way that blocks the passage, then the exit passage gets drawn on the map, overlapping whatever is there. That's why we sometimes see earlier passages overlapping later map objects.
+IN PROGRESS. To fix this, I need to make sure the passage gets drawn on the map as soon as it's placed, but this could be tricky. The alternative is to allow the passage to be blocked, and never draw it if that happens.
+
+Bug - Chamber attempts to place an exit to the North, but the cursor it uses is 2 squares away from the Northern row, causing it to incorrectly decide an exit could not be placed.
+RESOLVED PROBABLY. Put in code to address this issue (length and width get reversed when handling exits orthogonal to the room facing), haven't noticed the problem pop back up.
+
+Bug - It is possible to run into a stack overflow.
+/home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:109:in `block (2 levels) in draw_map_object': stack level too deep (SystemStackError)
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:107:in `each'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:107:in `each_with_index'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:107:in `block in draw_map_object'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:106:in `each'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:106:in `each_with_index'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:106:in `draw_map_object'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map.rb:87:in `add_passage'
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/map_generator.rb:122:in `generate_passage_recursive'
+   ... 10332 levels...
+  from /home/whitemage/Dropbox/rpg_utils/dungeon_generator/lib/dungeon_generator_gui.rb:146:in `block in menu_bar'
+Gotten after infinite repetition of these lines:
+I, [2020-05-05T00:40:09.681618 #10445]  INFO -- : Incomplete for Passage 10: 0 connectors, 1 doors
+I, [2020-05-05T00:40:09.681632 #10445]  INFO -- : Found existing connected map object
+I, [2020-05-05T00:40:09.681646 #10445]  INFO -- : Type: Passage
+I, [2020-05-05T00:40:09.681984 #10445]  INFO -- : Incomplete for Passage 2: 0 connectors, 1 doors
+I, [2020-05-05T00:40:09.681996 #10445]  INFO -- : Found existing connected map object
+I, [2020-05-05T00:40:09.682009 #10445]  INFO -- : Type: Passage
+I, [2020-05-05T00:40:09.682392 #10445]  INFO -- : No incomplete connectors or doors for Passage 4
+I, [2020-05-05T00:40:09.682403 #10445]  INFO -- : Found existing connected map object
+I, [2020-05-05T00:40:09.682416 #10445]  INFO -- : Type: Passage
+
+Bug - Once, a tee, lined up to the edge of the map, had a missing wall where its right branch should've failed to draw forward (into the edge of the map) and walled itself off.
 
 Project tracking:
 

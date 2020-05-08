@@ -175,9 +175,11 @@ class MapObject
     connector_list << connector unless connector_list.include?(connector)
     tmp_cursor = cursor.copy()
     tmp_cursor.shift!(direction, connector_offset)
+    log "#{name}: Adding connector - cursor: #{tmp_cursor.to_s}"
     self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     for i in 1...connector.width do
       tmp_cursor.shift!(direction)
+      log "#{name}: Adding connector - cursor: #{tmp_cursor.to_s}"
       self[tmp_cursor.pos].add_connector(tmp_cursor.facing, connector)
     end
     return connector
@@ -185,21 +187,31 @@ class MapObject
 
   alias add_door add_connector
 
-  def draw_forward(distance, cursor: @cursor)
+  def draw_forward(distance, cursor: @cursor, width: @width)
     for i in 1..distance do
-      return false if not @map.square_available?(cursor.map_pos_forward)
+      return false unless width_available?(cursor: cursor, width: width)
+      log "#{name}: OK to draw forward at #{cursor.map_pos_forward}, #{cursor.facing}"
       cursor.forward!()
-      draw_width(cursor: cursor)
+      draw_width(cursor: cursor, width: width)
     end
     return true
   end
 
-  def draw_width(cursor: @cursor)
+  def width_available?(cursor: @cursor, distance: 1, width: @width)
+    tmp_cursor = cursor.copy()
+    for i in 1..width do
+      return false unless @map.square_available?(tmp_cursor.map_pos_forward)
+      tmp_cursor.shift!(:right)
+    end
+    return true
+  end
+
+  def draw_width(cursor: @cursor, width: @width)
     tmp_cursor = cursor.copy()
     #return false if not @map.square_available?(cursor.map_pos)
-    debug "Drawing width #{@width} using cursor: #{tmp_cursor}"
+    debug "Drawing width #{width} using cursor: #{tmp_cursor}"
     self[tmp_cursor.pos] = MapObjectSquare.new(self, {tmp_cursor.left => :wall})
-    for i in 1...@width do
+    for i in 1...width do
       tmp_cursor.shift!(:right)
       self[tmp_cursor.pos] = MapObjectSquare.new(self)
     end
@@ -229,7 +241,7 @@ class MapObject
     # return if not square_empty?(cursor.pos_forward)
     # This line is possibly a stop-gap or a partial solution for passages that can't even begin to draw
     return if not @grid[cursor.pos[:x]] or not @grid[cursor.pos[:x]][cursor.pos[:y]]
-    debug "Adding #{width}-square-wide wall"
+    log "Adding #{width}-square-wide wall at #{cursor.map_pos.to_s}"
     begin
       tmp_cursor = cursor.copy()
       self[tmp_cursor.pos].add_wall(tmp_cursor.facing)
@@ -291,7 +303,9 @@ class MapObject
       case blocked_passage_behavior
       when 'wall'
         log "Choosing to wall off blocked #{type}"
-        remove_connector(connector) || add_wall_width(width: connector.width)
+        unless remove_connector(connector)
+          add_wall_width(cursor: cursor, width: connector.width)
+        end
       when 'connector'
         log "Connecting #{name} to forward map object"
         add_connector(connector, cursor: cursor) unless @connectors.include?(connector)

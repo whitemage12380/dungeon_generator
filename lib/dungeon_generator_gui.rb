@@ -400,7 +400,7 @@ class DungeonGeneratorGui < FXMainWindow
         next
       end
       @selected_map_object = selected_square.map_object
-      log "Selected #{@selected_map_object.name}"
+      log "Selected #{@selected_map_object.name} (square: #{selected_map_coordinates})"
       @info_title.text = @selected_map_object.name
       display_map_object_info(@selected_map_object)
     end

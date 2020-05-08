@@ -5,7 +5,7 @@ class Passage < MapObject
 
   attr_reader :width
 
-  def initialize(map:, width: nil, facing: :east, starting_connector: nil, connector_x: nil, connector_y: nil, instructions:)
+  def initialize(map:, instructions:, description: nil, width: nil, facing: :east, starting_connector: nil, connector_x: nil, connector_y: nil)
     if starting_connector
       width = starting_connector.width if not width
       facing = starting_connector.facing
@@ -158,6 +158,7 @@ class Passage < MapObject
       right_cursor.turn!(:right)
       right_cursor.forward!(@width-1)
       [left_cursor, right_cursor].each do |c|
+        log "#{name}: Tee branch at #{c.pos}, #{c.facing}"
         remove_wall_width(cursor: c)
         # Because a tee is desired even if the first branch is blocked,
         # expressly invoke blocked connector behavior instead of returning

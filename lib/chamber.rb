@@ -62,19 +62,35 @@ class Chamber < MapObject
   end
 
   def initial_cursor_pos(facing)
+    # If facing is not along the same axis as the chamber facing, reverse length/width.
+    width = @width
+    length = @length
+    case @facing
+    when :north, :south
+      if [:east, :west].include? facing
+        width = @length
+        length = @width
+      end
+    when :east, :west
+      if [:north, :north].include? facing
+        width = @length
+        length = @width
+      end
+    end
+    # Return a position that, from the given facing, is at the back-most left-most square of the chamber.
     case facing
     when :north
       x = 0
-      y = @length
+      y = length
     when :east
       x = -1
       y = 0
     when :south
-      x = @width - 1
+      x = width - 1
       y = -1
     when :west
-      x = @length
-      y = @width - 1
+      x = length
+      y = width - 1
     end
     return {x: x, y: y}
   end
@@ -288,12 +304,12 @@ class Chamber < MapObject
     # STEP 2: Create exit proposals and choose a favorite
     exit_proposals = create_exit_proposals(cursor: cursor, wall_width: side_distance) # Let exit_width default to 2 for now
     if exit_proposals.empty?
-      log "Failed to create any successful proposals for exit: #{exit}"
-      log "Skipping exit."
+      log "#{name}: Failed to create any successful proposals for exit: #{exit}"
+      log "#{name}: Skipping exit."
       return
     end
     chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
-    log "Chose exit proposal: #{chosen_proposal.to_h}"
+    log "#{name}: Chose exit proposal: #{chosen_proposal.to_h}"
     # STEP 3: Attach the exit (door or passage)
     case exit[:type]
     when "passage"
@@ -309,12 +325,14 @@ class Chamber < MapObject
   def create_exit_proposals(cursor:, wall_width:, exit_width: 2)
     exit_proposals = Array.new
     for width_point in 0..(wall_width - exit_width)
+      log "Creating proposal at width_point #{width_point} (#{cursor.pos})"
       proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, wall_width: wall_width, width: exit_width, distance_from_left: width_point)
-      debug "Proposal: #{proposal.to_h}"
+      log "#{name}: Proposal: #{proposal.to_h}"
+      log "#{name}: Checking whether exit is allowed at cursor: #{proposal.cursor.to_s}"
       if proposal.exit_allowed?
         exit_proposals << proposal
       else
-        debug "Exit proposal not allowed."
+        log "#{name}: Exit proposal not allowed."
       end
     end
     debug "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"

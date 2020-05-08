@@ -118,6 +118,9 @@ class MapGenerator
         if connector.connecting_map_object.nil?
           passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
         else
+          # The SO bug is somewhere in here or has_incomplete_connectors?.
+          # It might be that two passages get connected to each other and both have another connector,
+          # But those connectors never happen because they keep bouncing back and forth between each other.
           # Won't work if connecting_map_object ends up being a chamber (not currently possible)
           passage = map.add_passage(passage: connector.connecting_map_object)
           return unless passage and passage.has_incomplete_connectors?
