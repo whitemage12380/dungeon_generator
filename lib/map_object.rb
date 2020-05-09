@@ -48,6 +48,14 @@ class MapObject
     status == :success
   end
 
+  def drawn
+    @drawn = true
+  end
+
+  def drawn?
+    @drawn == true
+  end
+
   def all_connectors()
     @connectors + @doors
   end
@@ -286,7 +294,8 @@ class MapObject
     return false
   end
 
-  def blocked_connector_behavior(connector, type = nil, cursor: @cursor)
+  def blocked_connector_behavior(connector, type = nil)
+    cursor = connector.new_cursor()
     type = connector.type if type.nil?
     if connector.can_connect_forward?()
       # blocked_passage_behavior can be set via configuration
@@ -324,7 +333,7 @@ class MapObject
       end
     else
       log "Unable to connect blocked #{type} forward; walling it off"
-      remove_connector(connector) || add_wall_width(width: connector.width)
+      remove_connector(connector) || add_wall_width(cursor: cursor, width: connector.width)
     end
   end
 

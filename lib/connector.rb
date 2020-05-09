@@ -125,6 +125,7 @@ class Connector
                      facing: facing)
     cursor.forward!()
     cursor.turn!(:back)
+    cursor.shift!(:left, @width-1)
     connecting_map_object = map.square(cursor.pos).map_object
     log "Connecting to #{connecting_map_object.name}"
     connect_to(connecting_map_object)
@@ -144,7 +145,7 @@ class Connector
     else
       other_connector = connecting_map_object.create_connector(other_cursor, @width)
     end
-    connecting_map_object.add_connector(other_connector, cursor: other_cursor, direction: :left)
+    connecting_map_object.add_connector(other_connector, cursor: other_cursor)
     other_connector.connect_to(@map_object)
   end
 

@@ -82,10 +82,20 @@ class Map
         passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
       end
     end
-    return nil unless passage.success?
-    @map_objects << passage
-    draw_map_object(passage)
-    return passage
+    if passage.success? and draw_map_object(passage)
+      @map_objects << passage
+      return passage
+    elsif passage.success? and connector
+      # If the passage was created successfully but failed to draw, it got blocked after the fact and needs to wall off and disconnect.
+      log_important "Adding #{passage.name} to map was unsuccessful because drawing on the map failed"
+      connecting_map_object = connector.map_object
+      connector.disconnect()
+      connecting_map_object.blocked_connector_behavior(connector)
+      return nil
+    else
+      # If the passage failed to be created, disconnection and blocked connector behavior already occured, so we can be done.
+      return nil
+    end
   end
 
   def add_chamber(connector: nil, width: nil, length: nil, x: nil, y: nil, facing: nil, entrance_width: nil)
@@ -100,7 +110,20 @@ class Map
     return chamber
   end
 
+  def can_draw_map_object?(map_object)
+    offset_x = map_object.map_offset_x
+    offset_y = map_object.map_offset_y
+    map_object.grid.each_with_index { |x_obj, x|
+      x_obj.each_with_index { |y_obj, y|
+        next if x_obj[y].nil?
+        return false unless self[x + offset_x, y + offset_y].nil?
+      }
+    }
+    return true
+  end
+
   def draw_map_object(map_object)
+    return false unless can_draw_map_object?(map_object)
     offset_x = map_object.map_offset_x
     offset_y = map_object.map_offset_y
     map_object.grid.each_with_index { |x_obj, x|
@@ -109,6 +132,8 @@ class Map
         self[x + offset_x, y + offset_y] = y_obj
       }
     }
+    map_object.drawn
+    return true
   end
 
   def generate_starting_area()

@@ -168,7 +168,7 @@ class Passage < MapObject
         if draw_forward_succeeded
           add_connector(connector, 0, cursor: c)
         else
-          blocked_connector_behavior(connector, type, cursor: c)
+          blocked_connector_behavior(connector, type)
         end
       end
     end

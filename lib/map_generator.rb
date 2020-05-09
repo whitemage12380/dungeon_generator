@@ -15,6 +15,7 @@ class MapGenerator
       log "Completed map generation"
       log "Passage count: #{map.passages.length}"
       log "Chamber count: #{map.chambers.length}"
+      print_messages()
       map.save()
       return map
     end
@@ -81,16 +82,22 @@ class MapGenerator
       #chamber_strategy = :wait # immediate: generate from chamber when it appears. 
       #                         # wait: Generate from chambers after passages are complete
       map = connector.map_object.map
-      if connector.connecting_map_object.nil?
+      from_map_object = connector.map_object
+      to_map_object = connector.connecting_map_object
+      if to_map_object and to_map_object.drawn?
+        log_important "Map object #{to_map_object.name} is already connected and drawn, skipping generation step from #{from_map_object.name}"
+        return
+      end
+      if to_map_object.nil?
         if connector.kind_of? Door
-          log "Generating new map object beyond door"
+          log "Generating new map object beyond door from #{from_map_object.name}"
           passage_data = random_yaml_element("beyond_door")
         else
-          log "Generating new map object"
+          log "Generating new map object from #{from_map_object.name}"
           passage_data = random_yaml_element("passages")
         end
       else
-        log "Found existing connected map object"
+        log "Found existing connected map object: #{to_map_object.name}"
         passage_data = {"passage" => "Already Exists"}
       end
       debug "Data: #{passage_data.to_s}"
@@ -115,14 +122,19 @@ class MapGenerator
         log "Stairs not implemented"
       else
         log "Type: Passage"
-        if connector.connecting_map_object.nil?
+        if to_map_object.nil?
           passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
         else
           # The SO bug is somewhere in here or has_incomplete_connectors?.
           # It might be that two passages get connected to each other and both have another connector,
           # But those connectors never happen because they keep bouncing back and forth between each other.
           # Won't work if connecting_map_object ends up being a chamber (not currently possible)
-          passage = map.add_passage(passage: connector.connecting_map_object)
+          log_important "#{connector.connecting_map_object.name} already exists"
+          unless to_map_object.kind_of? Passage
+            log_important "#{to_map_object.name} is not a passage but got assumed to be such in the generator! This should never happen."
+            return
+          end
+          passage = map.add_passage(connector: connector, passage: to_map_object)
           return unless passage and passage.has_incomplete_connectors?
         end
         unless passage.nil?
