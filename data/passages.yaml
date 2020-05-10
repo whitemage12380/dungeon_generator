@@ -53,4 +53,4 @@ passages:
       - "CONNECTOR"
   - probability: 5
     description: "Chamber"
-    passage: "chamber"
+    type: "chamber"

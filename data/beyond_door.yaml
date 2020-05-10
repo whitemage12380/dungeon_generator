@@ -1,15 +1,20 @@
 beyond_door:
-  - probability: 2
+  - probability: 0 #2
     description: "Passage extending 10 ft., then T intersection extending 10 ft. to the right and left"
+    type: "passage"
     passage:
       - "FORWARD 10"
       - "TEE 10"
-  - probability: 6
+  - probability: 0 #6
     description: "Passage 20 ft. straight ahead"
+    type: "passage"
     passage:
       - "FORWARD 20"
       - "CONNECTOR"
-  - probability: 10
+  - probability: 0 #10
     description: "Chamber"
-    passage: "chamber"
-# Haven't implemented stairs or false door with trap
+    type: "chamber"
+  - probability: 1
+    description: "Stairs"
+    type: "stairs"
+# Haven't implemented false door with trap

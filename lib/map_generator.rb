@@ -96,13 +96,17 @@ class MapGenerator
         else
           log "Generating new map object from #{from_map_object.name}"
           passage_data = random_yaml_element("passages")
+          passage_data["type"] = "passage" if passage_data["type"].nil?
         end
       else
         log "Found existing connected map object: #{to_map_object.name}"
-        passage_data = {"passage" => "Already Exists"}
+        passage_data = {"type" => to_map_object.type}
+        if to_map_object.type != "passage"
+          raise "Existing map objects other than passages are not supported in generate_passage_recursive"
+        end
       end
       debug "Data: #{passage_data.to_s}"
-      case passage_data["passage"]
+      case passage_data["type"]
       when "chamber"
         log "Type: Chamber"
         chamber_data = random_yaml_element("chambers")
@@ -120,7 +124,7 @@ class MapGenerator
         end
       when "stairs"
         log "Type: Stairs"
-        log "Stairs not implemented"
+        stairs = map.add_stairs(connector: connector)
       else
         log "Type: Passage"
         if to_map_object.nil?

@@ -52,16 +52,16 @@ class Stairs < MapObject
     case facing
     when :north
       x = 0
-      y = length
+      y = @length
     when :east
       x = -1
       y = 0
     when :south
-      x = width - 1
+      x = @width - 1
       y = -1
     when :west
-      x = length
-      y = width - 1
+      x = @length
+      y = @width - 1
     end
     return {x: x, y: y}
   end
