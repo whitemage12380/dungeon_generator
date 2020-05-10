@@ -9,7 +9,7 @@ class Chamber < MapObject
   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil)
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating #{name}"
+    log "Creating #{name} with intended dimensions: #{width}x#{length}"
     if starting_connector
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
@@ -96,6 +96,7 @@ class Chamber < MapObject
   end
 
   def clear_distance(cursor, max_distance, width = 1)
+    width = 1 if width.nil? or width < 1
     tmp_cursor = cursor.copy
     distances = Array.new
     for width_point in 0...width do
@@ -165,6 +166,7 @@ class Chamber < MapObject
       return
     end
     horizontal_offset = 0
+    entrance_width = 1 if entrance_width.nil?
     width_from_connector = width - entrance_width
     width_from_connector_left = (width_from_connector/2.to_f).ceil - horizontal_offset
     width_from_connector_right = (width_from_connector/2) + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
@@ -194,6 +196,7 @@ class Chamber < MapObject
     return chosen_proposal
   end
 
+  # TODO: Make this method work when there is no entrance (it's the starting chamber).
   def create_chamber_proposals(cursor:, length:, width:, entrance_width:, width_from_connector_left:, width_from_connector_right:)
     chamber_proposals = Array.new
     tmp_cursor = cursor.copy
@@ -310,12 +313,15 @@ class Chamber < MapObject
     end
     chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
     log "#{name}: Chose exit proposal: #{chosen_proposal.to_h}"
-    # STEP 3: Attach the exit (door or passage)
+    # STEP 3: Attach the exit (door, connector or passage)
     case exit[:type]
     when "passage"
       connector = chosen_proposal.to_connector()
       add_connector(connector, chosen_proposal.distance_from_left, cursor: cursor)
       connector.connect_to(Passage.new(map: @map, starting_connector: connector, instructions: exit[:passage]))
+    when "connector"
+      connector = chosen_proposal.to_connector()
+      add_connector(connector, chosen_proposal.distance_from_left, cursor: cursor)
     when "door"
       door = chosen_proposal.to_door()
       add_door(door, chosen_proposal.distance_from_left, cursor: cursor)

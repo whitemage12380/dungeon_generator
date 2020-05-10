@@ -140,9 +140,26 @@ class Map
     # For now, pretend starting area is just a passage, for simplicity's sake
     configuration = MapGenerator.generate_starting_area_configuration()
     location      = MapGenerator.generate_starting_area_location(self)
-    instructions  = configuration["passage"]
+    #instructions  = configuration["passage"]
     width         = configuration["width"]
-    add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
+    #add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
+    case configuration["type"]
+    when "chamber"
+      length = configuration["length"]
+      map_object = add_chamber(width: width, length: length, x: location[:x], y: location[:y], facing: location[:facing])
+      locations_used = Array.new()
+      configuration["exits"].each { |exit|
+        exit_type = exit["type"]
+        exit_facing = exit["facing"]
+        map_object.add_exit({location: exit_facing, type: exit_type})
+        # TODO: Include logic for "unique" exit instruction
+      }
+    when "passage"
+      instructions  = configuration["passage"]
+      map_object = add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
+    end
+    map_object.description = "Starting area. #{configuration["description"]}."
+    return map_object
   end
 
   def to_s()

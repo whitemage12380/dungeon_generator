@@ -1,0 +1,15 @@
+starting_areas:
+  - probability: 1
+    description: "Square, 20 x 20 ft.; passage on each wall"
+    type: "chamber"
+    width: 4
+    length: 4
+    exits:
+      - type: "connector"
+        facing: "forward"
+      - type: "connector"
+        facing: "back"
+      - type: "connector"
+        facing: "left"
+      - type: "connector"
+        facing: "right"

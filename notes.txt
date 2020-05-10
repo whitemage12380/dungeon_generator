@@ -460,13 +460,14 @@ TODO:
   Passages:
     - 5-foot passages
   Map:
+    - Starting Area
+    - 4-way intersection (starting area)
     - Stairs
     - False door with trap
   GUI:
     - Highlight map object on selection
+    - Ability to add/remove connectors/doors
     - Interactive step-by-step map generator
-    - Save UI
-    - Load UI
   Flavor:
     - Door material
     - Chamber purpose
@@ -474,3 +475,9 @@ TODO:
   Extra:
     - Loot
     - Inhabitants
+    - Traps
+
+Roadmap Order:
+- Starting Ares
+- Stairs
+- Chamber Purpose

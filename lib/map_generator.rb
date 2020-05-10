@@ -11,7 +11,7 @@ class MapGenerator
       log "Beginning map generation"
       map = Map.new(map_size)
       starting_area = map.generate_starting_area()
-      starting_area.connectors.each {|c| generate_passage_recursive(c)}
+      starting_area.all_connectors.each {|c| generate_passage_recursive(c)}
       log "Completed map generation"
       log "Passage count: #{map.passages.length}"
       log "Chamber count: #{map.chambers.length}"
@@ -22,9 +22,10 @@ class MapGenerator
 
     def generate_starting_area_configuration()
       # Starting with a simple passage
-      starting_area = yaml_data("passages", 0)
-      starting_area["width"] = 2
-      return starting_area
+      # starting_area = yaml_data("passages", 0)
+      # starting_area["width"] = 2
+      # return starting_area
+      random_yaml_element("starting_areas")
     end
 
     def generate_starting_area_location(map, width = 2)
