@@ -151,8 +151,11 @@ class Map
       configuration["exits"].each { |exit|
         exit_type = exit["type"]
         exit_facing = exit["facing"]
+        if exit_facing == "unique"
+          exit_facing = MapGenerator.random_facing(locations_used)
+          locations_used << exit_facing.clone()
+        end
         map_object.add_exit({location: exit_facing, type: exit_type})
-        # TODO: Include logic for "unique" exit instruction
       }
     when "passage"
       instructions  = configuration["passage"]

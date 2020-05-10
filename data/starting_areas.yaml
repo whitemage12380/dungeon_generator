@@ -1,15 +1,77 @@
 starting_areas:
-  - probability: 1
+  - probability: 0
     description: "Square, 20 x 20 ft.; passage on each wall"
     type: "chamber"
     width: 4
     length: 4
     exits:
       - type: "connector"
-        facing: "forward"
+        facing: "unique"
       - type: "connector"
-        facing: "back"
+        facing: "unique"
+      - type: "connector"
+        facing: "unique"
+      - type: "connector"
+        facing: "unique"
+  - probability: 0
+    description: "Square, 20 x 20 ft.; door on two walls, passage in third wall"
+    type: "chamber"
+    width: 4
+    length: 4
+    exits:
+      - type: "door"
+        facing: "unique"
+      - type: "door"
+        facing: "unique"
+      - type: "connector"
+        facing: "unique"
+  - probability: 0
+    description: "Square, 40 x 40 ft.; doors on three walls"
+    type: "chamber"
+    width: 8
+    length: 8
+    exits:
+      - type: "door"
+        facing: "unique"
+      - type: "door"
+        facing: "unique"
+      - type: "door"
+        facing: "unique"
+  - probability: 0
+    description: "Rectangle, 80 x 20 ft., with row of pillars down the middle; two passages leading from each long wall, doors on each short wall"
+    type: "chamber"
+    width: 4
+    length: 16
+    exits:
       - type: "connector"
         facing: "left"
       - type: "connector"
         facing: "right"
+      - type: "door"
+        facing: "forward"
+      - type: "door"
+        facing: "back"
+  - probability: 0
+    description: "Rectangle, 20 x 40 ft.; passage on each wall"
+    type: "chamber"
+    width: 4
+    length: 4
+    exits:
+      - type: "connector"
+        facing: "unique"
+      - type: "connector"
+        facing: "unique"
+      - type: "connector"
+        facing: "unique"
+      - type: "connector"
+        facing: "unique"
+# Missing configurations 6 and 7 due to not supporting circles
+# Missing configuration 8 due to not supporting secret doors
+  - probability: 1
+    description: "Passage, 10 ft. wide; T intersection"
+    type: "passage"
+    width: 2
+    passage:
+      - "FORWARD 10"
+      - "TEE 10"
+# Missing configuration 10 due to not supporting a four-way intersection
