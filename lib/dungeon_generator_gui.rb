@@ -54,6 +54,7 @@ class DungeonGeneratorGui < FXMainWindow
     dungeon_room: FXColor::WhiteSmoke,
     dungeon_solid: FXColor::DimGray,
     grid: FXColor::BlanchedAlmond,
+    stairs: FXColor::PaleGreen,
     text_edit_background: FXColor::WhiteSmoke,
     window_background: Fox.FXRGB(212, 208, 200),
   }
@@ -263,7 +264,11 @@ class DungeonGeneratorGui < FXMainWindow
     base_py = y * SQUARE_PIXELS
     return if square.nil?
     shape = FillRectangleShape.new(base_px, base_py, SQUARE_PIXELS, SQUARE_PIXELS)
-    shape.foreground = COLOR[:dungeon_room]
+    if square.map_object.kind_of? Stairs
+      shape.foreground = COLOR[:stairs]
+    else
+      shape.foreground = COLOR[:dungeon_room]
+    end
     shapes.addShape(shape)
     if $configuration['map_display'] == 'debug'
       max_pixels = SQUARE_PIXELS - 1

@@ -1,5 +1,5 @@
 starting_areas:
-  - probability: 0
+  - probability: 1
     description: "Square, 20 x 20 ft.; passage on each wall"
     type: "chamber"
     width: 4
@@ -13,7 +13,7 @@ starting_areas:
         facing: "unique"
       - type: "connector"
         facing: "unique"
-  - probability: 0
+  - probability: 1
     description: "Square, 20 x 20 ft.; door on two walls, passage in third wall"
     type: "chamber"
     width: 4
@@ -25,7 +25,7 @@ starting_areas:
         facing: "unique"
       - type: "connector"
         facing: "unique"
-  - probability: 0
+  - probability: 1
     description: "Square, 40 x 40 ft.; doors on three walls"
     type: "chamber"
     width: 8
@@ -37,7 +37,7 @@ starting_areas:
         facing: "unique"
       - type: "door"
         facing: "unique"
-  - probability: 0
+  - probability: 1
     description: "Rectangle, 80 x 20 ft., with row of pillars down the middle; two passages leading from each long wall, doors on each short wall"
     type: "chamber"
     width: 4
@@ -51,7 +51,7 @@ starting_areas:
         facing: "forward"
       - type: "door"
         facing: "back"
-  - probability: 0
+  - probability: 1
     description: "Rectangle, 20 x 40 ft.; passage on each wall"
     type: "chamber"
     width: 4
