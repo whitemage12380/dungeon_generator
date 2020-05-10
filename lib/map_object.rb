@@ -40,7 +40,7 @@ class MapObject
     when Passage
       return "passage"
     when Stairs
-      return "stairs"
+      return "staircase"
     else
       return "map object"
     end

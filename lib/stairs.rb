@@ -67,7 +67,10 @@ class Stairs < MapObject
   end
 
   def draw_stairs(cursor = @cursor, width = @width, length = @length)
+    initial_cursor = cursor.copy()
     return false unless draw_forward(length, width: width, cursor: cursor)
+    add_wall_width(cursor: cursor)
+    draw_starting_connector(cursor: initial_cursor)
     return true
   end
 
