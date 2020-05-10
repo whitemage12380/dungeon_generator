@@ -3,6 +3,7 @@ require_relative 'map_generator'
 require_relative 'map_object'
 require_relative 'passage'
 require_relative 'chamber'
+require_relative 'stairs'
 
 class Map
   include DungeonGeneratorHelper
@@ -64,6 +65,10 @@ class Map
     map_objects.select { |mo| mo.kind_of? Chamber }
   end
 
+  def stairs()
+    map_objects.select { |mo| mo.kind_of? Stairs }
+  end
+
   def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)
     # If given a connector (which outside of dev/testing will always be true),
     # it can figure out x, y, and facing and it can randomize width based on the connector as well.
@@ -104,10 +109,38 @@ class Map
     else
       chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
     end
-    return nil unless chamber.success?
-    @map_objects << chamber
-    draw_map_object(chamber)
-    return chamber
+    if passage.success? and draw_map_object(chamber)
+      @map_objects << chamber
+      return chamber
+    elsif passage.success? and connector
+      log_important "Adding #{chamber.name} to map was unsuccessful because drawing on the map failed"
+      connecting_map_object = connector.map_object
+      connector.disconnect()
+      connecting_map_object.blocked_connector_behavior(connector)
+      return nil
+    else
+      return nil
+    end
+  end
+
+  def add_stairs(connector: nil, width: 2, length: 2, x: nil, y: nil, facing: nil, entrance_width: nil)
+    if connector
+      map_object = Stairs.new(map: self, starting_connector: connector, width: width, length: length)
+    else
+      map_object = Stairs.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+    end
+    if map_object.success? and draw_map_object(map_object)
+      @map_objects << map_object
+      return map_object
+    elsif map_object.success? and connector
+      log_important "Adding #{map_object.name} to map was unsuccessful because drawing on the map failed"
+      connecting_map_object = connector.map_object
+      connector.disconnect()
+      connecting_map_object.blocked_connector_behavior(connector)
+      return nil
+    else
+      return nil
+    end
   end
 
   def can_draw_map_object?(map_object)

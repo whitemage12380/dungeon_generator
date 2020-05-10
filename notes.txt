@@ -478,6 +478,6 @@ TODO:
     - Traps
 
 Roadmap Order:
-- Starting Ares
+- Starting Areas (excluding the difficult ones)
 - Stairs
 - Chamber Purpose

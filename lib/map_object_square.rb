@@ -56,6 +56,7 @@ class MapObjectSquare
   end
 
   def to_character()
+    return 'S' if map_object.kind_of? Stairs
     return 'D' if has_door
     return 'C' if has_connector
     return '^' if has_wall

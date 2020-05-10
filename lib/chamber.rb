@@ -32,7 +32,7 @@ class Chamber < MapObject
       log "Created #{name}"
       @status = :success
     else
-      log "Failed to propose a chamber"
+      log "#{name}: Failed to propose a chamber"
       starting_connector.disconnect()
       starting_connector.map_object.blocked_connector_behavior(starting_connector)
       @status = :failure

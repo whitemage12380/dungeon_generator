@@ -39,6 +39,8 @@ class MapObject
       return "chamber"
     when Passage
       return "passage"
+    when Stairs
+      return "stairs"
     else
       return "map object"
     end
