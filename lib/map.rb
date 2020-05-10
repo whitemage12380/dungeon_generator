@@ -70,16 +70,6 @@ class Map
   end
 
   def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)
-    # If given a connector (which outside of dev/testing will always be true),
-    # it can figure out x, y, and facing and it can randomize width based on the connector as well.
-    # The passage can then do the rest of the work.
-    # The passage itself should figure out its instructions if not given.
-    #if connector
-    #  width = connector.width if not width
-    #  x = connector.map_x if not x
-    #  y = connector.map_y if not y
-    #  facing = connector.facing if not facing
-    #end
     if passage.nil?
       if connector
         passage = Passage.new(map: self, starting_connector: connector, instructions: instructions)
@@ -87,48 +77,32 @@ class Map
         passage = Passage.new(map: self, width: width, facing: facing, connector_x: x, connector_y: y, instructions: instructions)
       end
     end
-    if passage.success? and draw_map_object(passage)
-      @map_objects << passage
-      return passage
-    elsif passage.success? and connector
-      # If the passage was created successfully but failed to draw, it got blocked after the fact and needs to wall off and disconnect.
-      log_important "Adding #{passage.name} to map was unsuccessful because drawing on the map failed"
-      connecting_map_object = connector.map_object
-      connector.disconnect()
-      connecting_map_object.blocked_connector_behavior(connector)
-      return nil
-    else
-      # If the passage failed to be created, disconnection and blocked connector behavior already occured, so we can be done.
-      return nil
-    end
+    return add_map_object(passage, connector)
   end
 
-  def add_chamber(connector: nil, width: nil, length: nil, x: nil, y: nil, facing: nil, entrance_width: nil)
-    if connector
-      chamber = Chamber.new(map: self, starting_connector: connector, width: width, length: length)
-    else
-      chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+  def add_chamber(chamber: nil, connector: nil, width: nil, length: nil, x: nil, y: nil, facing: nil, entrance_width: nil)
+    if chamber.nil?
+      if connector
+        chamber = Chamber.new(map: self, starting_connector: connector, width: width, length: length)
+      else
+        chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+      end
     end
-    if passage.success? and draw_map_object(chamber)
-      @map_objects << chamber
-      return chamber
-    elsif passage.success? and connector
-      log_important "Adding #{chamber.name} to map was unsuccessful because drawing on the map failed"
-      connecting_map_object = connector.map_object
-      connector.disconnect()
-      connecting_map_object.blocked_connector_behavior(connector)
-      return nil
-    else
-      return nil
-    end
+    return add_map_object(chamber, connector)
   end
 
-  def add_stairs(connector: nil, width: 2, length: 2, x: nil, y: nil, facing: nil, entrance_width: nil)
-    if connector
-      map_object = Stairs.new(map: self, starting_connector: connector, width: width, length: length)
-    else
-      map_object = Stairs.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+  def add_stairs(stairs: nil, connector: nil, width: 2, length: 2, x: nil, y: nil, facing: nil, entrance_width: nil)
+    if stairs.nil?
+      if connector
+        stairs = Stairs.new(map: self, starting_connector: connector, width: width, length: length)
+      else
+        stairs = Stairs.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+      end
     end
+    return add_map_object(stairs, connector)
+  end
+
+  def add_map_object(map_object, connector = nil)
     if map_object.success? and draw_map_object(map_object)
       @map_objects << map_object
       return map_object
