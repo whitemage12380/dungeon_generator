@@ -6,7 +6,7 @@ require_relative 'exit_proposal'
 class Chamber < MapObject
   attr_reader :length
 
-  def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil)
+  def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil, name: nil, description: nil)
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
     log "Creating #{name} with intended dimensions: #{width}x#{length}"
@@ -19,6 +19,9 @@ class Chamber < MapObject
     @width = width
     @length = length
     @facing = facing
+    if $configuration["generate_chamber_purpose"] == true and name.nil? and description.nil?
+      @name, @description = MapGenerator.generate_chamber_name_and_description(map)
+    end
     proposal = create_proposal(width: width,
                               length: length,
                                map_x: connector_x,

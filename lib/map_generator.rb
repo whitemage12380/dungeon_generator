@@ -7,9 +7,10 @@ class MapGenerator
   class << self
     include DungeonGeneratorHelper
 
-    def generate_map(map_size = $configuration['map_size'])
+    def generate_map(map_size = $configuration['map_size'], theme: nil)
       log "Beginning map generation"
-      map = Map.new(map_size)
+      theme = random_theme() if theme.nil?
+      map = Map.new(map_size, theme: theme)
       starting_area = map.generate_starting_area()
       starting_area.all_connectors.each {|c| generate_passage_recursive(c)}
       log "Completed map generation"
@@ -21,10 +22,6 @@ class MapGenerator
     end
 
     def generate_starting_area_configuration()
-      # Starting with a simple passage
-      # starting_area = yaml_data("passages", 0)
-      # starting_area["width"] = 2
-      # return starting_area
       random_yaml_element("starting_areas")
     end
 
@@ -150,6 +147,17 @@ class MapGenerator
       end
     end
 
+    def generate_chamber_name_and_description(map = nil)
+      case $configuration["chamber_purpose_theme"]
+      when "map"
+        theme = map.theme
+      when "all"
+        theme = all_themes()
+      end
+      purpose = random_chamber_purpose(theme)
+      return purpose["name"], purpose["description"]
+    end
+
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]
       log "Generating #{exit_count} exits for chamber"
@@ -170,12 +178,30 @@ class MapGenerator
       return available_facings.sample
     end
 
+    def random_theme()
+      return 'death_trap' # Haven't implemented enough themes yet
+    end
+
+    def all_themes()
+      return ['death_trap'] # Haven't implemented enough themes yet
+    end
+
+    def random_chamber_purpose(theme = all_themes())
+      if theme.kind_of? String
+        return random_yaml_element("chamber_purpose/#{theme}")
+      else
+        # Haven't implemented chamber purpose from multiple possible themes yet
+        return random_yaml_element("chamber_purpose/#{theme.first}")
+      end
+    end
+
     def random_yaml_element(type)
       yaml_data(type)
     end
 
-    def yaml_data(type, index = nil)
-      arr = YAML.load(File.read("#{__dir__}/../data/#{type}.yaml"))[type]
+    def yaml_data(type_path, index = nil)
+      type = type_path.split("/").last
+      arr = YAML.load(File.read("#{__dir__}/../data/#{type_path}.yaml"))[type]
       return weighted_random(arr) unless index
       return arr[index]
     end

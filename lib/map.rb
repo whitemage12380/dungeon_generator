@@ -8,13 +8,14 @@ require_relative 'stairs'
 class Map
   include DungeonGeneratorHelper
   extend DungeonGeneratorHelper
-  attr_accessor :grid, :map_objects, :file
+  attr_accessor :grid, :map_objects, :file, :theme
 
   MAX_SIZE = 500
 
-  def initialize(size = MAX_SIZE)
+  def initialize(size = MAX_SIZE, theme: nil)
     @grid = Array.new(size) {Array.new(size)}
     @map_objects = Array.new
+    @theme = theme
   end
 
   def size()

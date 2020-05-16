@@ -441,15 +441,21 @@ RESOLVED. Now, map objects keep track of whether they have been drawn, and the g
 
 Project tracking:
 
-- Passage Instructions: 75%
+- Passage Instructions: 95%
 -- Chance of secret door
--- Chamber
--- Stairs
-- Connecting Passages: 10%
--- Connect logically
--- Connect physically on map
-- Putting passages on map: 20%
-- Collision handling: 10%
+- Connecting Passages: 100%
+- Chambers: 90%
+-- Initial descriptions
+-- Circles
+- Putting passages on map: 100%
+- Collision handling: 100%
+- Stairs: 80%
+-- Floor instructions
+- Multiple Levels: 0%
+- Chamber Flavor: 0%
+- Doors: 90%
+-- Secret Doors
+-- False Door with Trap
 
 TODO:
   Chambers:
@@ -478,6 +484,6 @@ TODO:
     - Traps
 
 Roadmap Order:
-- Starting Areas (excluding the difficult ones)
-- Stairs
+- DONE - Starting Areas (excluding the difficult ones)
+- DONE - Stairs
 - Chamber Purpose

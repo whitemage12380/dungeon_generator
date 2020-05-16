@@ -1,0 +1,19 @@
+death_trap:
+  - probability: 1
+    name: "Antechamber"
+    description: "Antechamber or waiting room for spectators"
+  - probability: 7
+    name: "Guardroom"
+    description: Guardroom fortified against intruders
+  - probability: 3
+    name: "Vault"
+    description: "Vault for holding important treasures, accessible only by locked or secret door (75 percent chance of being trapped)"
+  - probability: 3
+    name: "Puzzle Chamber"
+    description: "Room containing a puzzle that must be solved to bypass a trap or monster"
+  - probability: 5
+    name: "Trap Room"
+    description: "Trap designed to kill or capture creatures"
+  - probability: 1
+    name: "Observation Room"
+    description: "Observation room, allowing guards or spectators to observe creatures moving through the dungeon"
