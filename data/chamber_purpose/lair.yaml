@@ -1,0 +1,55 @@
+lair:
+  - probability: 1
+    name: "Armory"
+    description: "Armory stocked with weapons and armor"
+  - probability: 1
+    name: "Audience Chamber"
+    description: "Audience chamber, used to receive guests"
+  - probability: 1
+    name: "Banquet Hall"
+    description: "Banquet room for important celebrations"
+  - probability: 1
+    name: "Barracks"
+    description: "Barracks where the lair's defenders are quartered"
+  - probability: 1
+    name: "Bedroom"
+    description: "Bedroom, for use by leaders"
+  - probability: 1
+    name: "Chapel"
+    description: "Chapel where the lair's inhabitants worship"
+  - probability: 1
+    name: "Cistern"
+    description: "Cistern or well for drinking water"
+  - probability: 2
+    name: "Guardroom"
+    description: "Guardroom for the defense of the lair"
+  - probability: 1
+    name: "Kennel"
+    description: "Kennel for pets or guard beasts"
+  - probability: 1
+    name: "Kitchen"
+    description: "Kitchen for food storage and preparation"
+  - probability: 1
+    name: "Prison"
+    description: "Pen or prison where captives are held"
+  - probability: 2
+    name: "Storage"
+    description: "Storage, mostly nonperishable goods"
+  - probability: 1
+    name: "Throne Room"
+    description: "Throne room where the lair's leaders hold court"
+  - probability: 1
+    name: "Torture Chamber"
+    description: "Torture chamber"
+  - probability: 1
+    name: "Training Room"
+    description: "Training and exercise room"
+  - probability: 1
+    name: "Trophy Room"
+    description: "Trophy room or museum"
+  - probability: 1
+    name: "Bathroom"
+    description: "Latrine or bath"
+  - probability: 1
+    name: "Workshop"
+    description: "Workshop for the construction of weapons, armor, tools, and other goods"

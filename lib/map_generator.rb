@@ -3,13 +3,23 @@ require_relative 'map'
 require 'yaml'
 
 class MapGenerator
+  DATA_PATH = "#{__dir__}/../data"
   FACINGS = [:north, :east, :south, :west]
   class << self
     include DungeonGeneratorHelper
 
     def generate_map(map_size = $configuration['map_size'], theme: nil)
       log "Beginning map generation"
-      theme = random_theme() if theme.nil?
+      if theme.nil?
+        case $configuration['theme']
+        when "random"
+          theme = random_theme()
+        when nil
+          # Let theme be nil
+        else
+          theme = $configuration['theme']
+        end
+      end
       map = Map.new(map_size, theme: theme)
       starting_area = map.generate_starting_area()
       starting_area.all_connectors.each {|c| generate_passage_recursive(c)}
@@ -179,11 +189,11 @@ class MapGenerator
     end
 
     def random_theme()
-      return 'death_trap' # Haven't implemented enough themes yet
+      return all_themes.sample
     end
 
     def all_themes()
-      return ['death_trap'] # Haven't implemented enough themes yet
+      return Dir["#{DATA_PATH}/chamber_purpose/*"].collect { |f| File.basename(f, ".yaml") }
     end
 
     def random_chamber_purpose(theme = all_themes())
@@ -201,7 +211,7 @@ class MapGenerator
 
     def yaml_data(type_path, index = nil)
       type = type_path.split("/").last
-      arr = YAML.load(File.read("#{__dir__}/../data/#{type_path}.yaml"))[type]
+      arr = YAML.load(File.read("#{DATA_PATH}/#{type_path}.yaml"))[type]
       return weighted_random(arr) unless index
       return arr[index]
     end
