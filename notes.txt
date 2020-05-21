@@ -390,6 +390,7 @@ Bug - the coordinates of the starting connector in the exits list need to be mir
 Bug - If the map object title is in edit mode when switching map objects, it remains in edit mode with the previous map object's text.
 
 Bug - GUI crashes when Enter is pressed outside the context of the dungen title
+RESOLVED. Now the field will only execute logic if it has focus, which will only happen if it's clicked into.
 
 Bug - Chamber exits accidentally overlap with each other. When this happens one of them fails to lead anywhere because the other one has already done so, and ends up walling itself, and part of the other connector, off.
 RESOLVED. The map square, which was used in the validity check that would prevent this, was outside the loop it needed to be in, causing only the leftmost square to be checked for a wall.

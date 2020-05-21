@@ -406,7 +406,7 @@ class DungeonGeneratorGui < FXMainWindow
       end
       @selected_map_object = selected_square.map_object
       log "Selected #{@selected_map_object.name} (square: #{selected_map_coordinates})"
-      @info_title.text = @selected_map_object.name
+      @info_title.text = map_object_label()
       display_map_object_info(@selected_map_object)
     end
   end
@@ -424,6 +424,8 @@ class DungeonGeneratorGui < FXMainWindow
       refresh_widget(label.parent)
     end
     text_field.connect(SEL_COMMAND) do |sender, selector, event|
+      next unless text_field.hasFocus()
+      text_field.killFocus()
       setter = [method, '='].join.to_sym
       self.send(setter, text_field.text)
       label.text = self.send(method)
@@ -459,6 +461,15 @@ class DungeonGeneratorGui < FXMainWindow
 
   def map_object_name=(val)
     @selected_map_object.name = val
+  end
+
+  def map_object_label()
+    id_tag = "#{@selected_map_object.type.capitalize} #{@selected_map_object.id}"
+    if @selected_map_object.name == id_tag
+      return id_tag
+    else
+      return "#{id_tag} - #{@selected_map_object.name}"
+    end
   end
 
   def map_object_description()
