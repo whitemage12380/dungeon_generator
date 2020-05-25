@@ -90,10 +90,10 @@ class Cursor
   end
 
   def map_x()
-    @x + @map_offset_x
+    (@x + @map_offset_x).to_i
   end
   def map_y()
-    @y + @map_offset_y
+    (@y + @map_offset_y).to_i
   end
   def map_pos()
     {x: map_x, y: map_y}
