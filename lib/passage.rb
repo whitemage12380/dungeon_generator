@@ -17,7 +17,7 @@ class Passage < MapObject
     # by a value in the YAML
     size = 10 + width
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating #{name} at (#{connector_x}, #{connector_y}, facing #{facing})"
+    log "Creating #{id_str} at (#{connector_x}, #{connector_y}, facing #{facing})"
     @width = width
     cursor_pos = initial_cursor_pos(facing)
     @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0
@@ -30,7 +30,7 @@ class Passage < MapObject
                 map_offset_y: @map_offset_y)
     initial_cursor = @cursor.copy()
     if width_blocked?
-      log "Could not start #{name} due to being blocked immediately; not placing connector"
+      log "Could not start #{id_str} due to being blocked immediately; not placing connector"
       starting_connector.disconnect()
       starting_connector.map_object.blocked_connector_behavior(starting_connector)
       @status = :failure
@@ -45,16 +45,12 @@ class Passage < MapObject
       end
     }
     draw_starting_connector(cursor: initial_cursor)
-    log "Created #{name}"
+    log "Created #{id_str}"
     @status = :success
   end
 
   def id()
     map.passages.find_index(self)
-  end
-
-  def name()
-    @name ? @name : "Passage #{id}"
   end
 
   def initial_cursor_pos(facing)
@@ -158,7 +154,7 @@ class Passage < MapObject
       right_cursor.turn!(:right)
       right_cursor.forward!(@width-1)
       [left_cursor, right_cursor].each do |c|
-        log "#{name}: Tee branch at #{c.pos}, #{c.facing}"
+        log "#{id_str}: Tee branch at #{c.pos}, #{c.facing}"
         remove_wall_width(cursor: c)
         # Because a tee is desired even if the first branch is blocked,
         # expressly invoke blocked connector behavior instead of returning

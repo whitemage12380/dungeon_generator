@@ -6,7 +6,7 @@ class Stairs < MapObject
   def initialize(map:, width: 2, length: 2, facing: nil, starting_connector: nil,  connector_x: nil, connector_y: nil, entrance_width: nil)
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating #{name} with intended dimensions: #{width}x#{length}"
+    log "Creating #{id_str} with intended dimensions: #{width}x#{length}"
     if starting_connector
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
@@ -27,10 +27,10 @@ class Stairs < MapObject
                 map_offset_y: @map_offset_y
     )
     if draw_stairs(cursor, width, length)
-      log "Created #{name}"
+      log "Created #{id_str}"
       @status = :success
     else
-      log "#{name}: Failed to create stairs"
+      log "#{id_str}: Failed to create stairs"
       if starting_connector
         starting_connector.disconnect()
         starting_connector.map_object.blocked_connector_behavior(starting_connector)
@@ -41,10 +41,6 @@ class Stairs < MapObject
 
   def id()
     map.stairs.find_index(self)
-  end
-
-  def name()
-    @name ? @name : "Staircase #{id}"
   end
 
   def initial_cursor_pos(facing)

@@ -9,7 +9,7 @@ class Chamber < MapObject
   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil, name: nil, description: nil)
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
-    log "Creating #{name} with intended dimensions: #{width}x#{length}"
+    log "Creating #{id_str} with intended dimensions: #{width}x#{length}"
     if starting_connector
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
@@ -32,10 +32,10 @@ class Chamber < MapObject
     if proposal
       set_attributes_from_proposal(proposal, connector_x, connector_y)
       draw_chamber()
-      log "Created #{name}"
+      log "Created #{id_str}"
       @status = :success
     else
-      log "#{name}: Failed to propose a chamber"
+      log "#{id_str}: Failed to propose a chamber"
       starting_connector.disconnect()
       starting_connector.map_object.blocked_connector_behavior(starting_connector)
       @status = :failure
@@ -44,10 +44,6 @@ class Chamber < MapObject
 
   def id()
     map.chambers.find_index(self)
-  end
-
-  def name()
-    @name ? @name : "Chamber #{id}"
   end
 
   def abs_width()
@@ -310,12 +306,12 @@ class Chamber < MapObject
     # STEP 2: Create exit proposals and choose a favorite
     exit_proposals = create_exit_proposals(cursor: cursor, wall_width: side_distance) # Let exit_width default to 2 for now
     if exit_proposals.empty?
-      log "#{name}: Failed to create any successful proposals for exit: #{exit}"
-      log "#{name}: Skipping exit."
+      log "#{id_str}: Failed to create any successful proposals for exit: #{exit}"
+      log "#{id_str}: Skipping exit."
       return
     end
     chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
-    log "#{name}: Chose exit proposal: #{chosen_proposal.to_h}"
+    log "#{id_str}: Chose exit proposal: #{chosen_proposal.to_h}"
     # STEP 3: Attach the exit (door, connector or passage)
     case exit[:type]
     when "passage"
@@ -336,12 +332,12 @@ class Chamber < MapObject
     for width_point in 0..(wall_width - exit_width)
       log "Creating proposal at width_point #{width_point} (#{cursor.pos})"
       proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, wall_width: wall_width, width: exit_width, distance_from_left: width_point)
-      log "#{name}: Proposal: #{proposal.to_h}"
-      log "#{name}: Checking whether exit is allowed at cursor: #{proposal.cursor.to_s}"
+      log "#{id_str}: Proposal: #{proposal.to_h}"
+      log "#{id_str}: Checking whether exit is allowed at cursor: #{proposal.cursor.to_s}"
       if proposal.exit_allowed?
         exit_proposals << proposal
       else
-        log "#{name}: Exit proposal not allowed."
+        log "#{id_str}: Exit proposal not allowed."
       end
     end
     debug "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"

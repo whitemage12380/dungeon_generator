@@ -440,6 +440,8 @@ RESOLVED. Now, the passage only walls off if it fails to draw (as opposed to if 
 Bug - This seems to be a double-header. First of all, after blocked_connector_behavior creates a door (or connector, probably), generate_passage_recursive then tries to generate beyond it. It does catch that there's already an attached map object so maybe this is okay, but then it runs into the other problem - when the already-attached map object is a chamber, it still thinks it's a passage due to the wonky catch-all else conditional. So it then tries to add the chamber as a passage - bad both because it isn't a passage, and because it's already drawn.
 RESOLVED. Now, map objects keep track of whether they have been drawn, and the generator skips any connector that connects to an already-drawn map object.
 
+Bug - x coordinates are showing up with .5s for some reason in the gui.
+
 Project tracking:
 
 - Passage Instructions: 95%
@@ -483,6 +485,7 @@ TODO:
     - Loot
     - Inhabitants
     - Traps
+    - Export to SVG
 
 Roadmap Order:
 - DONE - Starting Areas (excluding the difficult ones)

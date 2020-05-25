@@ -37,6 +37,8 @@ class Connector
       connecting_to = @connecting_map_object ? @connecting_map_object.name : "nothing!"
       facing_string = @facing
     end
+    puts "map_x: #{map_x}"
+    puts "map_y: #{map_y}"
     return "#{exit_type} at (#{map_x}, #{map_y}) facing #{facing_string} to #{connecting_to}"
   end
 

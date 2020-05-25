@@ -8,7 +8,6 @@ class MapObject
 
   attr_accessor :description
   attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors, :status
-  attr_writer :name
 
   MAX_SIZE = 20
 
@@ -29,8 +28,20 @@ class MapObject
     map.map_objects.find_index(self)
   end
 
+  def id_str()
+    "#{type.capitalize} #{id}"
+  end
+
   def name()
-    @name ? @name : "Map Object #{id}"
+    @name ? @name : id_str
+  end
+
+  def name=(val)
+    @name = val.empty ? nil : val
+  end
+
+  def label()
+    name == id_str ? name : "#{id_str} - #{name}"
   end
 
   def type()

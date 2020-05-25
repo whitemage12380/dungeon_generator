@@ -408,6 +408,8 @@ class DungeonGeneratorGui < FXMainWindow
       log "Selected #{@selected_map_object.name} (square: #{selected_map_coordinates})"
       @info_title.text = map_object_label()
       display_map_object_info(@selected_map_object)
+      puts @info_panel_sections[:description][:content].editable?
+      refresh_widget(@info_panel_sections[:description][:content].parent)
     end
   end
 
@@ -464,12 +466,7 @@ class DungeonGeneratorGui < FXMainWindow
   end
 
   def map_object_label()
-    id_tag = "#{@selected_map_object.type.capitalize} #{@selected_map_object.id}"
-    if @selected_map_object.name == id_tag
-      return id_tag
-    else
-      return "#{id_tag} - #{@selected_map_object.name}"
-    end
+    return @selected_map_object.label
   end
 
   def map_object_description()
