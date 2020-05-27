@@ -11,6 +11,20 @@ class MapObjectSquare
     @edges = edges
   end
 
+  def pos()
+    map_object.grid.each { |x_arr|
+      if x_arr.include?(self)
+        x = map_object.grid.index(x_arr)
+        y = x_arr.index(self)
+      end
+    }
+    if x and y
+      return {x: x, y: y}
+    else
+      return nil
+    end
+  end
+
   def add_wall(facing)
     @edges[facing] = :wall
   end
@@ -55,6 +69,16 @@ class MapObjectSquare
   def rotate!()
   end
 
+  def to_cursor(facing)
+    Cursor.new(map: map_object.map,
+                 x: pos[:x],
+                 y: pos[:y],
+            facing: facing,
+      map_offset_x: map_object.map_offset_x,
+      map_offset_y: map_object.map_offset_y,
+    )
+  end
+
   def to_character()
     return 'S' if map_object.kind_of? Stairs
     return 'D' if has_door
@@ -62,6 +86,7 @@ class MapObjectSquare
     return '^' if has_wall
     return '#'
   end
+
   def to_s()
     output_hash = Hash.new
     if @map_object

@@ -21,7 +21,6 @@ class MapObject
     @doors = []
     @starting_connector.connect_to(self) if @starting_connector
     @description = "This #{type.downcase} does not have a description."
-    map.map_objects << self
   end
 
   def id()

@@ -4,7 +4,7 @@ require_relative 'chamber_proposal'
 require_relative 'exit_proposal'
 
 class Chamber < MapObject
-  attr_reader :length
+  attr_reader :width, :length
 
   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil, name: nil, description: nil)
     size = [width, length].max
@@ -46,6 +46,36 @@ class Chamber < MapObject
     map.chambers.find_index(self)
   end
 
+  # Position coordinate hash of Northwest corner
+  def abs_map_pos()
+    cursor = Cursor.new(map: map,
+                          x: initial_cursor_pos[:x],
+                          y: initial_cursor_pos[:y],
+               map_offset_x: @map_offset_x,
+               map_offset_y: @map_offset_y,
+                     facing: @facing
+    )
+    cursor.forward!()
+    while square(cursor.pos).nil?
+      puts cursor.pos
+      cursor.shift!(:right)
+      return nil unless cursor.pos_valid?
+    end
+    case @facing
+    when :north
+      cursor.forward!(length-1)
+    when :south
+      cursor.shift!(:right, width-1)
+    when :east
+      # Already there
+    when :west
+      cursor.shift!(:right, width-1)
+      cursor.forward!(length-1)
+    end
+    return cursor.map_pos
+  end
+
+  # Distance from West to East
   def abs_width()
     case @facing
     when :north, :south; @width
@@ -53,6 +83,7 @@ class Chamber < MapObject
     end
   end
 
+  # Distance from North to South
   def abs_length()
     case @facing
     when :north, :south; @length
@@ -60,7 +91,7 @@ class Chamber < MapObject
     end
   end
 
-  def initial_cursor_pos(facing)
+  def initial_cursor_pos(facing = @facing)
     # If facing is not along the same axis as the chamber facing, reverse length/width.
     width = @width
     length = @length

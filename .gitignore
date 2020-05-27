@@ -12,6 +12,7 @@
 
 # Default saved maps location
 /data/maps
+/data/svg
 
 # Used by dotenv library to load environment variables.
 # .env

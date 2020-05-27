@@ -388,6 +388,7 @@ RESOLVED. The bug was using the concat method to include doors in the total exit
 Bug - the coordinates of the starting connector in the exits list need to be mirrored to correctly identify where the connector is from the perspective of the map object
 
 Bug - If the map object title is in edit mode when switching map objects, it remains in edit mode with the previous map object's text.
+RESOLVED PARTIALLY. It's no longer in edit mode and it shows the correct text, but for some reason it retains the "edit mode" color.
 
 Bug - GUI crashes when Enter is pressed outside the context of the dungen title
 RESOLVED. Now the field will only execute logic if it has focus, which will only happen if it's clicked into.
@@ -441,6 +442,10 @@ Bug - This seems to be a double-header. First of all, after blocked_connector_be
 RESOLVED. Now, map objects keep track of whether they have been drawn, and the generator skips any connector that connects to an already-drawn map object.
 
 Bug - x coordinates are showing up with .5s for some reason in the gui.
+RESOLVED. For some reason cursor was ending up with floats for its map_x and map_y. I forced them into integers, but am not entirely sure if I'm hiding some weirder problem.
+
+Bug - map objects are entering the map.map_objects array twice most of the time.
+RESOLVED. They were getting added by map_object.initialize, then again explicitly by map methods. I removed the line from map_object.initialize.
 
 Project tracking:
 
