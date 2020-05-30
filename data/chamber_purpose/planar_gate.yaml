@@ -1,0 +1,82 @@
+planar_gate:
+  - probability: 3
+    name: "Foyer"
+    description: "Decorate foyer or antechamber"
+  - probability: 8
+    name: "Armory"
+    description: "Armory used by the prtal's guardians"
+  - probability: 2
+    name: "Audience Chamber"
+    description: "Audience chamber for receiving visitors"
+  - probability: 2
+    name: "Barracks"
+    description: "Barracks used by the portal's guards"
+  - probability: 4
+    name: "Bedroom"
+    description: "Bedroom fmor use by the high-ranking members of the order that guards the portal"
+  - probability: 7
+    name: "Chapel"
+    description: "Chapel dedicated to a deity or deities related to the protal and its defenders"
+  - probability: 5
+    name: "Cistern"
+    description: "Cistern providing fresh water"
+  - probability: 5
+    name: "Classroom"
+    description: "Classroom for use of initiates learning about the portal's secrets"
+  - probability: 1
+    name: "Conjuring Room"
+    description: "Conjuring room for summoning creatures used to investigate or defend the portal"
+  - probability: 2
+    name: "Crypt"
+    description: "Crypt where the remains of those that died guarding the portal are kept"
+  - probability: 6
+    name: "Dining Room"
+    description: "Dining room"
+  - probability: 3
+    name: "Divination Room"
+    description: "Divination room used to investigate the portal and events tied to it"
+  - probability: 5
+    name: "Dormitory"
+    description: "Dormitory for vistors and guards"
+  - probability: 2
+    name: "Entry Room"
+    description: "Entry room or vestibule"
+  - probability: 2
+    name: "Gallery"
+    description: "Gallery for displaying trophies and objects related to the prtal and those that guard it"
+  - probability: 8
+    name: "Guardroom"
+    description: "Guardroom to protect or watch over the portal"
+  - probability: 5
+    name: "Kitchen"
+    description: "Kitchen"
+  - probability: 5
+    name: "Laboratory"
+    description: "Laboratory for conducting experiments relating to the portal and creatures that emerge from it"
+  - probability: 3
+    name: "Library"
+    description: "Library holding books abut the portal's history"
+  - probability: 5
+    name: "Prison"
+    description: "Pen or prison for hlding captives or creatures that emerge from the portal"
+  - probability: 2
+    name: "Planar Junction"
+    description: "Planar junction, where the gate to another plane once stood (25 percent chance of being active)"
+  - probability: 3
+    name: "Storage"
+    description: "Storage"
+  - probability: 1
+    name: "Vault"
+    description: "Strong room or vault, for guarding valuable treasures connected to the portal or funds used to pay the planar gate's guardians"
+  - probability: 2
+    name: "Study"
+    description: "Study"
+  - probability: 1
+    name: "Torture Chamber"
+    description: "Torture chamber, for questioning creatures that pass through the portal or that attempt to clandestinely use it"
+  - probability: 4
+    name: "Bathroom"
+    description: "Latrine or bath"
+  - probability: 2
+    name: "Workshop"
+    description: "Workshop for constructing tools and gear needed to study the portal"
