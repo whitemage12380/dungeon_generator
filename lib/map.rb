@@ -70,6 +70,14 @@ class Map
     map_objects.select { |mo| mo.kind_of? Stairs }
   end
 
+  def connectors()
+    map_objects.collect { |mo| mo.connectors }.flatten
+  end
+
+  def doors()
+    map_objects.collect { |mo| mo.doors }.flatten
+  end
+
   def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)
     if passage.nil?
       if connector
@@ -87,6 +95,7 @@ class Map
         chamber = Chamber.new(map: self, starting_connector: connector, width: width, length: length)
       else
         chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
+        puts ">>>>>>>>>>>>>>>>>>>>> #{chamber.map_offset_x}, #{chamber.map_offset_y}"
       end
     end
     return add_map_object(chamber, connector)

@@ -43,6 +43,22 @@ class Stairs < MapObject
     map.stairs.find_index(self)
   end
 
+  # Distance from West to East
+  def abs_width()
+    case @facing
+    when :north, :south; @width
+    when :east, :west;   @length
+    end
+  end
+
+  # Distance from North to South
+  def abs_length()
+    case @facing
+    when :north, :south; @length
+    when :east, :west;   @width
+    end
+  end
+
   def initial_cursor_pos(facing)
       # Return a position that, from the given facing, is at the back-most left-most square of the chamber.
     case facing

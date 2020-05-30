@@ -58,6 +58,14 @@ class Connector
     {x: map_x, y: map_y}
   end
 
+  # North/West-most map coordinates regardless of facing, shifting if facing East or South to align with the grid edge the door is on
+  def abs_map_pos()
+    cursor = new_cursor()
+    cursor.shift!(:right, width-1) if [:west, :south].include?(facing)
+    cursor.forward! if [:east, :south].include?(facing)
+    {x: cursor.map_x, y: cursor.map_y}
+  end
+
   def new_cursor()
     return Cursor.new(map: map_object.map,
                         x: x,

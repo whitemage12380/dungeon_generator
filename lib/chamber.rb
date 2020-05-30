@@ -198,8 +198,8 @@ class Chamber < MapObject
     horizontal_offset = 0
     entrance_width = 1 if entrance_width.nil?
     width_from_connector = width - entrance_width
-    width_from_connector_left = (width_from_connector/2.to_f) - horizontal_offset
-    width_from_connector_right = (width_from_connector/2.to_f).ceil + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
+    width_from_connector_left = (width_from_connector/2.to_f).floor.to_i - horizontal_offset
+    width_from_connector_right = (width_from_connector/2.to_f).ceil.to_i + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
     debug "Width left: #{width_from_connector_left}"
     debug "Width right: #{width_from_connector_right}"
     # STEP 1: Use default layout proposal if possible

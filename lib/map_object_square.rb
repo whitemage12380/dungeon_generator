@@ -33,8 +33,12 @@ class MapObjectSquare
     @edges[facing] = nil if @edges[facing] == :wall
   end
 
-  def has_wall()
-    @edges.each_value { |e| return true if e == :wall}
+  def has_wall(facing = nil)
+    if facing.nil?
+      edges.each_value { |e| return true if e == :wall}
+    else
+      return true if edges[facing] == :wall
+    end
     return false
   end
 
@@ -59,9 +63,17 @@ class MapObjectSquare
     @edges[facing] = nil if @edges[facing].kind_of? Door
   end
 
-  def has_door()
-    @edges.each_value { |e| return true if e.kind_of? Door }
+  def has_door(facing = nil)
+    if facing.nil?
+      @edges.each_value { |e| return true if e.kind_of? Door }
+    else
+      return true if edges[facing].kind_of? Door
+    end
     return false
+  end
+
+  def facing_open?(facing)
+    return true unless has_wall(facing) or has_door(facing)
   end
 
   def rotate()
