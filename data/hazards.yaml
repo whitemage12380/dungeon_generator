@@ -1,0 +1,13 @@
+hazards:
+  - probability: 3
+    description: "Brown mold"
+  - probability: 5
+    description: "Green slime"
+  - probability: 2
+    description: "Shrieker"
+  - probability: 5
+    description: "Spiderwebs"
+  - probability: 2
+    description: "Violet fungus"
+  - probability: 3
+    description: "Yellow mold"

@@ -1,6 +1,7 @@
 app_mode: gui
 background_display: dark
 chamber_purpose_theme: map # "map": Use theme from the map. "all": Pull from all available themes.
+generate_chamber_contents: on
 generate_chamber_purpose: on
 log_level: info
 map_display: debug

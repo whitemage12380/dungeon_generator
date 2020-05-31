@@ -1,0 +1,25 @@
+obstacles:
+  - probability: 1
+    description: "Antilife aura with a radius of 1d10 x 10 ft.; while in the aura, living creatures can't regain hit points"
+  - probability: 1
+    description: "Battering winds reduce speed by half, impose disadvantage on ranged attack rolls"
+  - probability: 1
+    description: "Blade barrier blocks passage"
+  - probability: 5
+    description: "Cave-in"
+  - probability: 4
+    description: "Chasm 1d4 x 10 ft. wide and 2d6 x 10 ft. deep, possibly connected to other levels of the dungeon"
+  - probability: 2
+    description: "Flooding leaves 2d10 ft. of water in the area; create nearby upward-sloping passages, raised floors, or rising stairs to contain the water"
+  - probability: 1
+    description: "Lava flows through the area (50 percent chance of a stone bridge crossing it)"
+  - probability: 1
+    description: "Overgrown mushrooms block progress and must be hacked down (25 percent chance of a mold or fungus dungen hazard hidden among them)"
+  - probability: 1
+    description: "Poisonous gas (deals 1d6 poison damage per minute of exposure)"
+  - probability: 1
+    description: "Reverse gravity effect causes creatures to fall toward the ceiling"
+  - probability: 1
+    description: "Wall of fire blocks passage"
+  - probability: 1
+    description: "Wall of force blocks passage"

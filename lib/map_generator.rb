@@ -164,6 +164,39 @@ class MapGenerator
       return purpose["name"], purpose["description"]
     end
 
+    def generate_chamber_contents(map = nil)
+      contents_yaml = random_yaml_element("chamber_contents")
+      contents = {
+        description: contents_yaml["description"],
+        hazards: [],
+        monsters: [],
+        obstacles: [],
+        traps: [],
+        treasure: [],
+        tricks: [],
+      }
+      return contents if contents_yaml["contents"].nil?
+      contents_yaml["contents"].each { |c|
+        case c
+        when /^monster/
+          contents[:monsters] << c
+        when "hazard"
+          contents[:hazards] << random_yaml_element("hazards")["description"]
+        when "obstacle"
+          contents[:obstacles] << random_yaml_element("obstacles")["description"]
+        when "trap"
+          contents[:traps] << c
+        when "trick"
+          contents[:tricks] << c
+        when "treasure"
+          contents[:treasure] << c
+        else
+          raise "Unknown chamber content type: #{c}"
+        end
+      }
+      return contents
+    end
+
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]
       log "Generating #{exit_count} exits for chamber"

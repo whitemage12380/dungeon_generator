@@ -33,6 +33,11 @@ def test_random_exits()
   puts MapGenerator.random_chamber_exits("large")
 end
 
+def test_random_chamber_contents()
+  puts "TEST: Random chamber contents"
+  puts MapGenerator.generate_chamber_contents().to_s
+end
+
 def test_connect_to_existing(map_size: 60)
   puts "TEST: Connect passage to existing object"
   m = Map.new(map_size)
@@ -58,5 +63,6 @@ end
 
 #test_map_generator()
 #test_random_exits()
+test_random_chamber_contents()
 #test_connect_to_existing()
-test_save()
+#test_save()
