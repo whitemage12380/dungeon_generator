@@ -79,11 +79,11 @@ class DungeonGeneratorGui < FXMainWindow
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_SUNKEN|FRAME_THICK,
       0, 0, 800, 800, 0, 0, 0, 0)
     @left_frame = FXVerticalFrame.new(@frame, 
-      FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
-      padLeft: 10, padRight: 10, padTop: 10, padBottom: 10)   
+      FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH,
+      width: @canvas_length, padLeft: 10, padRight: 10, padTop: 10, padBottom: 10)
     @right_frame = FXVerticalFrame.new(@frame, 
-      FRAME_SUNKEN|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH,
-      width: SIDEBAR_PIXELS, padLeft: 10, padRight: 10, padTop: 10, padBottom: 10)
+      FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT,
+      padLeft: 10, padRight: 10, padTop: 10, padBottom: 10)
     # Left Pane
     @dungeon_name = FXLabel.new(@left_frame, "Dungeon", nil, JUSTIFY_CENTER_X|LAYOUT_FILL_X)
     FXHorizontalSeparator.new(@left_frame, SEPARATOR_GROOVE|LAYOUT_FILL_X)
@@ -115,7 +115,11 @@ class DungeonGeneratorGui < FXMainWindow
       treasure: section(@info_panel, "Treasure", ["No treasure."]),
       position:  section(@info_panel, "Position", "Nothing yet"),
     }
+    @randomize_purpose_button = FXButton.new(@info_panel, "Randomize Purpose")
+    @randomize_contents_button = FXButton.new(@info_panel, "Randomize Contents")
     connect_text_area_edit(@info_panel_sections[:description][:content], :map_object_description)
+    connect_randomize_purpose_button(@randomize_purpose_button)
+    connect_randomize_contents_button(@randomize_contents_button)
     @info_panel_scroll.hide()
   end
 
@@ -321,7 +325,7 @@ class DungeonGeneratorGui < FXMainWindow
     shapes.addShape(shape)
   end
 
-  def display_map_object_info(map_object)
+  def display_map_object_info(map_object = @selected_map_object)
     display_description(map_object)
     display_exit_info(map_object)
     display_monsters(map_object)
@@ -550,9 +554,35 @@ class DungeonGeneratorGui < FXMainWindow
     end
   end
 
+  def connect_randomize_purpose_button(button)
+    button.connect(SEL_COMMAND) do |sender, selector, event|
+      randomize_chamber_purpose()
+    end
+  end
+
+  def connect_randomize_contents_button(button)
+    button.connect(SEL_COMMAND) do |sender, selector, event|
+      randomize_chamber_contents()
+    end
+  end
+
+  def randomize_chamber_purpose()
+    return unless @selected_map_object.kind_of? Chamber
+    name, purpose = MapGenerator.generate_chamber_name_and_description(@map)
+    @selected_map_object.name = name
+    @info_title.text = map_object_label()
+  end
+
+  def randomize_chamber_contents()
+    return unless @selected_map_object.kind_of? Chamber
+    @selected_map_object.contents = MapGenerator.generate_chamber_contents(@map)
+    display_map_object_info()
+  end
+
   def map_object_name()
     return nil if @selected_map_object.nil?
     @selected_map_object.name
+
   end
 
   def map_object_name=(val)

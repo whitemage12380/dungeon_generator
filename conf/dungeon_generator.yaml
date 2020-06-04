@@ -8,7 +8,7 @@ log_level: info
 map_display: debug
 map_size: 50
 saved_map_directory: data/maps
-theme: planar_gate # random
+theme: university_in_limbo # random
 weights:
   align_weight: 1.0
   area_weight: 1.0

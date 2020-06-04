@@ -1,27 +1,27 @@
 chamber_contents:
-  - probability: 6
+  - probability: 8
     description: "Monster (dominant inhabitant)"
     contents:
       - monster_dominant
-  - probability: 5
+  - probability: 7
     description: "Monster (dominant inhabitant) with treasure"
     contents:
       - monster_dominant
       - treasure
-  - probability: 3
+  - probability: 12
     description: "Monster (pet or allied creature)"
     contents:
       - monster_ally
-  - probability: 2
+  - probability: 6
     description: "Monster (pet or allied creature) guarding treasure"
     contents:
       - monster_ally
       - treasure
-  - probability: 12
+  - probability: 9
     description: "Monster (random creature)"
     contents:
       - monster_random
-  - probability: 10
+  - probability: 8
     description: "Monster (random creature) with treasure"
     contents:
       - monster_random
@@ -35,7 +35,7 @@ chamber_contents:
     description: "Obstacle"
     contents:
       - obstacle
-  - probability: 8
+  - probability: 10
     description: "Trap"
     contents:
       - trap
@@ -44,7 +44,7 @@ chamber_contents:
     contents:
       - trap
       - treasure
-  - probability: 6
+  - probability: 4
     description: "Trick"
     contents:
       - trick
