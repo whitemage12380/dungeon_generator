@@ -1,5 +1,8 @@
 require_relative 'configuration'
 require_relative 'map'
+require_relative 'monster_group'
+require_relative 'trap'
+require_relative 'trick'
 require 'yaml'
 
 class MapGenerator
@@ -179,15 +182,17 @@ class MapGenerator
       contents_yaml["contents"].each { |c|
         case c
         when /^monster/
-          contents[:monsters] << c
+          category = c.split("_").last
+          puts "category: #{category}"
+          contents[:monsters] << MonsterGroup.new(category: category)
         when "hazard"
           contents[:hazards] << random_yaml_element("hazards")["description"]
         when "obstacle"
           contents[:obstacles] << random_yaml_element("obstacles")["description"]
         when "trap"
-          contents[:traps] << c
+          contents[:traps] << Trap.new()
         when "trick"
-          contents[:tricks] << c
+          contents[:tricks] << Trick.new()
         when "treasure"
           contents[:treasure] << c
         else
@@ -234,6 +239,29 @@ class MapGenerator
       end
     end
 
+    def random_monsters(table, category)
+      arr = YAML.load(File.read("#{DATA_PATH}/monsters/#{table}.yaml"))[table][category]
+      group = weighted_random(arr)['encounter']
+      monster_list = Array.new()
+      case group
+      when String
+        monster_list << group
+      when Hash
+        group.each_pair {|monster, count_str|
+          if count_str.kind_of? Integer or count_str =~ /^\d+$/
+            count = count_str.to_i
+          else
+            min, max = count_str.split("-").collect {|n| n.to_i}
+            count = rand(min..max)
+          end
+          count.times { monster_list << monster }
+        }
+      else
+        raise "Incorrectly typed monster group: #{group.to_s}"
+      end
+      return monster_list
+    end
+
     def random_yaml_element(type)
       yaml_data(type)
     end
@@ -248,7 +276,8 @@ class MapGenerator
     def weighted_random(arr)
       weighted_arr = []
       arr.each { |elem|
-        elem["probability"].times do
+        probability = ((elem.kind_of? Hash) and elem["probability"]) ? elem["probability"] : 1
+        probability.times do
           weighted_arr << elem
         end
       }

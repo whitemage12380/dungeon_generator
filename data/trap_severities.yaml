@@ -1,0 +1,7 @@
+trap_severities:
+  - probability: 2
+    description: "Setback"
+  - probability: 3
+    description: "Dangerous"
+  - probability: 1
+    description: "Deadly"

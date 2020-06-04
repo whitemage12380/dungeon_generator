@@ -96,20 +96,27 @@ class DungeonGeneratorGui < FXMainWindow
     @info_title_edit.hide()
     connect_text_field_edit(@info_title, @info_title_edit, :map_object_name)
     FXHorizontalSeparator.new(@right_frame, SEPARATOR_RIDGE|LAYOUT_FILL_X)
-
-    @info_panel = FXVerticalFrame.new(@right_frame,
+    @info_panel_scroll = FXScrollWindow.new(@right_frame,
+      LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X)
+    @info_panel = FXVerticalFrame.new(@info_panel_scroll,
       LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, padTop: 10)
+    
     @info_panel_sections = {
       description: section(@info_panel, nil, "Nothing yet", "text_area"),
-      exits: section(@info_panel, "Exits", ["Nothing", "yet"]),
+      exits: section(@info_panel, "Exits", ["No exits."]),
+      monsters: section(@info_panel, "Monsters", ["No monsters."]),
+      monster_motivation: section(@info_panel, "Monster Motivation", ""),
+      traps: section(@info_panel, "Trap", ["No traps."]),
+      trap_effects: section(@info_panel, "Trap Effect", "No traps.", "text_area"),
+      tricks: section(@info_panel, "Trick Object", ["No tricks."]),
+      trick_effects: section(@info_panel, "Trick Effect", "No tricks.", "text_area"),
+      hazards: section(@info_panel, "Hazards", ["No dungeon hazards."]),
+      obstacles: section(@info_panel, "Obstacles", ["No obstacles."]),
+      treasure: section(@info_panel, "Treasure", ["No treasure."]),
       position:  section(@info_panel, "Position", "Nothing yet"),
     }
     connect_text_area_edit(@info_panel_sections[:description][:content], :map_object_description)
-    @info_panel.hide()
-
-
-    #draw_canvas(@canvas, @map)
-    #connect_canvas(@canvas, @map)
+    @info_panel_scroll.hide()
   end
 
   def fonts()
@@ -317,8 +324,14 @@ class DungeonGeneratorGui < FXMainWindow
   def display_map_object_info(map_object)
     display_description(map_object)
     display_exit_info(map_object)
+    display_monsters(map_object)
+    display_traps(map_object)
+    display_tricks(map_object)
+    display_hazards(map_object)
+    display_obstacles(map_object)
+    display_treasure(map_object)
     display_position_info(map_object)
-    @info_panel.show()
+    show_info()
   end
 
   def display_description(map_object)
@@ -349,6 +362,88 @@ class DungeonGeneratorGui < FXMainWindow
       end
     end
     @info_panel_sections[:position][:content].text = text
+  end
+
+  def display_monsters(map_object)
+    section = @info_panel_sections[:monsters]
+    motivation_section = @info_panel_sections[:monster_motivation]
+    if map_object.contents.nil? or map_object.contents[:monsters].nil? or map_object.contents[:monsters].empty?
+      section[:frame].hide()
+      motivation_section[:frame].hide()
+    else
+      set_list(section[:frame], section[:content], map_object.contents[:monsters].first) # So far only supporting one monster group
+      motivation_section[:content].text = map_object.contents[:monsters].first.motivation
+      section[:frame].show()
+      motivation_section[:frame].show()
+      refresh_widget(section[:frame])
+    end
+  end
+
+  def display_traps(map_object)
+    section = @info_panel_sections[:traps]
+    effect_section = @info_panel_sections[:trap_effects]
+    if map_object.contents.nil? or map_object.contents[:traps].nil? or map_object.contents[:traps].empty?
+      section[:frame].hide()
+      effect_section[:frame].hide()
+    else
+      # So far only supporting one trap
+      trap = map_object.contents[:traps].first
+      set_list(section[:frame], section[:content], ["Trigger: #{trap.trigger}", "Severity: #{trap.severity}"])
+      effect_section[:content].text = trap.effect
+      section[:frame].show()
+      effect_section[:frame].show()
+      refresh_widget(section[:frame])
+    end
+  end
+
+  def display_tricks(map_object)
+    section = @info_panel_sections[:tricks]
+    effect_section = @info_panel_sections[:trick_effects]
+    if map_object.contents.nil? or map_object.contents[:tricks].nil? or map_object.contents[:tricks].empty?
+      section[:frame].hide()
+      effect_section[:frame].hide()
+    else
+      # So far only supporting one trick
+      trick = map_object.contents[:tricks].first
+      set_list(section[:frame], section[:content], [trick.object])
+      effect_section[:content].text = trick.effect
+      section[:frame].show()
+      effect_section[:frame].show()
+      refresh_widget(section[:frame])
+    end
+  end
+
+  def display_hazards(map_object)
+    section = @info_panel_sections[:hazards]
+    if map_object.contents.nil? or map_object.contents[:hazards].nil? or map_object.contents[:hazards].empty?
+      section[:frame].hide()
+    else
+      set_list(section[:frame], section[:content], map_object.contents[:hazards])
+      section[:frame].show()
+      refresh_widget(section[:frame])
+    end
+  end
+
+  def display_obstacles(map_object)
+    section = @info_panel_sections[:obstacles]
+    if map_object.contents.nil? or map_object.contents[:obstacles].nil? or map_object.contents[:obstacles].empty?
+      section[:frame].hide()
+    else
+      set_list(section[:frame], section[:content], map_object.contents[:obstacles])
+      section[:frame].show()
+      refresh_widget(section[:frame])
+    end
+  end
+
+  def display_treasure(map_object)
+    section = @info_panel_sections[:treasure]
+    if map_object.contents.nil? or map_object.contents[:treasure].nil? or map_object.contents[:treasure].empty?
+      section[:frame].hide()
+    else
+      set_list(section[:frame], section[:content], map_object.contents[:treasure])
+      section[:frame].show()
+      refresh_widget(section[:frame])
+    end
   end
 
   def section_frame(parent, extra_opts = nil, padding: 10)
@@ -408,7 +503,6 @@ class DungeonGeneratorGui < FXMainWindow
       log "Selected #{@selected_map_object.name} (square: #{selected_map_coordinates})"
       @info_title.text = map_object_label()
       display_map_object_info(@selected_map_object)
-      puts @info_panel_sections[:description][:content].editable?
       refresh_widget(@info_panel_sections[:description][:content].parent)
     end
   end
@@ -476,6 +570,10 @@ class DungeonGeneratorGui < FXMainWindow
 
   def map_object_description=(val)
     @selected_map_object.description = val
+  end
+
+  def show_info()
+    @info_panel_scroll.show()
   end
 
   def refresh_widget(widget)

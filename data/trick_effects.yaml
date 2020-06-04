@@ -1,0 +1,65 @@
+trick_effects:
+  - probability: 3
+    description: "Ages the first person to touch an object"
+  - probability: 3
+    description: "The touched object animates, or it animates other objects nearby"
+  - probability: 4
+    description: "Asks three skill-testing questions (if all three are answered correctly, a reward appears)"
+  - probability: 3
+    description: "Bestows resistance or vulnerability"
+  - probability: 3
+    description: "Changes a character's alignment, personality, size, appearance or sex when touched"
+  - probability: 3
+    description: "Changes one substance to another, such as gold to lead or metal to brittle crystal"
+  - probability: 3
+    description: "Creates a force fields"
+  - probability: 4
+    description: "Creates an illusion"
+  - probability: 3
+    description: "Suppresses magic items for a time"
+  - probability: 3
+    description: "Enlarges or reduces characters"
+  - probability: 3
+    description: "Magic mouth speaks a riddle"
+  - probability: 3
+    description: "Confusion (targets all creatures within 10 ft.)"
+  - probability: 3
+    description: "Gives directions (true or false)"
+  - probability: 3
+    description: "Grants a wish"
+  - probability: 3
+    description: "Flies about to avoid being touched"
+  - probability: 3
+    description: "Casts geas on the characters"
+  - probability: 3
+    description: "Increases, reduces, negates, or reverses gravity"
+  - probability: 3
+    description: "Induces greed"
+  - probability: 3
+    description: "Contains an imprisoned creature"
+  - probability: 3
+    description: "Locks or unlocks exits"
+  - probability: 3
+    description: "Offers a game of chance, with the promise of a reward or valuable information"
+  - probability: 3
+    description: "Helps or harms certain types of creatures"
+  - probability: 3
+    description: "Casts polymorph on the characters (lasts 1 hour)"
+  - probability: 4
+    description: "Presents a puzzle or riddle"
+  - probability: 3
+    description: "Prevents movement"
+  - probability: 3
+    description: "Releases coins, false coins, gems, false gems, a magic item, or a map"
+  - probability: 3
+    description: "Releases, summons, or turns into a monster"
+  - probability: 3
+    description: "Casts suggestion on the characters"
+  - probability: 3
+    description: "Wails loudly when touched"
+  - probability: 3
+    description: "Talks (normal speech, nonsense, poetry and rhymes, singing, spellcasting, or screaming)"
+  - probability: 4
+    description: "Teleports characters to another place"
+  - probability: 3
+    description: "Swaps two or more characters' minds"

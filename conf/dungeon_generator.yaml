@@ -3,6 +3,7 @@ background_display: dark
 chamber_purpose_theme: map # "map": Use theme from the map. "all": Pull from all available themes.
 generate_chamber_contents: on
 generate_chamber_purpose: on
+generate_monster_motivation: on
 log_level: info
 map_display: debug
 map_size: 50

@@ -1,0 +1,63 @@
+trap_effects:
+  - probability: 4
+    description: "Magic missiles shoot from a statue or object"
+  - probability: 3
+    description: "Collapsing staircase creates a ramp that deposits characters into a pit at its lower end"
+  - probability: 3
+    description: "Ceiling block falls, or entire ceiling collapses"
+  - probability: 2
+    description: "Ceiling lowers slowly in locked room"
+  - probability: 2
+    description: "Chute opens in floor"
+  - probability: 2
+    description: "Clanging noise attracts nearby monsters"
+  - probability: 3
+    description: "Trouching an object triggers a disintegrate spell"
+  - probability: 4
+    description: "Door or other object is coated with contact poison"
+  - probability: 4
+    description: "Fire shots out from wall, floor, or object"
+  - probability: 3
+    description: "Touching an object triggers a flesh to stone spell"
+  - probability: 3
+    description: "Floor collapses or is an illusion"
+  - probability: 3
+    description: "Vent releases gas: blinding acidic, obscuring, paralyzing, poisonus, or sleep-inducing"
+  - probability: 3
+    description: "Floor tiles are electrified"
+  - probability: 4
+    description: "Glyph of warding"
+  - probability: 3
+    description: "Huge wheeled statue rolls down corridor"
+  - probability: 3
+    description: "Lightning bolt shoots from wall or object"
+  - probability: 3
+    description: "Locked room floods with water or acid"
+  - probability: 4
+    description: "Darts shot out of an opened chest"
+  - probability: 3
+    description: "A weapon, suit of armor, or rug animates and attacks when touched"
+  - probability: 3
+    description: "Pendulum, either bladed or weighted as a maul, swings across the room or hall"
+  - probability: 5
+    description: "Hidden pit opens beneath characters (25 percent chance that a black pudding or gelatinous cube fills the bottom of the pit)"
+  - probability: 3
+    description: "Hidden pit floods with acid or fire"
+  - probability: 3
+    description: "Locking pit floods with water"
+  - probability: 4
+    description: "Scything blade emerges from wall or object"
+  - probability: 4
+    description: "Spears (possibly poisoned) spring out"
+  - probability: 3
+    description: "Brittle stairs collapse over spikes"
+  - probability: 4
+    description: "Thunderwave knocks characters into a pit or spikes"
+  - probability: 3
+    description: "Steel or stone jaws restrain a character"
+  - probability: 3
+    description: "Stone block smashes across hallway"
+  - probability: 3
+    description: "Symbol"
+  - probability: 3
+    description: "Walls slide together"

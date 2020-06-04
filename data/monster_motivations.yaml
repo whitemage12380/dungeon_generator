@@ -1,0 +1,17 @@
+monster_motivations:
+  - probability: 2
+    description: "Find a sanctuary"
+  - probability: 3
+    description: "Conquer the dungeon"
+  - probability: 3
+    description: "Seek an item in the dungeon"
+  - probability: 3
+    description: "Slay a rival"
+  - probability: 2
+    description: "Hide from enemies"
+  - probability: 2
+    description: "Recover from a battle"
+  - probability: 2
+    description: "Avoid danger"
+  - probability: 3
+    description: "Seek wealth"

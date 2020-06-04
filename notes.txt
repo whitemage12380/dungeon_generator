@@ -346,7 +346,15 @@ Most connectors are 1-way, and when two map objects connect, they use separate c
 
 ---------------
 
-Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to diasgreement about how "width right" works - left of starting square vs left of connector as a whole.
+Chamber contents:
+Monster: name, motivation (don't forget monsters are actually monster groups!)
+Hazard, Obstacle: description
+Trap: trigger, severity, effect
+Trick: object, effect
+
+---------------
+
+Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to disagreement about how "width right" works - left of starting square vs left of connector as a whole.
 Okay it looks like a problem with the cursor being passed in.
 RESOLVED. Turns out initial_cursor_pos provided bad coordinates for chambers facing South and West.
 

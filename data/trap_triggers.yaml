@@ -1,0 +1,13 @@
+trap_triggers:
+  - probability: 1
+    description: "Stepped on (floor, stairs)"
+  - probability: 1
+    description: "Moved through (doorway, hallway)"
+  - probability: 1
+    description: "Touched (doorknob, statue)"
+  - probability: 1
+    description: "Opened (door, treasure chest)"
+  - probability: 1
+    description: "Looked at (mural, arcane symbol)"
+  - probability: 1
+    description: "Moved (cart, stone block)"

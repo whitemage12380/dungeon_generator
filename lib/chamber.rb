@@ -24,9 +24,9 @@ class Chamber < MapObject
       @name, @description = MapGenerator.generate_chamber_name_and_description(map)
     end
     if $configuration["generate_chamber_contents"] == true and contents.nil?
-      @contents = MapGenerator.generate_contents(map)
+      @contents = MapGenerator.generate_chamber_contents(map)
     else
-      @contents = contents
+      @contents = contents ? contents : Hash.new()
     end
     proposal = create_proposal(width: width,
                               length: length,

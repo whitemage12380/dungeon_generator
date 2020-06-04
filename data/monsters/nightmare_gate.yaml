@@ -1,0 +1,160 @@
+nightmare_gate:
+  dominant:
+    - probability: 1
+      encounter: {"Revenant": 1-2}
+    - probability: 1
+      encounter: {"Wraith": 1-2}
+    - probability: 1
+      encounter: {"Revenant": "1", "Wraith": "1"}
+  ally:
+    - probability: 1
+      encounter: "Aboleth"
+    - probability: 5
+      encounter: {"Chuul": 1-2}
+    - probability: 2
+      encounter: "Cloaker"
+    - probability: 2
+      encounter: {"Ghost": 1-2}
+    - probability: 3
+      encounter: {"Specter": 2-7}
+    - probability: 3
+      encounter: {"Poltergeist": "1-3", "Specter": "2-5"}
+  random:
+    - probability: 1
+      encounter: {"Aboleth": 1}
+    - probability: 5
+      encounter: {"Banshee": 1-2}
+    - probability: 3
+      encounter: {"Bulette": 1}
+    - probability: 2
+      encounter: {"Chimera": 1}
+    - probability: 2
+      encounter: {"Chuul": 1-2}
+    - probability: 2
+      encounter: {"Cloaker": 1}
+    - probability: 3
+      encounter: {"Drider": "1", "Drow": "1-4"}
+    - probability: 1
+      encounter: {"Air Elemental": 1}
+    - probability: 1
+      encounter: {"Earth Elemental": 1}
+    - probability: 1
+      encounter: {"Fire Elemental": 1}
+    - probability: 1
+      encounter: {"Water Elemental": 1}
+    - probability: 2
+      encounter: {"Drow Elite Warrior": "1", "Drow": "1-4"}
+    - probability: 1
+      encounter: {"Drow Mage": "1", "Drow Elite Warrior": "0-1", "Drow": "0-3"}
+    - probability: 1
+      encounter: {"Drow Priestess of Lolth": 1, "Drow": "1-4"}
+    - probability: 3
+      encounter: {"Ettercap": "2-5"}
+    - probability: 2
+      encounter: {"Ettin": 1}
+    - probability: 1
+      encounter: {"Flameskull": 1}
+    - probability: 2
+      encounter: {"Fomorian": 1}
+    - probability: 1
+      encounter: {"Marid (Genie)": 1}
+    - probability: 4
+      encounter: {"Ghost": 1-2}
+    - probability: 4
+      encounter: {"Ghast": "1-3", "Ghoul": "0-5"}
+    - probability: 1
+      encounter: {"Githyanki Warrior": "2-4"}
+    - probability: 1
+      encounter: {"Githzerai Zerth": "1", "Githerazi Monk": "0-2"}
+    - probability: 1
+      encounter: {"Flesh Golem": 1}
+    - probability: 3
+      encounter: {"Gorgon": 1}
+    - probability: 3
+      encounter: {"Grell": "2-4"}
+    - probability: 2
+      encounter: {"Night Hag": "1-2"}
+    - probability: 4
+      encounter: {"Hellhound": "2-4"}
+    - probability: 3
+      encounter: {"Helmed Horror": "1-2"}
+    - probability: 3
+      encounter: {"Helmed Horror": "1", "Nightmare": "1"}
+    - probability: 3
+      encounter: {"Hook Horror": "2-3"}
+    - probability: 1
+      encounter: {"Hydra": 1}
+    - probability: 4
+      encounter: {"Intellect Devourer": "1-4"}
+    - probability: 2
+      encounter: {"Invisible Stalker": 1}
+    - probability: 5
+      encounter: {"Werewolf": "2-3"}
+    - probability: 3
+      encounter: {"Manticore": "2-4"}
+    - probability: 2
+      encounter: {"Medusa": 1}
+    - probability: 5
+      encounter: {"Mimic": "1-4"}
+    - probability: 1
+      encounter: {"Mind Flayer": 1}
+    - probability: 3
+      encounter: {"Minotaur": "1-3"}
+    - probability: 3
+      encounter: {"Mummy": "1-3"}
+    - probability: 3
+      encounter: {"Nothic": "2-5"}
+    - probability: 3
+      encounter: {"Ogre": "2-4"}
+    - probability: 2
+      encounter: {"Oni": 1}
+    - probability: 3
+      encounter: {"Gelatinous Cube": "1-3"}
+    - probability: 3
+      encounter: {"Black Pudding": "1-3"}
+    - probability: 3
+      encounter: {"Gelatinous Cube": "1", "Black Pudding": "1-2"}
+    - probability: 3
+      encounter: {"Otyugh": 1}
+    - probability: 3
+      encounter: {"Owlbear": "1-3"}
+    - probability: 3
+      encounter: {"Peryton": "3-6"}
+    - probability: 3
+      encounter: {"Quaggoth": "2-4"}
+    - probability: 3
+      encounter: {"Roper": "1-2"}
+    - probability: 3
+      encounter: {"Rust Monster": "4-11"}
+    - probability: 3
+      encounter: {"Salamander": "1", "Fire Snake": "1-3"}
+    - probability: 3
+      encounter: {"Shambling Mound": 1}
+    - probability: 3
+      encounter: {"Minotaur Skeleton": "1-3", "Skeleton": "2-4"}
+    - probability: 2
+      encounter: {"Red Slaad": 1}
+    - probability: 2
+      encounter: {"Blue Slaad": 1}
+    - probability: 2
+      encounter: {"Troll": 1}
+    - probability: 2
+      encounter: {"Umber Hulk": 1}
+    - probability: 3
+      encounter: {"Water Weird": "2-3"}
+    - probability: 5
+      encounter: {"Wight": "1-3"}
+    - probability: 2
+      encounter: {"Will-o'-Wisp": "1-3"}
+    - probability: 5
+      encounter: {"Wraith": 1}
+    - probability: 1
+      encounter: {"Wyvern": 1}
+    - probability: 2
+      encounter: {"Yuan-Ti Abomination": 1}
+    - probability: 2
+      encounter: {"Yuan-Ti Malison": "1-3"}
+    - probability: 2
+      encounter: {"Mezzoloth": 1}
+    - probability: 2
+      encounter: {"Phase Spider": "1-3"}

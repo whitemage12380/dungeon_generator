@@ -6,7 +6,7 @@ require_relative 'connector'
 class MapObject
   include DungeonGeneratorHelper
 
-  attr_accessor :description
+  attr_accessor :description, :contents
   attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors, :status
 
   MAX_SIZE = 20
@@ -36,7 +36,7 @@ class MapObject
   end
 
   def name=(val)
-    @name = val.empty ? nil : val
+    @name = val.empty? ? nil : val
   end
 
   def label()

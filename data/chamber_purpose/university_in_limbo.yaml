@@ -1,61 +1,58 @@
-planar_gate:
+university_in_limbo:
   - probability: 3
     name: "Foyer"
     description: "Decorated foyer or antechamber"
-  - probability: 8
+  - probability: 2
     name: "Armory"
-    description: "Armory used by the portal's guardians"
+    description: "Armory used for supplying training weapons"
   - probability: 2
     name: "Audience Chamber"
     description: "Audience chamber for receiving visitors"
-  - probability: 2
-    name: "Barracks"
-    description: "Barracks used by the portal's guards"
-  - probability: 4
+  - probability: 3
     name: "Bedroom"
-    description: "Bedroom for use by the high-ranking members of the order that guards the portal"
-  - probability: 7
+    description: "Bedroom for use by professors and other faculty"
+  - probability: 5
     name: "Chapel"
-    description: "Chapel dedicated to a deity or deities related to the portal and its defenders"
+    description: "Multi-denominational chapel"
   - probability: 5
     name: "Cistern"
     description: "Cistern providing fresh water"
-  - probability: 5
+  - probability: 7
     name: "Classroom"
-    description: "Classroom for use of initiates learning about the portal's secrets"
-  - probability: 1
+    description: "Classroom or lecture hall"
+  - probability: 3
     name: "Conjuring Room"
-    description: "Conjuring room for summoning creatures used to investigate or defend the portal"
+    description: "Conjuring room for practical study"
   - probability: 2
     name: "Crypt"
-    description: "Crypt where the remains of those that died guarding the portal are kept"
+    description: "A strange crypt that certainly was not part of the school before"
   - probability: 6
-    name: "Dining Room"
-    description: "Dining room"
+    name: "Dining Hall"
+    description: "Dining hall"
   - probability: 3
     name: "Divination Room"
-    description: "Divination room used to investigate the portal and events tied to it"
-  - probability: 5
+    description: "Divination room used for practical study"
+  - probability: 6
     name: "Dormitory"
-    description: "Dormitory for vistors and guards"
+    description: "Dormitory for students"
   - probability: 2
     name: "Entry Room"
     description: "Entry room or vestibule"
   - probability: 2
     name: "Gallery"
-    description: "Gallery for displaying trophies and objects related to the portal and those that guard it"
-  - probability: 8
+    description: "Gallery for displaying student artwork"
+  - probability: 2
     name: "Guardroom"
-    description: "Guardroom to protect or watch over the portal"
+    description: "Guardroom to protect or watch over the residents"
   - probability: 5
     name: "Kitchen"
     description: "Kitchen"
   - probability: 5
     name: "Laboratory"
-    description: "Laboratory for conducting experiments relating to the portal and creatures that emerge from it"
-  - probability: 3
+    description: "Laboratory for conducting experiments"
+  - probability: 5
     name: "Library"
-    description: "Library holding books about the portal's history"
+    description: "Library holding books abut the portal's history"
   - probability: 5
     name: "Prison"
     description: "Pen or prison for hlding captives or creatures that emerge from the portal"
@@ -73,7 +70,7 @@ planar_gate:
     description: "Study"
   - probability: 1
     name: "Torture Chamber"
-    description: "Torture chamber, for questioning creatures that pass through the portal or that attempt to clandestinely use it"
+    description: "This was definitely not in the university... right?"
   - probability: 4
     name: "Bathroom"
     description: "Latrine or bath"
