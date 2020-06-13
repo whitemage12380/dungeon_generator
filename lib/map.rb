@@ -51,6 +51,15 @@ class Map
     return true
   end
 
+  def each_square()
+    return to_enum(:each) unless block_given?
+    xlength.times { |x|
+      ylength.times { |y|
+        yield(square(x: x, y: y), x, y)
+      }
+    }
+  end
+
   def xlength()
     return @grid.length
   end
@@ -71,11 +80,11 @@ class Map
   end
 
   def connectors()
-    map_objects.collect { |mo| mo.connectors }.flatten
+    map_objects.collect { |mo| mo.connectors }.flatten.uniq
   end
 
   def doors()
-    map_objects.collect { |mo| mo.doors }.flatten
+    map_objects.collect { |mo| mo.doors }.flatten.uniq
   end
 
   def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)

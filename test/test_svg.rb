@@ -14,5 +14,11 @@ def test_random_map_svg()
    DungeonSvg.new(m)
 end
 
+def blarg()
+  m = Map.load("ubc_try6")
+  DungeonSvg.new(m)
+end
+
 #test_basic_svg()
-test_random_map_svg()
+#test_random_map_svg()
+blarg()

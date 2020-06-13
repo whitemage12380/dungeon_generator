@@ -50,8 +50,12 @@ class MapObjectSquare
     @edges[facing] = nil if @edges[facing].kind_of? Connector
   end
 
-  def has_connector()
-    @edges.each_value { |e| return true if e.kind_of? Connector }
+  def has_connector(facing = nil)
+    if facing.nil?
+      @edges.each_value { |e| return true if e.kind_of? Connector }
+    else
+      return true if edges[facing].kind_of? Connector
+    end
     return false
   end
 

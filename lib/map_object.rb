@@ -130,6 +130,15 @@ class MapObject
     return @grid[0].length
   end
 
+  def each_square()
+    return to_enum(:each) unless block_given?
+    xlength.times { |x|
+      ylength.times { |y|
+        yield(square(x: x, y: y), x, y)
+      }
+    }
+  end
+
   def square_empty?(coordinates)
     return self[coordinates].nil?
   end
