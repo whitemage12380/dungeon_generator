@@ -58,7 +58,7 @@ planar_gate:
     description: "Library holding books about the portal's history"
   - probability: 5
     name: "Prison"
-    description: "Pen or prison for hlding captives or creatures that emerge from the portal"
+    description: "Pen or prison for holding captives or creatures that emerge from the portal"
   - probability: 2
     name: "Planar Junction"
     description: "Planar junction, where the gate to another plane once stood (25 percent chance of being active)"

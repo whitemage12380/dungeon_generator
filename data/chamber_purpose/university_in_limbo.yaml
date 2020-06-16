@@ -55,7 +55,7 @@ university_in_limbo:
     description: "Library holding books abut the portal's history"
   - probability: 5
     name: "Prison"
-    description: "Pen or prison for hlding captives or creatures that emerge from the portal"
+    description: "Pen or prison for holding intruders or creatures to be studied"
   - probability: 2
     name: "Planar Junction"
     description: "Planar junction, where the gate to another plane once stood (25 percent chance of being active)"

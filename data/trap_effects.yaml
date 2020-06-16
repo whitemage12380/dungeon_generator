@@ -12,7 +12,7 @@ trap_effects:
   - probability: 2
     description: "Clanging noise attracts nearby monsters"
   - probability: 3
-    description: "Trouching an object triggers a disintegrate spell"
+    description: "Touching an object triggers a disintegrate spell"
   - probability: 4
     description: "Door or other object is coated with contact poison"
   - probability: 4
