@@ -100,6 +100,9 @@ class DungeonGeneratorInfoPanel < Gtk::Box
   def initialize(map_object = nil)
     super()
     display_map_object(map_object)
+    text_description.buffer.signal_connect('changed') do |textbuffer, event, user_data|
+      map_object.description = textbuffer.text
+    end
   end
 
   def display_map_object(map_object = nil)
@@ -148,6 +151,14 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   class << self
     def init
       set_template(resource: "/ui/dungeon_generator_window.ui")
+      #### MENU ###
+      bind_template_child('menubar')
+      bind_template_child('file_new')
+      bind_template_child('file_open')
+      bind_template_child('file_save')
+      bind_template_child('file_save_as')
+      bind_template_child('file_quit')
+      #############
       bind_template_child('map_canvas')
       bind_template_child('info_pane')
     end
@@ -155,6 +166,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
 
   def initialize(application, map = nil)
     super(application: application)
+    setup_menubar()
     @info_panel = DungeonGeneratorInfoPanel.new()
     info_pane.pack_start(@info_panel)
     load_map()
@@ -167,6 +179,50 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     end
   end
 
+  def setup_menubar
+    file_new.signal_connect('activate') do |menu_item, event, user_data|
+      load_map()
+      load_info_panel()
+      map_canvas.queue_draw()
+    end
+    file_open.signal_connect('activate') do |menu_item, event, user_data|
+      map = map_dialog(:open)
+      if map.kind_of? Map
+        load_map(map)
+        load_info_panel()
+        map_canvas.queue_draw()
+      end
+    end
+    file_save_as.signal_connect('activate') do |menu_item, event, user_data|
+      map_dialog(:save, @map)
+    end
+  end
+
+  def map_dialog(mode, map = nil)
+    dialog = Gtk::FileChooserNative.new("#{mode.to_s.capitalize} Map Yaml File", self, mode)
+    filter = Gtk::FileFilter.new()
+    filter.add_pattern("*.yaml")
+    dialog.add_filter(filter)
+    dialog.add_shortcut_folder("#{Configuration.project_path}/data/maps")
+    response = dialog.run()
+    case response
+    when Gtk::ResponseType::ACCEPT
+      begin
+        case mode
+        when :open
+          map = Map.load(dialog.filename)
+        when :save
+          map.save(dialog.filename)
+        end
+      rescue StandardError => e
+        log_error e.to_s
+        log_error "Could not #{mode.to_s} map file: #{dialog.filename}"
+        map = nil
+      end
+    end
+    return map
+  end
+
   def load_map(map = nil)
     map = MapGenerator.generate_map() if map.nil?
     @map = map
@@ -174,6 +230,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   end
 
   def draw_map(ctx, map = @map)
+    return if map.nil?
     draw_map_background(ctx)
     draw_map_squares(ctx, map)
     draw_grid(ctx, map.size, map.size)
