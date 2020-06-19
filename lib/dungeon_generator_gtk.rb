@@ -76,7 +76,7 @@ class DungeonGeneratorContentSection < Gtk::Expander
       @section_container.set_margin_bottom(8)
       add(@section_container)
     else
-      @section_container.children.each { |s| @section_container.remove_child(section) }
+      @section_container.children.each { |s| @section_container.remove_child(s) }
     end
     map_object.contents[section].each { |c|
       entry = DungeonGeneratorContent.new(c, section)
@@ -88,12 +88,17 @@ end
 class DungeonGeneratorInfoPanel < Gtk::Box
   include DungeonGeneratorHelper
   type_register
+
+  CONTENT_SECTION_NAMES = [:hazards, :monsters, :obstacles, :traps, :treasure, :tricks]
   class << self
     def init
       set_template(resource: "/ui/dungeon_generator_info_panel.ui")
       bind_template_child('info_panel_header')
       bind_template_child('info_panel_content')
       bind_template_child('text_description')
+      #### TOOLBAR ###
+      bind_template_child('map_object_generate_contents')
+      bind_template_child('map_object_generate_name')
     end
   end
 
@@ -103,6 +108,9 @@ class DungeonGeneratorInfoPanel < Gtk::Box
     text_description.buffer.signal_connect('changed') do |textbuffer, event, user_data|
       map_object.description = textbuffer.text
     end
+    map_object_generate_contents.signal_connect('clicked') do |button, event, user_data|
+      randomize_chamber_contents(map_object)
+    end
   end
 
   def display_map_object(map_object = nil)
@@ -110,16 +118,45 @@ class DungeonGeneratorInfoPanel < Gtk::Box
       info_panel_content.hide()
       return
     end
+    @content_sections = CONTENT_SECTION_NAMES.map { |s| [s, nil]}.to_h if @content_sections.nil?
     info_panel_header.title = map_object.id_str
     info_panel_header.subtitle = map_object.name unless map_object.name == map_object.id_str
     text_description.buffer.text = map_object.description
-    [:hazards, :monsters, :obstacles, :traps, :treasure, :tricks].each { |type|
-      next if map_object.contents.nil? or map_object.contents[type].nil? or map_object.contents[type].empty?
-      section = DungeonGeneratorContentSection.new(map_object, type)
-      pack_start(section, expand: true, fill: true, padding: 0)
-      section.show_all()
-    }
+    content_section_widgets.each { |s| remove_child(s) }
+    CONTENT_SECTION_NAMES.each { |type| display_map_object_content_section(map_object, type) }
     info_panel_content.show()
+  end
+
+  def display_map_object_content_section(map_object, type)
+    if map_object.contents.nil? or map_object.contents[type].nil? or map_object.contents[type].empty?
+      @content_sections[type].hide() unless @content_sections[type].nil?
+      return
+    end
+    section_exists = @content_sections[type] ? true : false
+    section = @content_sections[type] ? @content_sections[type] : DungeonGeneratorContentSection.new(map_object, type)
+    if section_exists
+      section.display_section(map_object, type)
+    else
+      pack_start(section, expand: true, fill: true, padding: 0)
+    end
+    section.show_all()
+  end
+
+  def randomize_chamber_purpose(map_object)
+    return unless map_object.kind_of? Chamber
+    name, purpose = MapGenerator.generate_chamber_name_and_description(map_object.map)
+    map_object.name = name
+    info_panel_header.subtitle = map_object.name
+  end
+
+  def randomize_chamber_contents(map_object)
+    return unless map_object.kind_of? Chamber
+    map_object.contents = MapGenerator.generate_chamber_contents(map_object.map)
+    display_map_object(map_object)
+  end
+
+  def content_section_widgets
+    children.select { |c| c.kind_of? DungeonGeneratorContentSection }
   end
 end
 

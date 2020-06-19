@@ -5,7 +5,9 @@
   <template class="DungeonGeneratorInfoPanel" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="valign">start</property>
     <property name="orientation">vertical</property>
+    <property name="baseline_position">top</property>
     <child>
       <object class="GtkHeaderBar" id="info_panel_header">
         <property name="visible">True</property>
@@ -63,9 +65,50 @@
         </child>
       </object>
       <packing>
-        <property name="expand">False</property>
+        <property name="expand">True</property>
         <property name="fill">True</property>
         <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolbar" id="info_panel_toolbar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">end</property>
+        <child>
+          <object class="GtkToolButton" id="map_object_generate_contents">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Generate Contents</property>
+            <property name="label" translatable="yes">__glade_unnamed_3</property>
+            <property name="use_underline">True</property>
+            <property name="stock_id">gtk-media-play</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="homogeneous">True</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolButton" id="map_object_generate_name">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="tooltip_text" translatable="yes">Generate Name</property>
+            <property name="label" translatable="yes">__glade_unnamed_3</property>
+            <property name="use_underline">True</property>
+            <property name="stock_id">gtk-bold</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="homogeneous">True</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack_type">end</property>
+        <property name="position">2</property>
       </packing>
     </child>
   </template>
