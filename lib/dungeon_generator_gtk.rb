@@ -137,7 +137,7 @@ class DungeonGeneratorInfoPanel < Gtk::Box
     if section_exists
       section.display_section(map_object, type)
     else
-      pack_start(section, expand: true, fill: true, padding: 0)
+      info_panel_content.pack_start(section, padding: 0)
     end
     section.show_all()
   end
@@ -198,14 +198,14 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       #############
       bind_template_child('map_canvas')
       bind_template_child('info_pane')
+      bind_template_child('panes')
     end
   end
 
   def initialize(application, map = nil)
     super(application: application)
     setup_menubar()
-    @info_panel = DungeonGeneratorInfoPanel.new()
-    info_pane.pack_start(@info_panel)
+    load_info_panel()
     load_map()
     map_canvas.add_events(:button_press_mask) # Enable mouse events on map
     map_canvas.signal_connect('draw') do |map_canvas, ctx|
@@ -425,7 +425,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   def load_info_panel(map_object = @selected_map_object)
     @info_panel.destroy() unless @info_panel.nil?
     @info_panel = DungeonGeneratorInfoPanel.new(map_object)
-    info_pane.pack_start(@info_panel)
+    info_pane.pack_start(@info_panel, expand: true, fill: true)
   end
 
   def map_canvas_mouse_click(map_canvas, event, map = @map)
