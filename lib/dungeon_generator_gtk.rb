@@ -2,9 +2,10 @@ require 'gtk3'
 require 'fileutils'
 require_relative 'configuration'
 require_relative 'map_generator'
+require_relative 'dungeon_generator_gtk_helper'
 
 class DungeonGeneratorContent < Gtk::Box
-  include DungeonGeneratorHelper
+  include DungeonGeneratorGtkHelper
 
   def initialize(content, section)
     super(:vertical, 4)
@@ -57,7 +58,7 @@ class DungeonGeneratorContent < Gtk::Box
 end
 
 class DungeonGeneratorContentSection < Gtk::Expander
-  include DungeonGeneratorHelper
+  include DungeonGeneratorGtkHelper
 
   def initialize(map_object, section)
     super(section.to_s.capitalize)
@@ -85,8 +86,18 @@ class DungeonGeneratorContentSection < Gtk::Expander
   end
 end
 
-class DungeonGeneratorInfoPanel < Gtk::Box
+class DungeonGeneratorPaneHeader < Gtk::HeaderBar
   include DungeonGeneratorHelper
+
+  def initialize(title = nil, subtitle = nil)
+    super()
+    self.title = title
+    self.subtitle = subtitle
+  end
+end
+
+class DungeonGeneratorInfoPanel < Gtk::Box
+  include DungeonGeneratorGtkHelper
   type_register
 
   CONTENT_SECTION_NAMES = [:hazards, :monsters, :obstacles, :traps, :treasure, :tricks]
@@ -94,6 +105,9 @@ class DungeonGeneratorInfoPanel < Gtk::Box
     def init
       set_template(resource: "/ui/dungeon_generator_info_panel.ui")
       bind_template_child('info_panel_header')
+      bind_template_child('info_panel_header_stack')
+      bind_template_child('info_panel_header_edit')
+      bind_template_child('info_panel_header_eventbox')
       bind_template_child('info_panel_content')
       bind_template_child('text_description')
       #### TOOLBAR ###
@@ -105,11 +119,22 @@ class DungeonGeneratorInfoPanel < Gtk::Box
   def initialize(map_object = nil)
     super()
     display_map_object(map_object)
+    info_panel_header_eventbox.add_events(:button_press_mask)
     text_description.buffer.signal_connect('changed') do |textbuffer, event, user_data|
       map_object.description = textbuffer.text
     end
     map_object_generate_contents.signal_connect('clicked') do |button, event, user_data|
       randomize_chamber_contents(map_object)
+    end
+    info_panel_header_eventbox.signal_connect('button-press-event') do |eventbox, event, user_data|
+      info_panel_header_edit.set_text(info_panel_header.subtitle)
+      info_panel_header_stack.set_visible_child(info_panel_header_edit)
+      info_panel_header_edit.grab_focus()
+    end
+    info_panel_header_edit.signal_connect('activate') do |entry, event, user_data|
+      map_object.name = entry.text
+      info_panel_header.set_subtitle(map_object.name)
+      info_panel_header_stack.set_visible_child(info_panel_header_eventbox)
     end
   end
 
@@ -122,7 +147,7 @@ class DungeonGeneratorInfoPanel < Gtk::Box
     info_panel_header.title = map_object.id_str
     info_panel_header.subtitle = map_object.name unless map_object.name == map_object.id_str
     text_description.buffer.text = map_object.description
-    content_section_widgets.each { |s| remove_child(s) }
+    content_section_widgets.each { |s| info_panel_content.remove_child(s) }
     CONTENT_SECTION_NAMES.each { |type| display_map_object_content_section(map_object, type) }
     info_panel_content.show()
   end
@@ -156,12 +181,12 @@ class DungeonGeneratorInfoPanel < Gtk::Box
   end
 
   def content_section_widgets
-    children.select { |c| c.kind_of? DungeonGeneratorContentSection }
+    info_panel_content.children.select { |c| c.kind_of? DungeonGeneratorContentSection }
   end
 end
 
 class DungeonGeneratorWindow < Gtk::ApplicationWindow
-  include DungeonGeneratorHelper
+  include DungeonGeneratorGtkHelper
   type_register
 
   SQUARE_PIXELS = 16
@@ -441,8 +466,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     when Gdk::BUTTON_SECONDARY
       puts "2"
     end
-  end
-  
+  end 
 end
 
 class DungeonGeneratorGui < Gtk::Application
