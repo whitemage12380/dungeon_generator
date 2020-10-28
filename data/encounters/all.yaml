@@ -1,0 +1,129 @@
+encounters: # Default probability is 4
+  - probability: 1
+    dominant_probability: 2
+    encounter:
+      Aarakocra: 1-4
+    xp: 25-100
+  - probability: 10
+    encounter:
+      Animated Armor: 0-4
+      Flying Sword: 0-4
+      Rug of Smothering: 0-2
+    xp: 50-1100
+  - probability: 3
+    encounter: Aboleth
+    xp: 5900
+  - probability: 2
+    encounter: Abominable Yeti
+    xp: 5000
+  - encounter:
+      Ankheg: 1-4
+    xp: 450-1800
+  - probability: 6
+    encounter:
+      Young Kruthik: 0-6
+      Adult Kruthik: 0-4
+      Kruthik Hive Lord: 0-1
+    xp: 25-3000
+  # Demon Encounters
+  - probability: 2
+    encounter:
+      Rutterkin: 1-3
+      Abyssal Wretch: 0-5
+    xp: 450-1600
+  # Dragon Encounters
+  - encounter: Adult Black Dragon
+    xp: 11500
+  - encounter: Adult Blue Dracolich
+    xp: 18000
+  - encounter: Adult Blue Dragon
+    xp: 15000
+  - encounter: Adult Brass Dragon
+    xp: 10000
+  - encounter: Adult Bronze Dragon
+    xp: 13000
+  - encounter: Adult Copper Dragon
+    xp: 11500
+  - encounter: Adult Faerie Dragon
+    xp: 450
+  - encounter: Adult Gold Dragon
+    xp: 18000
+  - encounter: Adult Green Dragon
+    xp: 13000
+  - encounter: Adult Red Dragon
+    xp: 18000
+  - encounter: Adult Silver Dragon
+    xp: 15000
+  - encounter: Adult White Dragon
+    xp: 10000
+  - encounter: Ancient Black Dragon
+    xp: 33000
+  - encounter: Ancient Blue Dragon
+    xp: 50000
+  - encounter: Ancient Brass Dragon
+    xp: 25000
+  - encounter: Ancient Bronze Dragon
+    xp: 41000
+  - encounter: Ancient Copper Dragon
+    xp: 33000
+  - encounter: Ancient Gold Dragon
+    xp: 62000
+  - encounter: Ancient Green Dragon
+    xp: 41000
+  - encounter: Ancient Red Dragon
+    xp: 62000
+  - encounter: Ancient Silver Dragon
+    xp: 50000
+  - encounter: Ancient White Dragon
+    xp: 25000
+  - encounter: Black Dragon Wyrmling
+    xp: 450
+  - encounter: Blue Dragon Wyrmling
+    xp: 700
+  - encounter: Brass Dragon Wyrmling
+    xp: 200
+  - encounter: Bronze Dragon Wyrmling
+    xp: 450
+  - encounter: Copper Dragon Wyrmling
+    xp: 200
+  - encounter: Dragon Turtle
+    xp: 18000
+  - encounter: Gold Dragon Wyrmling
+    xp: 700
+  - encounter: Green Dragon Wyrmling
+    xp: 450
+  - encounter: Red Dragon Wyrmling
+    xp: 1100
+  - encounter: Silver Dragon Wyrmling
+    xp: 450
+  - encounter: White Dragon Wyrmling
+    xp: 450
+  - encounter: Young Black Dragon
+    xp: 2900
+  - encounter: Young Blue Dragon
+    xp: 5000
+  - encounter: Young Brass Dragon
+    xp: 2300
+  - encounter: Young Bronze Dragon
+    xp: 3900
+  - encounter: Young Copper Dragon
+    xp: 2900
+  - encounter: Young Faerie Dragon
+    xp: 200
+  - encounter: Young Gold Dragon
+    xp: 5900
+  - encounter: Young Green Dragon
+    xp: 3900
+  - encounter: Young Red Dragon
+    xp: 5900
+  - encounter: Young Red Shadow Dragon
+    xp: 10000
+  - encounter: Young Silver Dragon
+    xp: 5000
+  - encounter: Young White Dragon
+    xp: 2300
+  # NPC Encounters
+  - probability: 0
+    encounter:
+      Abjurer: 0-2
+      Acolyte: 0-4

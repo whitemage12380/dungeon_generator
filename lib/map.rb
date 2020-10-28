@@ -163,12 +163,9 @@ class Map
   end
 
   def generate_starting_area()
-    # For now, pretend starting area is just a passage, for simplicity's sake
     configuration = MapGenerator.generate_starting_area_configuration()
     location      = MapGenerator.generate_starting_area_location(self)
-    #instructions  = configuration["passage"]
     width         = configuration["width"]
-    #add_passage(instructions: instructions, width: width, x: location[:x], y: location[:y], facing: location[:facing])
     case configuration["type"]
     when "chamber"
       length = configuration["length"]

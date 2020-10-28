@@ -1,0 +1,6451 @@
+---
+- name: Aarakocra
+  size: medium
+  type: humanoid
+  tags:
+  - aarakocra
+  alignment: ng
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 12
+- name: Abjurer
+  size: medium
+  type: humanoid
+  tags: [npc]
+  alignment: any
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 209
+- name: Aboleth
+  size: large
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 13
+- name: Abominable Yeti
+  size: huge
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 306
+- name: Abyssal Wretch
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 136
+- name: Acolyte
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 342
+- name: Adult Black Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 14
+  xp: 11500
+  book: Monster Manual
+  page: 88
+- name: Adult Blue Dracolich
+  size: huge
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 84
+- name: Adult Blue Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 16
+  xp: 15000
+  book: Monster Manual
+  page: 91
+- name: Adult Brass Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 105
+- name: Adult Bronze Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 108
+- name: Adult Copper Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 14
+  xp: 11500
+  book: Monster Manual
+  page: 111
+- name: Adult Faerie Dragon
+  size: tiny
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 133
+- name: Adult Gold Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 114
+- name: Adult Green Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 94
+- name: Adult Kruthik
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 212
+- name: Adult Oblex
+  size: medium
+  type: ooze
+  tags: []
+  alignment: le
+  challenge: 5
+  xp: 1800
+  book: Mordenkainen's Tome of Foes
+  page: 218
+- name: Adult Red Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 98
+- name: Adult Silver Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 16
+  xp: 15000
+  book: Monster Manual
+  page: 117
+- name: Adult White Dragon
+  size: huge
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 101
+- name: Air Elemental
+  size: large
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 124
+- name: Air Elemental Myrmidon
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 202
+- name: Alhoon
+  size: medium
+  type: undead
+  tags: []
+  alignment: any evil
+  challenge: 10
+  xp: 5900
+  book: Volo's Guide to Monsters
+  page: 172
+- name: Alkilith
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 130
+- name: Allip
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Mordenkainen's Tome of Foes
+  page: 116
+- name: Allosaurus
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 79
+- name: Amnizu
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 18
+  xp: 20000
+  book: Mordenkainen's Tome of Foes
+  page: 164
+- name: Ancient Black Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 21
+  xp: 33000
+  book: Monster Manual
+  page: 87
+- name: Ancient Blue Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 23
+  xp: 50000
+  book: Monster Manual
+  page: 90
+- name: Ancient Brass Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 20
+  xp: 25000
+  book: Monster Manual
+  page: 104
+- name: Ancient Bronze Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 22
+  xp: 41000
+  book: Monster Manual
+  page: 107
+- name: Ancient Copper Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 21
+  xp: 33000
+  book: Monster Manual
+  page: 110
+- name: Ancient Gold Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 24
+  xp: 62000
+  book: Monster Manual
+  page: 113
+- name: Ancient Green Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 22
+  xp: 41000
+  book: Monster Manual
+  page: 93
+- name: Ancient Red Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 24
+  xp: 62000
+  book: Monster Manual
+  page: 97
+- name: Ancient Silver Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 23
+  xp: 50000
+  book: Monster Manual
+  page: 116
+- name: Ancient White Dragon
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 20
+  xp: 25000
+  book: Monster Manual
+  page: 100
+- name: Androsphinx
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ln
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 281
+- name: Angry Sorrowsworn
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 13
+  xp: 10000
+  book: Mordenkainen's Tome of Foes
+  page: 231
+- name: Animated Armor
+  size: medium
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 19
+- name: Ankheg
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 21
+- name: Ankylosaurus
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 79
+- name: Annis Hag
+  size: large
+  type: fey
+  tags: []
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Volo's Guide to Monsters
+  page: 159
+- name: Ape
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 317
+- name: Apprentice Wizard
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 209
+- name: Arcanaloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 12
+  xp: 8400
+  book: Monster Manual
+  page: 313
+- name: Archdruid
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 12
+  xp: 8400
+  book: Volo's Guide to Monsters
+  page: 210
+- name: Archer
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 210
+- name: Archmage
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 12
+  xp: 8400
+  book: Monster Manual
+  page: 342
+- name: Armanite
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 131
+- name: Assassin
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-good
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 343
+- name: Astral Dreadnought
+  size: gargantuan
+  type: monstrosity
+  tags:
+  - titan
+  alignment: unaligned
+  challenge: 21
+  xp: 33000
+  book: Mordenkainen's Tome of Foes
+  page: 117
+- name: Aurochs
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 207
+- name: Autumn Eladrin
+  size: medium
+  type: fey
+  tags:
+  - elf
+  alignment: cn
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 195
+- name: Awakened Shrub
+  size: small
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 317
+- name: Awakened Tree
+  size: huge
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 317
+- name: Axe Beak
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 317
+- name: Azer
+  size: medium
+  type: elemental
+  tags: []
+  alignment: ln
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 22
+- name: Babau
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 136
+- name: Baboon
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 318
+- name: Badger
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 318
+- name: Balhannoth
+  size: large
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 118
+- name: Balor
+  size: huge
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 19
+  xp: 22000
+  book: Monster Manual
+  page: 55
+- name: Banderhobb
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 122
+- name: Bandit
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-lawful
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 343
+- name: Bandit Captain
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-lawful
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 344
+- name: Banshee
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 23
+- name: Barbed Devil
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 70
+- name: Bard
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 211
+- name: Barghest
+  size: large
+  type: fiend
+  tags:
+  - shapechanger
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 123
+- name: Barlgura
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 56
+- name: Basilisk
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 24
+- name: Bat
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 318
+- name: Bearded Devil
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 70
+- name: Behir
+  size: huge
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 25
+- name: Beholder
+  size: large
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 28
+- name: Beholder (in lair)
+  size: large
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Monster Manual
+  page: 28
+- name: Beholder Zombie
+  size: large
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 316
+- name: Berbalang
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 120
+- name: Berserker
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any chaotic
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 344
+- name: Bheur Hag
+  size: medium
+  type: fey
+  tags: []
+  alignment: ce
+  challenge: 7
+  xp: 2900
+  book: Volo's Guide to Monsters
+  page: 160
+- name: Black Abishai
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 160
+- name: Black Bear
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 318
+- name: Black Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 88
+- name: Black Pudding
+  size: large
+  type: ooze
+  tags: []
+  alignment: unaligned
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 241
+- name: Blackguard
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-good
+  challenge: 8
+  xp: 3900
+  book: Volo's Guide to Monsters
+  page: 211
+- name: Blink Dog
+  size: medium
+  type: fey
+  tags: []
+  alignment: lg
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 318
+- name: Blood Hawk
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 319
+- name: Blue Abishai
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 17
+  xp: 18000
+  book: Mordenkainen's Tome of Foes
+  page: 161
+- name: Blue Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 91
+- name: Blue Slaad
+  size: large
+  type: aberration
+  tags: []
+  alignment: cn
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 276
+- name: Boar
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 319
+- name: Bodak
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Volo's Guide to Monsters
+  page: 127
+- name: Boggle
+  size: small
+  type: fey
+  tags: []
+  alignment: cn
+  challenge: 0.125
+  xp: 25
+  book: Volo's Guide to Monsters
+  page: 128
+- name: Bone Devil
+  size: large
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 71
+- name: Bone Naga
+  size: large
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 233
+- name: Boneclaw
+  size: large
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 12
+  xp: 8400
+  book: Mordenkainen's Tome of Foes
+  page: 121
+- name: Brass Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 106
+- name: Brontosaurus
+  size: gargantuan
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 139
+- name: Bronze Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 109
+- name: Bronze Scout
+  size: medium
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Mordenkainen's Tome of Foes
+  page: 125
+- name: Brown Bear
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 319
+- name: Bugbear
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 33
+- name: Bugbear Chief
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 33
+- name: Bulette
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 34
+- name: Bulezau
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 131
+- name: Bullywug
+  size: medium
+  type: humanoid
+  tags:
+  - bullywug
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 35
+- name: Cadaver Collector
+  size: large
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Mordenkainen's Tome of Foes
+  page: 122
+- name: Cambion
+  size: medium
+  type: fiend
+  tags: []
+  alignment: any evil
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 36
+- name: Camel
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 320
+- name: Canoloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 8
+  xp: 3900
+  book: Mordenkainen's Tome of Foes
+  page: 247
+- name: Carrion Crawler
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 37
+- name: Cat
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 320
+- name: Catoblepas
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 129
+- name: Cave Bear
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 334
+- name: Cave Fisher
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 130
+- name: Centaur
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ng
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 38
+- name: Chain Devil
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 72
+- name: Champion
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 212
+- name: Chasme
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 57
+- name: Chimera
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 39
+- name: Chitine
+  size: small
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 131
+- name: Choker
+  size: small
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Mordenkainen's Tome of Foes
+  page: 123
+- name: Choldrith
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 132
+- name: Chuul
+  size: large
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 40
+- name: Clay Golem
+  size: large
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 168
+- name: Cloaker
+  size: large
+  type: aberration
+  tags: []
+  alignment: cn
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 41
+- name: Cloud Giant
+  size: huge
+  type: giant
+  tags: []
+  alignment: ng or ne
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 154
+- name: Cloud Giant Smiling One
+  size: huge
+  type: giant
+  tags:
+  - cloud giant
+  alignment: cn
+  challenge: 11
+  xp: 7200
+  book: Volo's Guide to Monsters
+  page: 146
+- name: Cockatrice
+  size: small
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 42
+- name: Commoner
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 344
+- name: Conjurer
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 6
+  xp: 2300
+  book: Volo's Guide to Monsters
+  page: 212
+- name: Constrictor Snake
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 320
+- name: Copper Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 112
+- name: Corpse Flower
+  size: large
+  type: plant
+  tags: []
+  alignment: ce
+  challenge: 8
+  xp: 3900
+  book: Mordenkainen's Tome of Foes
+  page: 127
+- name: Couatl
+  size: medium
+  type: celestial
+  tags: []
+  alignment: lg
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 43
+- name: Cow
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 207
+- name: Crab
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 320
+- name: Cranium Rat
+  size: tiny
+  type: beast
+  tags: []
+  alignment: le
+  challenge: 0
+  xp: 10
+  book: Volo's Guide to Monsters
+  page: 133
+- name: Crawling Claw
+  size: tiny
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 44
+- name: Crocodile
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 320
+- name: Cult Fanatic
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-good
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 345
+- name: Cultist
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-good
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 345
+- name: Cyclops
+  size: huge
+  type: giant
+  tags: []
+  alignment: cn
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 45
+- name: Dao
+  size: large
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 143
+- name: Darkling
+  size: small
+  type: fey
+  tags: []
+  alignment: cn
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 134
+- name: Darkling Elder
+  size: medium
+  type: fey
+  tags: []
+  alignment: cn
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 134
+- name: Darkmantle
+  size: small
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 46
+- name: Death Dog
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 321
+- name: Death Kiss
+  size: large
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 10
+  xp: 5900
+  book: Volo's Guide to Monsters
+  page: 124
+- name: Death Knight
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 47
+- name: Death Slaad
+  size: medium
+  type: aberration
+  tags:
+  - shapechanger
+  alignment: ce
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 278
+- name: Death Tyrant
+  size: large
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Monster Manual
+  page: 29
+- name: Death Tyrant (in lair)
+  size: large
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 29
+- name: Deathlock
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Mordenkainen's Tome of Foes
+  page: 128
+- name: Deathlock Mastermind
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 8
+  xp: 3900
+  book: Mordenkainen's Tome of Foes
+  page: 129
+- name: Deathlock Wight
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 129
+- name: Deep Rothe
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 207
+- name: Deep Scion
+  size: medium
+  type: humanoid
+  tags:
+  - shapechanger
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 135
+- name: Deer
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 321
+- name: Deinonychus
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 139
+- name: Demilich
+  size: tiny
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 18
+  xp: 20000
+  book: Monster Manual
+  page: 48
+- name: Demilich (in lair)
+  size: tiny
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 20
+  xp: 24500
+  book: Monster Manual
+  page: 48
+- name: Derro
+  size: small
+  type: humanoid
+  tags:
+  - derro
+  alignment: ce
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 158
+- name: Derro Savant
+  size: small
+  type: humanoid
+  tags:
+  - derro
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 159
+- name: Deva
+  size: medium
+  type: celestial
+  tags: []
+  alignment: lg
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 16
+- name: Devourer
+  size: large
+  type: fiend
+  tags: []
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Volo's Guide to Monsters
+  page: 138
+- name: Dhergoloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 248
+- name: Dimetrodon
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 139
+- name: Dire Troll
+  size: huge
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Mordenkainen's Tome of Foes
+  page: 243
+- name: Dire Wolf
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 321
+- name: Displacer Beast
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 81
+- name: Diviner
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 8
+  xp: 3900
+  book: Volo's Guide to Monsters
+  page: 213
+- name: Djinni
+  size: large
+  type: elemental
+  tags: []
+  alignment: cg
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 144
+- name: Dolphin
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Volo's Guide to Monsters
+  page: 208
+- name: Doppelganger
+  size: medium
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: n
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 82
+- name: Draegloth
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 7
+  xp: 2900
+  book: Volo's Guide to Monsters
+  page: 141
+- name: Draft Horse
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 321
+- name: Dragon Turtle
+  size: gargantuan
+  type: dragon
+  tags: []
+  alignment: n
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 119
+- name: Dretch
+  size: small
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 57
+- name: Drider
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 120
+- name: Drow
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 128
+- name: Drow Arachnomancer
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Mordenkainen's Tome of Foes
+  page: 182
+- name: Drow Elite Warrior
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 128
+- name: Drow Favored Consort
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 18
+  xp: 20000
+  book: Mordenkainen's Tome of Foes
+  page: 183
+- name: Drow House Captain
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 9
+  xp: 5000
+  book: Mordenkainen's Tome of Foes
+  page: 184
+- name: Drow Inquisitor
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 14
+  xp: 11500
+  book: Mordenkainen's Tome of Foes
+  page: 184
+- name: Drow Mage
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 129
+- name: Drow Matron Mother
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 20
+  xp: 25000
+  book: Mordenkainen's Tome of Foes
+  page: 186
+- name: Drow Priestess of Lolth
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 129
+- name: Drow Shadowblade
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: ne
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 187
+- name: Druid
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 346
+- name: Dryad
+  size: medium
+  type: fey
+  tags: []
+  alignment: n
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 121
+- name: Duergar
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 122
+- name: Duergar Despot
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 12
+  xp: 8400
+  book: Mordenkainen's Tome of Foes
+  page: 188
+- name: Duergar Hammerer
+  size: medium
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 188
+- name: Duergar Kavalrachni
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 189
+- name: Duergar Mind Master
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 189
+- name: Duergar Screamer
+  size: medium
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 190
+- name: Duergar Soulblade
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 1
+  xp: 200
+  book: Mordenkainen's Tome of Foes
+  page: 190
+- name: Duergar Stone Guard
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 191
+- name: Duergar Warlord
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 6
+  xp: 2300
+  book: Mordenkainen's Tome of Foes
+  page: 192
+- name: Duergar Xarrorn
+  size: medium
+  type: humanoid
+  tags:
+  - dwarf
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 193
+- name: Duodrone
+  size: medium
+  type: construct
+  tags: []
+  alignment: ln
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 225
+- name: Dust Mephit
+  size: small
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 215
+- name: Dybbuk
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Mordenkainen's Tome of Foes
+  page: 132
+- name: Eagle
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 322
+- name: Earth Elemental
+  size: large
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 124
+- name: Earth Elemental Myrmidon
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 202
+- name: Efreeti
+  size: large
+  type: elemental
+  tags: []
+  alignment: le
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 145
+- name: Eidolon
+  size: medium
+  type: undead
+  tags: []
+  alignment: any
+  challenge: 12
+  xp: 8400
+  book: Mordenkainen's Tome of Foes
+  page: 194
+- name: Elder Brain
+  size: large
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Volo's Guide to Monsters
+  page: 174
+- name: Elder Oblex
+  size: huge
+  type: ooze
+  tags: []
+  alignment: le
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 219
+- name: Elder Tempest
+  size: gargantuan
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 23
+  xp: 50000
+  book: Mordenkainen's Tome of Foes
+  page: 200
+- name: Elephant
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 322
+- name: Elk
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 322
+- name: Empyrean
+  size: huge
+  type: celestial
+  tags:
+  - titan
+  alignment: cg or ne
+  challenge: 23
+  xp: 50000
+  book: Monster Manual
+  page: 130
+- name: Enchanter
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 213
+- name: Erinyes
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 12
+  xp: 8400
+  book: Monster Manual
+  page: 73
+- name: Ettercap
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 131
+- name: Ettin
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 132
+- name: Evoker
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 214
+- name: Female Steeder
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Mordenkainen's Tome of Foes
+  page: 238
+- name: Fire Elemental
+  size: large
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 125
+- name: Fire Elemental Myrmidon
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 203
+- name: Fire Giant
+  size: huge
+  type: giant
+  tags: []
+  alignment: le
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 154
+- name: Fire Giant Dreadnought
+  size: huge
+  type: giant
+  tags:
+  - fire giant
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Volo's Guide to Monsters
+  page: 147
+- name: Fire Snake
+  size: medium
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 265
+- name: Firenewt Warlock of Imix
+  size: medium
+  type: humanoid
+  tags:
+  - firenewt
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 143
+- name: Firenewt Warrior
+  size: medium
+  type: humanoid
+  tags:
+  - firenewt
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 142
+- name: Flail Snail
+  size: large
+  type: elemental
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 144
+- name: Flameskull
+  size: tiny
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 134
+- name: Flesh Golem
+  size: medium
+  type: construct
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 169
+- name: Flind
+  size: medium
+  type: humanoid
+  tags:
+  - gnoll
+  alignment: ce
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 153
+- name: Flumph
+  size: small
+  type: aberration
+  tags: []
+  alignment: lg
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 135
+- name: Flying Snake
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 322
+- name: Flying Sword
+  size: small
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 20
+- name: Fomorian
+  size: huge
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 136
+- name: Frog
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 0
+  book: Monster Manual
+  page: 322
+- name: Froghemoth
+  size: huge
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 10
+  xp: 5900
+  book: Volo's Guide to Monsters
+  page: 145
+- name: Frost Giant
+  size: huge
+  type: giant
+  tags: []
+  alignment: ne
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 155
+- name: Frost Giant Everlasting One
+  size: huge
+  type: giant
+  tags:
+  - frost giant
+  alignment: ce
+  challenge: 12
+  xp: 8400
+  book: Volo's Guide to Monsters
+  page: 148
+- name: Frost Salamander
+  size: huge
+  type: elemental
+  tags: []
+  alignment: unaligned
+  challenge: 9
+  xp: 5000
+  book: Mordenkainen's Tome of Foes
+  page: 223
+- name: Galeb Duhr
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 139
+- name: Gargoyle
+  size: medium
+  type: elemental
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 140
+- name: Gas Spore
+  size: large
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 138
+- name: Gauth
+  size: medium
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 6
+  xp: 2300
+  book: Volo's Guide to Monsters
+  page: 125
+- name: Gazer
+  size: tiny
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 126
+- name: Gelatinous Cube
+  size: large
+  type: ooze
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 242
+- name: Ghast
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 148
+- name: Ghost
+  size: medium
+  type: undead
+  tags: []
+  alignment: any
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 147
+- name: Ghoul
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 148
+- name: Giant Ape
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 323
+- name: Giant Badger
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 323
+- name: Giant Bat
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 323
+- name: Giant Boar
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 323
+- name: Giant Centipede
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 323
+- name: Giant Constrictor Snake
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 324
+- name: Giant Crab
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 324
+- name: Giant Crocodile
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 324
+- name: Giant Eagle
+  size: large
+  type: beast
+  tags: []
+  alignment: ng
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 324
+- name: Giant Elk
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 325
+- name: Giant Fire Beetle
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 325
+- name: Giant Frog
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 325
+- name: Giant Goat
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 326
+- name: Giant Hyena
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 326
+- name: Giant Lizard
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 326
+- name: Giant Octopus
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 326
+- name: Giant Owl
+  size: large
+  type: beast
+  tags: []
+  alignment: n
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 327
+- name: Giant Poisonous Snake
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 327
+- name: Giant Rat
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 327
+- name: Giant Scorpion
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 327
+- name: Giant Sea Horse
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 328
+- name: Giant Shark
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 328
+- name: Giant Spider
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 328
+- name: Giant Strider
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 143
+- name: Giant Toad
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 329
+- name: Giant Vulture
+  size: large
+  type: beast
+  tags: []
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 329
+- name: Giant Wasp
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 329
+- name: Giant Weasel
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 329
+- name: Giant Wolf Spider
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 330
+- name: Gibbering Mouther
+  size: medium
+  type: aberration
+  tags: []
+  alignment: n
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 157
+- name: Giff
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ln
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 204
+- name: Girallon
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 152
+- name: Githyanki Gish
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: le
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 205
+- name: Githyanki Kith'rak
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: le
+  challenge: 12
+  xp: 8400
+  book: Mordenkainen's Tome of Foes
+  page: 205
+- name: Githyanki Knight
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: le
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 160
+- name: Githyanki Supreme Commander
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Mordenkainen's Tome of Foes
+  page: 206
+- name: Githyanki Warrior
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 160
+- name: Githzerai Anarch
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: ln
+  challenge: 16
+  xp: 15000
+  book: Mordenkainen's Tome of Foes
+  page: 207
+- name: Githzerai Enlightened
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: ln
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 208
+- name: Githzerai Monk
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: ln
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 161
+- name: Githzerai Zerth
+  size: medium
+  type: humanoid
+  tags:
+  - gith
+  alignment: ln
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 161
+- name: Glabrezu
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 58
+- name: Gladiator
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 346
+- name: Gloom Weaver
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: n
+  challenge: 9
+  xp: 5000
+  book: Mordenkainen's Tome of Foes
+  page: 224
+- name: Gnoll
+  size: medium
+  type: humanoid
+  tags:
+  - gnoll
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 163
+- name: Gnoll Fang of Yeenoghu
+  size: medium
+  type: fiend
+  tags:
+  - gnoll
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 163
+- name: Gnoll Flesh Gnawer
+  size: medium
+  type: humanoid
+  tags:
+  - gnoll
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 154
+- name: Gnoll Hunter
+  size: medium
+  type: humanoid
+  tags:
+  - gnoll
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 154
+- name: Gnoll Pack Lord
+  size: medium
+  type: humanoid
+  tags:
+  - gnoll
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 163
+- name: Gnoll Witherling
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 155
+- name: Goat
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 330
+- name: Goblin
+  size: small
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 166
+- name: Goblin Boss
+  size: small
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 166
+- name: Gold Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 115
+- name: Gorgon
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 171
+- name: Goristro
+  size: huge
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 17
+  xp: 18000
+  book: Monster Manual
+  page: 59
+- name: Gray Ooze
+  size: medium
+  type: ooze
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 243
+- name: Gray Render
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: cn
+  challenge: 12
+  xp: 8400
+  book: Mordenkainen's Tome of Foes
+  page: 209
+- name: Gray Slaad
+  size: medium
+  type: aberration
+  tags:
+  - shapechanger
+  alignment: cn
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 277
+- name: Green Abishai
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Mordenkainen's Tome of Foes
+  page: 162
+- name: Green Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 95
+- name: Green Hag
+  size: medium
+  type: fey
+  tags: []
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 177
+- name: Green Slaad
+  size: large
+  type: aberration
+  tags:
+  - shapechanger
+  alignment: cn
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 277
+- name: Grell
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 172
+- name: Grick
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: n
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 173
+- name: Grick Alpha
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 173
+- name: Griffon
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 174
+- name: Grimlock
+  size: medium
+  type: humanoid
+  tags:
+  - grimlock
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 175
+- name: Grung
+  size: small
+  type: humanoid
+  tags:
+  - grung
+  alignment: le
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 156
+- name: Grung Elite Warrior
+  size: small
+  type: humanoid
+  tags:
+  - grung
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 157
+- name: Grung Wildling
+  size: small
+  type: humanoid
+  tags:
+  - grung
+  alignment: le
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 157
+- name: Guard
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 347
+- name: Guard Drake
+  size: medium
+  type: dragon
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 158
+- name: Guardian Naga
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: lg
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 234
+- name: Gynosphinx
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ln
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 282
+- name: Hadrosaurus
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 140
+- name: Half-Red Dragon Veteran
+  size: medium
+  type: humanoid
+  tags:
+  - human
+  alignment: any
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 180
+- name: Half-ogre
+  size: large
+  type: giant
+  tags: []
+  alignment: any chaotic
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 238
+- name: Harpy
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 181
+- name: Hawk
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 330
+- name: Hell Hound
+  size: medium
+  type: fiend
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 182
+- name: Hellfire Engine
+  size: huge
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 16
+  xp: 15000
+  book: Mordenkainen's Tome of Foes
+  page: 165
+- name: Helmed Horror
+  size: medium
+  type: construct
+  tags: []
+  alignment: n
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 183
+- name: Hezrou
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 60
+- name: Hill Giant
+  size: huge
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 155
+- name: Hippogriff
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 184
+- name: Hobgoblin
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: le
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 186
+- name: Hobgoblin Captain
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 186
+- name: Hobgoblin Devastator
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: le
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 161
+- name: Hobgoblin Iron Shadow
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 162
+- name: Hobgoblin Warlord
+  size: medium
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: le
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 187
+- name: Homunculus
+  size: tiny
+  type: construct
+  tags: []
+  alignment: n
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 188
+- name: Hook Horror
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: n
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 189
+- name: Horned Devil
+  size: large
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 74
+- name: Howler
+  size: large
+  type: fiend
+  tags: []
+  alignment: ce
+  challenge: 8
+  xp: 3900
+  book: Mordenkainen's Tome of Foes
+  page: 210
+- name: Hungry Sorrowsworn
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 232
+- name: Hunter Shark
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 330
+- name: Hydra
+  size: huge
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 190
+- name: Hydroloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 9
+  xp: 5000
+  book: Mordenkainen's Tome of Foes
+  page: 249
+- name: Hyena
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 331
+- name: Ice Devil
+  size: large
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Monster Manual
+  page: 75
+- name: Ice Mephit
+  size: small
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 215
+- name: Illusionist
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 214
+- name: Imp
+  size: tiny
+  type: fiend
+  tags:
+  - devil
+  alignment: shapechanger
+  challenge: 0
+  xp: 1
+  book: '200'
+  page: 0
+- name: Incubus
+  size: medium
+  type: fiend
+  tags:
+  - shapechanger
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 285
+- name: Intellect Devourer
+  size: tiny
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 191
+- name: Invisible Stalker
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 192
+- name: Iron Cobra
+  size: medium
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 4
+  xp: 1100
+  book: Mordenkainen's Tome of Foes
+  page: 125
+- name: Iron Golem
+  size: large
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 16
+  xp: 15000
+  book: Monster Manual
+  page: 170
+- name: Jackal
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 331
+- name: Jackalwere
+  size: medium
+  type: humanoid
+  tags:
+  - shapechanger
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 193
+- name: Kenku
+  size: medium
+  type: humanoid
+  tags:
+  - kenku
+  alignment: cn
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 194
+- name: Ki-rin
+  size: huge
+  type: celestial
+  tags: []
+  alignment: lg
+  challenge: 12
+  xp: 8400
+  book: Volo's Guide to Monsters
+  page: 163
+- name: Killer Whale
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 331
+- name: Knight
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 347
+- name: Kobold
+  size: small
+  type: humanoid
+  tags:
+  - kobold
+  alignment: le
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 195
+- name: Kobold Dragonshield
+  size: small
+  type: humanoid
+  tags:
+  - kobold
+  alignment: le
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 165
+- name: Kobold Inventor
+  size: small
+  type: humanoid
+  tags:
+  - kobold
+  alignment: le
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 166
+- name: Kobold Scale Sorcerer
+  size: small
+  type: humanoid
+  tags:
+  - kobold
+  alignment: le
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 167
+- name: Korred
+  size: small
+  type: fey
+  tags: []
+  alignment: cn
+  challenge: 7
+  xp: 2900
+  book: Volo's Guide to Monsters
+  page: 168
+- name: Kraken
+  size: gargantuan
+  type: monstrosity
+  tags:
+  - titan
+  alignment: ce
+  challenge: 23
+  xp: 50000
+  book: Monster Manual
+  page: 197
+- name: Kraken Priest
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 215
+- name: Kruthik Hive Lord
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Mordenkainen's Tome of Foes
+  page: 212
+- name: Kuo-toa
+  size: medium
+  type: humanoid
+  tags:
+  - kuo-toa
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 199
+- name: Kuo-toa Archpriest
+  size: medium
+  type: humanoid
+  tags:
+  - kuo-toa
+  alignment: ne
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 200
+- name: Kuo-toa Whip
+  size: medium
+  type: humanoid
+  tags:
+  - kuo-toa
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 200
+- name: Lamia
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 201
+- name: Lemure
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 76
+- name: Leucrotta
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 169
+- name: Leviathan
+  size: gargantuan
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 20
+  xp: 25000
+  book: Mordenkainen's Tome of Foes
+  page: 198
+- name: Lich
+  size: medium
+  type: undead
+  tags: []
+  alignment: any evil
+  challenge: 21
+  xp: 33000
+  book: Monster Manual
+  page: 202
+- name: Lich (in lair)
+  size: medium
+  type: undead
+  tags: []
+  alignment: any evil
+  challenge: 22
+  xp: 41000
+  book: Monster Manual
+  page: 202
+- name: Lion
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 331
+- name: Lizard
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 332
+- name: Lizard King/Queen
+  size: medium
+  type: humanoid
+  tags:
+  - lizardfolk
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 205
+- name: Lizardfolk
+  size: medium
+  type: humanoid
+  tags:
+  - lizardfolk
+  alignment: n
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 204
+- name: Lizardfolk Shaman
+  size: medium
+  type: humanoid
+  tags:
+  - lizardfolk
+  alignment: n
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 205
+- name: Lonely Sorrowsworn
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 9
+  xp: 5000
+  book: Mordenkainen's Tome of Foes
+  page: 232
+- name: Lost Sorrowsworn
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 233
+- name: Mage
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 347
+- name: Magma Mephit
+  size: small
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 216
+- name: Magmin
+  size: small
+  type: elemental
+  tags: []
+  alignment: cn
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 212
+- name: Male Steeder
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 238
+- name: Mammoth
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 332
+- name: Manes
+  size: small
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 60
+- name: Manticore
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 213
+- name: Marid
+  size: large
+  type: elemental
+  tags: []
+  alignment: cn
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 146
+- name: Marilith
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 16
+  xp: 15000
+  book: Monster Manual
+  page: 61
+- name: Martial Arts Adept
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 216
+- name: Marut
+  size: large
+  type: construct
+  tags:
+  - inevitable
+  alignment: ln
+  challenge: 25
+  xp: 75000
+  book: Mordenkainen's Tome of Foes
+  page: 213
+- name: Master Thief
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 216
+- name: Mastiff
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 332
+- name: Maurezhi
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 133
+- name: Maw Demon
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 137
+- name: Meazel
+  size: medium
+  type: humanoid
+  tags:
+  - meazel
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Mordenkainen's Tome of Foes
+  page: 214
+- name: Medusa
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: le
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 214
+- name: Meenlock
+  size: small
+  type: fey
+  tags: []
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 170
+- name: Merfolk
+  size: medium
+  type: humanoid
+  tags:
+  - merfolk
+  alignment: n
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 218
+- name: Merregon
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 4
+  xp: 1100
+  book: Mordenkainen's Tome of Foes
+  page: 166
+- name: Merrenoloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 250
+- name: Merrow
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 219
+- name: Mezzoloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 313
+- name: Mimic
+  size: medium
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: n
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 220
+- name: Mind Flayer
+  size: medium
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 222
+- name: Mind Flayer Arcanist
+  size: medium
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 222
+- name: Mind Flayer Lich
+  size: medium
+  type: undead
+  tags: []
+  alignment: any evil
+  challenge: 22
+  xp: 41000
+  book: Volo's Guide to Monsters
+  page: 172
+- name: Mindwitness
+  size: large
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 176
+- name: Minotaur
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 223
+- name: Minotaur Skeleton
+  size: large
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 273
+- name: Molydeus
+  size: huge
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 21
+  xp: 33000
+  book: Mordenkainen's Tome of Foes
+  page: 134
+- name: Monodrone
+  size: medium
+  type: construct
+  tags: []
+  alignment: ln
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 224
+- name: Morkoth
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 11
+  xp: 7200
+  book: Volo's Guide to Monsters
+  page: 178
+- name: Morkoth (in lair)
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 12
+  xp: 8400
+  book: Volo's Guide to Monsters
+  page: 178
+- name: Mouth of Grolantor
+  size: huge
+  type: giant
+  tags:
+  - hill giant
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Volo's Guide to Monsters
+  page: 149
+- name: Mud Mephit
+  size: small
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 216
+- name: Mule
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 333
+- name: Mummy
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 228
+- name: Mummy Lord
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 229
+- name: Mummy Lord (in lair)
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 16
+  xp: 15000
+  book: Monster Manual
+  page: 229
+- name: Myconid Adult
+  size: medium
+  type: plant
+  tags: []
+  alignment: ln
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 232
+- name: Myconid Sovereign
+  size: large
+  type: plant
+  tags: []
+  alignment: ln
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 232
+- name: Myconid Sprout
+  size: small
+  type: plant
+  tags: []
+  alignment: ln
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 230
+- name: Nabassu
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 15
+  xp: 13000
+  book: Mordenkainen's Tome of Foes
+  page: 135
+- name: Nagpa
+  size: medium
+  type: humanoid
+  tags:
+  - nagpa
+  alignment: ne
+  challenge: 17
+  xp: 18000
+  book: Mordenkainen's Tome of Foes
+  page: 215
+- name: Nalfeshnee
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 62
+- name: Narzugon
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 13
+  xp: 10000
+  book: Mordenkainen's Tome of Foes
+  page: 167
+- name: Necromancer
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 217
+- name: Needle Blight
+  size: medium
+  type: plant
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 32
+- name: Neogi
+  size: small
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 180
+- name: Neogi Hatchling
+  size: tiny
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 0.125
+  xp: 25
+  book: Volo's Guide to Monsters
+  page: 179
+- name: Neogi Master
+  size: medium
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 180
+- name: Neothelid
+  size: gargantuan
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Volo's Guide to Monsters
+  page: 181
+- name: Night Hag
+  size: medium
+  type: fiend
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 178
+- name: Nightmare
+  size: large
+  type: fiend
+  tags: []
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 235
+- name: Nightwalker
+  size: huge
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 20
+  xp: 25000
+  book: Mordenkainen's Tome of Foes
+  page: 216
+- name: Nilbog
+  size: small
+  type: humanoid
+  tags:
+  - goblinoid
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 182
+- name: Noble
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 348
+- name: Nothic
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 236
+- name: Nupperibo
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 0.5
+  xp: 100
+  book: Mordenkainen's Tome of Foes
+  page: 168
+- name: Nycaloth
+  size: large
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 314
+- name: Oaken Bolter
+  size: medium
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Mordenkainen's Tome of Foes
+  page: 126
+- name: Oblex Spawn
+  size: tiny
+  type: ooze
+  tags: []
+  alignment: le
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 217
+- name: Ochre Jelly
+  size: large
+  type: ooze
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 243
+- name: Octopus
+  size: small
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 333
+- name: Ogre
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 237
+- name: Ogre Battering Ram
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Mordenkainen's Tome of Foes
+  page: 220
+- name: Ogre Bolt Launcher
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 220
+- name: Ogre Chain Brute
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 221
+- name: Ogre Howdah
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 221
+- name: Ogre Zombie
+  size: large
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 316
+- name: Oinoloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 12
+  xp: 8400
+  book: Mordenkainen's Tome of Foes
+  page: 251
+- name: Oni
+  size: large
+  type: giant
+  tags: []
+  alignment: le
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 239
+- name: Orc
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 246
+- name: Orc Blade of Ilneval
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 183
+- name: Orc Claw of Luthic
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 183
+- name: Orc Eye of Gruumsh
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 247
+- name: Orc Hand of Yurtrus
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 184
+- name: Orc Nurtured One of Yurtrus
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 184
+- name: Orc Red Fang of Shargaas
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 185
+- name: Orc War Chief
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 246
+- name: Orog
+  size: medium
+  type: humanoid
+  tags:
+  - orc
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 247
+- name: Orthon
+  size: large
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 169
+- name: Otyugh
+  size: large
+  type: aberration
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 248
+- name: Owl
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 333
+- name: Owlbear
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 249
+- name: Ox
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 207
+- name: Panther
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 333
+- name: Pegasus
+  size: large
+  type: celestial
+  tags: []
+  alignment: cg
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 250
+- name: Pentadrone
+  size: large
+  type: construct
+  tags: []
+  alignment: ln
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 226
+- name: Peryton
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 251
+- name: Phase Spider
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 334
+- name: Phoenix
+  size: gargantuan
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 16
+  xp: 15000
+  book: Mordenkainen's Tome of Foes
+  page: 199
+- name: Piercer
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 252
+- name: Pit Fiend
+  size: large
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 20
+  xp: 25000
+  book: Monster Manual
+  page: 77
+- name: Pixie
+  size: tiny
+  type: fey
+  tags: []
+  alignment: ng
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 253
+- name: Planetar
+  size: large
+  type: celestial
+  tags: []
+  alignment: lg
+  challenge: 16
+  xp: 15000
+  book: Monster Manual
+  page: 17
+- name: Plesiosaurus
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 80
+- name: Poisonous Snake
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 334
+- name: Polar Bear
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 334
+- name: Pony
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 335
+- name: Priest
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 348
+- name: Pseudodragon
+  size: tiny
+  type: dragon
+  tags: []
+  alignment: ng
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 254
+- name: Pteranodon
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 80
+- name: Purple Worm
+  size: gargantuan
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 255
+- name: Quadrone
+  size: medium
+  type: construct
+  tags: []
+  alignment: ln
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 226
+- name: Quaggoth
+  size: medium
+  type: humanoid
+  tags:
+  - quaggoth
+  alignment: cn
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 256
+- name: Quaggoth Spore Servant
+  size: medium
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 230
+- name: Quaggoth Thonot
+  size: medium
+  type: humanoid
+  tags:
+  - quaggoth
+  alignment: cn
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 256
+- name: Quasit
+  size: tiny
+  type: fiend
+  tags:
+  - demon
+  alignment: shapechanger
+  challenge: 0
+  xp: 1
+  book: '200'
+  page: 0
+- name: Quetzalcoatlus
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 140
+- name: Quickling
+  size: tiny
+  type: fey
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 187
+- name: Quipper
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 335
+- name: Rakshasa
+  size: medium
+  type: fiend
+  tags: []
+  alignment: le
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 257
+- name: Rat
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 335
+- name: Raven
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 335
+- name: Red Abishai
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 19
+  xp: 22000
+  book: Mordenkainen's Tome of Foes
+  page: 162
+- name: Red Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 98
+- name: Red Slaad
+  size: large
+  type: aberration
+  tags: []
+  alignment: cn
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 276
+- name: Redcap
+  size: small
+  type: fey
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 188
+- name: Reef Shark
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 336
+- name: Remorhaz
+  size: huge
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 258
+- name: Retriever
+  size: large
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 14
+  xp: 11500
+  book: Mordenkainen's Tome of Foes
+  page: 222
+- name: Revenant
+  size: medium
+  type: undead
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 259
+- name: Rhinoceros
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 336
+- name: Riding Horse
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 336
+- name: Roc
+  size: gargantuan
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 11
+  xp: 7200
+  book: Monster Manual
+  page: 260
+- name: Roper
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 261
+- name: Rot Troll
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 9
+  xp: 5000
+  book: Mordenkainen's Tome of Foes
+  page: 244
+- name: Rothe
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 207
+- name: Rug of Smothering
+  size: large
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 20
+- name: Rust Monster
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 262
+- name: Rutterkin
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 136
+- name: Saber-toothed Tiger
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 336
+- name: Sahuagin
+  size: medium
+  type: humanoid
+  tags:
+  - sahuagin
+  alignment: le
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 263
+- name: Sahuagin Baron
+  size: large
+  type: humanoid
+  tags:
+  - sahuagin
+  alignment: le
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 264
+- name: Sahuagin Priestess
+  size: medium
+  type: humanoid
+  tags:
+  - sahuagin
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 264
+- name: Salamander
+  size: large
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 266
+- name: Satyr
+  size: medium
+  type: fey
+  tags: []
+  alignment: cn
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 267
+- name: Scarecrow
+  size: medium
+  type: construct
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 268
+- name: Scorpion
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 337
+- name: Scout
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 349
+- name: Sea Hag
+  size: medium
+  type: fey
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 179
+- name: Sea Horse
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 0
+  book: Monster Manual
+  page: 337
+- name: Sea Spawn
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 189
+- name: Shadow
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 269
+- name: Shadow Dancer
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 225
+- name: Shadow Demon
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 64
+- name: Shadow Mastiff
+  size: medium
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 190
+- name: Shambling Mound
+  size: large
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 270
+- name: Shield Guardian
+  size: large
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 271
+- name: Shoosuva
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 8
+  xp: 3900
+  book: Volo's Guide to Monsters
+  page: 137
+- name: Shrieker
+  size: medium
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 138
+- name: Sibriex
+  size: huge
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 18
+  xp: 20000
+  book: Mordenkainen's Tome of Foes
+  page: 137
+- name: Silver Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 118
+- name: Skeleton
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 272
+- name: Skulk
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: cn
+  challenge: 0.5
+  xp: 100
+  book: Mordenkainen's Tome of Foes
+  page: 227
+- name: Skull Lord
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Mordenkainen's Tome of Foes
+  page: 230
+- name: Slaad Tadpole
+  size: tiny
+  type: aberration
+  tags: []
+  alignment: cn
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 276
+- name: Slithering Tracker
+  size: medium
+  type: ooze
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 191
+- name: Smoke Mephit
+  size: small
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 217
+- name: Solar
+  size: large
+  type: celestial
+  tags: []
+  alignment: lg
+  challenge: 21
+  xp: 33000
+  book: Monster Manual
+  page: 18
+- name: Soul Monger
+  size: medium
+  type: humanoid
+  tags:
+  - elf
+  alignment: n
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 226
+- name: Spawn of Kyuss
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 192
+- name: Spectator
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ln
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 30
+- name: Specter
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 279
+- name: Specter (poltergeist)
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 279
+- name: Spider
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 337
+- name: Spined Devil
+  size: small
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 78
+- name: Spirit Naga
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 234
+- name: Spirit Troll
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 244
+- name: Spring Eladrin
+  size: medium
+  type: fey
+  tags:
+  - elf
+  alignment: cn
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 196
+- name: Sprite
+  size: tiny
+  type: fey
+  tags: []
+  alignment: ng
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 283
+- name: Spy
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 349
+- name: Star Spawn Grue
+  size: small
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 234
+- name: Star Spawn Hulk
+  size: large
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 234
+- name: Star Spawn Larva Mage
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 16
+  xp: 15000
+  book: Mordenkainen's Tome of Foes
+  page: 235
+- name: Star Spawn Mangler
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Mordenkainen's Tome of Foes
+  page: 236
+- name: Star Spawn Seer
+  size: medium
+  type: aberration
+  tags: []
+  alignment: ne
+  challenge: 13
+  xp: 10000
+  book: Mordenkainen's Tome of Foes
+  page: 236
+- name: Steam Mephit
+  size: small
+  type: elemental
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 217
+- name: Steel Predator
+  size: large
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 16
+  xp: 15000
+  book: Mordenkainen's Tome of Foes
+  page: 239
+- name: Stegosaurus
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 140
+- name: Stench Kow
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 207
+- name: Stirge
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 284
+- name: Stone Cursed
+  size: medium
+  type: construct
+  tags: []
+  alignment: le
+  challenge: 1
+  xp: 200
+  book: Mordenkainen's Tome of Foes
+  page: 240
+- name: Stone Defender
+  size: medium
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 4
+  xp: 1100
+  book: Mordenkainen's Tome of Foes
+  page: 126
+- name: Stone Giant
+  size: huge
+  type: giant
+  tags: []
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 156
+- name: Stone Giant Dreamwalker
+  size: huge
+  type: giant
+  tags:
+  - stone giant
+  alignment: cn
+  challenge: 10
+  xp: 5900
+  book: Volo's Guide to Monsters
+  page: 150
+- name: Stone Golem
+  size: large
+  type: construct
+  tags: []
+  alignment: unaligned
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 170
+- name: Storm Giant
+  size: huge
+  type: giant
+  tags: []
+  alignment: cg
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 156
+- name: Storm Giant Quintessent
+  size: huge
+  type: giant
+  tags:
+  - storm giant
+  alignment: cg
+  challenge: 16
+  xp: 15000
+  book: Volo's Guide to Monsters
+  page: 151
+- name: Succubus
+  size: medium
+  type: fiend
+  tags:
+  - shapechanger
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 285
+- name: Summer Eladrin
+  size: medium
+  type: fey
+  tags:
+  - elf
+  alignment: cn
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 196
+- name: Svirfneblin
+  size: small
+  type: humanoid
+  tags:
+  - gnome
+  alignment: ng
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 164
+- name: Swarm of Bats
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 337
+- name: Swarm of Cranium Rats
+  size: medium
+  type: beast
+  tags: []
+  alignment: le
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 133
+- name: Swarm of Insects
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 338
+- name: Swarm of Poisonous Snakes
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 338
+- name: Swarm of Quippers
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 338
+- name: Swarm of Rats
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 339
+- name: Swarm of Ravens
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 339
+- name: Swarm of Rot Grubs
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Volo's Guide to Monsters
+  page: 208
+- name: Swashbuckler
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any non-lawful
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 217
+- name: Sword Wraith Commander
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 8
+  xp: 3900
+  book: Mordenkainen's Tome of Foes
+  page: 241
+- name: Sword Wraith Warrior
+  size: medium
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 241
+- name: Tanarukk
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: orc
+  challenge: 0
+  xp: 5
+  book: '1800'
+  page: 0
+- name: Tarrasque
+  size: gargantuan
+  type: monstrosity
+  tags:
+  - titan
+  alignment: unaligned
+  challenge: 30
+  xp: 155000
+  book: Monster Manual
+  page: 286
+- name: Thorny
+  size: medium
+  type: plant
+  tags: []
+  alignment: n
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 197
+- name: Thri-kreen
+  size: medium
+  type: humanoid
+  tags:
+  - thri-kreen
+  alignment: cn
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 288
+- name: Thug
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 350
+- name: Tiger
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 339
+- name: Tlincalli
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 193
+- name: Tortle
+  size: medium
+  type: humanoid
+  tags:
+  - tortle
+  alignment: lg
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 242
+- name: Tortle Druid
+  size: medium
+  type: humanoid
+  tags:
+  - tortle
+  alignment: ln
+  challenge: 2
+  xp: 450
+  book: Mordenkainen's Tome of Foes
+  page: 242
+- name: Transmuter
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 218
+- name: Trapper
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 3
+  xp: 700
+  book: Volo's Guide to Monsters
+  page: 194
+- name: Treant
+  size: huge
+  type: plant
+  tags: []
+  alignment: cg
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 289
+- name: Tribal Warrior
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 350
+- name: Triceratops
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 80
+- name: Tridrone
+  size: medium
+  type: construct
+  tags: []
+  alignment: ln
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 225
+- name: Troglodyte
+  size: medium
+  type: humanoid
+  tags:
+  - troglodyte
+  alignment: ce
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 290
+- name: Troll
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 291
+- name: Twig Blight
+  size: small
+  type: plant
+  tags: []
+  alignment: ne
+  challenge: 0.125
+  xp: 25
+  book: Monster Manual
+  page: 32
+- name: Tyrannosaurus Rex
+  size: huge
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 80
+- name: Ulitharid
+  size: large
+  type: aberration
+  tags: []
+  alignment: le
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 175
+- name: Ultroloth
+  size: medium
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 314
+- name: Umber Hulk
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 292
+- name: Unicorn
+  size: large
+  type: celestial
+  tags: []
+  alignment: lg
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 294
+- name: Vampire
+  size: medium
+  type: undead
+  tags:
+  - shapechanger
+  alignment: le
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 297
+- name: Vampire (spellcaster)
+  size: medium
+  type: undead
+  tags:
+  - shapechanger
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 297
+- name: Vampire (warrior)
+  size: medium
+  type: undead
+  tags:
+  - shapechanger
+  alignment: le
+  challenge: 15
+  xp: 13000
+  book: Monster Manual
+  page: 297
+- name: Vampire Spawn
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 298
+- name: Vampiric Mist
+  size: medium
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Mordenkainen's Tome of Foes
+  page: 246
+- name: Vargouille
+  size: tiny
+  type: fiend
+  tags: []
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 195
+- name: Vegepygmy
+  size: small
+  type: plant
+  tags: []
+  alignment: n
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 196
+- name: Vegepygmy Chief
+  size: small
+  type: plant
+  tags: []
+  alignment: n
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 197
+- name: Velociraptor
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Volo's Guide to Monsters
+  page: 140
+- name: Venom Troll
+  size: large
+  type: giant
+  tags: []
+  alignment: ce
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 245
+- name: Veteran
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: ''
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 350
+- name: Vine Blight
+  size: medium
+  type: plant
+  tags: []
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 32
+- name: Violet Fungus
+  size: medium
+  type: plant
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 138
+- name: Vrock
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 64
+- name: Vulture
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 339
+- name: War Priest
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 9
+  xp: 5000
+  book: Volo's Guide to Monsters
+  page: 218
+- name: Warhorse
+  size: large
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 340
+- name: Warhorse Skeleton
+  size: large
+  type: undead
+  tags: []
+  alignment: le
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 273
+- name: Warlock of the Archfey
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 219
+- name: Warlock of the Fiend
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 7
+  xp: 2900
+  book: Volo's Guide to Monsters
+  page: 219
+- name: Warlock of the Great Old One
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 6
+  xp: 2300
+  book: Volo's Guide to Monsters
+  page: 220
+- name: Warlord
+  size: medium
+  type: humanoid
+  tags: []
+  alignment: any
+  challenge: 12
+  xp: 8400
+  book: Volo's Guide to Monsters
+  page: 220
+- name: Wastrilith
+  size: large
+  type: fiend
+  tags:
+  - demon
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Mordenkainen's Tome of Foes
+  page: 139
+- name: Water Elemental
+  size: large
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 125
+- name: Water Elemental Myrmidon
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 7
+  xp: 2900
+  book: Mordenkainen's Tome of Foes
+  page: 203
+- name: Water Weird
+  size: large
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 299
+- name: Weasel
+  size: tiny
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0
+  xp: 10
+  book: Monster Manual
+  page: 340
+- name: Werebear
+  size: medium
+  type: humanoid
+  tags:
+  - human
+  alignment: shapechanger
+  challenge: 0
+  xp: 5
+  book: '1800'
+  page: 0
+- name: Wereboar
+  size: medium
+  type: humanoid
+  tags:
+  - human
+  alignment: shapechanger
+  challenge: 0
+  xp: 4
+  book: '1100'
+  page: 0
+- name: Wererat
+  size: medium
+  type: humanoid
+  tags:
+  - human
+  alignment: shapechanger
+  challenge: 0
+  xp: 2
+  book: '450'
+  page: 0
+- name: Weretiger
+  size: medium
+  type: humanoid
+  tags:
+  - human
+  alignment: shapechanger
+  challenge: 0
+  xp: 4
+  book: '1100'
+  page: 0
+- name: Werewolf
+  size: medium
+  type: humanoid
+  tags:
+  - human
+  alignment: shapechanger
+  challenge: 0
+  xp: 3
+  book: '700'
+  page: 0
+- name: White Abishai
+  size: medium
+  type: fiend
+  tags:
+  - devil
+  alignment: le
+  challenge: 6
+  xp: 2300
+  book: Mordenkainen's Tome of Foes
+  page: 163
+- name: White Dragon Wyrmling
+  size: medium
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 102
+- name: Wight
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 300
+- name: Will-o-wisp
+  size: tiny
+  type: undead
+  tags: []
+  alignment: ce
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 301
+- name: Winged Kobold
+  size: small
+  type: humanoid
+  tags:
+  - kobold
+  alignment: le
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 195
+- name: Winter Eladrin
+  size: medium
+  type: fey
+  tags:
+  - elf
+  alignment: cn
+  challenge: 10
+  xp: 5900
+  book: Mordenkainen's Tome of Foes
+  page: 197
+- name: Winter Wolf
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 340
+- name: Wolf
+  size: medium
+  type: beast
+  tags: []
+  alignment: unaligned
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 341
+- name: Wood Woad
+  size: medium
+  type: plant
+  tags: []
+  alignment: ln
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 198
+- name: Worg
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 0.5
+  xp: 100
+  book: Monster Manual
+  page: 341
+- name: Wraith
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 302
+- name: Wretched Sorrowsworn
+  size: small
+  type: monstrosity
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Mordenkainen's Tome of Foes
+  page: 233
+- name: Wyvern
+  size: large
+  type: dragon
+  tags: []
+  alignment: unaligned
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 303
+- name: Xorn
+  size: medium
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 304
+- name: Xvart
+  size: small
+  type: humanoid
+  tags:
+  - xvart
+  alignment: ce
+  challenge: 0.125
+  xp: 25
+  book: Volo's Guide to Monsters
+  page: 200
+- name: Xvart Warlock of Raxivort
+  size: small
+  type: humanoid
+  tags:
+  - xvart
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Volo's Guide to Monsters
+  page: 200
+- name: Yagnoloth
+  size: large
+  type: fiend
+  tags:
+  - yugoloth
+  alignment: ne
+  challenge: 11
+  xp: 7200
+  book: Mordenkainen's Tome of Foes
+  page: 252
+- name: Yeth Hound
+  size: large
+  type: fey
+  tags: []
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 201
+- name: Yeti
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 305
+- name: Yochlol
+  size: medium
+  type: fiend
+  tags:
+  - demon
+  alignment: shapechanger
+  challenge: 0
+  xp: 10
+  book: '5900'
+  page: 0
+- name: Young Black Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 88
+- name: Young Blue Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 91
+- name: Young Brass Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 105
+- name: Young Bronze Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 108
+- name: Young Copper Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 111
+- name: Young Faerie Dragon
+  size: tiny
+  type: dragon
+  tags: []
+  alignment: cg
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 133
+- name: Young Gold Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 115
+- name: Young Green Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: le
+  challenge: 8
+  xp: 3900
+  book: Monster Manual
+  page: 94
+- name: Young Kruthik
+  size: small
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 0.125
+  xp: 25
+  book: Mordenkainen's Tome of Foes
+  page: 211
+- name: Young Red Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 10
+  xp: 5900
+  book: Monster Manual
+  page: 98
+- name: Young Red Shadow Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 13
+  xp: 10000
+  book: Monster Manual
+  page: 85
+- name: Young Remorhaz
+  size: large
+  type: monstrosity
+  tags: []
+  alignment: unaligned
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 258
+- name: Young Silver Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: lg
+  challenge: 9
+  xp: 5000
+  book: Monster Manual
+  page: 118
+- name: Young White Dragon
+  size: large
+  type: dragon
+  tags: []
+  alignment: ce
+  challenge: 6
+  xp: 2300
+  book: Monster Manual
+  page: 101
+- name: Yuan-ti Abomination
+  size: large
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: yuan-ti
+  challenge: 0
+  xp: 7
+  book: '2900'
+  page: 0
+- name: Yuan-ti Anathema
+  size: huge
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: yuan-ti
+  challenge: 0
+  xp: 12
+  book: '8400'
+  page: 0
+- name: Yuan-ti Broodguard
+  size: medium
+  type: humanoid
+  tags:
+  - yuan-ti
+  alignment: ne
+  challenge: 2
+  xp: 450
+  book: Volo's Guide to Monsters
+  page: 203
+- name: Yuan-ti Malison
+  size: medium
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: yuan-ti
+  challenge: 0
+  xp: 3
+  book: '700'
+  page: 0
+- name: Yuan-ti Mind Whisperer
+  size: medium
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: yuan-ti
+  challenge: 0
+  xp: 4
+  book: '1100'
+  page: 0
+- name: Yuan-ti Nightmare Speaker
+  size: medium
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: yuan-ti
+  challenge: 0
+  xp: 4
+  book: '1100'
+  page: 0
+- name: Yuan-ti Pit Master
+  size: medium
+  type: monstrosity
+  tags:
+  - shapechanger
+  alignment: yuan-ti
+  challenge: 0
+  xp: 5
+  book: '1800'
+  page: 0
+- name: Yuan-ti Pureblood
+  size: medium
+  type: humanoid
+  tags:
+  - yuan-ti
+  alignment: ne
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 310
+- name: Zaratan
+  size: gargantuan
+  type: elemental
+  tags: []
+  alignment: n
+  challenge: 22
+  xp: 41000
+  book: Mordenkainen's Tome of Foes
+  page: 201
+- name: Zombie
+  size: medium
+  type: undead
+  tags: []
+  alignment: ne
+  challenge: 0.25
+  xp: 50
+  book: Monster Manual
+  page: 316

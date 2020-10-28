@@ -126,6 +126,10 @@ class DungeonGeneratorInfoPanel < Gtk::Box
     map_object_generate_contents.signal_connect('clicked') do |button, event, user_data|
       randomize_chamber_contents(map_object)
     end
+    map_object_generate_name.signal_connect('clicked') do |button, event, user_data|
+      info_panel_header_stack.set_visible_child(info_panel_header_eventbox)
+      randomize_chamber_purpose(map_object)
+    end
     info_panel_header_eventbox.signal_connect('button-press-event') do |eventbox, event, user_data|
       info_panel_header_edit.set_text(info_panel_header.subtitle)
       info_panel_header_stack.set_visible_child(info_panel_header_edit)
@@ -480,23 +484,3 @@ class DungeonGeneratorGui < Gtk::Application
     end
   end
 end
-
-gresource_bin = "#{Configuration.project_path}/resources/dungeon_generator.gresource"
-gresource_xml = "#{Configuration.project_path}/resources/dungeon_generator.gresource.xml"
-gresource_source = "#{File.dirname(gresource_xml)}/ui"
-
-######### CANNED RESOURCE SETUP ##########
-system("glib-compile-resources",
-       "--target", gresource_bin,
-       "--sourcedir", gresource_source,
-       gresource_xml)
-at_exit do
-  FileUtils.rm_f(gresource_bin)
-end
-resource = Gio::Resource.load(gresource_bin)
-Gio::Resources.register(resource)
-##########################################
-
-app = DungeonGeneratorGui.new
-
-puts app.run

@@ -6,11 +6,9 @@ require_relative 'trick'
 require 'yaml'
 
 class MapGenerator
-  DATA_PATH = "#{__dir__}/../data"
-  FACINGS = [:north, :east, :south, :west]
-  class << self
-    include DungeonGeneratorHelper
+  extend DungeonGeneratorHelper
 
+  class << self
     def generate_map(map_size = $configuration['map_size'], theme: nil)
       log "Beginning map generation"
       if theme.nil?
@@ -262,26 +260,6 @@ class MapGenerator
       return monster_list
     end
 
-    def random_yaml_element(type)
-      yaml_data(type)
-    end
 
-    def yaml_data(type_path, index = nil)
-      type = type_path.split("/").last
-      arr = YAML.load(File.read("#{DATA_PATH}/#{type_path}.yaml"))[type]
-      return weighted_random(arr) unless index
-      return arr[index]
-    end
-
-    def weighted_random(arr)
-      weighted_arr = []
-      arr.each { |elem|
-        probability = ((elem.kind_of? Hash) and elem["probability"]) ? elem["probability"] : 1
-        probability.times do
-          weighted_arr << elem
-        end
-      }
-      return weighted_arr.sample
-    end
   end
 end

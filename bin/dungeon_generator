@@ -13,7 +13,28 @@ case $configuration['app_mode']
 when 'cli'
   # TODO: Create a new "dungeon_generator_cli" class with options
   puts m.to_s
-when 'gui'
+when 'gtk'
+  require_relative '../lib/dungeon_generator_gtk'
+  gresource_bin = "#{Configuration.project_path}/resources/dungeon_generator.gresource"
+  gresource_xml = "#{Configuration.project_path}/resources/dungeon_generator.gresource.xml"
+  gresource_source = "#{File.dirname(gresource_xml)}/ui"
+
+  ######### CANNED RESOURCE SETUP ##########
+  system("glib-compile-resources",
+         "--target", gresource_bin,
+         "--sourcedir", gresource_source,
+         gresource_xml)
+  at_exit do
+    FileUtils.rm_f(gresource_bin)
+  end
+  resource = Gio::Resource.load(gresource_bin)
+  Gio::Resources.register(resource)
+  ##########################################
+
+  app = DungeonGeneratorGui.new
+
+  puts app.run
+when 'fox'
   require_relative '../lib/dungeon_generator_gui'
   puts m.to_s
   app = FXApp.new("Dungeon Generator", "Egan Neuhengen")
