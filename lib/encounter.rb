@@ -42,7 +42,7 @@ class Encounter
         when :roll
           random_monsters_strategy_roll(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
         end
-        )
+      ) unless monsters.count > 0 and finished?(xp_thresholds, xp_threshold_target, total_xp(monsters))
       log "Monster group created:"
       log "  Monsters: #{monsters.collect{|m| m.name}.join(", ")}"
       log "  XP: #{total_xp(monsters)}"
@@ -86,9 +86,9 @@ class Encounter
     log "Adding monsters with strategy: Chaos"
     monsters = Array.new
     while true
-      available_monsters = encounter_data.to_a.reject { |e| monster_limit_reached?(monsters, e[0], e[1]) }
-      (log "All monsters have reached their limit" && break) if available_monsters.empty?
-      monster_name, monster_count = available_monsters.sample
+      monster_list = available_monsters(encounter_data, monsters, xp_thresholds)
+      break if monster_list.empty?
+      monster_name, monster_count = monster_list.sample
       monster = Monster.new(monster_name)
       new_xp = total_xp(monsters) + monster.xp
       break unless sufficient_space?(monster, space_available)
@@ -178,9 +178,11 @@ class Encounter
 
   # Do I make a method to pull monsters that have not yet hit max?
 
-  def available_monsters(encounter_data, monsters)
-    available_monsters = encounter_data.to_a.reject { |e| monster_limit_reached(monsters, e[0], e[1]) }
-    log "All monsters have reached their limit" if available_monsters.empty?
+  def available_monsters(encounter_data, monsters, xp_thresholds)
+    available_monsters = encounter_data.to_a.reject { |e| monster_limit_reached?(monsters, e[0], e[1]) }
+                                            .reject { |e| Monster.new(e[0]).xp > max_monster_xp(xp_thresholds)}
+    log "There are no more available monsters in XP range" if available_monsters.empty?
+    return available_monsters
   end
 
   def monster_limits_reached?(encounter_data, monsters)
@@ -207,6 +209,10 @@ class Encounter
     (monster_data.kind_of? Integer) ? monster_data : monster_data.split("-")[1].to_i
   end
 
+  def max_monster_xp(xp_thresholds)
+    xp_thresholds[:deadly] * $configuration["encounters"]["max_xp_threshold_multiplier"]
+  end
+
   def total_xp(monsters = @monster_groups.flatten)
     monsters.sum { |m| (m.kind_of? Monster) ? m.xp : Monster.new(m).xp }
   end
@@ -224,13 +230,13 @@ class Encounter
   end
 end
 
-e = Encounter.new(
-  {"goblin" => '1-4', "hobgoblin" => "0-3"},
-  {easy: 100, medium: 200, hard: 300, deadly: 400},
-  :medium,
-  20,
-  100,
-  200,
-  4
-  )
-puts e.monster_groups.to_s
+# e = Encounter.new(
+#   {"goblin" => '1-4', "hobgoblin" => "0-3"},
+#   {easy: 100, medium: 200, hard: 300, deadly: 400},
+#   :medium,
+#   20,
+#   100,
+#   200,
+#   4
+#   )
+# puts e.monster_groups.to_s

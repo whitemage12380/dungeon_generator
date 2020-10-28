@@ -134,14 +134,14 @@ class EncounterTable
   def level_appropriate_encounters()
     @level_appropriate_encounters = random_encounter_choices.select { |encounter|
       t = party_xp_thresholds()
-      encounter_allowed_xp?(encounter, t[:easy], t[:deadly] * max_xp_threshold_multiplier)
+      (encounter["probability"].nil? or encounter["probability"] > 0) and encounter_allowed_xp?(encounter, t[:easy], t[:deadly] * max_xp_threshold_multiplier)
     } if @level_appropriate_encounters.nil?
     return @level_appropriate_encounters
   end
 
   def encounter_allowed_xp?(encounter_data, min_xp, max_xp)
-    encounter_min_xp, encounter_max_xp = encounter_data["xp"] =~ /-/ ? encounter_data["xp"].split("-").collect { |x| x.to_i } : encounter_data["xp"].to_i
-    encounter_max_xp = encounter_min_xp if encounter_max_xp.nil?
+    raise "Could not find xp in encounter data: #{encounter_data.to_s}" if encounter_data["xp"].nil?
+    encounter_min_xp, encounter_max_xp = encounter_xp_values(encounter_data["xp"])
     return (encounter_min_xp < max_xp and encounter_max_xp > min_xp)
   end
 
@@ -152,7 +152,7 @@ class EncounterTable
   def encounter_configuration()
     if @encounter_configuration.nil?
       @encounter_configuration = $configuration.fetch("encounters", {})
-      # Defaults
+      # Defaults # TODO: This is not a good way to do this, as it defaults only for this class.
       defaults = {
         "dominant_inhabitants" => 1,
         "allies" => 1,
@@ -218,4 +218,4 @@ end
 e = EncounterTable.new()
 #puts e.generate_encounter_list
 #puts e.generate_dominant_inhabitants.to_s
-puts e.random_encounter(10)
+puts e.random_encounter(20)

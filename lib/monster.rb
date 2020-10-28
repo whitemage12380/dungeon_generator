@@ -8,7 +8,6 @@ class Monster
   @@monster_data = YAML.load(File.read("#{DATA_PATH}/monsters.yaml"))
 
   def initialize(name)
-    #puts YAML.load(File.read("#{DATA_PATH}/monsters.yaml"))[5]
     m = @@monster_data.find { |x| x["name"].downcase == name.downcase }
     #puts m.to_s
     @name = name
