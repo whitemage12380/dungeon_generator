@@ -1,0 +1,120 @@
+encounters:
+  - encounter:
+      Aboleth: 1
+      Chuul: 0-4
+    xp: 5900-10300
+  - encounter:
+      Chuul: 1-4
+    xp: 1100-4400
+  - encounter:
+      Deep Scion: 1-4
+    xp: 700-2800
+  - encounter:
+      Wastrilith: 1-3
+    xp: 10000-30000
+  - encounter:
+      Plesiosaurus: 1-4
+    xp: 450-1800
+  - encounter: Kraken
+    xp: 50000
+  - encounter:
+      Kuo-toa: 0-5
+      Kuo-toa Archpriest: 0-1
+      Kuo-toa Whip: 0-3
+    xp: 50-3000
+  - encounter:
+      Kuo-toa: 1-6
+    xp: 50-300
+  - encounter:
+      Kuo-toa Whip: 1-3
+      Kuo-toa: 0-3
+    xp: 700
+  - encounter:
+      Kuo-toa Archpriest: 1
+      Kuo-toa Whip: 1-3
+      Kuo-toa: 1-4
+    xp: 2550-3000
+  - encounter: Leviathan
+    xp: 25000
+  - encounter:
+      Merfolk: 1-6
+    xp: 25-150
+    special: true
+  - encounter:
+      Merrow: 1-6
+    xp: 450-1800
+  - encounter: Morkoth
+    xp: 7200
+  - encounter:
+      Hydroloth: 1-4
+    xp: 5000-20000
+  - encounter: Merrenoloth
+    xp: 700
+  - encounter:
+      Crocodile: 1-3
+    xp: 100-300
+  - encounter:
+      Dolphin: 1-6
+    xp: 25-150
+    special: true
+  - encounter: Dragon Turtle
+    xp: 18000
+  - encounter:
+      Sahuagin: 0-5
+      Sahuagin Priestess: 0-3
+      Sahuagin Baron: 0-1
+    xp: 100-3100
+  - encounter:
+      Sahuagin: 1-6
+    xp: 100-600
+  - encounter:
+      Sahuagin Priestess: 1-3
+      Sahuagin: 0-5
+    xp: 450-1850
+  - encounter:
+      Sahuagin Baron: 1
+      Sahuagin Priestess: 1-3
+      Sahuagin: 2-5
+    xp: 2450-3650
+  - encounter:
+      Sea Spawn: 1-6
+    xp: 200-1200
+  - encounter: Water Weird
+    xp: 700
+  - encounter:
+      Water Weird: 1-4
+    xp: 700-2800
+  - encounter:
+      Giant Crocodile: 1-2
+    xp: 1800-3600
+  - encounter:
+      Giant Octopus: 1-2
+    xp: 200-400
+  - encounter:
+      Giant Sea Horse: 1-2
+    xp: 100-200
+  - encounter:
+      Giant Shark: 1-2
+    xp: 1800-3600
+  - encounter:
+      Hunter Shark: 1-3
+    xp: 450-1350
+  - encounter:
+      Killer Whale: 1-2
+    xp: 700-1400
+    special: true
+  - encounter: Octopus
+    xp: 10
+    special: true
+  - encounter:
+      Quipper: 3-8
+    xp: 30-80
+  - encounter:
+      Reef Shark: 1-5
+    xp: 100-500
+  - encounter:
+      Swarm of Quippers: 1-6
+    xp: 200-1200
+  - encounter:
+      Kraken Priest: 1-2
+    xp: 1800-3600

@@ -1,4 +1,5 @@
 require_relative 'configuration'
+require_relative 'map'
 
 class MonsterGroup < Array
   include DungeonGeneratorHelper

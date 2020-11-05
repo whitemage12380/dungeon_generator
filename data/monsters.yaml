@@ -4649,11 +4649,12 @@
   type: fiend
   tags:
   - demon
-  alignment: shapechanger
-  challenge: 0
-  xp: 1
-  book: '200'
-  page: 0
+  - shapechanger
+  alignment: ce
+  challenge: 1
+  xp: 200
+  book: Monster Manual
+  page: 63
 - name: Quetzalcoatlus
   size: huge
   type: beast
@@ -5531,11 +5532,12 @@
   type: fiend
   tags:
   - demon
-  alignment: orc
-  challenge: 0
-  xp: 5
-  book: '1800'
-  page: 0
+  - orc
+  alignment: ce
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 186
 - name: Tarrasque
   size: gargantuan
   type: monstrosity
@@ -5993,51 +5995,56 @@
   type: humanoid
   tags:
   - human
-  alignment: shapechanger
-  challenge: 0
-  xp: 5
-  book: '1800'
-  page: 0
+  - shapechanger
+  alignment: ng
+  challenge: 5
+  xp: 1800
+  book: Monster Manual
+  page: 208
 - name: Wereboar
   size: medium
   type: humanoid
   tags:
   - human
-  alignment: shapechanger
-  challenge: 0
-  xp: 4
-  book: '1100'
-  page: 0
+  - shapechanger
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 209
 - name: Wererat
   size: medium
   type: humanoid
   tags:
   - human
-  alignment: shapechanger
-  challenge: 0
-  xp: 2
-  book: '450'
-  page: 0
+  - shapechanger
+  alignment: le
+  challenge: 2
+  xp: 450
+  book: Monster Manual
+  page: 209
 - name: Weretiger
   size: medium
   type: humanoid
   tags:
   - human
-  alignment: shapechanger
-  challenge: 0
-  xp: 4
-  book: '1100'
-  page: 0
+  - shapechanger
+  alignment: n
+  challenge: 4
+  xp: 1100
+  book: Monster Manual
+  page: 210
 - name: Werewolf
   size: medium
   type: humanoid
   tags:
   - human
-  alignment: shapechanger
-  challenge: 0
-  xp: 3
-  book: '700'
-  page: 0
+  - shapechanger
+  alignment: ce
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 211
 - name: White Abishai
   size: medium
   type: fiend
@@ -6220,11 +6227,12 @@
   type: fiend
   tags:
   - demon
-  alignment: shapechanger
-  challenge: 0
-  xp: 10
-  book: '5900'
-  page: 0
+  - shapechanger
+  alignment: ce
+  challenge: 10
+  xp: 5900
+  book: 'Monster Manual'
+  page: 65
 - name: Young Black Dragon
   size: large
   type: dragon
@@ -6356,21 +6364,23 @@
   type: monstrosity
   tags:
   - shapechanger
-  alignment: yuan-ti
-  challenge: 0
-  xp: 7
-  book: '2900'
-  page: 0
+  - yuan-ti
+  alignment: ne
+  challenge: 7
+  xp: 2900
+  book: Monster Manual
+  page: 308
 - name: Yuan-ti Anathema
   size: huge
   type: monstrosity
   tags:
   - shapechanger
-  alignment: yuan-ti
-  challenge: 0
-  xp: 12
-  book: '8400'
-  page: 0
+  - yuan-ti
+  alignment: ne
+  challenge: 12
+  xp: 8400
+  book: Volo's Guide to Monsters
+  page: 202
 - name: Yuan-ti Broodguard
   size: medium
   type: humanoid
@@ -6386,41 +6396,45 @@
   type: monstrosity
   tags:
   - shapechanger
-  alignment: yuan-ti
-  challenge: 0
-  xp: 3
-  book: '700'
-  page: 0
+  - yuan-ti
+  alignment: ne
+  challenge: 3
+  xp: 700
+  book: Monster Manual
+  page: 309
 - name: Yuan-ti Mind Whisperer
   size: medium
   type: monstrosity
   tags:
   - shapechanger
-  alignment: yuan-ti
-  challenge: 0
-  xp: 4
-  book: '1100'
-  page: 0
+  - yuan-ti
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 204
 - name: Yuan-ti Nightmare Speaker
   size: medium
   type: monstrosity
   tags:
   - shapechanger
-  alignment: yuan-ti
-  challenge: 0
-  xp: 4
-  book: '1100'
-  page: 0
+  - yuan-ti
+  alignment: ne
+  challenge: 4
+  xp: 1100
+  book: Volo's Guide to Monsters
+  page: 205
 - name: Yuan-ti Pit Master
   size: medium
   type: monstrosity
   tags:
   - shapechanger
-  alignment: yuan-ti
-  challenge: 0
-  xp: 5
-  book: '1800'
-  page: 0
+  - yuan-ti
+  alignment: ne
+  challenge: 5
+  xp: 1800
+  book: Volo's Guide to Monsters
+  page: 206
 - name: Yuan-ti Pureblood
   size: medium
   type: humanoid

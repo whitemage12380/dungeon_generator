@@ -10,28 +10,492 @@ encounters: # Default probability is 4
       Flying Sword: 0-4
       Rug of Smothering: 0-2
     xp: 50-1100
-  - probability: 3
-    encounter: Aboleth
-    xp: 5900
   - probability: 2
     encounter: Abominable Yeti
     xp: 5000
+  - encounter: Allip
+    xp: 1800
+  # Angel Encounters
+  - encounter:
+      Deva: 0-3
+      Planetar: 0-2
+      Solar: 0-1
+    xp: 5900-63000
+  - encounter:
+      Deva: 1-3
+    xp: 5900-11800
+  - encounter:
+      Planetar: 1-2
+    xp: 15000-30000
+  - encounter: Solar
+    xp: 33000
+  # End Angel Encounters
   - encounter:
       Ankheg: 1-4
     xp: 450-1800
-  - probability: 6
+  - encounter: Astral Dreadnought
+    xp: 33000
+  - encounter:
+      Azer: 1-4
+    xp: 450-1800
+  - encounter:
+      Balhannoth: 1
+      Drow Elite Warrior: 0-4
+    xp: 7200-14400
+  - encounter:
+      Banderhobb: 1-4
+      Night Hag: 0-1
+    xp: 1800-10000
+  - encounter:
+      Banshee: 1-2
+    xp: 1100-2200
+  - encounter:
+      Barghest: 1-4
+    xp: 1100-4400
+  - encounter:
+      Barghest: 1
+      Goblin: 0-4
+      Goblin Boss: 0-1
+      Hobgoblin: 0-3
+    xp: 1100-1500
+  - encounter:
+      Basilisk: 1-2
+    xp: 700-1400
+  - encounter: Behir
+    xp: 7200
+  # Beholder Encounters
+  - encounter:
+      Beholder: 1
+      Gazer: 0-3
+    xp: 10000-10300
+  - encounter:
+      Death Tyrant: 1
+      Zombie: 0-6
+      Beholder Zombie: 0-2
+    xp: 11800-16000
+  - encounter: 
+      Spectator: 1
+      Gazer: 0-3
+    xp: 700-1000
+  - encounter:
+      Death Kiss: 1-3
+    xp: 5900-17700
+  - encounter:
+      Gauth: 1-3
+    xp: 2300-6900
+  - encounter:
+      Gazer: 1-5
+    xp: 100-500
+  # End Beholder Encounters
+  - encounter: Berbalang
+    xp: 450
+    special: true
+  # Blight Encounters
+  - encounter:
+      Needle Blight: 0-4
+      Twig Blight: 0-4
+      Vine Blight: 0-4
+    xp: 25-600
+  # End Blight Encounters
+  - encounter:
+      Bodak: 1-4
+    xp: 2300-9200
+  - encounter:
+      Boggle: 1-4
+    xp: 25-100
+    special: true
+  - encounter: Boneclaw
+    xp: 8400
+  - encounter: Bulette
+    xp: 1800
+  - encounter:
+      Bullywug: 1-6
+      Giant Frog: 0-2
+    xp: 50-400
+  - encounter:
+      Cadaver Collector: 1
+      Specter: 0-5
+    xp: 11500-12500
+  - encounter:
+      Cambion: 1-3
+    xp: 1800-5400
+  - encounter:
+      Cambion: 1
+      Archer: 0-2
+      Bandit: 0-3
+      Cult Fanatic: 0-3
+      Cultist: 0-3
+    xp: 1800-3500
+  - dominant_probability: 0
+    probability: 6
     encounter:
-      Young Kruthik: 0-6
-      Adult Kruthik: 0-4
-      Kruthik Hive Lord: 0-1
-    xp: 25-3000
+      Carrion Crawler: 1-3
+    xp: 450-1350
+  - encounter: Catoblepas
+    xp: 1800
+  - encounter:
+      Cave Fisher: 1-4
+    xp: 700-2800
+  - encounter: Chimera
+    xp: 2300
+  - encounter:
+     Chitine: 0-4
+     Choldrith: 0-4
+    xp: 100-3000
+  - encounter:
+      Chitine: 1-2
+      Drow: 1-4
+    xp: 100-400
+  - probability: 6
+    encounter: Choker
+    xp: 100
+  - encounter:
+      Chuul: 1-4
+    xp: 1100-4400
+  - encounter: Cloaker
+    xp: 3900
+  - encounter:
+      Cockatrice: 1-4
+    xp: 100-400
+  - encounter: Coatl
+    xp: 1100
+    special: true
+  # Clockwork Encounters
+  - encounter:
+      Bronze Scout: 0-4
+      Iron Cobra: 0-4
+      Oaken Bolter: 0-4
+      Stone Defender: 0-4
+    xp: 200-10000
+  - encounter:
+      Centaur: 1-4
+    xp: 450-1800
+  # End Clockwork Encounters
+  - encounter:
+      Corpse Flower: 1-3
+    xp: 3900-11700
+  - encounter:
+      Cranium Rat: 1-4
+    xp: 10-40
+    special: true
+  - encounter: Swarm of Cranium Rats
+    xp: 1800
+  - encounter:
+      Crawling Claw: 1-5
+    xp: 10-50
+  - encounter:
+      Cyclops: 1-3
+    xp: 2300-6900
+  - encounter:
+      Darkling: 1-6
+      Darkling Elder: 0-2
+    xp: 100-1050
+  - encounter:
+      Darkmantle: 1-6
+    xp: 100-600
+  - encounter:
+      Death Dog: 1-5
+    xp: 200-1000
+  - encounter:
+      Death Knight: 1-2
+    xp: 18000-36000
+  - encounter:
+      Deathlock: 1-2
+    xp: 1100-2200
+  - encounter:
+      Deathlock Mastermind: 1 # TODO: Add appropriate minions
+      Deathlock: 0-2
+      Deathlock Wight: 0-2
+    xp: 3900-7000
+  - encounter:
+      Deathlock Wight: 1-2
+    xp: 700-1400
+  - encounter:
+      Deep Scion: 1-4
+    xp: 700-2800
+  - encounter: Demilich
+    xp: 20000
   # Demon Encounters
+  - encounter:
+      Balor: 0-1 # Monster Manual
+      Barlgura: 0-3
+      Chasme: 0-3
+      Dretch: 0-6
+      Glabrezu: 0-2
+      Goristro: 0-2
+      Hezrou: 0-4
+      Manes: 0-6
+      Marilith: 0-1
+      Nalfeshnee: 0-1
+      Quasit: 0-4
+      Shadow Demon: 0-2
+      Vrock: 0-4
+      Yochlol: 0-2
+      Babau: 0-4 # Volo's Guide
+      Maw Demon: 0-5
+      Shoosuva: 0-3
+      Alkilith: 0-2 # Mordenkainen's Tome
+      Armanite: 0-4
+      Bulezau: 0-4
+      Dybbuk: 0-2
+      Maurezhi: 0-3
+      Molydeus: 0-1
+      Nabassu: 0-2
+      Sibriex: 0-1
+      Wastrilith: 0-3
+    xp: 25-45000
+  - encounter:
+      Balor: 1
+      Vrock: 0-6
+      Hezrou: 0-4
+      Glabrezu: 0-3
+      Nalfeshnee: 0-2
+      Marilith: 0-1
+      Goristro: 0-1
+    xp: 22000-40000
+  - encounter:
+      Barlgura: 1-4
+    xp: 1800-7200
+  - encounter:
+      Chasme: 1-3
+      Glabrezu: 0-1
+      Hezrou: 0-1
+      Nalfeshnee: 0-1
+    xp: 2300-15000
+  - encounter:
+      Dretch: 2-6
+      Barlgura: 0-1
+    xp: 50-2000
+  - encounter: Glabrezu
+    xp: 5000
+  - encounter:
+      Goristro: 1
+      Bulezau: 0-4
+      Dybbuk: 0-4
+      Maurezhi: 0-2
+    xp: 18000-23800
+  - encounter:
+      Hezrou: 1-4
+      Marilith: 0-1
+      Nalfeshnee: 0-1
+    xp: 3900-30000
+  - encounter:
+      Manes: 2-6
+      Barlgura: 0-1
+    xp: 50-2000
+  - encounter: 
+      Marilith: 1-2
+    xp: 15000-30000
+  - encounter:
+      Nalfeshnee: 1-2
+    xp: 10000-20000
+  - encounter:
+      Quasit: 1-2
+    xp: 200-400
+  - encounter:
+      Shadow Demon: 1-3
+    xp: 1100-3300
+  - encounter:
+      Vrock: 1-4
+    xp: 2300-9200
+  - encounter: Yochlol
+    xp: 5900
+  - encounter:
+      Babau: 1-4
+    xp: 1100-4400
+  - encounter:
+      Maw Demon: 1-4
+    xp: 200-800
+  - encounter:
+      Shoosuva: 1-2
+      Gnoll: 0-4
+    xp: 3900-8200
+  - encounter: Alkilith
+    xp: 7200
+  - encounter:
+      Armanite: 2-4
+    xp: 5800-11600
+  - encounter:
+      Bulezau: 2-6
+      Barlgura: 0-1
+      Glabrezu: 0-1
+    xp: 1400-8000
+  - encounter:
+      Dybbuk: 1-3
+    xp: 1100-3300
+  - encounter:
+      Maurezhi: 1-2
+      Ghast: 0-3
+      Ghoul: 0-5
+    xp: 2900-7200
+  - encounter: Molydeus
+    xp: 33000
+  - encounter:
+      Nabassu: 1-2
+      Ghoul: 0-2
+    xp: 13000-26400
   - probability: 2
     encounter:
       Rutterkin: 1-3
       Abyssal Wretch: 0-5
     xp: 450-1600
+  - encounter:
+      Sibriex: 1
+      Abyssal Wretch: 0-4
+    xp: 20000-20200
+  - encounter:
+      Wastrilith: 1-3
+    xp: 10000-30000
+  # End Demon Encounters
+  - encounter:
+      Derro: 1-5
+      Derro Savant: 0-2
+    xp: 50-1600
   # Devil Encounters
+  - encounter:
+      Barbed Devil: 0-4
+      Bearded Devil: 0-4
+      Bone Devil: 0-3
+      Chain Devil: 0-3
+      Erinyes: 0-3
+      Horned Devil: 0-2
+      Ice Devil: 0-3
+      Imp: 0-3
+      Lemure: 0-4
+      Pit Fiend: 0-1
+      Spined Devil: 0-4
+      Amnizu: 0-1 # Mordenkainen's Tome of Foes
+      Hellfire Engine: 0-2
+      Merregon: 0-4
+      Narzugon: 0-3
+      Nupperibo: 0-4
+      Orthon: 0-3
+    xp: 20-45000
+  - encounter:
+      Barbed Devil: 1-4
+    xp: 1800-7200
+  - encounter:
+      Bearded Devil: 1-4
+    xp: 700-2800
+  - encounter:
+      Bone Devil: 1-3
+      Barbed Devil: 0-2
+      Bearded Devil: 0-2
+      Lemure: 0-2
+      Imp: 0-1
+    xp: 5000-15000
+  - encounter:
+      Chain Devil: 1-3
+      Imp: 0-1
+    xp: 3900-11900
+  - encounter:
+      Erinyes: 1-3
+      Bearded Devil: 0-2
+      Spined Devil: 0-4
+      Imp: 0-1
+    xp: 8400-30000
+  - encounter:
+      Horned Devil: 1-2
+      Imp: 0-1
+    xp: 7200-14600
+  - encounter:
+      Ice Devil: 1-3
+      Imp: 0-1
+    xp: 11500-34700
+  - encounter:
+      Imp: 1-3
+    xp: 200-600
+  - encounter:
+      Pit Fiend: 1
+      Barbed Devil: 0-2
+      Bearded Devil: 0-3
+      Erinyes: 0-1
+      Merregon: 0-2
+    xp: 25000-38000
+  - encounter:
+      Spined Devil: 2-6
+    xp: 900-2700
+  - encounter:
+      Black Abishai: 0-3
+      Blue Abishai: 0-3
+      Green Abishai: 0-2
+      Red Abishai: 0-1
+      White Abishai: 0-4
+    xp: 2300-35000
+  - encounter:
+      Amnizu: 1
+      Barbed Devil: 0-2
+      Bearded Devil: 0-3
+      Merregon: 0-3
+    xp: 20000-24000
+  - encounter: Hellfire Engine
+    xp: 15000
+  - encounter:
+      Merregon: 1-4
+      Erinyes: 0-1
+      Horned Devil: 0-1
+      Narzugon: 0-1
+    xp: 1100-11100
+  - encounter:
+      Narzugon: 1-4
+      Lemure: 0-4
+      Orthon: 0-2
+    xp: 10000-40000
+  - encounter:
+      Nupperibo: 1-4
+      Lemure: 0-4
+    xp: 100-500
+  - encounter: Orthon
+    xp: 5900
+  # End Devil Encounters
+  - encounter:
+      Devourerer: 1-3
+      Zombie: 0-3
+      Ghoul: 0-3
+      Wight: 0-2
+    xp: 10000-33000
+  # Dinosaur Encounters
+  - encounter:
+      Allosaurus: 1-4
+    xp: 450-1800
+  - encounter:
+      Anklyosaurus: 1-3
+    xp: 700-2100
+  - encounter:
+      Triceratops: 1-3
+    xp: 1800-5400
+  - encounter:
+      Pteranodon: 1-4
+    xp: 50-200
+  - encounter: Tyrannosaurus Rex
+    xp: 3900
+  - encounter: Brontosaurus
+    xp: 1800
+  - encounter:
+      Deinonychus: 1-5
+    xp: 200-1000
+  - encounter:
+      Dimetrodon: 1-4
+    xp: 50-200
+  - encounter:
+      Hadrosaurus: 1-3 # TODO: Add Hadroaurus carrying NPCs
+    xp: 50-150
+  - encounter:
+      Quetzalcoatlus: 1-2
+    xp: 450-900
+  - encounter:
+      Stegosaurus: 1-2
+    xp: 1100-2200
+  - encounter:
+      Velociraptor: 2-8
+    xp: 50-400
+  # End Dinosaur Encounters
+  - encounter:
+      Displacer Beast: 1-5
+    xp: 700-3500
+  - encounter: Doppelganger
+    xp: 700
+    special: true
   # Dragon Encounters
   - encounter: Adult Black Dragon
     xp: 11500
@@ -45,8 +509,6 @@ encounters: # Default probability is 4
     xp: 13000
   - encounter: Adult Copper Dragon
     xp: 11500
-  - encounter: Adult Faerie Dragon
-    xp: 450
   - encounter: Adult Gold Dragon
     xp: 18000
   - encounter: Adult Green Dragon
@@ -109,8 +571,6 @@ encounters: # Default probability is 4
     xp: 3900
   - encounter: Young Copper Dragon
     xp: 2900
-  - encounter: Young Faerie Dragon
-    xp: 200
   - encounter: Young Gold Dragon
     xp: 5900
   - encounter: Young Green Dragon
@@ -124,13 +584,1757 @@ encounters: # Default probability is 4
   - encounter: Young White Dragon
     xp: 2300
   # End Dragon Encounters
+  - encounter: Drider
+    xp: 2300
+  - encounter:
+      Drider: 1
+      Giant Spider: 1-5
+    xp: 2500-3300
+  # Drow Encounters
+  - encounter:
+      Drow: 0-5
+      Drow Elite Warrior: 0-3
+      Drow Mage: 0-3
+      Drow Priestess of Lolth: 0-2
+      Drow Arachnomancer: 0-2
+      Drow House Captain: 0-1
+      Drider: 0-2
+    xp: 50-25000
+  - encounter:
+      Drow: 1-6
+    xp: 50-300
+  - encounter:
+      Drow Elite Warrior: 1-3
+      Drow: 0-3
+    xp: 1800-5550
+  - encounter:
+      Drow Mage: 1-3
+      Drow Elite Warrior: 0-3
+      Drow: 0-3
+      Drider: 0-2
+    xp: 2900-12300
+  - encounter:
+      Drow Priestess of Lolth: 1-2
+      Drow Favored Consort: 0-1
+      Drow Elite Warrior: 1-2
+      Drow: 1-5
+      Drow Mage: 0-2
+      Drider: 0-2
+    xp: 5750-32000
+  - encounter: Drow Favored Consort
+    xp: 20000
+  - encounter:
+      Drow House Captain: 1
+      Drow Elite Warrior: 1-2
+      Drow: 2-5
+      Drow Mage: 0-2
+    xp: 6900-14000
+  - encounter:
+      Drow Inquisitor: 1-3
+    xp: 11500-34500
+  - encounter:
+      Drow Matron Mother: 1
+      Drow Priestess of Lolth: 1-2
+      Drow Elite Warrior: 1-3
+      Drow Mage: 1-3
+      Drow: 0-6
+    xp: 33600-40400
+  - encounter:
+      Drow Shadowblade: 1-3
+      Shadow Demon: 0-1
+    xp: 7200-22700
+  # End Drow Encounters
+  - encounter: Dryad
+    xp: 200
+    special: true
+  # Duergar Encounters
+  - encounter:
+      Duergar: 0-5
+      Duergar Despot: 0-3
+      Duergar Hammerer: 0-3
+      Duergar Kavalrachni: 0-4
+      Duergar Mind Master: 0-2
+      Duergar Screamer: 0-3
+      Duergar Soulblade: 0-3
+      Duergar Stone Guard: 0-2
+      Duergar Warlord: 0-1
+      Duergar Xarrorn: 0-3
+    xp: 200-34000
+  - encounter:
+      Duergar: 1-5
+    xp: 200-1000
+  - encounter:
+      Duergar Despot: 1-3
+      Duergar: 0-2
+    xp: 8400-25600
+  - encounter:
+      Duergar Hammerer: 0-3
+      Duergar Screamer: 0-3
+      Duergar: 0-2
+    xp: 900-1800
+  - encounter:
+      Duergar Kavalrachni: 1-3
+      Duergar: 0-2
+    xp: 450-1750
+  - encounter:
+      Duergar Mind Master: 1-2
+    xp: 450-900
+  - encounter:
+      Duergar Soulblade: 1-4
+      Duergar: 0-3
+    xp: 200-1000
+  - encounter:
+      Duergar Stone Guard: 1-4
+      Duergar Soul Blade: 0-3
+      Duergar Xarrorn: 0-2
+      Duergar: 0-3
+    xp: 450-2200
+  - encounter:
+      Duergar Warlord: 1
+      Duergar Despot: 0-3
+      Duergar Hammerer: 0-3
+      Duergar Kavalrachni: 0-4
+      Duergar Screamer: 0-3
+      Duergar Soulblade: 0-3
+      Duergar Stone Guard: 0-2
+      Duergar Xarrorn: 0-3
+    xp: 3000-16000
+  # End Duergar Encounters
+  - encounter:
+      Eidolon: 1-3
+    xp: 8400-25200
+  # Eladrin Encounters
+  - encounter:
+      Autumn Eladrin: 0-3
+      Spring Eladrin: 0-3
+      Summer Eladrin: 0-3
+      Winter Eladrin: 0-3
+    xp: 5900-35400
+  # End Eladrin Encounters
+  # Elemental Encounters
+  - encounter:
+      Air Elemental: 1-3
+    xp: 1800-5400
+  - encounter:
+      Earth Elemental: 1-3
+    xp: 1800-5400
+  - encounter:
+      Fire Elemental: 1-3
+    xp: 1800-5400
+  - encounter:
+      Water Elemental: 1-3
+    xp: 1800-5400
+  - encounter:
+      Air Elemental: 0-2
+      Earth Elemental: 0-2
+      Fire Elemental: 0-2
+      Water Elemental: 0-2
+    xp: 1800-7200
+  - encounter:
+      Air Elemental Myrmidon: 1-3
+    xp: 2900-8700
+  - encounter:
+      Earth Elemental Myrmidon: 1-3
+    xp: 2900-8700
+  - encounter:
+      Fire Elemental Myrmidon: 1-3
+    xp: 2900-8700
+  - encounter:
+      Water Elemental Myrmidon: 1-3
+    xp: 2900-8700
+  - encounter:
+      Air Elemental Myrmidon: 0-2
+      Earth Elemental Myrmidon: 0-2
+      Fire Elemental Myrmidon: 0-2
+      Water Elemental Myrmidon: 0-2
+    xp: 2900-11600
+  # End Elemental Encounters
+  - encounter: Empyrean
+    xp: 32500
+  - encounter:
+      Ettercap: 1-6
+    xp: 450-2700
+  - encounter: Ettin
+    xp: 1100
+  - encounter:
+      Ettin: 1
+      Orc: 0-4
+      Orc War Chief: 0-1
+      Orog: 0-2
+    xp: 1100-2200
+  # Faerie Dragon Encounters
+  - encounter: Young Faerie Dragon
+    xp: 200
+    special: true
+  - encounter: Adult Faerie Dragon
+    xp: 450
+    special: true
+  # End Faerie Dragon Encounters
+  # Firenewt Encounters
+  - encounter:
+      Firenewt Warrior: 1-6
+      Giant Strider: 0-3
+      Firenewt Warlock of Imix: 0-2
+    xp: 100-900
+  - encounter:
+      Firenewt Warrior: 1
+      Giant Strider: 1
+    xp: 300
+  - encounter:
+      Firenewt Warlock fo Imix: 1-3
+      Firenewt Warrior: 0-2
+    xp: 200-800
+  # End Firenewt Encounters
+  - encounter: Flail Snail
+    xp: 700
+  - encounter:
+      Flameskull: 1-3
+    xp: 1100-3300
+  - encounter:
+      Flameskull: 1-2
+      Necromancer: 1
+    xp: 6100-7200
+  - encounter:
+      Flumph: 1-8
+    xp: 25-200
+    special: true
+  - encounter: Fomorian
+    xp: 3900
+  - encounter: Froghemoth
+    xp: 5900
+  - encounter:
+      Froghemoth: 1
+      Bullywug: 1-5
+    xp: 5900-6150
+  # Fungi Encounters
+  - encounter:
+      Gas Spore: 1-4
+    xp: 100-400
+    special: true
+  - encounter:
+      Shrieker: 1-4
+    xp: 10-40
+    special: true
+  - encounter:
+      Violet Fungus: 1-4
+    xp: 50-200
+  # End Fungi Encounters
+  - encounter:
+      Galeb Duhr: 1-4
+    xp: 2300-9200
+    special: true
+  - encounter:
+      Gargoyle: 1-4
+    xp: 450-1800
+  # Genie Encounters
+  - encounter: Dao
+    xp: 7200
+  - encounter: Djinni
+    xp: 7200
+    special: true
+  - encounter: Efreeti
+    xp: 7200
+  - encounter: Marid
+    xp: 7200
+    special: true
+  # End Genie Encounters
+  - encounter: Ghost
+    xp: 1100
+    special: true
+  - encounter:
+      Ghost: 1-4
+    xp: 1100-4400
+  # Ghoul Encounters
+  - encounter:
+      Ghoul: 0-5
+      Ghast: 0-4
+    xp: 200-1800
+  # End Ghoul Encounters
+  # Skipping Giant Encounters due to size in dungeon
+  - encounter:
+      Gibbering Mouther: 1-3
+    xp: 450-1350
+  - encounter:
+      Giff: 1-4
+    xp: 700-2800
+  - encounter:
+      Girallon: 1-4
+    xp: 1100-4400
+  # Gith Encounters
+  - encounter:
+      Githyanki Warrior: 0-4
+      Githyanki Knight: 0-3
+      Githyanki Gish: 0-3
+      Githynaki Kith'rak: 0-1
+      Githyanki Supreme Commander: 0-1
+    xp: 700-30000
+  - encounter:
+      Githyanki Warrior: 1-4
+    xp: 700-2800
+  - encounter:
+      Githyank Knight: 1-3
+      Githyanki Warrior: 0-3
+    xp: 3900-13100
+  - encounter:
+      Githyanki Gish: 1-3
+    xp: 5900-17700
+  - encounter:
+      Githyanki Kith'rak: 1
+      Githyanki Gish: 0-1
+      Githyanki Knight: 0-3
+      Githyanki Warrior: 0-4
+    xp: 9800-23000
+  - encounter:
+      Githyanki Supreme Commander: 1
+      Githyanki Gish: 0-1
+      Githyanki Knight: 0-3
+      Githyanki Warrior: 0-4
+    xp: 13600-30000
+  - encounter:
+      Githzerai Monk: 0-4
+      Githzerai Zerth: 0-3
+      Githzerai Anarch: 0-1
+      Githzerai Enlightened: 0-2
+    xp: 450-30000
+  - encounter:
+      Githzerai Monk: 1-4
+    xp: 450-1800
+  - encounter:
+      Githzerai Zerth: 1-3
+      Githzerai Monk: 0-3
+    xp: 2300-7500
+  - encounter:
+      Githzerai Enlightened: 1-2
+      Githzerai Zerth: 0-2
+      Githzerai Monk: 0-3
+    xp: 5900-10500
+  - encounter:
+      Githzerai Anarch: 1
+      Githzerai Enlightened: 0-2
+      Githzerai Zerth: 0-2
+      Githzerai Monk: 0-3
+    xp: 15000-30000
+  # End Gith Encounters
+  # Gnoll Encounters
+  - encounter:
+      Gnoll: 0-5
+      Gnoll Pack Lord: 0-1
+      Gnoll Fang of Yeenoghu: 0-2
+      Flind: 0-4
+      Gnoll Flesh Gnawer: 0-4
+      Gnoll Hunter: 0-4
+      Gnoll Witherling: 0-5
+      Leucrotta: 0-2
+    xp: 100-4000
+  - encounter:
+      Gnoll: 1-5
+    xp: 100-500
+  - encounter:
+      Gnoll Pack Lord: 1
+      Gnoll: 1-5
+      Gnoll Fang of Yeenoghu: 0-2
+    xp: 550-2750
+  - encounter:
+      Gnoll: 0-3
+      Gnoll Fang of Yeenoghu: 0-1
+      Gnoll Flesh Gnawer: 0-3
+      Gnoll Hunter: 0-3
+      Leucrotta: 0-1
+    xp: 100-1600
+  - encounter:
+      Gnoll Witherling: 1-5
+    xp: 50-250
+  # End Gnoll Encounters
+  # Goblin Encounters
+  - probability: 8
+    encounter:
+      Goblin: 0-5
+      Goblin Boss: 0-1
+      Hobgoblin: 0-4
+      Hobgoblin Captain: 0-2
+      Hobgoblin Warlord: 0-1
+      Hobgoblin Devastator: 0-1
+      Hobgoblin Iron Shadow: 0-2
+      Bugbear: 0-4
+      Bugbear Chief: 0-1
+    xp: 50-4000
+  - encounter:
+      Goblin: 1-8
+    xp: 50-400
+  - encounter:
+      Goblin Boss: 1
+      Goblin: 1-6
+    xp: 250-500
+  - encounter:
+      Hobgoblin: 1-4
+      Goblin: 0-4
+    xp: 100-500
+  - encounter:
+      Hobgoblin Captain: 1
+      Hobgoblin: 2-4
+      Goblin: 0-3
+    xp: 900-1100
+  - encounter:
+      Hobgoblin Warlord: 1
+      Hobgoblin Captain: 1-2
+      Hobgoblin Devastator: 0-1
+      Hobgoblin: 1-4
+      Goblin: 0-3
+    xp: 3100-4000
+  - encounter:
+      Hobgoblin Devastator: 1-2
+      Hobgoblin Captain: 0-1
+      Hobgoblin: 0-4
+    xp: 1100-3000
+  - encounter:
+      Hobgoblin Iron Shadow: 1-4
+    xp: 450-1800
+  - encounter:
+      Bugbear: 1-4
+      Hobgoblin: 0-2
+      Goblin: 0-3
+    xp: 200-1000
+  - encounter:
+      Bugbear Chief: 1
+      Bugbear: 2-4
+      Hobgoblin: 0-3
+      Goblin: 0-3
+    xp: 1100-1800
+  # End Goblin Encounters
+  # Golem Encounters
+  - encounter:
+      Clay Golem: 0-2
+      Flesh Golem: 0-2
+      Iron Golem: 0-2
+      Stone Golem: 0-2
+    xp: 1800-30000
+  - encounter:
+      Clay Golem: 1-2
+    xp: 5000-10000
+  - encounter:
+      Flesh Golem: 1-2
+    xp: 1800-3600
+  - encounter:
+      Iron Golem: 1-2
+    xp: 15000-30000
+  - encounter:
+      Stone Golem: 1-2
+    xp: 5900-11800
+  # End Golem Encounters
+  - encounter:
+      Gorgon: 1-3
+    xp: 1800-5400
+  - encounter: Gray Render # Can ally to intelligent creature
+    xp: 8400
+  - encounter: Grell
+    xp: 700
+  - encounter:
+      Grell: 1-4
+    xp: 700-2800
+  - encounter:
+      Grick: 1-4
+      Grick Alpha: 0-1
+    xp: 450-4700
+  - encounter:
+      Griffon: 1-4
+    xp: 450-1800
+  - encounter:
+      Grimlock: 1-6
+    xp: 50-300
+  # Grung Encounters
+  - encounter:
+      Grung: 0-5
+      Grung Elite Warrior: 0-3
+      Grung Wildling: 0-4
+    xp: 50-1750
+  # End Grung Encounters
+  - encounter: Guard Drake # Can ally to intelligent creature
+    xp: 450
+  # Hag Encounters
+  - encounter:
+      Green Hag: 1
+      Night Hag: 1
+      Sea Hag: 1
+      Banderhobb: 0-1
+    xp: 2950-4750
+  - encounter:
+      Green Hag: 1
+      Night Hag: 1
+      Bheur Hag: 1
+      Banderhobb: 0-1
+    xp: 5400-7200
+  - encounter: Green Hag
+    xp: 700
+  - encounter: Night Hag
+    xp: 1800
+  - encounter: Sea Hag
+    xp: 450
+  - encounter:
+      Annis Hag: 1
+      Ogre: 0-2
+      Troll: 0-2
+    xp: 2300-6300
+  - encounter: Bheur Hag
+    xp: 2900
+  # End Hag Encounters
+  - encounter: Half-Red Dragon Veteran
+    xp: 1800
+  - encounter:
+      Harpy: 1-4
+    xp: 200-800
+  - encounter:
+      Hell Hound: 1-4
+    xp: 700-2800
+  - encounter:
+      Helmed Horror: 1-4
+    xp: 1100-4400
+  - encounter: Hippogriff
+    xp: 200
+  - encounter: Homunculus
+    xp: 10
+    special: true
+  - encounter:
+      Hook Horror: 1-5
+    xp: 700-3500
+  - encounter:
+      Howler: 1-5
+    xp: 3900-19500
+  - encounter: Hydra
+    xp: 3900
+  - encounter: Incubus
+    xp: 1100
+  - encounter: Succubus
+    xp: 1100
+  - encounter:
+      Intellect Devourer: 1-3
+    xp: 450-1350
+  - encounter:
+      Invisible Stalker: 1-3
+    xp: 2300-6900
+  - encounter:
+      Jackalwere: 1-4
+    xp: 100-400
+  - encounter:
+      Jackalwere: 1-3
+      Jackal: 2-4
+    xp: 120-340
+  - encounter: Kenku
+    xp: 50
+    special: true
+  - encounter: Ki-rin
+    xp: 8400
+    special: true
+  # Kobold Encounters
+  - encounter:
+      Kobold: 0-6
+      Winged Kobold: 0-4
+      Kobold Dragonshield: 0-2
+      Kobold Inventor: 0-2
+      Kobold Scale Sorcerer: 0-2
+    xp: 25-1000
+  - encounter:
+      Kobold: 1-8
+    xp: 25-200
+  - encounter:
+      Winged Kobold: 1-5
+    xp: 50-250
+  - encounter:
+      Kobold Dragonshield: 1-2
+      Kobold Scale Sorcerer: 0-1
+      Kobold Inventor: 0-1
+      Kobold: 0-5
+    xp: 100-400
+  - encounter:
+      Kobold Scale Sorcerer: 1-2
+      Kobold Dragonshield: 0-1
+      Kobold Inventor: 0-1
+      Winged Kobold: 0-4
+    xp: 100-400
+  - encounter:
+      Kobold Inventor: 1-3
+      Kobold: 0-4
+      Winged Kobold: 0-3
+    xp: 50-300
+  # End Kobold Encounters
+  - encounter:
+      Korred: 1-4
+    xp: 2900-11600
+  - encounter: Kraken Priest
+    xp: 1800
+  - probability: 6
+    encounter:
+      Young Kruthik: 0-6
+      Adult Kruthik: 0-4
+      Kruthik Hive Lord: 0-1
+    xp: 25-3000
+  # Kuo-toa Encounters
+  - encounter:
+      Kuo-toa: 0-5
+      Kuo-toa Archpriest: 0-1
+      Kuo-toa Whip: 0-3
+    xp: 50-3000
+  - encounter:
+      Kuo-toa: 1-6
+    xp: 50-300
+  - encounter:
+      Kuo-toa Whip: 1-3
+      Kuo-toa: 0-3
+    xp: 700
+  - encounter:
+      Kuo-toa Archpriest: 1
+      Kuo-toa Whip: 1-3
+      Kuo-toa: 1-4
+    xp: 2550-3000
+  # End Kuo-toa Encounters
+  - encounter: Lamia
+    xp: 1100
+  - encounter:
+      Lamia: 1
+      Jackalwere: 0-4
+    xp: 1100-1500
+  - encounter:
+      Leucrotta: 1-4
+    xp: 700-2800
+  - encounter: Lich
+    xp: 33000
+  # Lizardfolk Encounters
+  - encounter:
+      Lizardfolk: 0-5
+      Lizardfolk Shaman: 0-1
+      Lizard King/Queen: 0-1
+    xp: 100-2400
+  - encounter:
+      Lizardfolk: 1-5
+    xp: 100-500
+  - encounter:
+      Lizardfolk Shaman: 1
+      Lizardfolk: 0-5
+    xp: 450-950
+  - encounter:
+      Lizard King/Queen: 1
+      Lizardfolk Shaman: 0-1
+      Lizardfolk: 1-5
+    xp: 1200-2050
+  # End Lizardfolk Encounters
+  - encounter:
+      Magmin: 1-5
+    xp: 100-500
+  - encounter:
+      Manticore: 1-3
+    xp: 700-2100
+  - encounter:
+      Manticore: 1
+      Hobgoblin Captain: 0-1
+      Hobgoblin: 0-4
+    xp: 900-1800
+  - encounter: Meazel
+    xp: 200
+  - encounter: Medusa
+    xp: 2300
+  - encounter:
+      Meenlock: 1-4
+    xp: 450-1800
+  # Mephit Encounters
+  - encounter:
+      Dust Mephit: 0-5
+      Ice Mephit: 0-5
+      Magma Mephit: 0-5
+      Mud Mephit: 0-5
+      Smoke Mephit: 0-5
+      Steam Mephit: 0-5
+    xp: 100-600
+  - encounter:
+      Dust Mephit: 1-5
+    xp: 100-500
+  - encounter:
+      Ice Mephit: 1-5
+    xp: 100-500
+  - encounter:
+      Mud Mephit: 1-5
+    xp: 50-250
+  - encounter:
+      Smoke Mephit: 1-5
+    xp: 50-250
+  - encounter:
+      Steam Mephit: 1-5
+    xp: 50-250
+  # End Mephit Encounters
+  - encounter: Mimic
+    xp: 450
+    special: true
+  # Mind Flayer Encounters
+  - dominant_probability: 5
+    encounter:
+      Mind Flayer: 0-4
+      Ulitharid: 0-2
+      Mindwitness: 0-3
+    xp: 1800-14000
+  - encounter:
+      Alhoon: 1-4
+    xp: 5900-23600
+  - probability: 1
+    dominant_probability: 4
+    encounter:
+      Elder Brain: 1
+      Mind Flayer: 0-4
+      Ulitharid: 0-2
+      Mindwitness: 0-3
+    xp: 11500-32000
+  - encounter: Mind Flayer Lich
+    xp: 41000
+  # End Mind Flayer Encounters
+  - encounter: Minotaur
+    xp: 700
+    Probability: 6
+  # Modron Encounters
+  - encounter:
+      Monodrone: 1-5
+      Duodrone: 1-5
+      Tridrone: 1-5
+      Quadrone: 1-5
+      Pentadrone: 1-5
+    xp: 50-2250
+  - encounter: Monodrone
+    xp: 25
+    special: true
+  # End Modron Encounters
+  # Mummy Encounters
+  - encounter: Mummy
+    xp: 700
+  - encounter:
+      Mummy: 1-4
+    xp: 700-2800
+  - encounter:
+      Mummy Lord: 1
+      Mummy: 0-4
+    xp: 13000-15800
+  # End Mummy Encounters
+  # Myconid Encounters
+  - encounter:
+      Myconid Sprout: 0-4
+      Myconid Adult: 0-4
+      Myconid Sovereign: 0-1
+    xp: 10-1100
+  - encounter:
+      Myconid Adult: 1-4
+    xp: 100-400
+  - encounter:
+      Myconid Soverign: 1
+      Myconid Adult: 1-4
+      Quaggoth Spore Servant: 0-1
+    xp: 550-1150
+  # End Myconid Encounters
+  # Naga Encounters
+  - encounter:
+      Bone Naga: 1-2
+    xp: 1100-2200
+  - encounter:
+      Spirit Naga: 1-2
+    xp: 3900-7800
+  - encounter:
+      Guardian Naga: 1-2
+    xp: 5900-11800
+  # End Naga Encounters
+  - encounter: Nagpa
+    xp: 18000
+  - encounter:
+      Neogi: 0-4
+      Neogi Master: 0-1
+    xp: 700-3900
+  - encounter: Neothelid
+    xp: 10000
+  # Nightmare Encounters
+  - encounter: Nightmare
+    xp: 700
+  - encounter:
+      Nightmare: 1
+      Death Knight: 1
+    xp: 18700
+  - encounter:
+      Nightmare: 1
+      Night Hag: 1
+    xp: 2500
+  - encounter:
+      Nightmare: 1
+      Bearded Devil: 1
+    xp: 1400
+  - encounter:
+      Nightmare: 1
+      Erinyes: 1
+    xp: 9100
+  # End Nightmare Encounters
+  - encounter: Nightwalker
+    xp: 25000
+  - encounter:
+      Nilbog: 1
+      Goblin: 0-3
+    xp: 200-350
+  - encounter:
+      Nothic: 1-3
+    xp: 450-1350
   - encounter:
       Oblex Spawn: 0-5
       Adult Oblex: 0-3
       Elder Oblex: 0-1
     xp: 50-11500
+  # Ogre Encounters
+  - encounter:
+      Ogre: 1-3
+    xp: 1350
+  - encounter:
+      Half-ogre: 1-3
+    xp: 200-600
+  - encounter:
+      Ogre Battering Ram: 0-2
+      Ogre Bolt Launcher: 0-2
+      Ogre Chain Brute: 0-2
+    xp: 450-4500
+  - encounter:
+      Ogre Howdah: 1
+      Goblin: 2-4
+      Ogre: 0-2
+      Ogre Battering Ram: 0-2
+      Ogre Bolt Launcher: 0-2
+      Ogre Chain Brute: 0-2
+    xp: 550-3500
+  # End Ogre Encounters
+  - encounter:
+      Oni: 1-3
+    xp: 2900-8700
+  - encounter:
+      Oni: 1
+      Night Hag: 1
+    xp: 4700
+  - encounter:
+      Oni: 1
+      Mage: 1
+    xp: 5200
+  # Ooze Encounters
+  - encounter:
+      Black Pudding: 0-3
+      Gelatinous Cube: 0-2
+      Gray Ooze: 0-3
+      Ochre Jelly: 0-3
+    xp: 100-4200
+  - encounter:
+      Black Pudding: 1-4
+    xp: 1100-4400
+  - encounter:
+      Gelatinous Cube: 1-3
+    xp: 450-1350
+  - encounter:
+      Gray Ooze: 1-4
+    xp: 100-400
+  - encounter:
+      Ochre Jelly: 1-4
+    xp: 450-1800
+  # End Ooze Encounters 
+  # Orc Encounters
+  - encounter:
+      Orc: 0-6
+      Orc War Chief: 0-1
+      Orc Eye of Gruumsh: 0-2
+      Orog: 0-3
+      Orc Blade of Ilneval: 0-1
+      Orc Claw of Luthic: 0-2
+      Orc Nurtured One of Yurtrus: 0-2
+      Orc Red Fang of Shargaas: 0-2
+      Tanarukk: 0-2
+    xp: 100-5000
+  - encounter:
+      Orc: 1-6
+    xp: 100-600
+  - encounter:
+      Orc War Chief: 1
+      Orc: 2-4
+      Orc Eye of Gruumsh: 0-2
+      Orc Blade of Ilneval: 0-1
+      Orc Claw of Luthic: 0-2
+      Orc Nurtured One of Yurtrus: 0-2
+    xp: 1100-4000
+  - encounter:
+      Orc Eye of Gruumsh: 1-3
+      Orc: 0-4
+    xp: 450-1650
+  - encounter:
+      Orc Blade of Ilneval: 1
+      Orc: 0-4
+      Orc Eye of Gruumsh: 0-2
+      Orc Claw of Luthic: 0-2
+      Orc Nurtured One of Yurtrus: 0-2
+    xp: 1100-3000
+  - encounter:
+      Orc Claw of Luthic: 1-3
+      Orc: 0-4
+    xp: 100-700
+  - encounter:
+      Orc Nurtured One of Yurtrus: 1-2
+    xp: 100-200
+  - encounter:
+      Orc Red Fang of Shargaas: 1-3
+      Giant Bat: 1-3
+    xp: 700-2250
+  - encounter:
+      Tanarukk: 1-3
+    xp: 1800-5400
+  # End Orc Encounters
+  - encounter: Otyugh
+    xp: 1800
+  - encounter:
+      Owlbear: 1-2
+    xp: 700-1400
+  - encounter: Pegasus
+    xp: 450
+    special: true
+  - encounter:
+      Peryton: 1-3
+    xp: 450-1350
+  - encounter:
+      Phase Spider: 1-4
+    xp: 700-2800
+  - encounter:
+      Piercer: 1-5
+    xp: 100-500
+  - encounter: Pixie
+    xp: 50
+    special: true
+  - encounter:
+      Pixie: 1-4
+    xp: 50-200
+    special: true
+  - encounter: Pseudodragon
+    xp: 50
+    special: true
+  - encounter: Purple Worm
+    xp: 13000
+  - encounter:
+      Quaggoth: 1-4
+      Quaggoth Thonot: 0-1
+    xp: 450-2500
+  - encounter:
+      Quaggoth: 1-4
+      Drow: 1-4
+      Drow Elite Warrior: 0-1
+    xp: 450-3600
+  - encounter:
+      Quickling: 1-4
+    xp: 200-800
+  - encounter:
+      Rakshasa: 1-2
+    xp: 10000-20000
+  - encounter: Redcap
+    xp: 700
+  - encounter:
+      Remorhaz: 0-2
+      Young Remorhaz: 0-3
+    xp: 1800-17600
+  - encounter:
+      Retriever: 1-2
+    xp: 11500-23000
+  - encounter:
+      Retriever: 1
+      Drow: 0-4
+      Drow Elite Warrior: 0-2
+      Drow Mage: 0-2
+    xp: 11500-17300
+  - encounter: Revenant
+    xp: 1800
+  - encounter:
+      Roper: 1-4
+    xp: 1800-7200
+  - encounter:
+      Rust Monster: 1-5
+    xp: 100-500
+  # Sahuagin Encounters
+  - encounter:
+      Sahuagin: 0-5
+      Sahuagin Priestess: 0-3
+      Sahuagin Baron: 0-1
+    xp: 100-3100
+  - encounter:
+      Sahuagin: 1-6
+    xp: 100-600
+  - encounter:
+      Sahuagin Priestess: 1-3
+      Sahuagin: 0-5
+    xp: 450-1850
+  - encounter:
+      Sahuagin Baron: 1
+      Sahuagin Priestess: 1-3
+      Sahuagin: 2-5
+    xp: 2450-3650
+  # End Sahuagin Encounters
+  # Salamander Encounters
+  - encounter:
+      Fire Snake: 0-4
+      Salamander: 0-4
+    xp: 200-7400
+  - encounter:
+      Salamander: 1-4
+    xp: 1800-7200
+  # End Salamander Encounters
+  - encounter:
+      Frost Salamander: 1-2
+    xp: 5000-10000
+  - encounter:
+      Satyr: 1-4
+    xp: 100-400
+  - encounter:
+      Scarecrow: 1-4
+    xp: 200-800
+  # Shadar-Kai Encounters
+  - encounter:
+      Gloom Weaver: 0-3
+      Shadow Dancer: 0-3
+      Soul Monger: 0-3
+    xp: 2900-21600
+  # End Shadar-Kai Encounters
+  - encounter:
+      Shadow: 1-4
+    xp: 100-400
+  - encounter:
+      Shadow Mastiff: 2-6
+    xp: 450-2700
+  - encounter: Shambling Mound
+    xp: 1800
+  - encounter:
+      Shield Guardian: 1
+      Mage: 0-1
+      Conjurer: 0-1
+    xp: 5200
+  - encounter:
+      Shield Guardian: 1
+      Archmage: 1
+    xp: 11300
+  - encounter: Skulk
+    xp: 100
+  - encounter:
+      Skull Lord: 1
+      Skeleton: 0-5
+      Zombie: 0-5
+    xp: 15000-15250
+  # Slaad Encounters
+  - encounter:
+      Red Slaad: 0-3
+      Blue Slaad: 0-3
+      Green Slaad: 0-3
+      Gray Slaad: 0-2
+      Death Slaad: 0-2
+    xp: 1800-20000
+  - encounter:
+      Red Slaad: 1-2
+      Blue Slaad: 1-2
+      Green Slad: 1-2
+    xp: 8600-17200
+  - encounter:
+      Red Slaad: 1-3
+    xp: 1800-5400
+  - encounter:
+      Blue Slaad: 1-3
+    xp: 2900-8700
+  - encounter:
+      Green Slaad: 1-3
+    xp: 3900-11700
+  - encounter:
+      Gray Slaad: 1-2
+    xp: 5000-10000
+  - encounter:
+      Death Slaad: 1-2
+    xp: 5900-11800
+  # End Slaad Encounters
+  - encounter: Slithering Tracker
+    xp: 700
+  # Sorrowsworn Encounters
+  - encounter:
+      Angry Sorrowsworn: 0-3
+      Hungry Sorrowsworn: 0-3
+      Lonely Sorrowsworn: 0-3
+      Lost Sorrowsworn: 0-3
+      Wretched Sorrowsworn: 0-6
+    xp: 3000-38000
+  - encounter: 
+      Angry Sorrowsworn: 1-3
+    xp: 10000-30000
+  - encounter:
+      Hungry Sorrowsworn: 1-3
+    xp: 7200-21600
+  - encounter:
+      Lonely Sorrowsworn: 1-3
+    xp: 5000-15000
+  - encounter:
+      Lost Sorrowsworn: 1-3
+    xp: 2900-8700
+  - encounter:
+      Wretched Sorrowsworn: 3-8
+    xp: 150-400
+  # End Sorrowsworn Encounters
+  - encounter:
+      Spawn of Kyuss: 1-6
+    xp: 1800-10800
+  - encounter: Specter
+    xp: 200
+  - encounter:
+      Specter: 1-4
+    xp: 200-800
+  - encounter: Specter (poltergeist)
+    xp: 450
+  # Sphinx Encounters
+  - encounter: Androsphinx
+    xp: 18000
+    special: true
+  - encounter: Gynosphinx
+    xp: 7200
+    special: true
+  # End Sphinx Encounters
+  - encounter:
+      Sprite: 1-6
+    xp: 50-300
+  # Star Spawn Encounters
+  - encounter:
+      Star Spawn Grue: 0-5
+      Star Spawn Hulk: 0-3
+      Star Spawn Larva Mage: 0-1
+      Star Spawn Mangler: 0-4
+      Star Spawn Seer: 0-2
+      Cultist: 0-4
+      Cult Fanatic: 0-2
+      Warlock of the Great Old One: 0-2
+    xp: 50-32000
+  - encounter:
+      Star Spawn Grue: 1-6
+    xp: 50-300
+  - encounter:
+      Star Spawn Hulk: 1-3
+      Star Spawn Grue: 0-4
+    xp: 5900-17900
+  - encounter:
+      Star Spawn Larva Mage: 1
+      Star Spawn Hulk: 0-2
+      Star Spawn Grue: 0-4
+      Star Spawn Mangler: 0-3
+      Star Spawn Seer: 0-2
+      Cultist: 0-4
+      Cult Fanatic: 0-2
+      Warlock of the Great Old One: 0-2
+    xp: 15000-32000
+  - encounter:
+      Star Spawn Mangler: 1-4
+      Cultist: 0-2
+      Cultist Fanatic: 0-2
+    xp: 1800-7200
+  - encounter:
+      Star Spawn Seer: 1-2
+      Star Spawn Hulk: 1-3
+      Warlock of the Great Old One: 0-2
+    xp: 10000-33000
+  # End Star Spawn Encounters
+  - encounter:
+      Female Steeder: 0-3
+      Male Steeder: 0-3
+    xp: 50-700
+  - encounter:
+      Female Steeder: 1-4
+    xp: 200-800
+  - encounter:
+      Male Steeder: 1-4
+    xp: 50-200
+  - encounter:
+      Steel Predator: 1-3
+    xp: 15000-45000
+  - encounter:
+      Stirge: 2-8
+    xp: 50-200
+  - encounter:
+      Stone Cursed: 1-3
+    xp: 200-600
+  - encounter:
+      Svirfneblin: 1-5
+      Xorn: 0-2
+    xp: 100-4000
+  # Sword Wraith Encounters
+  - encounter:
+      Sword Wraith Warrior: 1-5
+    xp: 700-3500
+  - encounter:
+      Sword Wraith Commander: 1
+      Sword Wraith Warrior: 1-5
+    xp: 3900-7400
+  # End Sword Wraith Encounters
+  - encounter: Thri-kreen
+    xp: 200
+  - encounter:
+      Tlincalli: 1-6
+    xp: 1800-10800
+  # Tortle Encounters
+  - encounter:
+      Tortle: 1-6
+    xp: 50-300
+  - encounter:
+      Tortle Druid: 1-3
+      Tortle: 0-4
+    xp: 450-1550
+  # End Tortle Encounters
+  - encounter:
+      Trapper: 1-3
+    xp: 700-2100
+  - encounter:
+      Treant: 1-3
+    xp: 5000-15000
+  - encounter:
+      Troglodyte: 1-6
+    xp: 50-300
+    probability: 7
+  # Troll Encounters
+  - encounter:
+      Troll: 0-2
+      Dire Troll: 0-2
+      Rot Troll: 0-2
+      Spirit Troll: 0-2
+      Venom Troll: 0-2
+    xp: 1800-28000
+  - encounter:
+      Troll: 1-3
+    xp: 1800-5400
+  - encounter:
+      Dire Troll: 1-2
+    xp: 10000-20000
+  - encounter:
+      Rot Troll: 1-3
+    xp: 5000-15000
+  - encounter:
+      Spirit Troll: 1-3
+    xp: 7200-21600
+  - encounter:
+      Venom Troll: 1-3
+    xp: 2900-8700
+  # End Troll Encounters
+  # Undead Encounters
+  - encounter:
+      Crawling Claw: 0-6
+      Skeleton: 0-6
+      Minotaur Skeleton: 0-3
+      Warhorse Skeleton: 0-3
+      Zombie: 0-6
+      Ogre Zombie: 0-3
+      Beholder Zombie: 0-2
+    xp: 10-2500
+  - encounter:
+      Skeleton: 0-5
+      Minotaur Skeleton: 0-3
+      Warhorse Skeleton: 0-3
+    xp: 50-1500
+  - encounter:
+      Skeleton: 1-6
+    xp: 50-300
+  - encounter:
+      Minotaur Skeelton: 1-3
+    xp: 450-1350
+  - encounter:
+      Warhorse Skeleton: 1-3
+      Skeleton: 1-4
+    xp: 100-500
+  - encounter:
+      Zombie: 0-5
+      Ogre Zombie: 0-3
+      Beholder Zombie: 0-1
+    xp: 50-2600
+  - encounter:
+      Zombie: 1-6
+    xp: 50-300
+  - encounter:
+      Ogre Zombie: 1-3
+    xp: 450-1350
+  - encounter:
+      Beholder Zombie: 1-2
+    xp: 1800-3600
+  - encounter:
+      Skeleton: 0-4
+      Zombie: 0-4
+      Crawling Claw: 0-4
+    xp: 50-400
+  # End Undead Encounters
+  - encounter:
+      Umber Hulk: 1-3
+    xp: 1800-5400
+  - encounter: Unicorn
+    xp: 1800
+    special: true
+  # Vampire Encounters
+  - encounter:
+      Vampire: 0-3
+      Vampire (spellcaster): 0-3
+      Vampire (warrior): 0-3
+      Vampire Spawn: 0-4
+    xp: 1800-52000
+  - encounter:
+      Vampire: 1
+      Vampire Spawn: 0-4
+    xp: 10000-17200
+  - encounter:
+      Vampire: 1-4
+    xp: 10000-40000
+  - encounter:
+      Vampire Spawn: 1-5
+    xp: 1800-9000
+  - encounter:
+      Vampire (spellcaster): 1
+      Vampire Spawn: 0-4
+    xp: 13000-20200
+  - encounter:
+      Vampire (warrior): 1
+      Vampire Spawn: 0-4
+    xp: 13000-20200
+  # End Vampire Encounters
+  - encounter: Vampiric Mist
+    xp: 700
+  - encounter:
+      Vargouille: 1-6
+    xp: 200-1200
+  # Vegepygmy Encounters
+  - encounter:
+      Vegepygmy: 1-5
+      Vegepygmy Chief: 0-1
+      Thorny: 0-3
+    xp: 50-1100
+  # End Vegepygmy Encounters
+  - encounter: Water Weird
+    xp: 700
+  - encounter:
+      Water Weird: 1-4
+    xp: 700-2800
+  - encounter:
+      Wood Woad: 1-4
+    xp: 1800-7200
+  - encounter:
+      Xvart: 3-8
+      Xvart Warlock of Raxivort: 0-2
+    xp: 25-500
+  - encounter:
+      Yeth Hound: 1-4
+    xp: 1100-5500
+  - encounter:
+      Yeth Hound: 1-4
+      Necromancer: 1
+    xp: 6100-10500
+  - encounter:
+      Yeth Hound: 1-4
+      Night Hag: 1
+    xp: 2900-7300
+  - encounter:
+      Yeth Hound: 1-4
+      Vampire: 1
+    xp: 11100-15500
+  - encounter:
+      Wight: 1-5
+      Zombie: 0-5
+    xp: 700-3700
+  - encounter:
+      Will-o-wisp: 1-3
+    xp: 450-1350
+  - encounter:
+      Wraith: 1-4
+      Specter: 0-4
+    xp: 1800-7600
+  - encounter:
+      Wyvern: 1-3
+    xp: 2300-6900
+  - encounter:
+      Xorn: 1-4
+    xp: 1800-7200
+  - encounter:
+      Yeti: 1-4
+    xp: 700-2800
+  - encounter: Abominable Yeti
+    xp: 5000
+  # Yuan-ti Encounters
+  - encounter:
+      Yuan-ti Abomination: 0-4
+      Yuan-ti Malison: 0-4
+      Yuan-ti Pureblood: 0-4
+      Yuan-ti Anathema: 0-2
+      Yuan-ti Broodguard: 0-4
+      Yuan-ti Mind Whisperer: 0-3
+      Yuan-ti Nightmare Speaker: 0-3
+      Yuan-ti Pit Master: 0-1
+    xp: 700-30000
+  - encounter:
+      Yuan-ti Abomination: 1-4
+      Yuan-ti Malison: 0-3
+      Yuan-ti Pureblood: 0-3
+    xp: 2900-14000
+  - encounter:
+      Yuan-ti Malison: 1-5
+      Yuan-ti Pureblood: 0-3
+    xp: 700-3500
+  - encounter:
+      Yuan-ti Pureblood: 1-3
+    xp: 200-600
+  - encounter:
+      Yuan-ti Anathema: 1-2
+      Yuan-ti Abomination: 0-3
+      Yuan-ti Malison: 0-3
+      Yuan-ti Pureblood: 0-3
+      Yuan-ti Mind Whisperer: 0-1
+      Yuan-ti Nightmare Speaker: 0-1
+    xp: 8400-25000
+  - encounter:
+      Yuan-ti Broodguard: 1-6
+    xp: 450-2700
+  - encounter:
+      Yuan-ti Mind Whisperer: 1-3
+      Yuan-ti Abomination: 0-3
+      Yuan-ti Malison: 0-3
+      Yuan-ti Pureblood: 0-3
+      Yuan-ti Nightmare Speaker: 0-1
+    xp: 1100-12000
+  - encounter:
+      Yuan-ti Nightmare Speaker: 1-3
+      Yuan-ti Abomination: 0-3
+      Yuan-ti Malison: 0-3
+      Yuan-ti Pureblood: 0-3
+    xp: 1100-12000
+  - encounter:
+      Yuan-ti Pit Master: 1
+      Yuan-ti Abomination: 0-3
+      Yuan-ti Malison: 0-3
+      Yuan-ti Pureblood: 0-3
+      Yuan-ti Mind Whisperer: 0-1
+      Yuan-ti Nightmare Speaker: 0-1
+    xp: 1800-13000
+  # End Yuan-ti Encounters
+  # Yugoloth Encounters
+  - encounter:
+      Arcanaloth: 0-2
+      Mezzoloth: 0-4
+      Nycaloth: 0-2
+      Ultraloth: 0-1
+      Dhergoloth: 0-4
+      Oinoloth: 0-1
+      Yagnoloth: 0-1
+    xp: 1800-30000
+  - encounter:
+      Canoloth: 1-3
+    xp: 3900-11700
+  - encounter: Merrenoloth
+    xp: 700
+  - encounter: Oinoloth
+    xp: 8400
+  # End Yugoloth Encounters
+  # Creature Encounters
+  - encounter:
+      Ape: 1-3
+    xp: 100-300
+  - encounter:
+      Aurochs: 1-4
+      Orc: 0-4
+    xp: 450-2200
+  - encounter: Awakened Shrub
+    xp: 10
+    special: true
+  - encounter: Awakened Tree
+    xp: 450
+    special: true
+  - encounter:
+      Axe Beak: 1-5
+    xp: 50-250
+  - encounter:
+      Baboon: 1-4
+    xp: 10-40
+    special: true
+  - encounter:
+      Badger: 1-4
+    xp: 10-40
+    special: true
+  - encounter:
+      Bat: 1-8
+    xp: 10-80
+    special: true
+  - encounter:
+      Black Bear: 1-3
+    xp: 100-300
+  - encounter:
+      Blink Dog: 1-4
+    xp: 50-200
+  - encounter:
+      Blood Hawk: 1-5
+    xp: 25-125
+  - encounter:
+      Boar: 1-3
+    xp: 50-150
+  - encounter:
+      Brown Bear: 1-3
+    xp: 200-600
+  - encounter:
+      Cat: 1-4
+    xp: 10-40
+    special: true
+  - encounter:
+      Cave Bear: 1-3
+    xp: 450-1350
+  - encounter:
+      Constrictor Snake: 1-5
+    xp: 50-250
+  - encounter:
+      Cow: 1-3
+    xp: 50-150
+    special: true
+  - encounter:
+      Rothe: 1-3
+    xp: 50-150
+    special: true
+  - encouter:
+      Deep Rothe: 1-3
+    xp: 50-150
+    special: true
+  - encounter:
+      Crocodile: 1-3
+    xp: 100-300
+  - encounter:
+      Deer: 1-2
+    xp: 10-20
+    special: true
+  - encounter:
+      Dire Wolf: 1-6
+    xp: 200-1200
+  - encounter:
+      Draft Horse: 1-3
+    xp: 50-150
+    special: true
+  - encounter:
+      Elephant: 1-3
+    xp: 1100-3300
+    special: true
+  - encounter:
+      Elk: 1-2
+    xp: 50-100
+    special: true
+  - encounter: Flying Snake
+    xp: 25
+    special: true
+  - encounter: 
+      Frog: 1-20
+    xp: 0
+    special: true
+  - encounter:
+      Giant Ape: 1-2
+    xp: 2900-5800
+  - encounter:
+      Giant Badger: 1-5
+    xp: 50-250
+  - encounter:
+      Giant Bat: 1-4
+    xp: 50-200
+  - encounter:
+      Giant Boar: 1-4
+    xp: 450-1800
+  - encounter:
+      Giant Centipede: 1-4
+    xp: 50-200
+  - encounter:
+      Giant Constrictor Snake: 1-2
+    xp: 450-900
+  - encounter:
+      Giant Crab: 1-4
+    xp: 25-100
+  - encounter:
+      Giant Crocodile: 1-2
+    xp: 1800-3600
+  - encounter: Giant Eagle
+    xp: 200
+  - encounter:
+      Giant Elk: 1-2
+    xp: 450-900
+  - encounter:
+      Giant Fire Beetle: 1-5
+    xp: 10-50
+  - encounter:
+      Giant Frog: 1-3
+    xp: 50-150
+  - encounter:
+      Giant Goat: 1-3
+    xp: 100-300
+  - encounter:
+      Giant Hyena: 1-4
+    xp: 200-800
+  - encounter:
+      Giant Lizard: 1-4
+    xp: 50-200
+  - encounter:
+      Giant Owl: 1-2
+    xp: 50-100
+  - encounter:
+      Giant Poisonous Snake: 1-5
+    xp: 50-250
+  - encounter:
+      Giant Rat: 1-5
+    xp: 25-125
+  - encounter:
+      Giant Scorpion: 1-3
+    xp: 700-2100
+  - encounter:
+      Giant Spider: 1-4
+    xp: 200-800
+  - encounter:
+      Giant Toad: 1-3
+    xp: 200-600
+  - encounter:
+      Giant Vulture: 1-2
+    xp: 200-400
+  - encounter:
+      Giant Wasp: 1-5
+    xp: 100-500
+  - encounter:
+      Giant Weasel: 1-5
+    xp: 25-125
+  - encounter:
+      Giant Wolf Spider: 1-4
+    xp: 50-200
+  - encounter:
+      Goat: 1-4
+    xp: 10-40
+    special: true
+  - encounter:
+      Hyena: 2-4
+    xp: 20-40
+  - encounter:
+      Lion: 0-2
+    xp: 200-400
+  - encounter:
+      Lizard: 1-6
+    xp: 10-60
+    special: true
+  - encounter:
+      Mastiff: 1-3
+    xp: 25-75
+    special: true
+  - encounter:
+      Ox: 1-3
+    xp: 150
+    special: true
+    xp: 100-200
+  - encounter: Panther
+    xp: 50
+  - encounter:
+      Poisonous Snake: 1-6
+    xp: 25-150
+  - encounter:
+      Polar Bear: 1-3
+    xp: 450-1350
+  - encounter:
+      Pony: 1-2
+    xp: 25-50
+    special: true
+  - encounter:
+      Rat: 1-6
+    xp: 10-60
+  - encounter:
+      Raven: 1-6
+    xp: 10-60
+    special: true
+  - encounter:
+      Rhinoceros: 1-2
+    xp: 450-900
+  - encounter:
+      Riding Horse: 1-3
+    xp: 50-150
+    special: true
+  - encounter: Saber-toothed Tiger
+    xp: 450
+  - encounter:
+      Scorpion: 3-6
+    xp: 30-60
+  - encounter:
+      Spider: 4-8
+    xp: 40-80
+    special: true
+  - encounter:
+      Stench Kow: 1-3
+    xp: 50-150
+    special: true
+  - encounter:
+      Swarm of Bats: 1-6
+    xp: 50-300
+  - encounter:
+      Swarm of Cranium Rats: 1-5
+    xp: 1800-9000
+  - encounter:
+      Swarm of Insects: 1-6
+    xp: 100-600
+  - encounter:
+      Swarm of Poisonous Snakes: 1-6
+    xp: 450-2700
+  - encounter:
+      Swarm of Rats: 1-6
+    xp: 50-300
+  - encounter:
+      Swarm of Ravens: 1-6
+    xp: 50-300
+  - encounter:
+      Swarm of Rot Grubs: 1-5
+    xp: 100-500
+  - encounter: Tiger
+    xp: 200
+  - encounter:
+      Warhorse: 1-2
+    xp: 100-200
+  - encounter:
+      Winter Wolf: 1-6
+    xp: 700-4200
+  - encounter:
+      Wolf: 1-6
+    xp: 50-300
+  - encounter:
+      Worg: 1-4
+    xp: 100-400
+  - encounter:
+      Worg: 1-2
+      Goblin: 0-4
+      Hobgoblin: 0-4
+    xp: 150-600
+  # End Creature Encounters
   # NPC Encounters
   - probability: 0
     encounter:
       Abjurer: 0-2
       Acolyte: 0-4
+      Apprentice Wizard: 0-3
+      Archdruid: 0-1
+      Archer: 0-4
+      Archmage: 0-1
+      Assassin: 0-4
+      Bandit: 0-6
+      Bandit Captain: 0-1
+      Bard: 0-3
+      Berserker: 0-3
+      Blackguard: 0-3
+      Champion: 0-2
+      Commonor: 0-2
+      Conjurer: 0-2
+      Cult Fanatic: 0-3
+      Cultist: 0-4
+      Diviner: 0-3
+      Druid: 0-4
+      Enchanter: 0-3
+      Evoker: 0-4
+      Gladiator: 0-4
+      Guard: 0-5
+      Illusionist: 0-3
+      Knight: 0-4
+      Mage: 0-4
+      Martial Arts Adept: 0-4
+      Master Thief: 0-2
+      Necromancer: 0-4
+      Noble: 0-4
+      Priest: 0-4
+      War Priest: 0-3
+      Scout: 0-3
+      Spy: 0-1
+      Swashbuckler: 0-4
+      Thug: 0-6
+      Transmuter: 0-3
+      Tribal Warrior: 0-6
+      Veteran: 0-4
+      Warlock of the Archfey: 0-3
+      Warlock of the Fiend: 0-3
+      Warlock of the Great Old One: 0-3
+      Warlord: 0-1
