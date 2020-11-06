@@ -2,6 +2,8 @@ require_relative 'configuration'
 require_relative 'map_object'
 require_relative 'chamber_proposal'
 require_relative 'exit_proposal'
+require_relative 'trap'
+require_relative 'trick'
 
 class Chamber < MapObject
   attr_reader :width, :length
@@ -24,7 +26,8 @@ class Chamber < MapObject
       @name, @description = MapGenerator.generate_chamber_name_and_description(map)
     end
     if $configuration["generate_chamber_contents"] == true and contents.nil?
-      @contents = MapGenerator.generate_chamber_contents(map)
+      #@contents = MapGenerator.generate_chamber_contents(map)
+      generate_contents()
     else
       @contents = contents ? contents : Hash.new()
     end
@@ -381,13 +384,67 @@ class Chamber < MapObject
     return exit_proposals
   end
 
+  def size()
+    @length * @width
+  end
+
   def size_category()
-    if (@length * @width) > 1600
+    if size > 1600
       return "large"
     else
       return "normal"
     end
   end
+
+  def generate_contents()
+    contents_yaml = random_yaml_element("chamber_contents")
+    contents = {
+      description: contents_yaml["description"],
+      hazards: [],
+      monsters: [],
+      obstacles: [],
+      traps: [],
+      treasure: [],
+      tricks: [],
+    }
+    return contents if contents_yaml["contents"].nil?
+    contents_yaml["contents"].each { |c|
+      case c
+      when /^monster/
+        category = c.split("_").last
+        #puts "category: #{category}"
+        #contents[:monsters] << MonsterGroup.new(category: category)
+        case category
+        when "dominant"
+          log "Dominant creatures not yet supported; using random encounter instead"
+          encounter = @map.encounter_table.random_encounter(size)
+        when "ally"
+          log "Dominant creatures not yet supported; using random encounter instead"
+          encounter = @map.encounter_table.random_encounter(size)
+        when "random"
+          encounter = @map.encounter_table.random_encounter(size)
+        else
+          raise "Unrecognized monster category: #{category}"
+        end
+        contents[:monsters] << encounter
+      when "hazard"
+        contents[:hazards] << random_yaml_element("hazards")["description"]
+      when "obstacle"
+        contents[:obstacles] << random_yaml_element("obstacles")["description"]
+      when "trap"
+        contents[:traps] << Trap.new()
+      when "trick"
+        contents[:tricks] << Trick.new()
+      when "treasure"
+        contents[:treasure] << c
+      else
+        raise "Unknown chamber content type: #{c}"
+      end
+    }
+    @contents = contents
+    return contents
+  end
+
 
   ######
   ### CLASS METHODS

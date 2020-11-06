@@ -43,11 +43,13 @@ class Encounter
           random_monsters_strategy_roll(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
         end
       ) unless monsters.count > 0 and finished?(xp_thresholds, xp_threshold_target, total_xp(monsters))
+      monster_group = MonsterGroup.new(monsters: monsters)
       log "Monster group created:"
-      log "  Monsters: #{monsters.collect{|m| m.name}.join(", ")}"
+      log "  Monsters: #{monster_group.grouped_monster_lines.join(",")}"
+      # #{monsters.collect{|m| m.name}.group_by(&:itself).transform_values(&:count).to_a.collect{|m| m[1] == 1 ? m[0] : "#{m[0]} x#{m[1]}"}.join(", ")}"
       log "  XP: #{total_xp(monsters)}"
       log "  Challenge: #{current_xp_threshold(xp_thresholds, total_xp(monsters)).to_s.pretty}"
-      @monster_groups << MonsterGroup.new(monsters: monsters)
+      @monster_groups << monster_group
     }
   end
 

@@ -1,14 +1,15 @@
 require_relative 'dungeon_generator_helper'
 require_relative 'encounter'
 require_relative 'monster'
+puts $LOADED_FEATURES
 
 class EncounterTable
   include DungeonGeneratorHelper
 
   attr_reader :dominant_inhabitants, :allies, :encounter_list, :encounters_chosen
 
-  def initialize()
-    generate()
+  def initialize(party_level: $configuration["party_level"], encounter_configuration: encounter_configuration())
+    generate(party_level: party_level, encounter_configuration: encounter_configuration())
   end
 
   def generate(party_level: $configuration["party_level"], encounter_configuration: encounter_configuration())
@@ -98,6 +99,10 @@ class EncounterTable
       next_encounter["encounter"] = [next_encounter["encounter"]] unless next_encounter["encounter"].kind_of? Array
       encounter_list << next_encounter
     end
+    log "Encounter List:"
+    encounter_list.each { |e|
+      log "  Encounter: #{e["encounter"].to_s}"
+    }
     return encounter_list.collect { |e| e.select { |k,v| ["encounter", "probability", "xp"].include? k }}
   end
 
@@ -124,6 +129,7 @@ class EncounterTable
     puts "XP Target: #{xp_threshold_target.to_s}"
     puts "Party level: #{$configuration["party_level"]}"
     puts "Party Number: #{$configuration["party_members"]}"
+    require_relative 'encounter'
     encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"])
     @encounters_chosen = Array.new if @encounters_chosen.nil?
     @encounters_chosen << encounter
@@ -191,31 +197,3 @@ class EncounterTable
     encounter_configuration.fetch("max_xp_threshold_multiplier", 1.1)
   end
 end
-
-    # def random_monsters(table, category)
-    #   arr = YAML.load(File.read("#{DATA_PATH}/monsters/#{table}.yaml"))[table][category]
-    #   group = weighted_random(arr)['encounter']
-    #   monster_list = Array.new()
-    #   case group
-    #   when String
-    #     monster_list << group
-    #   when Hash
-    #     group.each_pair {|monster, count_str|
-    #       if count_str.kind_of? Integer or count_str =~ /^\d+$/
-    #         count = count_str.to_i
-    #       else
-    #         min, max = count_str.split("-").collect {|n| n.to_i}
-    #         count = rand(min..max)
-    #       end
-    #       count.times { monster_list << monster }
-    #     }
-    #   else
-    #     raise "Incorrectly typed monster group: #{group.to_s}"
-    #   end
-    #   return monster_list
-    # end
-
-e = EncounterTable.new()
-#puts e.generate_encounter_list
-#puts e.generate_dominant_inhabitants.to_s
-puts e.random_encounter(20)

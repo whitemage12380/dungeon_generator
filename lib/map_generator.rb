@@ -165,40 +165,53 @@ class MapGenerator
       return purpose["name"], purpose["description"]
     end
 
-    def generate_chamber_contents(map = nil)
-      contents_yaml = random_yaml_element("chamber_contents")
-      contents = {
-        description: contents_yaml["description"],
-        hazards: [],
-        monsters: [],
-        obstacles: [],
-        traps: [],
-        treasure: [],
-        tricks: [],
-      }
-      return contents if contents_yaml["contents"].nil?
-      contents_yaml["contents"].each { |c|
-        case c
-        when /^monster/
-          category = c.split("_").last
-          puts "category: #{category}"
-          contents[:monsters] << MonsterGroup.new(category: category)
-        when "hazard"
-          contents[:hazards] << random_yaml_element("hazards")["description"]
-        when "obstacle"
-          contents[:obstacles] << random_yaml_element("obstacles")["description"]
-        when "trap"
-          contents[:traps] << Trap.new()
-        when "trick"
-          contents[:tricks] << Trick.new()
-        when "treasure"
-          contents[:treasure] << c
-        else
-          raise "Unknown chamber content type: #{c}"
-        end
-      }
-      return contents
-    end
+    # def generate_chamber_contents(map = nil)
+    #   contents_yaml = random_yaml_element("chamber_contents")
+    #   contents = {
+    #     description: contents_yaml["description"],
+    #     hazards: [],
+    #     monsters: [],
+    #     obstacles: [],
+    #     traps: [],
+    #     treasure: [],
+    #     tricks: [],
+    #   }
+    #   return contents if contents_yaml["contents"].nil?
+    #   contents_yaml["contents"].each { |c|
+    #     case c
+    #     when /^monster/
+    #       category = c.split("_").last
+    #       #puts "category: #{category}"
+    #       #contents[:monsters] << MonsterGroup.new(category: category)
+    #       case category # NEED CHAMBER SIZE AND ENCOUNTER TABLE OBJECT
+    #       when "dominant"
+    #         log "Dominant creatures not yet supported; using random encounter instead"
+    #         encounter = encounter_table.random_encounter(chamber_size)
+    #       when "ally"
+    #         log "Dominant creatures not yet supported; using random encounter instead"
+    #         encounter = encounter_table.random_encounter(chamber_size)
+    #       when "random"
+    #         encounter = encounter_table.random_encounter(chamber_size)
+    #       else
+    #         raise "Unrecognized monster category: #{category}"
+    #       end
+    #       contents[:monsters] << encounter
+    #     when "hazard"
+    #       contents[:hazards] << random_yaml_element("hazards")["description"]
+    #     when "obstacle"
+    #       contents[:obstacles] << random_yaml_element("obstacles")["description"]
+    #     when "trap"
+    #       contents[:traps] << Trap.new()
+    #     when "trick"
+    #       contents[:tricks] << Trick.new()
+    #     when "treasure"
+    #       contents[:treasure] << c
+    #     else
+    #       raise "Unknown chamber content type: #{c}"
+    #     end
+    #   }
+    #   return contents
+    # end
 
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]

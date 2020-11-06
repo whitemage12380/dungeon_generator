@@ -1,3 +1,6 @@
+# This is the legacy GUI code for the dungeon generator, relying on the Fox toolkit.
+# It is deprecated and will likely soon stop working.
+
 require 'fox16'
 require 'fox16/canvas'
 require 'fox16/colors'

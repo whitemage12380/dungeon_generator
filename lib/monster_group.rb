@@ -18,4 +18,16 @@ class MonsterGroup < Array
       @motivation = motivation
     end
   end
+
+  def grouped_monster_lines()
+    self.collect { |m| m.name }
+        .group_by(&:itself)
+        .transform_values(&:count)
+        .to_a
+        .collect { |m| m[1] == 1 ? m[0] : "#{m[0]} x#{m[1]}" }
+  end
+
+  def xp()
+    self.sum { |m| m.xp }
+  end
 end

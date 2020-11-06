@@ -2338,3 +2338,16 @@ encounters: # Default probability is 4
       Warlock of the Fiend: 0-3
       Warlock of the Great Old One: 0-3
       Warlord: 0-1
+  - encounter:
+      Apprentice Wizard: 0-4
+      Mage: 0-4
+      Archmage: 0-2
+      Abjurer: 0-3
+      Conjurer: 0-3
+      Diviner: 0-3
+      Enchanter: 0-3
+      Evoker: 0-3
+      Illusionist: 0-3
+      Necromancer: 0-3
+      Transmuter: 0-3
+    xp: 50-25000

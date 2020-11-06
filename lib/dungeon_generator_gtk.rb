@@ -18,12 +18,21 @@ class DungeonGeneratorContent < Gtk::Box
       label = Gtk::Label.new(content)
       pack_end(label)
     when :monsters
-      monster_group = content
+      monster_group = content.monster_groups.first
       labels = Array.new()
-      monster_group.each { |m|
-        label = Gtk::Label.new(m)
+      monster_group.uniq { |m| m.name }.each { |m|
+      
+      #monster_group.grouped_monster_lines.each { |l|
+        #monster = monster_group.find{|m| m.name = l.split.first
+        monster_count = monster_group.count { |n| n.name == m.name}
+        label = Gtk::Label.new((monster_count > 1) ? "#{m.name} x#{monster_count}" : m.name)
+        label.tooltip_text = "#{m.book} (p. #{m.page})"
+        #label.tooltip_text = "#{monster_group.find{|m| m.name = l.split.first}}"
         labels << label
       }
+      xp_label = Gtk::Label.new()
+      xp_label.markup = "<b>XP:</b> #{monster_group.xp}"
+      labels << xp_label
       unless monster_group.motivation.nil?
         motivation = Gtk::Label.new()
         motivation.markup = "<b>Motivation:</b> #{monster_group.motivation}"
@@ -180,7 +189,8 @@ class DungeonGeneratorInfoPanel < Gtk::Box
 
   def randomize_chamber_contents(map_object)
     return unless map_object.kind_of? Chamber
-    map_object.contents = MapGenerator.generate_chamber_contents(map_object.map)
+    #map_object.contents = MapGenerator.generate_chamber_contents(map_object.map)
+    map_object.generate_contents()
     display_map_object(map_object)
   end
 

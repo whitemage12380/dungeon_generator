@@ -503,4 +503,8 @@ TODO:
 Roadmap Order:
 - DONE - Starting Areas (excluding the difficult ones)
 - DONE - Stairs
+- Encounters - Multiple monster groups & relationships
+- Encounters - Allow special encounters regardless of xp if flag is on (use "Roll" strategy)
 - Chamber Purpose
+- Encounters - "Order" encounter-building strategy
+- Encounters - Increase chance of finish when monster count gets high
