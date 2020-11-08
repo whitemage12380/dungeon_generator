@@ -19,24 +19,12 @@ class DungeonGeneratorContent < Gtk::Box
       pack_end(label)
     when :monsters
       monster_group = content.monster_groups.first
-      labels = Array.new()
-      monster_group.uniq { |m| m.name }.each { |m|
-      
-      #monster_group.grouped_monster_lines.each { |l|
-        #monster = monster_group.find{|m| m.name = l.split.first
-        monster_count = monster_group.count { |n| n.name == m.name}
-        label = Gtk::Label.new((monster_count > 1) ? "#{m.name} x#{monster_count}" : m.name)
-        label.tooltip_text = "#{m.book} (p. #{m.page})"
-        #label.tooltip_text = "#{monster_group.find{|m| m.name = l.split.first}}"
-        labels << label
-      }
-      xp_label = Gtk::Label.new()
-      xp_label.markup = "<b>XP:</b> #{monster_group.xp}"
-      labels << xp_label
-      unless monster_group.motivation.nil?
-        motivation = Gtk::Label.new()
-        motivation.markup = "<b>Motivation:</b> #{monster_group.motivation}"
-        labels << motivation
+      labels = monster_group_labels(content.monster_groups[0])
+      if content.monster_groups.count == 2
+        relationship_label = Gtk::Label.new()
+        relationship_label.markup = "<b>#{content.relationship}</b>"
+        labels << relationship_label
+        labels.concat(monster_group_labels(content.monster_groups[1]))
       end
       labels.each { |l| pack_start(l) }
     when :traps
@@ -63,6 +51,25 @@ class DungeonGeneratorContent < Gtk::Box
       c.xalign = 0
       c.set_line_wrap(true)
     }
+  end
+
+  def monster_group_labels(monster_group)
+    labels = Array.new()
+    monster_group.uniq { |m| m.name }.each { |m|
+      monster_count = monster_group.count { |n| n.name == m.name}
+      label = Gtk::Label.new((monster_count > 1) ? "#{m.name} x#{monster_count}" : m.name)
+      label.tooltip_text = "#{m.book} (p. #{m.page})"
+      labels << label
+    }
+    xp_label = Gtk::Label.new()
+    xp_label.markup = "<b>XP:</b> #{monster_group.xp}"
+    labels << xp_label
+    unless monster_group.motivation.nil?
+      motivation = Gtk::Label.new()
+      motivation.markup = "<b>Motivation:</b> #{monster_group.motivation}"
+      labels << motivation
+    end
+    return labels
   end
 end
 

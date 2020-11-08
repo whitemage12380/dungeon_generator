@@ -354,6 +354,26 @@ Trick: object, effect
 
 ---------------
 
+Building encounters:
+Option 1;
+  Pull n encounters from the table
+  For each encounter, create monsters and figure out if they physically fit
+  UGH not continuing this approach, much more complex and lots of duplicated logic
+Option 2:
+  Pull n encounters from the table
+  Create the encounters
+  Throw away any encounters with 0 monsters
+  Give encounters probabilities:
+    - Total XP higher than max xp threshold: 1
+    - XP threshold does not match target: 2
+    - XP threshold matches target: 3
+  Repeat this if there are 2 monster groups for the encounter
+  Merge second monster group into first encounter
+
+IMPORTANT: Do I involve monster group probability instead of the flat 3-2-1 probability above? Probably. Min 1.
+
+---------------
+
 Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to disagreement about how "width right" works - left of starting square vs left of connector as a whole.
 Okay it looks like a problem with the cursor being passed in.
 RESOLVED. Turns out initial_cursor_pos provided bad coordinates for chambers facing South and West.
@@ -437,7 +457,7 @@ I, [2020-05-05T00:40:09.682009 #10445]  INFO -- : Type: Passage
 I, [2020-05-05T00:40:09.682392 #10445]  INFO -- : No incomplete connectors or doors for Passage 4
 I, [2020-05-05T00:40:09.682403 #10445]  INFO -- : Found existing connected map object
 I, [2020-05-05T00:40:09.682416 #10445]  INFO -- : Type: Passage
-RESOLVED PROBABLY. I haven't seen this pop up since fixing several other positioning bugs.
+RESOLVED. I haven't seen this pop up since fixing several other positioning bugs.
 
 Bug - Once, a tee, lined up to the edge of the map, had a missing wall where its right branch should've failed to draw forward (into the edge of the map) and walled itself off.
 RESOLVED. blocked_connector_behavior was using the wrong cursor to try to make the wall. I fixed it.
@@ -506,5 +526,7 @@ Roadmap Order:
 - Encounters - Multiple monster groups & relationships
 - Encounters - Allow special encounters regardless of xp if flag is on (use "Roll" strategy)
 - Chamber Purpose
+- Encounters - Dominant Inhabitants
+- Encounters - Allies
 - Encounters - "Order" encounter-building strategy
-- Encounters - Increase chance of finish when monster count gets high
+- Encounters - Increase chance of finish when monster count gets higher

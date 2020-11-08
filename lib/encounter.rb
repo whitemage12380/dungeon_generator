@@ -5,7 +5,7 @@ require_relative 'monster'
 class Encounter
   include DungeonGeneratorHelper
 
-  attr_reader :monster_groups, :probability
+  attr_reader :monster_groups, :probability, :relationship, :xp_threshold_target
 
   def initialize(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, probability)
     # Data includes each monster and a range of how many there can be of that monster.
@@ -16,6 +16,7 @@ class Encounter
     # Space available must be considered here, as we can't overcrowd a chamber.
     @monster_groups = Array.new
     @probability = probability
+    @xp_threshold_target = xp_threshold_target
     generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
   end
 
@@ -50,7 +51,15 @@ class Encounter
       log "  XP: #{total_xp(monsters)}"
       log "  Challenge: #{current_xp_threshold(xp_thresholds, total_xp(monsters)).to_s.pretty}"
       @monster_groups << monster_group
+      raise "More than 2 monster groups in an encounter are not supported" if @monster_groups.count > 2
     }
+    generate_monster_group_relationship()
+  end
+
+  def generate_monster_group_relationship()
+    return if @monster_groups.count == 1
+    @relationship = random_yaml_element("monster_relationships")["description"]
+    return @relationship
   end
 
   def minimum_monsters(encounter_data, space_available)
@@ -229,6 +238,16 @@ class Encounter
       return threshold if xp >= xp_thresholds[threshold]
     }
     return :trivial
+  end
+
+  def add_monster_group(monster_group, relationship = nil)
+    raise "Only 2 monster groups are currently supported in an encounter" if @monster_groups.count == 2
+    @monster_groups << monster_group
+    if relationship.nil?
+      generate_monster_group_relationship()
+    else
+      @relationship = relationship
+    end
   end
 end
 

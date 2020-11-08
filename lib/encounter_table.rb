@@ -106,12 +106,41 @@ class EncounterTable
     return encounter_list.collect { |e| e.select { |k,v| ["encounter", "probability", "xp"].include? k }}
   end
 
-  def random_encounter(space_available, encounter_list = @encounter_list)
-    e = weighted_random(encounter_list)
-    min_xp, max_xp = encounter_xp_values(e["xp"])
+  def random_encounter(chamber, encounter_list = @encounter_list)
+    # Allow input to be the chamber object or just the space available
+    # Currently all we need is the chamber size
+    space_available = (chamber.kind_of? Chamber) ? chamber.size : chamber
+    size_category = (space_available > 1600) ? "large" : "small"
+    encounter = random_monster_group(space_available, encounter_list)
+    if rand() < encounter_configuration["multiple_monster_group_chance"][size_category]
+      encounter.add_monster_group(random_monster_group(space_available, encounter_list).monster_groups[0])
+    end
+    log "Encounter Chosen:"
+    log "  #{encounter.monster_groups[0].grouped_monster_lines.join(",")}"
+    log "  #{encounter.monster_groups[1].grouped_monster_lines.join(",")}" if encounter.monster_groups.count == 2
+    log "  XP: #{encounter.total_xp} - #{encounter.current_xp_threshold(party_xp_thresholds)}"
+    @encounters_chosen = Array.new if @encounters_chosen.nil?
+    @encounters_chosen << encounter
+    return encounter
+  end
+
+  def random_monster_group(space_available, encounter_list = @encounter_list)
+    monster_group_proposal_count = 3
+    xp_threshold_target = random_xp_threshold_target()
+    monster_group_proposals = Array.new(monster_group_proposal_count) {
+      e = weighted_random(encounter_list)
+      min_xp, max_xp = encounter_xp_values(e["xp"])
+      encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"])
+      probability = 4 # Dummy statement. Must set probability appropriately. See notes.
+      {encounter: encounter, probability: probability}
+    }
+    return weighted_random(monster_group_proposals)[:encounter]
+  end
+
+  def random_xp_threshold_target()
     case encounter_configuration["xp_threshold_strategy"]
     when "random"
-      xp_threshold_target = weighted_random(
+      return weighted_random(
         encounter_configuration["xp_threshold_balance"].to_a.collect { |t|
           {threshold: t[0], probability: t[1]}
         }
@@ -122,19 +151,6 @@ class EncounterTable
     else
       raise "Unsupported XP threshold decision strategy: #{encounter_configuration(xp_threshold_strategy)}"
     end
-    # TODO: Try creating a handful of encounters and choosing the most appropriate one, since single-monster encounters
-    #       will not respect the target xp threshold
-    # TODO: Add chance of multiple monster groups (pulled from multiple encounters)
-    puts "XP Thresholds: #{party_xp_thresholds.to_s}"
-    puts "XP Target: #{xp_threshold_target.to_s}"
-    puts "Party level: #{$configuration["party_level"]}"
-    puts "Party Number: #{$configuration["party_members"]}"
-    require_relative 'encounter'
-    encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"])
-    @encounters_chosen = Array.new if @encounters_chosen.nil?
-    @encounters_chosen << encounter
-    return encounter
-    # TODO: Take action if an encounter fails to generate (e.g. too big)
   end
 
   def level_appropriate_encounters()

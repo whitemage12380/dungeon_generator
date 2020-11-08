@@ -8,6 +8,9 @@ encounters:
   encounter_list_choices: 30 # 20 # Only applies if encounter_list is custom
   maximum_chamber_occupancy_percent: 0.75
   max_xp_threshold_multiplier: 1.2
+  multiple_monster_group_chance:
+    small: 0.05
+    large: 0.15
   random_encounter_choice_list: all # Only applies if encounter_list is custom
   xp_threshold_balance:
     easy: 2
