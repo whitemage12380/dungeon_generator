@@ -9,7 +9,7 @@ class Monster
 
   def initialize(name)
     m = @@monster_data.find { |x| x["name"].downcase == name.downcase }
-    #puts m.to_s
+    raise "Could not find monster: #{name}" if m.nil? or m.empty?
     @name = name
     @size = m["size"]
     @type = m["type"]

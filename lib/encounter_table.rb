@@ -84,8 +84,6 @@ class EncounterTable
         log "Could not find sufficient valid encounters while generating the encounter list (size: #{encounter_list.count})"
         break
       end
-      puts possible_encounters.count
-      puts "Next encounter: #{next_encounter.to_s}"
       possible_encounters.delete(next_encounter)
       # Notes:
       #   Usually encounters in lists have random counts of each enemy. What we probably need to do
@@ -113,7 +111,7 @@ class EncounterTable
     size_category = (space_available > 1600) ? "large" : "small"
     encounter = random_monster_group(space_available, encounter_list)
     if rand() < encounter_configuration["multiple_monster_group_chance"][size_category]
-      encounter.add_monster_group(random_monster_group(space_available, encounter_list).monster_groups[0])
+      encounter.add_monster_group(random_monster_group(space_available).monster_groups[0])
     end
     log "Encounter Chosen:"
     log "  #{encounter.monster_groups[0].grouped_monster_lines.join(",")}"
@@ -124,17 +122,28 @@ class EncounterTable
     return encounter
   end
 
-  def random_monster_group(space_available, encounter_list = @encounter_list)
+  def random_monster_group(space_available, max_tries = 3, try = 1)
+    log "Attempting to find a suitable monster group, try #{try}"
     monster_group_proposal_count = 3
     xp_threshold_target = random_xp_threshold_target()
     monster_group_proposals = Array.new(monster_group_proposal_count) {
-      e = weighted_random(encounter_list)
+      e = weighted_random(@encounter_list)
       min_xp, max_xp = encounter_xp_values(e["xp"])
       encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"])
-      probability = 4 # Dummy statement. Must set probability appropriately. See notes.
+      probability = e.fetch("probability", 4)
+      probability = (probability * 0.75).to_i unless encounter.current_xp_threshold(party_xp_thresholds) == xp_threshold_target
+      probability = (probability * 0.75).to_i unless encounter.total_xp <= (party_xp_thresholds[:deadly] * max_xp_threshold_multiplier)
+      probability = 0 if encounter.monster_groups.nil? or encounter.monster_groups[0].nil?
       {encounter: encounter, probability: probability}
     }
-    return weighted_random(monster_group_proposals)[:encounter]
+    puts monster_group_proposals.to_s
+    if monster_group_proposals.any? { |mg| mg[:probability] > 0 }
+      return weighted_random(monster_group_proposals)[:encounter]
+    elsif try < max_tries
+      return random_monster_group(space_available, max_tries, try+1)
+    else
+      raise "Could not create an encounter after #{max_tries} tries. The encounter table is likely poor. In the future, this should be handled better than with an exception."
+    end
   end
 
   def random_xp_threshold_target()
@@ -157,7 +166,7 @@ class EncounterTable
     @level_appropriate_encounters = random_encounter_choices.select { |encounter|
       t = party_xp_thresholds()
       (encounter["probability"].nil? or encounter["probability"] > 0) and encounter_allowed_xp?(encounter, t[:easy], t[:deadly] * max_xp_threshold_multiplier)
-    } if @level_appropriate_encounters.nil?
+    }.collect { |e| {"probability" => 4}.merge(e) } if @level_appropriate_encounters.nil?
     return @level_appropriate_encounters
   end
 

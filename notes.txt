@@ -523,8 +523,11 @@ TODO:
 Roadmap Order:
 - DONE - Starting Areas (excluding the difficult ones)
 - DONE - Stairs
-- Encounters - Multiple monster groups & relationships
+- DONE - Encounters - Multiple monster groups & relationships
+- DONE - Encounters - Smarter encounter selection (pick from n encounters)
 - Encounters - Allow special encounters regardless of xp if flag is on (use "Roll" strategy)
+- Encounters - Allow (optionally) a handful of any-level encounters that always use the "roll" strategy
+- Treasure
 - Chamber Purpose
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
