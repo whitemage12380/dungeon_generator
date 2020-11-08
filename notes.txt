@@ -525,11 +525,11 @@ Roadmap Order:
 - DONE - Stairs
 - DONE - Encounters - Multiple monster groups & relationships
 - DONE - Encounters - Smarter encounter selection (pick from n encounters)
-- Encounters - Allow special encounters regardless of xp if flag is on (use "Roll" strategy)
-- Encounters - Allow (optionally) a handful of any-level encounters that always use the "roll" strategy
+- DONE - Encounters - Allow special encounters regardless of xp if flag is on (use "Roll" strategy)
 - Treasure
 - Chamber Purpose
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
 - Encounters - "Order" encounter-building strategy
 - Encounters - Increase chance of finish when monster count gets higher
+- Encounters - Allow (optionally) a handful of any-level encounters that always use the "roll" strategy

@@ -165,7 +165,12 @@ class EncounterTable
   def level_appropriate_encounters()
     @level_appropriate_encounters = random_encounter_choices.select { |encounter|
       t = party_xp_thresholds()
-      (encounter["probability"].nil? or encounter["probability"] > 0) and encounter_allowed_xp?(encounter, t[:easy], t[:deadly] * max_xp_threshold_multiplier)
+      # Reject if probability is 0
+      # Select if overlap exists between encounter xp range and xp threshold range
+      # Select regardless of xp if "special" is true and special encounters are respected in config
+      (((encounter["probability"].nil? or encounter["probability"] > 0) and
+              encounter_allowed_xp?(encounter, t[:easy], t[:deadly] * max_xp_threshold_multiplier)) or
+              (encounter_configuration["special_encounters"] == true and encounter["special"] == true))
     }.collect { |e| {"probability" => 4}.merge(e) } if @level_appropriate_encounters.nil?
     return @level_appropriate_encounters
   end
