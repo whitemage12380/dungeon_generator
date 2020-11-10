@@ -1,0 +1,140 @@
+---
+- name: "+3 Weapon"
+  table: weapon
+  probability: 10
+- name: Amulet of the Planes
+  probability: 2
+- name: Carpet of Flying
+  probability: 2
+- name: Crystal Ball
+  probability: 2
+- name: Ring of Regeneration
+  probability: 2
+- name: Ring of Shooting Stars
+  probability: 2
+- name: Ring of Telekinesis
+  probability: 2
+- name: Robe of Scintillating Colors
+  probability: 2
+- name: Robe of Stars
+  probability: 2
+- name: Rod of Absorption
+  probability: 2
+- name: Rod of Alertness
+  probability: 2
+- name: Rod of Security
+  probability: 2
+- name: "+3 Rod of the Pact Keeper"
+  probability: 2
+- name: Scimitar of Speed
+  probability: 2
+- name: "+3 Shield"
+  probability: 2
+- name: Staff of Fire
+  probability: 2
+- name: Staff of Frost
+  probability: 2
+- name: Staff of Power
+  probability: 2
+- name: Staff of Striking
+  probability: 2
+- name: Staff of Thunder and Lightning
+  probability: 2
+- name: Sword of Sharpness
+  probability: 2
+- name: Wand of Polymorph
+  probability: 2
+- name: "+3 Wand of the War Mage"
+  probability: 2
+- name: Adamantine Half Plate Armor
+  probability: 1
+- name: Adamantine Plate Armor
+  probability: 1
+- name: Animated Shield
+  probability: 1
+- name: Belt of Fire Giant Strength
+  probability: 1
+- name: Belt of Frost or Stone Giant Strength
+  probability: 1
+- name: "+1 Breastplate"
+  probability: 1
+- name: Breastplate of Resistance
+  probability: 1
+- name: Candle of Invocation
+  probability: 1
+- name: "+2 Chain Mail"
+  probability: 1
+- name: "+2 Chain Shirt"
+  probability: 1
+- name: Cloak of Arachnida
+  probability: 1
+- name: Dancing Sword
+  probability: 1
+- name: Demon Armor
+  probability: 1
+- name: Dragon Scale Mail
+  probability: 1
+- name: Dwarven Plate
+  probability: 1
+- name: Dwarven Thrower
+  probability: 1
+- name: Efreeti Bottle
+  probability: 1
+- name: Figurine of Wondrous Power, Obsidian Steed
+  probability: 1
+- name: Frost Brand
+  probability: 1
+- name: Helm of Brilliance
+  probability: 1
+- name: Horn of Valhalla, Bronze
+  probability: 1
+- name: Instrument of the Bards, Anstruth Harp
+  probability: 1
+- name: Ioun Stone, Absorption
+  probability: 1
+- name: Ioun Stone, Agility
+  probability: 1
+- name: Ioun Stone, Fortitude
+  probability: 1
+- name: Ioun Stone, Insight
+  probability: 1
+- name: Ioun Stone, Intellect
+  probability: 1
+- name: Ioun Stone, Leadership
+  probability: 1
+- name: Ioun Stone, Strength
+  probability: 1
+- name: "+2 leather armor"
+  probability: 1
+- name: Manual of Bodily Health
+  probability: 1
+- name: Manual of Gainful Exercise
+  probability: 1
+- name: Manual of Golems
+  probability: 1
+- name: Manual of Quickness of Action
+  probability: 1
+- name: Mirror of Life Trapping
+  probability: 1
+- name: Nine Lives Stealer
+  probability: 1
+- name: Oathbow
+  probability: 1
+- name: "+2 Scale Mail"
+  probability: 1
+- name: Spellguard Shield
+  probability: 1
+- name: "+1 Splint Armor"
+  probability: 1
+- name: Splint Armor of Resistance
+  probability: 1
+- name: "+1 Studded Leather Armor"
+  probability: 1
+- name: Studded Leather Armor of Resistance
+  probability: 1
+- name: Tome of Clear Thought
+  probability: 1
+- name: Tome of Leadership and Influence
+  probability: 1
+- name: Tome of Understanding
+  probability: 1

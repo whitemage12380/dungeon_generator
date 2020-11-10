@@ -1,0 +1,123 @@
+---
+- name: "+1 Weapon"
+  table: weapon
+  probability: 15
+- name: "+1 Shield"
+  probability: 3
+- name: Sentinel Shield
+  probability: 3
+- name: Amulet of Proof Against Detection and Location
+  probability: 2
+- name: Boots of Elvenkind
+  probability: 2
+- name: Boots of Striding and Springing
+  probability: 2
+- name: Bracers of Archery
+  probability: 2
+- name: Brooch of Shielding
+  probability: 2
+- name: Broom of Flying
+  probability: 2
+- name: Cloak of Elvenkind
+  probability: 2
+- name: Cloak of Protection
+  probability: 2
+- name: Gauntlets of Ogre Power
+  probability: 2
+- name: Hat of Disguise
+  probability: 2
+- name: Javelin of Lightning
+  probability: 2
+- name: Pearl of Power
+  probability: 2
+- name: "+1 Rod of the Pact Keeper"
+  probability: 2
+- name: Slippers of Spider Climbing
+  probability: 2
+- name: Staff of the Adder
+  probability: 2
+- name: Staff of the Python
+  probability: 2
+- name: Sword of Vengeance
+  probability: 2
+- name: Trident of Fish Command
+  probability: 2
+- name: Wand of Magic Missiles
+  probability: 2
+- name: "+1 Wand of the War Mage"
+  probability: 2
+- name: Wand of Web
+  probability: 2
+- name: Weapon of Warning
+  table: weapon
+  probability: 2
+- name: Adamantine Chain Mail
+  probability: 1
+- name: Adamantine Chain Shirt
+  probability: 1
+- name: Adamantine Scale Mail
+  probability: 1
+- name: Bag of Tricks, Gray
+  probability: 1
+- name: Bag of Tricks, Rust
+  probability: 1
+- name: Bag of Tricks, Tan
+  probability: 1
+- name: Boots of the Winterlands
+  probability: 1
+- name: Circlet of Blasting
+  probability: 1
+- name: Deck of Illusions
+  probability: 1
+- name: Eversmoking Bottle
+  probability: 1
+- name: Eyes of Charming
+  probability: 1
+- name: Eyes of the Eagle
+  probability: 1
+- name: Figurine of Wondrous Power, Silver Raven
+  probability: 1
+- name: Gem of Brightness
+  probability: 1
+- name: Gloves of Missile Snaring
+  probability: 1
+- name: Gloves of Swimming and Climbing
+  probability: 1
+- name: Gloves of Thievery
+  probability: 1
+- name: Headband of Intellect
+  probability: 1
+- name: Helm of Telepathy
+  probability: 1
+- name: Instrument of the Bards, Doss Lute
+  probability: 1
+- name: Instrument of the Bards, Fochlucan Bandore
+  probability: 1
+- name: Instrument of the Bards, Mac-Fuirmidh Cittern
+  probability: 1
+- name: Medallion of Thoughts
+  probability: 1
+- name: Necklace of Adaptation
+  probability: 1
+- name: Periapt of Wound Closure
+  probability: 1
+- name: Pipes of Haunting
+  probability: 1
+- name: Pipes of the Sewers
+  probability: 1
+- name: Ring of Jumping
+  probability: 1
+- name: Ring of Mind Shielding
+  probability: 1
+- name: Ring of Warmth
+  probability: 1
+- name: Ring of Water Walking
+  probability: 1
+- name: Quiver of Ehlonna
+  probability: 1
+- name: Stone of Good Luck
+  probability: 1
+- name: Wind Fan
+  probability: 1
+- name: Winged Boots
+  probability: 1

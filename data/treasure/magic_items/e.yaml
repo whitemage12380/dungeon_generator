@@ -1,0 +1,17 @@
+---
+- name: Spell Scroll (8th level)
+  table: spell_level_8
+  probability: 30
+- name: Potion of Storm Giant Strength
+  probability: 25
+- name: Potion of Supreme Healing
+  probability: 15
+- name: Spell Scroll (9th level)
+  table: spell_level_9
+  probability: 15
+- name: Universal Solvent
+  probability: 8
+- name: Arrow of Slaying
+  probability: 5
+- name: Sovereign Glue
+  probability: 2

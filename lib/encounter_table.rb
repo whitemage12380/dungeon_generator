@@ -133,6 +133,7 @@ class EncounterTable
       probability = e.fetch("probability", 4)
       probability = (probability * 0.75).to_i unless encounter.current_xp_threshold(party_xp_thresholds) == xp_threshold_target
       probability = (probability * 0.75).to_i unless encounter.total_xp <= (party_xp_thresholds[:deadly] * max_xp_threshold_multiplier)
+      probability = 1 if probability == 0
       probability = 0 if encounter.monster_groups.nil? or encounter.monster_groups[0].nil?
       {encounter: encounter, probability: probability}
     }

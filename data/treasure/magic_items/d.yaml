@@ -1,0 +1,36 @@
+---
+- name: Potion of Supreme Healing
+  probability: 20
+- name: Potion of Invisibility
+  probability: 10
+- name: Potion of Speed
+  probability: 10
+- name: Spell Scroll (6th level)
+  table: spell_level_6
+  probability: 10
+- name: Spell Scroll (7th level)
+  table: spell_level_7
+  probability: 7
+- name: "+3 Ammunition"
+  probability: 5
+- name: Oil of Sharpness
+  probability: 5
+- name: Potion of Flying
+  probability: 5
+- name: Potion of Cloud Giant Strength
+  probability: 5
+- name: Potion of Longevity
+  probability: 5
+- name: Potion of Vitality
+  probability: 5
+- name: Spell Scroll (8th level)
+  table: spell_level_8
+  probability: 5
+- name: Horseshoes of a Zephyr
+  probability: 3
+- name: Nolzur's Marvelous Pigments
+  probability: 3
+- name: Bag of Devouring
+  probability: 1
+- name: Portable Hole
+  probability: 1

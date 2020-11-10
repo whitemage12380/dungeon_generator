@@ -355,7 +355,7 @@ Trick: object, effect
 ---------------
 
 Building encounters:
-Option 1;
+Option 1:
   Pull n encounters from the table
   For each encounter, create monsters and figure out if they physically fit
   UGH not continuing this approach, much more complex and lots of duplicated logic
@@ -372,6 +372,17 @@ Option 2:
 
 IMPORTANT: Do I involve monster group probability instead of the flat 3-2-1 probability above? Probably. Min 1.
 
+---------------
+
+Strategies for treasure:
+Option 1:
+  Directly from the DMG. Create a hoard beforehand. Once dungeon is built, distribute treasure. I usually try to adhere as closely as possible to the DMG randomization, but this is kind of a boring approach. In most cases there would be either instances from a single magic item table, or no magic items at all. However, the DMG does propose you can roll several hoards to distribute.
+Option 2:
+  Find or produce random treasure tables to use in each treasure spot
+  Optional "mundane" item tables
+  Have "TreasureStash" objects. More than one can exist in a chamber.
+  Improve good treasure chances on chambers with tough monsters
+  Have minimum magic item count. If not met, distribute them across the dungeon.
 ---------------
 
 Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to disagreement about how "width right" works - left of starting square vs left of connector as a whole.

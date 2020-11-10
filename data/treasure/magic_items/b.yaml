@@ -1,0 +1,73 @@
+---
+- name: Potion of Greater Healing
+  probability: 15
+- name: Potion of Fire Breath
+  probability: 7
+- name: Potion of Resistance
+  probability: 7
+- name: Ammunition +1
+  probability: 5
+- name: Potion of Animal Friendship
+  probability: 5
+- name: Potion of Hill Giant Strength
+  probability: 5
+- name: Potion of Growth
+  probability: 5
+- name: Potion of Water Breathing
+  probability: 5
+- name: Spell Scroll (2nd level)
+  table: spell_level_2
+  probability: 5
+- name: Spell Scroll (3rd level)
+  table: spell_level_3
+  probability: 5
+- name: Bag of Holding
+  probability: 3
+- name: Keoghtom's ointment
+  probability: 3
+- name: Oil of Slipperiness
+  probability: 3
+- name: Dust of Disappearance
+  probability: 2
+- name: Dust of Dryness
+  probability: 2
+- name: Dust of Sneezing and Choking
+  probability: 2
+- name: Elemental Gem
+  probability: 2
+- name: Philter of love
+  probability: 2
+- name: Alchemy Jug
+  probability: 1
+- name: Cap of Water Breathing
+  probability: 1
+- name: Cloak of the Manta Ray
+  probability: 1
+- name: Driftglobe
+  probability: 1
+- name: Goggles of Night
+  probability: 1
+- name: Helm of Comprehending Languages
+  probability: 1
+- name: Immovable Rod
+  probability: 1
+- name: Lantern of Revealing
+  probability: 1
+- name: Mariner's Armor
+  probability: 1
+- name: Mithral Armor
+  probability: 1
+- name: Potion of Poison
+  probability: 1
+- name: Ring of Swimming
+  probability: 1
+- name: Robe of Useful items
+  probability: 1
+- name: Rope of Climbing
+  probability: 1
+- name: Saddle of the Cavalier
+  probability: 1
+- name: Wand of Magic Detection
+  probability: 1
+- name: Wand of Secrets
+  probability: 1

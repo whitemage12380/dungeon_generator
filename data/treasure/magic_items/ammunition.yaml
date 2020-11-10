@@ -1,0 +1,9 @@
+---
+- name: Arrow
+  probability: 50
+- name: Blowgun needle
+  probability: 5
+- name: Crossbow bolt
+  probability: 25
+- name: Sling bullet
+  probability: 20

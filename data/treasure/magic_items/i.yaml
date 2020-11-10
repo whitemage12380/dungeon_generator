@@ -1,0 +1,122 @@
+---
+- name: Defender
+  probability: 5
+- name: Hammer of Thunderbolts
+  probability: 5
+- name: Luck Blade
+  probability: 5
+- name: Sword of Answering
+  probability: 5
+- name: Holy Avenger
+  probability: 3
+- name: Ring of Djinni Summoning
+  probability: 3
+- name: Ring of Invisibility
+  probability: 3
+- name: Ring of Spell Turning
+  probability: 3
+- name: Rod of Lordly Might
+  probability: 3
+- name: Staff of the Magi
+  probability: 3
+- name: Vorpal sword
+  probability: 3
+- name: Belt of Cloud Giant Strength
+  probability: 2
+- name: "+2 breastPlate"
+  probability: 2
+- name: "+3 Chain Mail"
+  probability: 2
+- name: "+3 Chain Shirt"
+  probability: 2
+- name: Cloak of Invisibility
+  probability: 2
+- name: Crystal Ball (legendary version)
+  probability: 2
+- name: "+1 Half Plate Armor"
+  probability: 2
+- name: Iron Flask
+  probability: 2
+- name: "+3 Leather Armor"
+  probability: 2
+- name: "+1 Plate Armor"
+  probability: 2
+- name: Robe of the Archmagi
+  probability: 2
+- name: Rod of Resurrection
+  probability: 2
+- name: "+1 Scale Mail"
+  probability: 2
+- name: Scarab of Protection
+  probability: 2
+- name: "+2 Splint Armor"
+  probability: 2
+- name: "+2 Studded Leather Armor"
+  probability: 2
+- name: Well of Many Worlds
+  probability: 2
+- name: Magic Armor (roll d12)
+  probability: 1
+  roll:
+  - name: "+2 Half Plate Armor"
+    probability: 2
+  - name: "+2 Plate Armor"
+    probability: 2
+  - name: "+3 Studded Leather Armor"
+    probability: 2
+  - name: "+3 Breast Plate"
+    probability: 2
+  - name: "+3 Splint Armor"
+    probability: 2
+  - name: "+3 Half Plate Armor"
+    probability: 1
+  - name: "+3 Plate Armor"
+    probability: 1
+- name: Apparatus of Kwalish
+  probability: 1
+- name: Armor of Invulnerability
+  probability: 1
+- name: Belt of Storm Giant Strength
+  probability: 1
+- name: Cubic Gate
+  probability: 1
+- name: Deck of Many Things
+  probability: 1
+- name: Efreeti Chain
+  probability: 1
+- name: Half Plate Armor of Resistance
+  probability: 1
+- name: Horn of Valhalla, Iron
+  probability: 1
+- name: Instrument of the Bards, Ollamh Harp
+  probability: 1
+- name: Ioun Stone, Greater Absorption
+  probability: 1
+- name: Ioun Stone, Mastery
+  probability: 1
+- name: Ioun Stone, Regeneration
+  probability: 1
+- name: Plate Armor of Etherealness
+  probability: 1
+- name: Plate Armor of Resistance
+  probability: 1
+- name: Ring of Air Elemental Command
+  probability: 1
+- name: Ring of Earth Elemental Command
+  probability: 1
+- name: Ring of Fire Elemental Command
+  probability: 1
+- name: Ring of Three Wishes
+  probability: 1
+- name: Ring of Water Elemental Command
+  probability: 1
+- name: Sphere of Annihilation
+  probability: 1
+- name: Talisman of Pure Good
+  probability: 1
+- name: Talisman of the Sphere
+  probability: 1
+- name: Talisman of Ultimate Evil
+  probability: 1
+- name: Tome of the Stilled Tongue
+  probability: 1

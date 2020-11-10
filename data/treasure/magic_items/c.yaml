@@ -1,0 +1,59 @@
+---
+- name: Potion of Superior Healing
+  probability: 15
+- name: Spell Scroll (4th Level)
+  table: spell_level_4
+  probability: 7
+- name: Ammunition +2
+  probability: 5
+- name: Potion of Clairvoyance
+  probability: 5
+- name: Potion of Diminution
+  probability: 5
+- name: Potion of Gaseous Form
+  probability: 5
+- name: Potion of Frost Giant Strength
+  probability: 5
+- name: Potion of Stone Giant Strength
+  probability: 5
+- name: Potion of Heroism
+  probability: 5
+- name: Potion of Invulnerability
+  probability: 5
+- name: Potion of Mind Reading
+  probability: 5
+- name: Spell Scroll (5th Level)
+  table: spell_level_5
+  probability: 5
+- name: Elixir of Health
+  probability: 3
+- name: Oil of Etherealness
+  probability: 3
+- name: Potion of Fire Giant Strength
+  probability: 3
+- name: Quaal'S Feather Token
+  probability: 3
+- name: Scroll of Protection
+  probability: 3
+- name: Bag of Beans
+  probability: 2
+- name: Bead of Force
+  probability: 2
+- name: Chime of Opening
+  probability: 1
+- name: Decanter of Endless Water
+  probability: 1
+- name: Eyes of Minute Seeing
+  probability: 1
+- name: Folding Boat
+  probability: 1
+- name: Heward'S Handy Haversack
+  probability: 1
+- name: Horseshoes of Speed
+  probability: 1
+- name: Necklace of Fireballs
+  probability: 1
+- name: Periapt of Health
+  probability: 1
+- name: Sending Stones
+  probability: 1

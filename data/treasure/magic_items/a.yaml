@@ -1,0 +1,20 @@
+---
+- name: Potion of Healing
+  probability: 50
+- name: Spell Scroll (cantrip)
+  table: cantrips
+  probability: 10
+- name: Potion of Climbing
+  probability: 10
+- name: Spell Scroll (1st level)
+  table: spell_level_1
+  probability: 20
+- name: Spell Scroll (2nd level)
+  table: spell_level_2
+  probability: 4
+- name: Potion of Greater Healing
+  probability: 4
+- name: Bag of Holding
+  probability: 1
+- name: Driftglobe
+  probability: 1

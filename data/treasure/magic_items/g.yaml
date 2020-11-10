@@ -1,0 +1,194 @@
+---
+- name: "+2 Weapon"
+  table: weapon
+  probability: 11
+- name: Figurine of Wondrous Power (roll d8)
+  probability: 3
+  roll:
+  - name: Figurine of Wondrous Power, Bronze Griffon
+    probability: 1
+  - name: Figurine of Wondrous Power, Ebony Fly
+    probability: 1
+  - name: Figurine of Wondrous Power, Golden Lions
+    probability: 1
+  - name: Figurine of Wondrous Power, Ivory Goats
+    probability: 1
+  - name: Figurine of Wondrous Power, Marble Elephant
+    probability: 1
+  - name: Figurine of Wondrous Power, Onyx Dog
+    probability: 2
+  - name: Figurine of Wondrous Power, Serpentine Owl
+    probability: 1
+- name: Adamantine Breastplate
+  probability: 1
+- name: Adamantine Splint Armor
+  probability: 1
+- name: Amulet of Health
+  probability: 1
+- name: Armor of Vulnerability
+  probability: 1
+- name: Arrow-catching Shield
+  probability: 1
+- name: Belt of Dwarvenkind
+  probability: 1
+- name: Belt of Hill Giant Strength
+  probability: 1
+- name: Berserker Axe
+  probability: 1
+- name: Boots of Levitation
+  probability: 1
+- name: Boots of Speed
+  probability: 1
+- name: Bowl of Commanding Water Elementals
+  probability: 1
+- name: Bracers of Defense
+  probability: 1
+- name: Brazier of Commanding Fire Elementals
+  probability: 1
+- name: Cape of the Mountebank
+  probability: 1
+- name: Censer of Controlling Air Elementals
+  probability: 1
+- name: "+1 chain Mail"
+  probability: 1
+- name: Chain Mail of Resistance
+  probability: 1
+- name: "+1 Chain Shirt"
+  probability: 1
+- name: Chain Shirt of Resistance
+  probability: 1
+- name: Cloak of Displacement
+  probability: 1
+- name: Cloak of the Bat
+  probability: 1
+- name: Cube of Force
+  probability: 1
+- name: Daern's Instant Fortress
+  probability: 1
+- name: Dagger of Venom
+  probability: 1
+- name: Dimensional Shackles
+  probability: 1
+- name: Dragon Slayer
+  probability: 1
+- name: Elven Chain
+  probability: 1
+- name: Flame Tongue
+  probability: 1
+- name: Gem of Seeing
+  probability: 1
+- name: Giant Slayer
+  probability: 1
+- name: Glamoured Studded Leather
+  probability: 1
+- name: Helm of Teleportation
+  probability: 1
+- name: Horn of Blasting
+  probability: 1
+- name: Horn of Valhalla (Silver or Brass)
+  probability: 1
+- name: Instrument of the Bards, Canaith Mandolin
+  probability: 1
+- name: Instrument of the Bards, Cli Lyre
+  probability: 1
+- name: Ioun Stone, Awareness
+  probability: 1
+- name: Ioun Stone, Protection
+  probability: 1
+- name: Ioun Stone, Reserve
+  probability: 1
+- name: Ioun Stone, Sustenance
+  probability: 1
+- name: Iron Bands of Bilarro
+  probability: 1
+- name: "+1 Leather Armor"
+  probability: 1
+- name: Leather Armor of Resistance
+  probability: 1
+- name: Mace of Disruption
+  probability: 1
+- name: Mace of Smiting
+  probability: 1
+- name: Mace of Terror
+  probability: 1
+- name: Mantle of Spell Resistance
+  probability: 1
+- name: Necklace of Prayer Beads
+  probability: 1
+- name: Periapt of Proof against Poison
+  probability: 1
+- name: Ring of Animal Influence
+  probability: 1
+- name: Ring of Evasion
+  probability: 1
+- name: Ring of Feather Falling
+  probability: 1
+- name: Ring of Free Action
+  probability: 1
+- name: Ring of Protection
+  probability: 1
+- name: Ring of Resistance
+  probability: 1
+- name: Ring of Spell Storing
+  probability: 1
+- name: Ring of the Ram
+  probability: 1
+- name: Ring of X-ray Vision
+  probability: 1
+- name: Robe of Eyes
+  probability: 1
+- name: Rod of Rulership
+  probability: 1
+- name: "+2 Rod of the Pact Keeper"
+  probability: 1
+- name: Rope of Entanglement
+  probability: 1
+- name: "+1 Scale Mail"
+  probability: 1
+- name: Scale Mail of Resistance
+  probability: 1
+- name: "+2 Shield"
+  probability: 1
+- name: Shield of Missile Attraction
+  probability: 1
+- name: Staff of Charming
+  probability: 1
+- name: Staff of Healing
+  probability: 1
+- name: Staff of Swarming Insects
+  probability: 1
+- name: Staff of the Woodlands
+  probability: 1
+- name: Staff of Withering
+  probability: 1
+- name: Stone of Controlling Earth Elementals
+  probability: 1
+- name: Sun Blade
+  probability: 1
+- name: Sword of Life Stealing
+  probability: 1
+- name: Sword of Wounding
+  probability: 1
+- name: Tentacle Rod
+  probability: 1
+- name: Vicious Weapon
+  table: weapon
+  probability: 1
+- name: Wand of Binding
+  probability: 1
+- name: Wand of Enemy Detection
+  probability: 1
+- name: Wand of Fear
+  probability: 1
+- name: Wand of Fireballs
+  probability: 1
+- name: Wand of Lightning Bolts
+  probability: 1
+- name: Wand of Paralysis
+  probability: 1
+- name: "+2 Wand of the War Mage"
+  probability: 1
+- name: Wand of Wonder
+  probability: 1
+- name: Wings of Flying
+  probability: 1
