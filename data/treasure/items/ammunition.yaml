@@ -1,9 +1,9 @@
 ---
 - name: Arrow
   probability: 50
-- name: Blowgun needle
+- name: Blowgun Needle
   probability: 5
-- name: Crossbow bolt
+- name: Crossbow Bolt
   probability: 25
-- name: Sling bullet
+- name: Sling Bullet
   probability: 20

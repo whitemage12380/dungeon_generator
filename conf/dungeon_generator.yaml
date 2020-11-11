@@ -29,6 +29,10 @@ party_level: 8
 party_members: 4
 saved_map_directory: data/maps
 theme: university_in_limbo # random
+treasure:
+  initial_treasure_chance: 0.1
+  extra_treasure_chance: 0.1
+  extra_treasure_max: 3
 weights:
   align_weight: 1.0
   area_weight: 1.0
