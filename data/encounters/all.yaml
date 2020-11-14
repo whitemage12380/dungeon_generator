@@ -1624,7 +1624,7 @@ encounters: # Default probability is 4
   - encounter:
       Red Slaad: 1-2
       Blue Slaad: 1-2
-      Green Slad: 1-2
+      Green Slaad: 1-2
     xp: 8600-17200
   - encounter:
       Red Slaad: 1-3
@@ -2007,7 +2007,7 @@ encounters: # Default probability is 4
       Arcanaloth: 0-2
       Mezzoloth: 0-4
       Nycaloth: 0-2
-      Ultrlooth: 0-1
+      Ultroloth: 0-1
       Dhergoloth: 0-4
       Oinoloth: 0-1
       Yagnoloth: 0-1

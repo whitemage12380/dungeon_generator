@@ -1,0 +1,109 @@
+---
+- name: Alchemist’s supplies
+  worth: 50 gp
+  probability: 1
+- name: Brewer’s supplies
+  worth: 20 gp
+  probability: 1
+- name: Calligrapher's supplies
+  worth: 10 gp
+  probability: 1
+- name: Carpenter’s tools
+  worth: 8 gp
+  probability: 1
+- name: Cartographer’s tools
+  worth: 15 gp
+  probability: 1
+- name: Cobbler’s tools
+  worth: 5 gp
+  probability: 1
+- name: Cook’s utensils
+  worth: 1 gp
+  probability: 1
+- name: Glassblower’s tools
+  worth: 30 gp
+  probability: 1
+- name: Jeweler’s tools
+  worth: 25 gp
+  probability: 1
+- name: Leatherworker’s tools
+  worth: 5 gp
+  probability: 1
+- name: Mason’s tools
+  worth: 10 gp
+  probability: 1
+- name: Painter’s supplies
+  worth: 10 gp
+  probability: 1
+- name: Potter’s tools
+  worth: 10 gp
+  probability: 1
+- name: Smith’s tools
+  worth: 20 gp
+  probability: 1
+- name: Tinker’s tools
+  worth: 50 gp
+  probability: 1
+- name: Weaver’s tools
+  worth: 1 gp
+  probability: 1
+- name: Woodcarver’s tools
+  worth: 1 gp
+  probability: 1
+- name: Disguise kit
+  worth: 25 gp
+  probability: 1
+- name: Forgery kit
+  worth: 15 gp
+  probability: 1
+- name: Gaming set
+  worth: " gp"
+  probability: 1
+- name: Dice set
+  worth: 1 sp
+  probability: 1
+- name: Playing card set
+  worth: 5 sp
+  probability: 1
+- name: Herbalism kit
+  worth: 5 gp
+  probability: 1
+- name: Bagpipes
+  worth: 30 gp
+  probability: 1
+- name: Drum
+  worth: 6 gp
+  probability: 1
+- name: Dulcimer
+  worth: 25 gp
+  probability: 1
+- name: Flute
+  worth: 2 gp
+  probability: 1
+- name: Lute
+  worth: 35 gp
+  probability: 1
+- name: Lyre
+  worth: 30 gp
+  probability: 1
+- name: Horn
+  worth: 3 gp
+  probability: 1
+- name: Pan flute
+  worth: 12 gp
+  probability: 1
+- name: Shawm
+  worth: 2 gp
+  probability: 1
+- name: Viol
+  worth: 30 gp
+  probability: 1
+- name: Navigator’s tools
+  worth: 25 gp
+  probability: 1
+- name: Poisoner’s kit
+  worth: 50 gp
+  probability: 1
+- name: Thieves’ tools
+  worth: 25 gp
+  probability: 1

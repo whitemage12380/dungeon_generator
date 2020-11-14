@@ -1,0 +1,40 @@
+---
+- name: Padded armor
+  worth: 5 gp
+  probability: 2
+- name: Leather armor
+  worth: 10 gp
+  probability: 4
+- name: Studded leather armor
+  worth: 45 gp
+  probability: 3
+- name: Hide armor
+  worth: 10 gp
+  probability: 3
+- name: Chain shirt
+  worth: 50 gp
+  probability: 3
+- name: Scale mail
+  worth: 50 gp
+  probability: 3
+- name: Breastplate
+  worth: 400 gp
+  probability: 2
+- name: Half plate
+  worth: 750 gp
+  probability: 2
+- name: Ring mail
+  worth: 30 gp
+  probability: 3
+- name: Chain mail
+  worth: 75 gp
+  probability: 3
+- name: Splint armor
+  worth: 200 gp
+  probability: 2
+- name: Plate armor
+  worth: 1500 gp
+  probability: 1
+- name: Shield
+  worth: 10 gp
+  probability: 4

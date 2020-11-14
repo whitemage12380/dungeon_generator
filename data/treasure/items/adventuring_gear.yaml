@@ -1,0 +1,301 @@
+---
+- name: Abacus
+  worth: 2 gp
+  probability: 2
+- name: Acid (vial)
+  worth: 25 gp
+  probability: 6
+- name: Alchemist’s fire (flask)
+  worth: 50 gp
+  probability: 6
+- name: Arrows (20)
+  worth: 1 gp
+  probability: 6
+- name: Blowgun needles (50)
+  worth: 1 gp
+  probability: 4
+- name: Crossbow bolts (20)
+  worth: 1 gp
+  probability: 6
+- name: Sling bullets (20)
+  worth: 4 cp
+  probability: 6
+- name: Antitoxin (vial)
+  worth: 50 gp
+  probability: 8
+- name: Arcane focus (Crystal)
+  worth: 10 gp
+  probability: 2
+- name: Arcane focus (Orb)
+  worth: 20 gp
+  probability: 2
+- name: Arcane focus (Rod)
+  worth: 10 gp
+  probability: 2
+- name: Arcane focus (Staff)
+  worth: 5 gp
+  probability: 2
+- name: Arcane focus (Wand)
+  worth: 10 gp
+  probability: 2
+- name: Backpack
+  worth: 2 gp
+  probability: 4
+- name: Ball bearings (bag of 1,000)
+  worth: 1 gp
+  probability: 4
+- name: Barrel
+  worth: 2 gp
+  probability: 3
+- name: Basket
+  worth: 4 sp
+  probability: 3
+- name: Bedroll
+  worth: 1 gp
+  probability: 6
+- name: Bell
+  worth: 1 gp
+  probability: 5
+- name: Blanket
+  worth: 5 sp
+  probability: 4
+- name: Block and tackle
+  worth: 1 gp
+  probability: 2
+- name: Book
+  worth: 25 gp
+  probability: 7
+- name: Bottle, glass
+  worth: 2 gp
+  probability: 4
+- name: Bucket
+  worth: 5 cp
+  probability: 3
+- name: Caltrops (bag of 20)
+  worth: 1 gp
+  probability: 6
+- name: Candle
+  worth: 1 cp
+  probability: 6
+- name: Case, crossbow bolt
+  worth: 1 gp
+  probability: 4
+- name: Case, map or scroll
+  worth: 1 gp
+  probability: 4
+- name: Chain (10 feet)
+  worth: 5 gp
+  probability: 4
+- name: Chalk (1 piece)
+  worth: 1 cp
+  probability: 4
+- name: Chest
+  worth: 5 gp
+  probability: 4
+- name: Climber’s kit
+  worth: 25 gp
+  probability: 4
+- name: Clothes, common
+  worth: 5 sp
+  probability: 4
+- name: Clothes, costume
+  worth: 5 gp
+  probability: 4
+- name: Clothes, fine
+  worth: 15 gp
+  probability: 4
+- name: Clothes, traveler’s
+  worth: 2 gp
+  probability: 4
+- name: Component pouch
+  worth: 25 gp
+  probability: 3
+- name: Crowbar
+  worth: 2 gp
+  probability: 4
+- name: Druidic focus (Sprig of mistletoe)
+  worth: 1 gp
+  probability: 2
+- name: Druidic focus (Totem)
+  worth: 1 gp
+  probability: 2
+- name: Druidic focus (Wooden staff)
+  worth: 5 gp
+  probability: 2
+- name: Druidic focus (Yew wand)
+  worth: 10 gp
+  probability: 2
+- name: Fishing tackle
+  worth: 1 gp
+  probability: 2
+- name: Flask
+  worth: 2 cp
+  probability: 3
+- name: Tankard
+  worth: 2 cp
+  probability: 3
+- name: Grappling hook
+  worth: 2 gp
+  probability: 4
+- name: Hammer
+  worth: 1 gp
+  probability: 4
+- name: Hammer, sledge
+  worth: 2 gp
+  probability: 4
+- name: Healer’s kit
+  worth: 5 gp
+  probability: 8
+- name: Holy symbol (Amulet)
+  worth: 5 gp
+  probability: 3
+- name: Holy symbol (Emblem)
+  worth: 5 gp
+  probability: 3
+- name: Holy symbol (Reliquary)
+  worth: 5 gp
+  probability: 3
+- name: Holy water (flask)
+  worth: 25 gp
+  probability: 7
+- name: Hourglass
+  worth: 25 gp
+  probability: 4
+- name: Hunting trap
+  worth: 5 gp
+  probability: 4
+- name: Ink (1 ounce bottle)
+  worth: 10 gp
+  probability: 4
+- name: Ink pen
+  worth: 2 cp
+  probability: 4
+- name: Jug or pitcher
+  worth: 2 cp
+  probability: 4
+- name: Ladder (10-foot)
+  worth: 1 sp
+  probability: 4
+- name: Lamp
+  worth: 5 sp
+  probability: 4
+- name: Lantern, bullseye
+  worth: 10 gp
+  probability: 4
+- name: Lantern, hooded
+  worth: 5 gp
+  probability: 4
+- name: Lock
+  worth: 10 gp
+  probability: 4
+- name: Magnifying glass
+  worth: 100 gp
+  probability: 4
+- name: Manacles
+  worth: 2 gp
+  probability: 4
+- name: Mess kit
+  worth: 2 sp
+  probability: 4
+- name: Mirror, steel
+  worth: 5 gp
+  probability: 2
+- name: Oil (flask)
+  worth: 1 sp
+  probability: 5
+- name: Paper (one sheet)
+  worth: 2 sp
+  probability: 4
+- name: Parchment (one sheet)
+  worth: 1 sp
+  probability: 4
+- name: Perfume (vial)
+  worth: 5 gp
+  probability: 4
+- name: Pick, miner’s
+  worth: 2 gp
+  probability: 4
+- name: Piton
+  worth: 5 cp
+  probability: 4
+- name: Poison, basic (vial)
+  worth: 100 gp
+  probability: 7
+- name: Pole (10-foot)
+  worth: 5 cp
+  probability: 4
+- name: Pot, iron
+  worth: 2 gp
+  probability: 4
+- name: Potion of healing
+  worth: 50 gp
+  probability: 8
+- name: Pouch
+  worth: 5 sp
+  probability: 1
+- name: Quiver
+  worth: 1 gp
+  probability: 4
+- name: Ram, portable
+  worth: 4 gp
+  probability: 2
+- name: Rations (1 day)
+  worth: 5 sp
+  probability: 5
+- name: Robes
+  worth: 1 gp
+  probability: 4
+- name: Rope, hempen (50 feet)
+  worth: 1 gp
+  probability: 4
+- name: Rope, silk (50 feet)
+  worth: 10 gp
+  probability: 4
+- name: Sack
+  worth: 1 cp
+  probability: 4
+- name: Scale, merchant’s
+  worth: 5 gp
+  probability: 2
+- name: Sealing wax
+  worth: 5 sp
+  probability: 3
+- name: Shovel
+  worth: 2 gp
+  probability: 4
+- name: Signal whistle
+  worth: 5 cp
+  probability: 3
+- name: Signet ring
+  worth: 5 gp
+  probability: 4
+- name: Soap
+  worth: 2 cp
+  probability: 2
+- name: Spellbook
+  worth: 50 gp
+  probability: 4
+- name: Spikes, iron (10)
+  worth: 1 gp
+  probability: 6
+- name: Spyglass
+  worth: 1,000 gp
+  probability: 2
+- name: Tent, two-person
+  worth: 2 gp
+  probability: 4
+- name: Tinderbox
+  worth: 5 sp
+  probability: 4
+- name: Torch
+  worth: 1 cp
+  probability: 7
+- name: Vial
+  worth: 1 gp
+  probability: 3
+- name: Waterskin
+  worth: 2 sp
+  probability: 5
+- name: Whetstone
+  worth: 1 cp
+  probability: 3

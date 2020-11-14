@@ -383,6 +383,14 @@ Option 2:
   Have "TreasureStash" objects. More than one can exist in a chamber.
   Improve good treasure chances on chambers with tough monsters
   Have minimum magic item count. If not met, distribute them across the dungeon.
+
+The idea of distributing from a centralized location is problematic because you need to be able to regenerate rooms (and in the future, just the treasure).
+
+The odds of a given treasure should change based on level. Strategies:
+Option 1:
+  Some data that gets used to increase or decrease probability based on difference between level and a target level
+Option 2:
+  Separate tables for level ranges, or a single file with a probability has with different level ranges and corresponding probabilities
 ---------------
 
 Bug around chamber placing (likely specificaly place-as-is) on draw_width drawing past max grid width. I think it's due to disagreement about how "width right" works - left of starting square vs left of connector as a whole.
@@ -536,11 +544,18 @@ Roadmap Order:
 - DONE - Stairs
 - DONE - Encounters - Multiple monster groups & relationships
 - DONE - Encounters - Smarter encounter selection (pick from n encounters)
-- DONE - Encounters - Allow special encounters regardless of xp if flag is on (use "Roll" strategy)
-- Treasure
+- DONE - Encounters - Allow special encounters regardless of xp if flag is on
+- DONE - Treasure
+- DONE - Treasure - Add adventuring gear and tools tables
+- Treasure - All levels' treasure tables
+- Treasure - Random types of magical weapons
+- Treasure - Random spells for spell scrolls
+- Add additional content combo possibilities for chambers
 - Chamber Purpose
+- Encounters - Use "Roll" strategy on special encounters
+- Treasure - Set treasure chances based on room contents
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
 - Encounters - "Order" encounter-building strategy
 - Encounters - Increase chance of finish when monster count gets higher
-- Encounters - Allow (optionally) a handful of any-level encounters that always use the "roll" strategy
+- Encounters - Allow (optionally) a handful of any-level encounters that always use the "Roll" strategy
