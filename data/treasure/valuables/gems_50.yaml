@@ -1,0 +1,37 @@
+---
+- name: Bloodstone (opaque dark gray with red flecks)
+  probability: 4
+- name: Carnelian (opaque orange to red-brown)
+  probability: 4
+- name: Chalcedony (opaque white)
+  probability: 4
+- name: Chrysoprase (translucent green)
+  probability: 4
+- name: Citrine (transparent pale yellow-brown)
+  probability: 4
+- name: Jasper (opaque blue)
+  probability: 2
+- name: Jasper (opaque black)
+  probability: 1
+- name: Jasper (opaque brown)
+  probability: 1
+- name: Moonstone (translucent white with pale blue glow)
+  probability: 4
+- name: Onyx (opaque bands of black and white)
+  probability: 1
+- name: Onyx (opaque black)
+  probability: 2
+- name: Onyx (opaque white)
+  probability: 1
+- name: Quartz (transparent white)
+  probability: 2
+- name: Quartz (transparent smoky gray)
+  probability: 1
+- name: Quartz (transparent yellow)
+  probability: 1
+- name: Sardonyx (opaque bands of red and white)
+  probability: 4
+- name: Star rose quartz (translucent rosy stone with white star-shaped center)
+  probability: 4
+- name: Zircon (transparent pale blue-green)
+  probability: 4

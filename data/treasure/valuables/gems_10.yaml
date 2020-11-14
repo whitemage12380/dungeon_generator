@@ -1,0 +1,45 @@
+---
+- name: Azurite (opaque mottled deep blue)
+  probability: 4
+- name: Banded agate (translucent striped brown)
+  probability: 1
+- name: Banded agate (translucent blue)
+  probability: 1
+- name: Banded agate (translucent white)
+  probability: 1
+- name: Banded agate (translucent red)
+  probability: 1
+- name: Blue quartz (transparent pale blue)
+  probability: 4
+- name: Eye agate (translucent circles of gray)
+  probability: 1
+- name: Eye agate (translucent white)
+  probability: 1
+- name: Eye agate (translucent brown
+  probability: 1
+- name: Eye agate (translucent blue)
+  probability: 1
+- name: Eye agate (translucent green)
+  probability: 1
+- name: Hematite (opaque gray-black)
+  probability: 4
+- name: Lapis lazuli (opaque light and dark blue with yellow flecks)
+  probability: 4
+- name: Malachite (opaque striated light and dark green)
+  probability: 4
+- name: Moss agate (translucent pink with mossy gray markings)
+  probability: 1
+- name: Moss agate (translucent yellow-white with mossy gray markings)
+  probability: 1
+- name: Moss agate (translucent pink with mossy green markings)
+  probability: 1
+- name: Moss agate (translucent yellow-white with mossy green markings)
+  probability: 1
+- name: Obsidian (opaque black)
+  probability: 4
+- name: Rhodochrosite (opaque light pink)
+  probability: 4
+- name: Tiger eye (translucent brown with golden center)
+  probability: 4
+- name: Turquoise (opaque light blue-green)
+  probability: 4

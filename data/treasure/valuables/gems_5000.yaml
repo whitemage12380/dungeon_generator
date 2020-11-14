@@ -1,0 +1,17 @@
+---
+- name: Black sapphire (translucent lustrous black with glowing highlights)
+  probability: 5
+- name: Diamond (transparent blue-white)
+  probability: 1
+- name: Diamond (transparent canary)
+  probability: 1
+- name: Diamond (transparent pink)
+  probability: 1
+- name: Diamond (transparent brown)
+  probability: 1
+- name: Diamond (transparent blue)
+  probability: 1
+- name: Jacinth (transparent fiery orange)
+  probability: 5
+- name: Ruby (transparent clear red to deep crimson)
+  probability: 5

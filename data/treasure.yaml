@@ -18,3 +18,24 @@ treasure:
       c: {probability: 4, count: 1}
       f: {probability: 2, count: 1}
       g: {probability: 1, count: 1}
+  5:
+    coins:
+      cp: {probability: 4, count: 200-800}
+      sp: {probability: 7, count: 30-150}
+      ep: {probability: 2, count: 10-80}
+      gp: {probability: 10, count: 20-130}
+      pp: {probability: 5, count: 3-15}
+    valuables:
+      gems_50: {probability: 6, count: 1-2}
+      gems_100: {probability: 8, count: 1-2}
+      art_25: {probability: 6, count: 1-2}
+      art_250: {probability: 8, count: 1}
+    items:
+      weapons: {probability: 18, count: 1}
+      ammunition: {probability: 4, count: 1}
+      a: {probability: 8, count: 1-2}
+      b: {probability: 12, count: 1-2}
+      c: {probability: 5, count: 1}
+      f: {probability: 3, count: 1}
+      g: {probability: 2, count: 1}
+      h: {probability: 1, count: 1}

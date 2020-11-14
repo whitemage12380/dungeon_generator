@@ -1,11 +1,12 @@
 require_relative 'configuration'
+require_relative 'item'
 
 class TreasureStash
   include DungeonGeneratorHelper
-  attr_reader :coins, :art, :items
+  attr_reader :coins, :valuables, :items
 
-  def initialize(treasure_level = 1, party_level = $configuration['party_level'])
-    generate(treasure_level, party_level)
+  def initialize(generate = false, treasure_level = 1, party_level = $configuration['party_level'])
+    generate(treasure_level, party_level) if generate
   end
 
   def generate(treasure_level = 1, party_level = $configuration['party_level'])
@@ -17,6 +18,7 @@ class TreasureStash
     treasure_counts = random_treasure_counts(treasure_table, treasure_level)
     puts treasure_counts.to_s
     generate_coins(treasure_table, treasure_counts['coins'])
+    generate_valuables(treasure_table, treasure_counts['valuables'])
     generate_items(treasure_table, treasure_counts['items'])
   end
 
@@ -49,29 +51,42 @@ class TreasureStash
     end
   end
 
+  def generate_valuables(treasure_table, count)
+    @valuables = random_treasure(treasure_table, count, 'valuables')
+  end
+
   def generate_items(treasure_table, count)
-    items_table = treasure_table['items'].to_a.collect { |c| {'type' => c[0]}.merge(c[1]) }
+    @items = random_treasure(treasure_table, count, 'items')
+  end
+
+  def random_treasure(treasure_table, count, type)
+    table = treasure_table[type].to_a.collect { |c| {'type' => c[0]}.merge(c[1]) }
     chosen_items = Array.new
     count.times do
-      item_data = weighted_random(items_table)
-      case item_data['count']
+      treasure_data = weighted_random(table)
+      if treasure_data['type'] =~ /_[0-9]+$/
+        worth = treasure_data['type'].split("_").last.to_i
+      end
+      case treasure_data['count']
       when Integer
-        min, max = Array.new(2) { item_data['count'] }
+        min, max = Array.new(2) { treasure_data['count'] }
       when /^([0-9]+)-([0-9]+)$/
         min, max = [$1.to_i, $2.to_i]
       when nil
         min, max = [1, 1]
       else
-        raise "Could not parse count for item data: #{item_data.to_s}"
+        raise "Could not parse count for treasure data: #{treasure_data.to_s}"
       end
-      item_count = rand(max - min + 1) + min
-      item_count.times do
-        chosen_item = weighted_random(YAML.load(File.read("#{DATA_PATH}/treasure/items/#{item_data['type']}.yaml")))
+      treasure_count = rand(max - min + 1) + min
+      treasure_count.times do
+        chosen_item = weighted_random(YAML.load(File.read("#{DATA_PATH}/treasure/#{type}/#{treasure_data['type']}.yaml")))
+        worth = chosen_item['worth'] unless chosen_item['worth'].nil?
         # This is where I do special logic like the 'roll' and 'table' fields
-        chosen_items << chosen_item['name']
+        # Or do it in item.rb
+        chosen_items << Item.new(chosen_item['name'], worth)
       end
     end
-    @items = chosen_items.sort_by { |i| i['name'] }
+    return chosen_items.sort_by { |i| i.name }
   end
 
   def treasure_configuration()
@@ -79,6 +94,7 @@ class TreasureStash
   end
 end
 
-t = TreasureStash.new(3)
-puts t.coins.to_s
-puts t.items.to_s
+# t = TreasureStash.new(true, 3)
+# puts t.coins.to_s
+# puts t.valuables.to_s
+# puts t.items.to_s

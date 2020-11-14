@@ -1,0 +1,19 @@
+---
+- name: Black opal (translucent dark green with black mottling and golden flecks)
+  probability: 4
+- name: Blue sapphire (transparent blue-white to medium blue)
+  probability: 4
+- name: Emerald (transparent deep bright green)
+  probability: 4
+- name: Fire opal (translucent fiery red)
+  probability: 4
+- name: Opal (translucent pale blue with green and golden mottling)
+  probability: 4
+- name: Star ruby (translucent ruby with white star-shaped center)
+  probability: 4
+- name: Star sapphire (translucent blue sapphire with white star-shaped center)
+  probability: 4
+- name: Yellow sapphire (transparent fiery yellow or yellow green)
+  probability: 2
+- name: Yellow sapphire (transparent yellow green)
+  probability: 2

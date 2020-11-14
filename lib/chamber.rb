@@ -4,6 +4,7 @@ require_relative 'chamber_proposal'
 require_relative 'exit_proposal'
 require_relative 'trap'
 require_relative 'trick'
+require_relative 'treasure_stash'
 
 class Chamber < MapObject
   attr_reader :width, :length
@@ -436,11 +437,20 @@ class Chamber < MapObject
       when "trick"
         contents[:tricks] << Trick.new()
       when "treasure"
-        contents[:treasure] << c
+        contents[:treasure] << TreasureStash.new()
       else
         raise "Unknown chamber content type: #{c}"
       end
     }
+    unless contents[:treasure].empty?
+      contents[:treasure].each { |t| t.generate() }
+      # max_treasure_stashes = $configuration['treasure']['extra_treasure_stash_max']
+      # treasure_stash_chance = $configuration['treasure']['extra_treasure_stash_chance']
+      # max_treasure_stashes.times do
+      #   if rand() < treasure_stash_chance - ((content.size - 1) * 0.1)
+      #     content << 
+      # end
+    end
     @contents = contents
     return contents
   end

@@ -1,0 +1,47 @@
+---
+- name: Amber (transparent watery gold)
+  probability: 2
+- name: Amber (transparent rich gold)
+  probability: 2
+- name: Amethyst (transparent deep purple)
+  probability: 4
+- name: Chrysoberyl (transparent yellow-green)
+  probability: 2
+- name: Chrysoberyl (transparent pale green)
+  probability: 2
+- name: Coral (opaque crimson)
+  probability: 4
+- name: Garnet (transparent red)
+  probability: 2
+- name: Garnet (transparent brown-green)
+  probability: 1
+- name: Garnet (transparent violet)
+  probability: 1
+- name: Jade (translucent light green)
+  probability: 1
+- name: Jade (translucent deep green)
+  probability: 2
+- name: Jade (translucent white)
+  probability: 1
+- name: Jet (opaque deep black)
+  probability: 4
+- name: Pearl (opaque lustrous white)
+  probability: 2
+- name: Pearl (opaque yellow)
+  probability: 1
+- name: Pearl (opaque pink)
+  probability: 1
+- name: Spinel (transparent red)
+  probability: 2
+- name: Spinel (transparent red-brown)
+  probability: 1
+- name: Spinel (transparent deep green)
+  probability: 1
+- name: Tourmaline (transparent pale green)
+  probability: 1
+- name: Tourmaline (transparent blue)
+  probability: 1
+- name: Tourmaline (transparent brown)
+  probability: 1
+- name: Tourmaline (transparent red)
+  probability: 1

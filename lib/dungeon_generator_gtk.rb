@@ -31,11 +31,17 @@ class DungeonGeneratorContent < Gtk::Box
       trap = content
       label_trigger = Gtk::Label.new()
       label_severity = Gtk::Label.new()
+      label_effectiveness = Gtk::Label.new()
+      label_damage = Gtk::Label.new()
       label_effect = Gtk::Label.new()
-      label_severity.text = "#{trap.severity} Trap"
+      label_severity.text = trap.severity
+      label_effectiveness.text = "DC #{trap.dc} or +#{trap.attack} to hit"
+      label_damage.text = "#{trap.damage} damage"
       label_trigger.markup = "<b>Trigger:</b> #{trap.trigger}"
       label_effect.markup = "<b>Effect:</b> #{trap.effect}"
       pack_start(label_severity)
+      pack_start(label_effectiveness)
+      pack_start(label_damage)
       pack_start(label_trigger)
       pack_start(label_effect)
     when :tricks
@@ -46,6 +52,10 @@ class DungeonGeneratorContent < Gtk::Box
       pack_start(label_object)
       pack_start(label_effect)
     when :treasure
+      if content.kind_of? TreasureStash or content.size == 1
+        treasure_stash = (content.kind_of? TreasureStash) ? content : content.first
+        treasure_stash_labels(treasure_stash).each { |l| pack_start(l)}
+      end
     end
     children.select{ |c| c.kind_of? Gtk::Label }.each { |c|
       c.xalign = 0
@@ -69,6 +79,18 @@ class DungeonGeneratorContent < Gtk::Box
       motivation.markup = "<b>Motivation:</b> #{monster_group.motivation}"
       labels << motivation
     end
+    return labels
+  end
+
+  def treasure_stash_labels(treasure_stash)
+    labels = Array.new
+    labels.concat treasure_stash.items.sort_by { |i| i.name }.collect { |i| Gtk::Label.new(i.name)}
+    labels.concat treasure_stash.valuables.sort_by { |i| [i.worth, i.name] }.collect { |i|
+      Gtk::Label.new("#{i.name} (#{i.worth} gp)")
+    }
+    labels.concat treasure_stash.coins.to_a.sort_by { |c| ['pp', 'gp' 'ep', 'sp', 'cp'].index(c[0]) }.collect { |c|
+      Gtk::Label.new("#{c[1]} #{c[0]}")
+    }
     return labels
   end
 end

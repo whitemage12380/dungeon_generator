@@ -1,0 +1,13 @@
+---
+- name: Alexandrite (transparent dark green)
+  probability: 1
+- name: Aquamarine (transparent pale blue-green)
+  probability: 1
+- name: Black pearl (opaque pure black)
+  probability: 1
+- name: Blue spinel (transparent deep blue)
+  probability: 1
+- name: Peridot (transparent rich olive green)
+  probability: 1
+- name: Topaz (transparent golden yellow)
+  probability: 1
