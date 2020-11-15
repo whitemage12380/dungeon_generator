@@ -1,0 +1,135 @@
+---
+- name: Arcane Gate
+  book: Player's Handbook
+  probability: 4
+- name: Blade Barrier
+  book: Player's Handbook
+  probability: 4
+- name: Bones of the Earth
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Chain Lightning
+  book: Player's Handbook
+  probability: 4
+- name: Circle of Death
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Fey
+  book: Player's Handbook
+  probability: 4
+- name: Contingency
+  book: Player's Handbook
+  probability: 4
+- name: Create Homunculus
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Create Undead
+  book: Player's Handbook
+  probability: 4
+- name: Disintegrate
+  book: Player's Handbook
+  probability: 4
+- name: Drawmij's Instant Summons
+  book: Player's Handbook
+  probability: 4
+- name: Druid Grove
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Eyebite
+  book: Player's Handbook
+  probability: 4
+- name: Find the Path
+  book: Player's Handbook
+  probability: 4
+- name: Flesh to Stone
+  book: Player's Handbook
+  probability: 4
+- name: Forbiddance
+  book: Player's Handbook
+  probability: 4
+- name: Globe of Invulnerability
+  book: Player's Handbook
+  probability: 4
+- name: Guards and Wards
+  book: Player's Handbook
+  probability: 4
+- name: Harm
+  book: Player's Handbook
+  probability: 4
+- name: Heal
+  book: Player's Handbook
+  probability: 4
+- name: Heroes' Feast
+  book: Player's Handbook
+  probability: 4
+- name: Investiture of Flame
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Investiture of Ice
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Investiture of Stone
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Investiture of Wind
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Magic Jar
+  book: Player's Handbook
+  probability: 4
+- name: Mass Suggestion
+  book: Player's Handbook
+  probability: 4
+- name: Mental Prison
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Move Earth
+  book: Player's Handbook
+  probability: 4
+- name: Otiluke's Freezing Sphere
+  book: Player's Handbook
+  probability: 4
+- name: Otto's Irresistible Dance
+  book: Player's Handbook
+  probability: 4
+- name: Permanent Image
+  probability: 4
+- name: Planar Ally
+  book: Player's Handbook
+  probability: 4
+- name: Primordial Ward
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Programmed Illusion
+  book: Player's Handbook
+  probability: 4
+- name: Scatter
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Soul Cage
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Sunbeam
+  book: Player's Handbook
+  probability: 4
+- name: Tenser's Transformation
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Transport via Plants
+  book: Player's Handbook
+  probability: 4
+- name: True Seeing
+  book: Player's Handbook
+  probability: 4
+- name: Wall of Ice
+  book: Player's Handbook
+  probability: 4
+- name: Wall of Thorns
+  book: Player's Handbook
+  probability: 4
+- name: Wind Walk
+  book: Player's Handbook
+  probability: 4
+- name: Word of Recall
+  book: Player's Handbook
+  probability: 4

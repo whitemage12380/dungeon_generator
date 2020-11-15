@@ -1,0 +1,175 @@
+---
+- name: Animate Objects
+  book: Player's Handbook
+  probability: 4
+- name: Antilife Shell
+  book: Player's Handbook
+  probability: 4
+- name: Awaken
+  book: Player's Handbook
+  probability: 4
+- name: Banishing Smite
+  book: Player's Handbook
+  probability: 4
+- name: Bigby's Hand
+  book: Player's Handbook
+  probability: 4
+- name: Circle of Power
+  book: Player's Handbook
+  probability: 4
+- name: Cloudkill
+  book: Player's Handbook
+  probability: 4
+- name: Commune
+  book: Player's Handbook
+  probability: 4
+- name: Commune with Nature
+  book: Player's Handbook
+  probability: 4
+- name: Cone of Cold
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Elemental
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Volley
+  book: Player's Handbook
+  probability: 4
+- name: Contact Other Plane
+  book: Player's Handbook
+  probability: 4
+- name: Contagion
+  book: Player's Handbook
+  probability: 4
+- name: Control Winds
+  book: Elemental Evil Player's Compendium
+  probability: 4
+- name: Creation
+  book: Player's Handbook
+  probability: 4
+- name: Danse Macabre
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Dawn
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Destructive Wave
+  book: Player's Handbook
+  probability: 4
+- name: Dispel Evil and Good
+  book: Player's Handbook
+  probability: 4
+- name: Dominate Person
+  book: Player's Handbook
+  probability: 4
+- name: Dream
+  book: Player's Handbook
+  probability: 4
+- name: Enervation
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Far Step
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Flame Strike
+  book: Player's Handbook
+  probability: 4
+- name: Geas
+  book: Player's Handbook
+  probability: 4
+- name: Greater Restoration
+  book: Player's Handbook
+  probability: 4
+- name: Hallow
+  book: Player's Handbook
+  probability: 4
+- name: Hold Monster
+  book: Player's Handbook
+  probability: 4
+- name: Holy Weapon
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Immolation
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Infernal Calling
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Insect Plague
+  book: Player's Handbook
+  probability: 4
+- name: Legend Lore
+  book: Player's Handbook
+  probability: 4
+- name: Maelstrom
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Mass Cure Wounds
+  book: Player's Handbook
+  probability: 4
+- name: Mislead
+  book: Player's Handbook
+  probability: 4
+- name: Modify Memory
+  book: Player's Handbook
+  probability: 4
+- name: Negative Energy Flood
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Passwall
+  book: Player's Handbook
+  probability: 4
+- name: Planar Binding
+  book: Player's Handbook
+  probability: 4
+- name: Raise Dead
+  book: Player's Handbook
+  probability: 4
+- name: Rary's Telepathic Bond
+  book: Player's Handbook
+  probability: 4
+- name: Reincarnate
+  book: Player's Handbook
+  probability: 4
+- name: Scrying
+  book: Player's Handbook
+  probability: 4
+- name: Seeming
+  book: Player's Handbook
+  probability: 4
+- name: Skill Empowerment
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Steel Wind Strike
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Swift Quiver
+  book: Player's Handbook
+  probability: 4
+- name: Synaptic Static
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Telekinesis
+  book: Player's Handbook
+  probability: 4
+- name: Teleportation Circle
+  book: Player's Handbook
+  probability: 4
+- name: Transmute Rock
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Tree Stride
+  book: Player's Handbook
+  probability: 4
+- name: Wall of Force
+  book: Player's Handbook
+  probability: 4
+- name: Wall of Light
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Wall of Stone
+  book: Player's Handbook
+  probability: 4
+- name: Wrath of Nature
+  book: Xanathar's Guide to Everything
+  probability: 4

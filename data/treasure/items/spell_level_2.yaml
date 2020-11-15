@@ -1,0 +1,214 @@
+---
+- name: Aganazzar's Scorcher
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Aid
+  book: Player's Handbook
+  probability: 4
+- name: Alter Self
+  book: Player's Handbook
+  probability: 4
+- name: Animal Messenger
+  book: Player's Handbook
+  probability: 4
+- name: Arcane Lock
+  book: Player's Handbook
+  probability: 4
+- name: Augury
+  book: Player's Handbook
+  probability: 4
+- name: Barkskin
+  book: Player's Handbook
+  probability: 4
+- name: Beast Sense
+  book: Player's Handbook
+  probability: 4
+- name: Blindness/Deafness
+  book: Player's Handbook
+  probability: 4
+- name: Blur
+  book: Player's Handbook
+  probability: 4
+- name: Branding Smite
+  book: Player's Handbook
+  probability: 4
+- name: Calm Emotions
+  book: Player's Handbook
+  probability: 4
+- name: Cloud of Daggers
+  book: Player's Handbook
+  probability: 4
+- name: Continual Flame
+  book: Player's Handbook
+  probability: 4
+- name: Cordon of Arrows
+  book: Player's Handbook
+  probability: 4
+- name: Crown of Madness
+  book: Player's Handbook
+  probability: 4
+- name: Darkness
+  book: Player's Handbook
+  probability: 4
+- name: Darkvision
+  book: Player's Handbook
+  probability: 4
+- name: Detect Thoughts
+  book: Player's Handbook
+  probability: 4
+- name: Dragon's Breath
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Dust Devil
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Earthbind
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Enhance Ability
+  book: Player's Handbook
+  probability: 4
+- name: Enlarge/Reduce
+  book: Player's Handbook
+  probability: 4
+- name: Enthrall
+  book: Player's Handbook
+  probability: 4
+- name: Find Steed
+  book: Player's Handbook
+  probability: 4
+- name: Find Traps
+  book: Player's Handbook
+  probability: 4
+- name: Flame Blade
+  book: Player's Handbook
+  probability: 4
+- name: Flaming Sphere
+  book: Player's Handbook
+  probability: 4
+- name: Gentle Repose
+  book: Player's Handbook
+  probability: 4
+- name: Gust of Wind
+  book: Player's Handbook
+  probability: 4
+- name: Healing Spirit
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Heat Metal
+  book: Player's Handbook
+  probability: 4
+- name: Hold Person
+  book: Player's Handbook
+  probability: 4
+- name: Invisibility
+  book: Player's Handbook
+  probability: 4
+- name: Knock
+  book: Player's Handbook
+  probability: 4
+- name: Lesser Restoration
+  book: Player's Handbook
+  probability: 4
+- name: Levitate
+  book: Player's Handbook
+  probability: 4
+- name: Locate Animals or Plants
+  book: Player's Handbook
+  probability: 4
+- name: Locate Object
+  book: Player's Handbook
+  probability: 4
+- name: Magic Mouth
+  book: Player's Handbook
+  probability: 4
+- name: Magic Weapon
+  book: Player's Handbook
+  probability: 4
+- name: Maximilian's Earthen Grasp
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Melf's Acid Arrow
+  book: Player's Handbook
+  probability: 4
+- name: Mind Spike
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Mirror Image
+  book: Player's Handbook
+  probability: 4
+- name: Misty Step
+  book: Player's Handbook
+  probability: 4
+- name: Moonbeam
+  book: Player's Handbook
+  probability: 4
+- name: Nystul's Magic Aura
+  book: Player's Handbook
+  probability: 4
+- name: Pass without Trace
+  book: Player's Handbook
+  probability: 4
+- name: Phantasmal Force
+  book: Player's Handbook
+  probability: 4
+- name: Prayer of Healing
+  book: Player's Handbook
+  probability: 4
+- name: Protection from Poison
+  book: Player's Handbook
+  probability: 4
+- name: Pyrotechnics
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Ray of Enfeeblement
+  book: Player's Handbook
+  probability: 4
+- name: Rope Trick
+  book: Player's Handbook
+  probability: 4
+- name: Scorching Ray
+  book: Player's Handbook
+  probability: 4
+- name: See Invisibility
+  book: Player's Handbook
+  probability: 4
+- name: Shadow Blade
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Shatter
+  book: Player's Handbook
+  probability: 4
+- name: Silence
+  book: Player's Handbook
+  probability: 4
+- name: Skywrite
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Snilloc's Snowball Swarm
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Spider Climb
+  book: Player's Handbook
+  probability: 4
+- name: Spike Growth
+  book: Player's Handbook
+  probability: 4
+- name: Spiritual Weapon
+  book: Player's Handbook
+  probability: 4
+- name: Suggestion
+  book: Player's Handbook
+  probability: 4
+- name: Warding Bond
+  book: Player's Handbook
+  probability: 4
+- name: Warding Wind
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Web
+  book: Player's Handbook
+  probability: 4
+- name: Zone of Truth
+  book: Player's Handbook
+  probability: 4

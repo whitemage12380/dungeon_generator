@@ -1,0 +1,58 @@
+---
+- name: Astral Projection
+  book: Player's Handbook
+  probability: 4
+- name: Foresight
+  book: Player's Handbook
+  probability: 4
+- name: Gate
+  book: Player's Handbook
+  probability: 4
+- name: Imprisonment
+  book: Player's Handbook
+  probability: 4
+- name: Invulnerability
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Mass Heal
+  book: Player's Handbook
+  probability: 4
+- name: Mass Polymorph
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Meteor Swarm
+  book: Player's Handbook
+  probability: 4
+- name: Power Word Heal
+  book: Player's Handbook
+  probability: 4
+- name: Power Word Kill
+  book: Player's Handbook
+  probability: 4
+- name: Prismatic Wall
+  book: Player's Handbook
+  probability: 4
+- name: Psychic Scream
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Shapechange
+  book: Player's Handbook
+  probability: 4
+- name: Storm of Vengeance
+  book: Player's Handbook
+  probability: 4
+- name: Time Stop
+  book: Player's Handbook
+  probability: 4
+- name: True Polymorph
+  book: Player's Handbook
+  probability: 4
+- name: True Resurrection
+  book: Player's Handbook
+  probability: 4
+- name: Weird
+  book: Player's Handbook
+  probability: 4
+- name: Wish
+  book: Player's Handbook
+  probability: 4

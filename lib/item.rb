@@ -16,10 +16,6 @@ class Item
   end
 
   def generate_details(table, tags = {})
-    if table =~ /spell_level/
-      log "Spell scroll spells not yet supported."
-      return
-    end
     tags = Hash.new if tags.nil?
     require_tags = tags[:require] || []
     exclude_tags = tags[:exclude] || []

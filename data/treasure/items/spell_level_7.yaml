@@ -1,0 +1,73 @@
+---
+- name: Conjure Celestial
+  book: Player's Handbook
+  probability: 4
+- name: Crown of Stars
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Delayed Blast Fireball
+  book: Player's Handbook
+  probability: 4
+- name: Divine Word
+  book: Player's Handbook
+  probability: 4
+- name: Etherealness
+  book: Player's Handbook
+  probability: 4
+- name: Finger of Death
+  book: Player's Handbook
+  probability: 4
+- name: Fire Storm
+  book: Player's Handbook
+  probability: 4
+- name: Forcecage
+  book: Player's Handbook
+  probability: 4
+- name: Mirage Arcane
+  book: Player's Handbook
+  probability: 4
+- name: Mordenkainen's Magnificent Mansion
+  book: Player's Handbook
+  probability: 4
+- name: Mordenkainen's Sword
+  book: Player's Handbook
+  probability: 4
+- name: Plane Shift
+  book: Player's Handbook
+  probability: 4
+- name: Power Word Pain
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Prismatic Spray
+  book: Player's Handbook
+  probability: 4
+- name: Project Image
+  book: Player's Handbook
+  probability: 4
+- name: Regenerate
+  book: Player's Handbook
+  probability: 4
+- name: Resurrection
+  book: Player's Handbook
+  probability: 4
+- name: Reverse Gravity
+  book: Player's Handbook
+  probability: 4
+- name: Sequester
+  book: Player's Handbook
+  probability: 4
+- name: Simulacrum
+  book: Player's Handbook
+  probability: 4
+- name: Symbol
+  book: Player's Handbook
+  probability: 4
+- name: Teleport
+  book: Player's Handbook
+  probability: 4
+- name: Temple of the Gods
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Whirlwind
+  book: Xanathar's Guide to Everything
+  probability: 4

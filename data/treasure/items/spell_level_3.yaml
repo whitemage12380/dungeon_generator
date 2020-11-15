@@ -1,0 +1,187 @@
+---
+- name: Animate Dead
+  book: Player's Handbook
+  probability: 4
+- name: Aura of Vitality
+  book: Player's Handbook
+  probability: 4
+- name: Beacon of Hope
+  book: Player's Handbook
+  probability: 4
+- name: Bestow Curse
+  book: Player's Handbook
+  probability: 4
+- name: Blinding Smite
+  book: Player's Handbook
+  probability: 4
+- name: Blink
+  book: Player's Handbook
+  probability: 4
+- name: Call Lightning
+  book: Player's Handbook
+  probability: 4
+- name: Catnap
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Clairvoyance
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Animals
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Barrage
+  book: Player's Handbook
+  probability: 4
+- name: Counterspell
+  book: Player's Handbook
+  probability: 4
+- name: Create Food and Water
+  book: Player's Handbook
+  probability: 4
+- name: Crusader's Mantle
+  book: Player's Handbook
+  probability: 4
+- name: Daylight
+  book: Player's Handbook
+  probability: 4
+- name: Dispel Magic
+  book: Player's Handbook
+  probability: 4
+- name: Elemental Weapon
+  book: Player's Handbook
+  probability: 4
+- name: Enemies Abound
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Erupting Earth
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Fear
+  book: Player's Handbook
+  probability: 4
+- name: Feign Death
+  book: Player's Handbook
+  probability: 4
+- name: Fireball
+  book: Player's Handbook
+  probability: 4
+- name: Flame Arrows
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Fly
+  book: Player's Handbook
+  probability: 4
+- name: Gaseous Form
+  book: Player's Handbook
+  probability: 4
+- name: Glyph of Warding
+  book: Player's Handbook
+  probability: 4
+- name: Haste
+  book: Player's Handbook
+  probability: 4
+- name: Hunger of Hadar
+  book: Player's Handbook
+  probability: 4
+- name: Hypnotic Pattern
+  book: Player's Handbook
+  probability: 4
+- name: Leomund's Tiny Hut
+  book: Player's Handbook
+  probability: 4
+- name: Life Transference
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Lightning Arrow
+  book: Player's Handbook
+  probability: 4
+- name: Lightning Bolt
+  book: Player's Handbook
+  probability: 4
+- name: Magic Circle
+  book: Player's Handbook
+  probability: 4
+- name: Major Image
+  book: Player's Handbook
+  probability: 4
+- name: Mass Healing Word
+  book: Player's Handbook
+  probability: 4
+- name: Meld into Stone
+  book: Player's Handbook
+  probability: 4
+- name: Melf's Minute Meteors
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Nondetection
+  book: Player's Handbook
+  probability: 4
+- name: Phantom Steed
+  book: Player's Handbook
+  probability: 4
+- name: Plant Growth
+  book: Player's Handbook
+  probability: 4
+- name: Protection from Energy
+  book: Player's Handbook
+  probability: 4
+- name: Remove Curse
+  book: Player's Handbook
+  probability: 4
+- name: Revivify
+  book: Player's Handbook
+  probability: 4
+- name: Sending
+  book: Player's Handbook
+  probability: 4
+- name: Sleet Storm
+  book: Player's Handbook
+  probability: 4
+- name: Slow
+  book: Player's Handbook
+  probability: 4
+- name: Speak with Dead
+  book: Player's Handbook
+  probability: 4
+- name: Speak with Plants
+  book: Player's Handbook
+  probability: 4
+- name: Spirit Guardians
+  book: Player's Handbook
+  probability: 4
+- name: Stinking Cloud
+  book: Player's Handbook
+  probability: 4
+- name: Summon Lesser Demons
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Thunder Step
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Tidal Wave
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Tiny Servant
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Tongues
+  book: Player's Handbook
+  probability: 4
+- name: Vampiric Touch
+  book: Player's Handbook
+  probability: 4
+- name: Wall of Sand
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Wall of Water
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Water Breathing
+  book: Player's Handbook
+  probability: 4
+- name: Water Walk
+  book: Player's Handbook
+  probability: 4
+- name: Wind Wall
+  book: Player's Handbook
+  probability: 4

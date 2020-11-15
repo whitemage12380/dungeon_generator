@@ -1,0 +1,136 @@
+---
+- name: Arcane Eye
+  book: Player's Handbook
+  probability: 4
+- name: Aura of Life
+  book: Player's Handbook
+  probability: 4
+- name: Aura of Purity
+  book: Player's Handbook
+  probability: 4
+- name: Banishment
+  book: Player's Handbook
+  probability: 4
+- name: Blight
+  book: Player's Handbook
+  probability: 4
+- name: Charm Monster
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Compulsion
+  book: Player's Handbook
+  probability: 4
+- name: Confusion
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Minor Elementals
+  book: Player's Handbook
+  probability: 4
+- name: Conjure Woodland Beings
+  book: Player's Handbook
+  probability: 4
+- name: Control Water
+  book: Player's Handbook
+  probability: 4
+- name: Death Ward
+  book: Player's Handbook
+  probability: 4
+- name: Dimension Door
+  book: Player's Handbook
+  probability: 4
+- name: Divination
+  book: Player's Handbook
+  probability: 4
+- name: Dominate Beast
+  book: Player's Handbook
+  probability: 4
+- name: Elemental Bane
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Evard's Black Tentacles
+  book: Player's Handbook
+  probability: 4
+- name: Fabricate
+  book: Player's Handbook
+  probability: 4
+- name: Find Greater Steed
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Fire Shield
+  book: Player's Handbook
+  probability: 4
+- name: Freedom of Movement
+  book: Player's Handbook
+  probability: 4
+- name: Giant Insect
+  book: Player's Handbook
+  probability: 4
+- name: Grasping Vine
+  book: Player's Handbook
+  probability: 4
+- name: Greater Invisibility
+  book: Player's Handbook
+  probability: 4
+- name: Guardian of Faith
+  book: Player's Handbook
+  probability: 4
+- name: Guardian of Nature
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Hallucinatory Terrain
+  book: Player's Handbook
+  probability: 4
+- name: Ice Storm
+  book: Player's Handbook
+  probability: 4
+- name: Leomund's Secret Chest
+  book: Player's Handbook
+  probability: 4
+- name: Locate Creature
+  book: Player's Handbook
+  probability: 4
+- name: Mordenkainen's Faithful Hound
+  book: Player's Handbook
+  probability: 4
+- name: Mordenkainen's Private Sanctum
+  book: Player's Handbook
+  probability: 4
+- name: Otiluke's Resilient Sphere
+  book: Player's Handbook
+  probability: 4
+- name: Phantasmal Killer
+  book: Player's Handbook
+  probability: 4
+- name: Polymorph
+  book: Player's Handbook
+  probability: 4
+- name: Shadow of Moil
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Sickening Radiance
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Staggering Smite
+  book: Player's Handbook
+  probability: 4
+- name: Stone Shape
+  book: Player's Handbook
+  probability: 4
+- name: Stoneskin
+  book: Player's Handbook
+  probability: 4
+- name: Storm Sphere
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Summon Greater Demon
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Vitriolic Sphere
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Wall of Fire
+  book: Player's Handbook
+  probability: 4
+- name: Watery Sphere
+  book: Xanathar's Guide to Everything
+  probability: 4

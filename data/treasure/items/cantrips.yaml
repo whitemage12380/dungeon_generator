@@ -1,0 +1,130 @@
+---
+- name: Acid Splash
+  book: Player's Handbook
+  probability: 4
+- name: Blade Ward
+  book: Player's Handbook
+  probability: 4
+- name: Booming Blade
+  book: Sword Coast Adventurer's Guide
+  probability: 4
+- name: Chill Touch
+  book: Player's Handbook
+  probability: 4
+- name: Control Flames
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Create Bonfire
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Dancing Lights
+  book: Player's Handbook
+  probability: 4
+- name: Druidcraft
+  book: Player's Handbook
+  probability: 4
+- name: Eldritch Blast
+  book: Player's Handbook
+  probability: 4
+- name: Fire Bolt
+  book: Player's Handbook
+  probability: 4
+- name: Friends
+  book: Player's Handbook
+  probability: 4
+- name: Frostbite
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Green-Flame Blade
+  book: Sword Coast Adventurer's Guide
+  probability: 4
+- name: Guidance
+  book: Player's Handbook
+  probability: 4
+- name: Gust
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Infestation
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Light
+  book: Player's Handbook
+  probability: 4
+- name: Lightning Lure
+  book: Sword Coast Adventurer's Guide
+  probability: 4
+- name: Mage Hand
+  book: Player's Handbook
+  probability: 4
+- name: Magic Stone
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Mending
+  book: Player's Handbook
+  probability: 4
+- name: Message
+  book: Player's Handbook
+  probability: 4
+- name: Minor Illusion
+  book: Player's Handbook
+  probability: 4
+- name: Mold Earth
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Poison Spray
+  book: Player's Handbook
+  probability: 4
+- name: Prestidigitation
+  book: Player's Handbook
+  probability: 4
+- name: Primal Savagery
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Produce Flame
+  book: Player's Handbook
+  probability: 4
+- name: Ray of Frost
+  book: Player's Handbook
+  probability: 4
+- name: Resistance
+  book: Player's Handbook
+  probability: 4
+- name: Sacred Flame
+  book: Player's Handbook
+  probability: 4
+- name: Shape Water
+  book: Elemental Evil Player's Compendium
+  probability: 4
+- name: Shillelagh
+  book: Player's Handbook
+  probability: 4
+- name: Shocking Grasp
+  book: Player's Handbook
+  probability: 4
+- name: Spare the Dying
+  book: Player's Handbook
+  probability: 4
+- name: Sword Burst
+  book: Sword Coast Adventurer's Guide
+  probability: 4
+- name: Thaumaturgy
+  book: Player's Handbook
+  probability: 4
+- name: Thorn Whip
+  book: Player's Handbook
+  probability: 4
+- name: Thunderclap
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Toll the Dead
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: True Strike
+  book: Player's Handbook
+  probability: 4
+- name: Vicious Mockery
+  book: Player's Handbook
+  probability: 4
+- name: Word of Radiance
+  book: Xanathar's Guide to Everything
+  probability: 4

@@ -1,0 +1,217 @@
+---
+- name: Absorb Elements
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Alarm
+  book: Player's Handbook
+  probability: 4
+- name: Animal Friendship
+  book: Player's Handbook
+  probability: 4
+- name: Armor of Agathys
+  book: Player's Handbook
+  probability: 4
+- name: Arms of Hadar
+  book: Player's Handbook
+  probability: 4
+- name: Bane
+  book: Player's Handbook
+  probability: 4
+- name: Beast Bond
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Bless
+  book: Player's Handbook
+  probability: 4
+- name: Burning Hands
+  book: Player's Handbook
+  probability: 4
+- name: Catapult
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Cause Fear
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Ceremony
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Chaos Bolt
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Charm Person
+  book: Player's Handbook
+  probability: 4
+- name: Chromatic Orb
+  book: Player's Handbook
+  probability: 4
+- name: Color Spray
+  book: Player's Handbook
+  probability: 4
+- name: Command
+  book: Player's Handbook
+  probability: 4
+- name: Compelled Duel
+  book: Player's Handbook
+  probability: 4
+- name: Comprehend Languages
+  book: Player's Handbook
+  probability: 4
+- name: Create or Destroy Water
+  book: Player's Handbook
+  probability: 4
+- name: Cure Wounds
+  book: Player's Handbook
+  probability: 4
+- name: Detect Evil and Good
+  book: Player's Handbook
+  probability: 4
+- name: Detect Magic
+  book: Player's Handbook
+  probability: 4
+- name: Detect Poison and Disease
+  book: Player's Handbook
+  probability: 4
+- name: Disguise Self
+  book: Player's Handbook
+  probability: 4
+- name: Dissonant Whispers
+  book: Player's Handbook
+  probability: 4
+- name: Divine Favor
+  book: Player's Handbook
+  probability: 4
+- name: Earth Tremor
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Ensnaring Strike
+  book: Player's Handbook
+  probability: 4
+- name: Entangle
+  book: Player's Handbook
+  probability: 4
+- name: Expeditious Retreat
+  book: Player's Handbook
+  probability: 4
+- name: Faerie Fire
+  book: Player's Handbook
+  probability: 4
+- name: False Life
+  book: Player's Handbook
+  probability: 4
+- name: Feather Fall
+  book: Player's Handbook
+  probability: 4
+- name: Find Familiar
+  book: Player's Handbook
+  probability: 4
+- name: Fog Cloud
+  book: Player's Handbook
+  probability: 4
+- name: Goodberry
+  book: Player's Handbook
+  probability: 4
+- name: Grease
+  book: Player's Handbook
+  probability: 4
+- name: Guiding Bolt
+  book: Player's Handbook
+  probability: 4
+- name: Hail of Thorns
+  book: Player's Handbook
+  probability: 4
+- name: Healing Word
+  book: Player's Handbook
+  probability: 4
+- name: Hellish Rebuke
+  book: Player's Handbook
+  probability: 4
+- name: Heroism
+  book: Player's Handbook
+  probability: 4
+- name: Hex
+  book: Player's Handbook
+  probability: 4
+- name: Hunter's Mark
+  book: Player's Handbook
+  probability: 4
+- name: Ice Knife
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Identify
+  book: Player's Handbook
+  probability: 4
+- name: Illusory Script
+  book: Player's Handbook
+  probability: 4
+- name: Inflict Wounds
+  book: Player's Handbook
+  probability: 4
+- name: Jump
+  book: Player's Handbook
+  probability: 4
+- name: Longstrider
+  book: Player's Handbook
+  probability: 4
+- name: Mage Armor
+  book: Player's Handbook
+  probability: 4
+- name: Magic Missile
+  book: Player's Handbook
+  probability: 4
+- name: Protection from Evil and Good
+  book: Player's Handbook
+  probability: 4
+- name: Purify Food and Drink
+  book: Player's Handbook
+  probability: 4
+- name: Ray of Sickness
+  book: Player's Handbook
+  probability: 4
+- name: Sanctuary
+  book: Player's Handbook
+  probability: 4
+- name: Searing Smite
+  book: Player's Handbook
+  probability: 4
+- name: Shield
+  book: Player's Handbook
+  probability: 4
+- name: Shield of Faith
+  book: Player's Handbook
+  probability: 4
+- name: Silent Image
+  book: Player's Handbook
+  probability: 4
+- name: Sleep
+  book: Player's Handbook
+  probability: 4
+- name: Snare
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Speak with Animals
+  book: Player's Handbook
+  probability: 4
+- name: Tasha's Hideous Laughter
+  book: Player's Handbook
+  probability: 4
+- name: Tenser's Floating Disk
+  book: Player's Handbook
+  probability: 4
+- name: Thunderous Smite
+  book: Player's Handbook
+  probability: 4
+- name: Thunderwave
+  book: Player's Handbook
+  probability: 4
+- name: Unseen Servant
+  book: Player's Handbook
+  probability: 4
+- name: Witch Bolt
+  book: Player's Handbook
+  probability: 4
+- name: Wrathful Smite
+  book: Player's Handbook
+  probability: 4
+- name: Zephyr Strike
+  book: Xanathar's Guide to Everything
+  probability: 4

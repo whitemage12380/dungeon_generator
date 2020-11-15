@@ -565,15 +565,18 @@ Roadmap Order:
 - DONE - Treasure - Add adventuring gear and tools tables
 - DONE - Treasure - All levels' treasure tables
 - DONE - Treasure - Random types of magical weapons
-- Treasure - Random spells for spell scrolls
+- DONE - Treasure - Random spells for spell scrolls
 - Add additional content combo possibilities for chambers
 - Chamber Purpose
 - Chamber Features
+- Encounters - show XP threshold for encounters in UI
 - Encounters - Use "Roll" strategy on special encounters
 - Treasure - Set treasure chances based on room contents
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
+- Ability to reroll specific chamber content categories
 - Chamber Noises
 - Encounters - "Order" encounter-building strategy
 - Encounters - Increase chance of finish when monster count gets higher
 - Encounters - Allow (optionally) a handful of any-level encounters that always use the "Roll" strategy
+- Ability to edit chamber contents (this must be split out per content type)

@@ -1,0 +1,69 @@
+---
+- name: Abi-Dalzim's Horrid Wilting
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Animal Shapes
+  book: Player's Handbook
+  probability: 4
+- name: Antimagic Field
+  book: Player's Handbook
+  probability: 4
+- name: Antipathy/Sympathy
+  book: Player's Handbook
+  probability: 4
+- name: Clone
+  book: Player's Handbook
+  probability: 4
+- name: Control Weather
+  book: Player's Handbook
+  probability: 4
+- name: Demiplane
+  book: Player's Handbook
+  probability: 4
+- name: Dominate Monster
+  book: Player's Handbook
+  probability: 4
+- name: Earthquake
+  book: Player's Handbook
+  probability: 4
+- name: Feeblemind
+  book: Player's Handbook
+  probability: 4
+- name: Glibness
+  book: Player's Handbook
+  probability: 4
+- name: Holy Aura
+  book: Player's Handbook
+  probability: 4
+- name: Illusory Dragon
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Incendiary Cloud
+  book: Player's Handbook
+  probability: 4
+- name: Maddening Darkness
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Maze
+  book: Player's Handbook
+  probability: 4
+- name: Mighty Fortress
+  book: Xanathar's Guide to Everything
+  probability: 4
+- name: Mind Blank
+  book: Player's Handbook
+  probability: 4
+- name: Power Word Stun
+  book: Player's Handbook
+  probability: 4
+- name: Sunburst
+  book: Player's Handbook
+  probability: 4
+- name: Telepathy
+  book: Player's Handbook
+  probability: 4
+- name: Trap the Soul
+  probability: 4
+- name: Tsunami
+  book: Player's Handbook
+  probability: 4
