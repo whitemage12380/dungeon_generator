@@ -1,6 +1,6 @@
 ---
 - name: "+1 Weapon"
-  table: weapon
+  table: weapons
   probability: 15
 - name: "+1 Shield"
   probability: 3
@@ -39,6 +39,8 @@
 - name: Staff of the Python
   probability: 2
 - name: Sword of Vengeance
+  table: weapons
+  tags: ['sword']
   probability: 2
 - name: Trident of Fish Command
   probability: 2
@@ -49,7 +51,7 @@
 - name: Wand of Web
   probability: 2
 - name: Weapon of Warning
-  table: weapon
+  table: weapons
   probability: 2
 - name: Adamantine Chain Mail
   probability: 1

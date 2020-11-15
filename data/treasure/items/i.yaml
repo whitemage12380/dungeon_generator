@@ -1,9 +1,13 @@
 ---
 - name: Defender
+  table: weapons
+  tags: ['sword']
   probability: 5
 - name: Hammer of Thunderbolts
   probability: 5
 - name: Luck Blade
+  table: weapons
+  tags: ['sword']
   probability: 5
 - name: Sword of Answering
   probability: 5
@@ -20,10 +24,12 @@
 - name: Staff of the Magi
   probability: 3
 - name: Vorpal sword
+  table: weapons
+  tags: ['sword', 'slashing']
   probability: 3
 - name: Belt of Cloud Giant Strength
   probability: 2
-- name: "+2 breastPlate"
+- name: "+2 Breastplate"
   probability: 2
 - name: "+3 Chain Mail"
   probability: 2

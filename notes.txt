@@ -494,6 +494,22 @@ RESOLVED. For some reason cursor was ending up with floats for its map_x and map
 Bug - map objects are entering the map.map_objects array twice most of the time.
 RESOLVED. They were getting added by map_object.initialize, then again explicitly by map methods. I removed the line from map_object.initialize.
 
+Bug - It is possible to achieve 0-monster encounters. Blocking these isn't too difficult, but this may also indicate a problematic encounter block or problematic code around figuring out what monsters are allowed based on XP.
+I, [2020-11-15T00:35:36.425107 #3554095]  INFO -- : Adding minimum monsters
+I, [2020-11-15T00:35:36.425292 #3554095]  INFO -- : Adding monsters with strategy: Chaos
+I, [2020-11-15T00:35:36.425406 #3554095]  INFO -- : There are no more available monsters in XP range
+category:
+I, [2020-11-15T00:35:36.427214 #3554095]  INFO -- : Monster group created:
+I, [2020-11-15T00:35:36.427386 #3554095]  INFO -- :   Monsters:
+I, [2020-11-15T00:35:36.427489 #3554095]  INFO -- :   XP: 0
+I, [2020-11-15T00:35:36.427627 #3554095]  INFO -- :   Challenge: Trivial
+
+Bug - Re-generate encounter operation occasionally produces the exact same encounter as before, even when it is so specific that the odds for it are near-impossible. E.g.
+{:description=>"Monster (random creature) with treasure", :hazards=>[], :monsters=>[#<Encounter:0x0055aa7ff50c10 @monster_groups=[[#<Monster:0x0055aa7ff50760 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f6e9298 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f649fb8 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f473158 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f3a4a10 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f2c09f0 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>], [#<Monster:0x0055aa7f0d70f8 @name="Drow Mage", @size="medium", @type="humanoid", @alignment="ne", @challenge=7, @xp=2900, @book="Monster Manual", @page=129>, #<Monster:0x0055aa7f03b7c0 @name="Drow Elite Warrior", @size="medium", @type="humanoid", @alignment="ne", @challenge=5, @xp=1800, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7efa0a90 @name="Drow", @size="medium", @type="humanoid", @alignment="ne", @challenge=0.25, @xp=50, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7e3d4888 @name="Drow", @size="medium", @type="humanoid", @alignment="ne", @challenge=0.25, @xp=50, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7e1acfb0 @name="Drow Elite Warrior", @size="medium", @type="humanoid", @alignment="ne", @challenge=5, @xp=1800, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7e0b7b78 @name="Drow Elite Warrior", @size="medium", @type="humanoid", @alignment="ne", @challenge=5, @xp=1800, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7dfa7be8 @name="Drow Mage", @size="medium", @type="humanoid", @alignment="ne", @challenge=7, @xp=2900, @book="Monster Manual", @page=129>]], @probability=4, @xp_threshold_target=:hard, @relationship="Captured by">], :obstacles=>[], :traps=>[], :treasure=>[#<TreasureStash:0x0055aa804bae58 @coins={"gp"=>121}, @valuables=[], @items=[#<Item:0x0055aa8041d9c8 @name="Flask", @worth="2 cp">, #<Item:0x0055aa804756f0 @name="Quiver", @worth="1 gp">, #<Item:0x0055aa804497d0 @name="Spikes, iron (10)", @worth="1 gp">]>], :tricks=>[]}
+[["gp", 121]]
+
+Bug - there may be code that behaves inappropriately with fetch since I didn't know that intentionally-set nil will cause it to fail to default. I should take a peek at where I use the construct and make sure I used it correctly.
+
 Project tracking:
 
 - Passage Instructions: 95%
@@ -547,15 +563,17 @@ Roadmap Order:
 - DONE - Encounters - Allow special encounters regardless of xp if flag is on
 - DONE - Treasure
 - DONE - Treasure - Add adventuring gear and tools tables
-- Treasure - All levels' treasure tables
-- Treasure - Random types of magical weapons
+- DONE - Treasure - All levels' treasure tables
+- DONE - Treasure - Random types of magical weapons
 - Treasure - Random spells for spell scrolls
 - Add additional content combo possibilities for chambers
 - Chamber Purpose
+- Chamber Features
 - Encounters - Use "Roll" strategy on special encounters
 - Treasure - Set treasure chances based on room contents
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
+- Chamber Noises
 - Encounters - "Order" encounter-building strategy
 - Encounters - Increase chance of finish when monster count gets higher
 - Encounters - Allow (optionally) a handful of any-level encounters that always use the "Roll" strategy

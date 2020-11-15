@@ -5,6 +5,7 @@
   table: spell_level_4
   probability: 7
 - name: Ammunition +2
+  table: ammunition
   probability: 5
 - name: Potion of Clairvoyance
   probability: 5
@@ -31,7 +32,7 @@
   probability: 3
 - name: Potion of Fire Giant Strength
   probability: 3
-- name: Quaal'S Feather Token
+- name: Quaal's Feather Token
   probability: 3
 - name: Scroll of Protection
   probability: 3

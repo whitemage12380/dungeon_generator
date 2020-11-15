@@ -6,6 +6,7 @@
 - name: Potion of Resistance
   probability: 7
 - name: Ammunition +1
+  table: ammunition
   probability: 5
 - name: Potion of Animal Friendship
   probability: 5
@@ -54,8 +55,12 @@
 - name: Lantern of Revealing
   probability: 1
 - name: Mariner's Armor
+  table: armor
+  not_tags: ['shield']
   probability: 1
 - name: Mithral Armor
+  table: armor
+  not_tags: ['light', 'hide', 'shield']
   probability: 1
 - name: Potion of Poison
   probability: 1

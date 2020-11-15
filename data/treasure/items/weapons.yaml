@@ -6,6 +6,7 @@
 - name: Greatclub
   probability: 4
 - name: Handaxe
+  tags: ['axe', 'slashing']
   probability: 24
 - name: Javelin
   probability: 8
@@ -36,23 +37,25 @@
 - name: Sling
   probability: 116
 - name: Battleaxe
+  tags: ['axe', 'slashing']
   probability: 85
 - name: Flail
   probability: 9
 - name: Glaive
   probability: 7
 - name: Greataxe
+  tags: ['axe', 'slashing']
   probability: 78
 - name: Greatsword
+  tags: ['sword', 'slashing']
   probability: 78
-  tags: ['sword']
 - name: Halberd
   probability: 5
 - name: Lance
   probability: 5
 - name: Longsword
   probability: 187
-  tags: ['sword']
+  tags: ['sword', 'slashing']
 - name: Maul
   probability: 1
 - name: Morningstar
@@ -64,7 +67,7 @@
   tags: ['sword']
 - name: Scimitar
   probability: 39
-  tags: ['sword']
+  tags: ['sword', 'slashing']
 - name: Shortsword
   probability: 39
   tags: ['sword']

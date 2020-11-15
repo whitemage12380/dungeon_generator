@@ -80,10 +80,9 @@ class TreasureStash
       treasure_count = rand(max - min + 1) + min
       treasure_count.times do
         chosen_item = weighted_random(YAML.load(File.read("#{DATA_PATH}/treasure/#{type}/#{treasure_data['type']}.yaml")))
-        worth = chosen_item['worth'] unless chosen_item['worth'].nil?
-        # This is where I do special logic like the 'roll' and 'table' fields
-        # Or do it in item.rb
-        chosen_items << Item.new(chosen_item['name'], worth)
+        worth = chosen_item['worth'] unless chosen_item['worth'].nil? # Worth may already be set so don't nil it out
+        tags = {require: chosen_item['tags'], exclude: chosen_item['not_tags']}
+        chosen_items << Item.new(chosen_item['name'], worth, chosen_item['roll'], chosen_item['table'], tags)
       end
     end
     return chosen_items.sort_by { |i| i.name }

@@ -1,6 +1,6 @@
 ---
 - name: "+3 Weapon"
-  table: weapon
+  table: weapons
   probability: 10
 - name: Amulet of the Planes
   probability: 2
@@ -41,6 +41,8 @@
 - name: Staff of Thunder and Lightning
   probability: 2
 - name: Sword of Sharpness
+  table: weapons
+  tags: ['sword', 'slashing']
   probability: 2
 - name: Wand of Polymorph
   probability: 2
@@ -83,6 +85,8 @@
 - name: Figurine of Wondrous Power, Obsidian Steed
   probability: 1
 - name: Frost Brand
+  table: weapons
+  tags: ['sword']
   probability: 1
 - name: Helm of Brilliance
   probability: 1
@@ -104,7 +108,7 @@
   probability: 1
 - name: Ioun Stone, Strength
   probability: 1
-- name: "+2 leather armor"
+- name: "+2 Leather Armor"
   probability: 1
 - name: Manual of Bodily Health
   probability: 1
@@ -117,6 +121,8 @@
 - name: Mirror of Life Trapping
   probability: 1
 - name: Nine Lives Stealer
+  table: weapons
+  tags: ['sword']
   probability: 1
 - name: Oathbow
   probability: 1

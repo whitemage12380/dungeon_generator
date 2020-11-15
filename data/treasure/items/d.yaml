@@ -12,6 +12,7 @@
   table: spell_level_7
   probability: 7
 - name: "+3 Ammunition"
+  table: ammunition
   probability: 5
 - name: Oil of Sharpness
   probability: 5

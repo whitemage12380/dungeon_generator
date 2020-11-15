@@ -1,6 +1,6 @@
 ---
 - name: "+2 Weapon"
-  table: weapon
+  table: weapons
   probability: 11
 - name: Figurine of Wondrous Power (roll d8)
   probability: 3
@@ -34,6 +34,8 @@
 - name: Belt of Hill Giant Strength
   probability: 1
 - name: Berserker Axe
+  table: weapons
+  tags: ['axe']
   probability: 1
 - name: Boots of Levitation
   probability: 1
@@ -49,7 +51,7 @@
   probability: 1
 - name: Censer of Controlling Air Elementals
   probability: 1
-- name: "+1 chain Mail"
+- name: "+1 Chain Mail"
   probability: 1
 - name: Chain Mail of Resistance
   probability: 1
@@ -166,13 +168,17 @@
 - name: Sun Blade
   probability: 1
 - name: Sword of Life Stealing
+  table: weapons
+  tags: ['sword']
   probability: 1
 - name: Sword of Wounding
+  table: weapons
+  tags: ['sword']
   probability: 1
 - name: Tentacle Rod
   probability: 1
 - name: Vicious Weapon
-  table: weapon
+  table: weapons
   probability: 1
 - name: Wand of Binding
   probability: 1
