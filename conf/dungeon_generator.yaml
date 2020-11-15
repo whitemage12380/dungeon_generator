@@ -25,7 +25,7 @@ generate_monster_motivation: on
 log_level: info
 #map_display: debug
 map_size: 50
-party_level: 8
+party_level: 13
 party_members: 4
 saved_map_directory: data/maps
 theme: university_in_limbo # random

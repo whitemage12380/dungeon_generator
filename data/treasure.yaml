@@ -43,3 +43,47 @@ treasure:
       f: {probability: 3, count: 1}
       g: {probability: 2, count: 1}
       h: {probability: 1, count: 1}
+  11:
+    coins:
+      sp: {probability: 2, count: 200-1500}
+      ep: {probability: 2, count: 50-400}
+      gp: {probability: 12, count: 80-600}
+      pp: {probability: 5, count: 10-80}
+    valuables:
+      gems_500: {probability: 1, count: 1}
+      gems_1000: {probability: 1, count: 1}
+      art_250: {probability: 1, count: 1}
+      art_750: {probability: 1, count: 1}
+    items:
+      armor: {probability: 4, count: 1}
+      weapons: {probability: 4, count: 1}
+      adventuring_gear: {probability: 4, count: 1-3}
+      tools: {probability: 3, count: 1}
+      b: {probability: 6, count: 1-2}
+      c: {probability: 9, count: 1-2}
+      d: {probability: 9, count: 1-2}
+      e: {probability: 2, count: 1}
+      g: {probability: 2, count: 1}
+      h: {probability: 2, count: 1}
+      i: {probability: 1, count: 1}
+  17:
+    coins:
+      ep: {probability: 2, count: 500-6000}
+      gp: {probability: 12, count: 500-4000}
+      pp: {probability: 5, count: 80-800}
+    valuables:
+      gems_1000: {probability: 1, count: 1}
+      gems_5000: {probability: 1, count: 1}
+      art_2500: {probability: 1, count: 1}
+      art_7500: {probability: 1, count: 1}
+    items:
+      armor: {probability: 3, count: 1}
+      weapons: {probability: 3, count: 1}
+      adventuring_gear: {probability: 3, count: 1-3}
+      tools: {probability: 2, count: 1}
+      c: {probability: 8, count: 1-2}
+      d: {probability: 12, count: 1-2}
+      e: {probability: 6, count: 1-2}
+      g: {probability: 1, count: 1}
+      h: {probability: 2, count: 1}
+      i: {probability: 3, count: 1}

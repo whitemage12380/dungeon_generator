@@ -1720,7 +1720,7 @@ encounters: # Default probability is 4
   - encounter:
       Star Spawn Mangler: 1-4
       Cultist: 0-2
-      Cultist Fanatic: 0-2
+      Cult Fanatic: 0-2
     xp: 1800-7200
   - encounter:
       Star Spawn Seer: 1-2
