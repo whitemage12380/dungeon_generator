@@ -58,3 +58,28 @@ chamber_contents:
     description: "Empty room with treasure"
     contents:
       - treasure
+  - probability: 3
+    description: Obstacle and monster (Not core)
+    contents:
+      - obstacle
+      - monster_random
+  - probability: 3
+    description: Obstacle and treasure (Not core)
+    contents:
+      - obstacle
+      - treasure
+  - probability: 3
+    description: Trick and monster (Not core)
+    contents:
+      - trick
+      - monster_random
+  - probability: 3
+    description: Trick and treasure (Not core)
+    contents:
+      - trick
+      - treasure
+  - probability: 3
+    description: Trap and monster (Not core)
+    contents:
+      - trap
+      - monster_random
