@@ -167,7 +167,7 @@ class MapGenerator
         theme = map.themes.sample
       end
       purpose = random_chamber_purpose(theme)
-      return purpose["name"], purpose["description"]
+      return purpose["name"], purpose.fetch("description", "")
     end
 
     def random_chamber_exits(size_category)

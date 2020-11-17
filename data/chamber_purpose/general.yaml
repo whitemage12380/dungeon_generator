@@ -1,0 +1,117 @@
+general:
+  - probability: 1
+    name: Antechamber
+  - probability: 2
+    name: Armory
+  - probability: 1
+    name: Audience Chamber
+  - probability: 1
+    name: Aviary
+  - probability: 2
+    name: Banquet Room
+  - probability: 3
+    name: Barracks
+  - probability: 1
+    name: Bathroom
+  - probability: 1
+    name: Bedroom
+  - probability: 1
+    name: Bestiary
+  - probability: 3
+    name: Cell
+  - probability: 1
+    name: Chantry
+  - probability: 1
+    name: Chapel
+  - probability: 2
+    name: Cistern
+  - probability: 1
+    name: Classroom
+  - probability: 1
+    name: Closet
+  - probability: 2
+    name: Conjuring Room
+  - probability: 2
+    name: Court
+  - probability: 3
+    name: Crypt
+  - probability: 2
+    name: Dining Room
+  - probability: 2
+    name: Divination Room
+  - probability: 1
+    name: Dormitory
+  - probability: 1
+    name: Dressing Room
+  - probability: 1
+    name: Entry Room
+  - probability: 2
+    name: Gallery
+  - probability: 2
+    name: Guardroom
+  - probability: 2
+    name: Hall
+  - probability: 2
+    name: Great Hall
+  - probability: 2
+    name: Hallway
+  - probability: 1
+    name: Kennel
+  - probability: 2
+    name: Kitchen
+  - probability: 2
+    name: Laboratory
+  - probability: 3
+    name: Library
+  - probability: 2
+    name: Lounge
+  - probability: 1
+    name: Meditation Chamber
+  - probability: 1
+    name: Observatory
+  - probability: 1
+    name: Office
+  - probability: 2
+    name: Pantry
+  - probability: 2
+    name: Prison
+  - probability: 2
+    name: Refectory
+  - probability: 1
+    name: Robing Room
+  - probability: 1
+    name: Salon
+  - probability: 2
+    name: Shrine
+  - probability: 2
+    name: Sitting Room
+  - probability: 2
+    name: Smithy
+  - probability: 1
+    name: Stable
+  - probability: 2
+    name: Storage Room
+  - probability: 2
+    name: Vault
+  - probability: 2
+    name: Study
+  - probability: 3
+    name: Temple
+  - probability: 2
+    name: Throne Room
+  - probability: 1
+    name: Torture Chamber
+  - probability: 2
+    name: Training Room
+  - probability: 1
+    name: Trophy Room
+  - probability: 1
+    name: Museum
+  - probability: 1
+    name: Waiting Room
+  - probability: 1
+    name: Nursery
+  - probability: 1
+    name: Schoolroom
+  - probability: 2
+    name: Workshop
