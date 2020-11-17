@@ -1,0 +1,37 @@
+mine:
+  - probability: 2
+    name: Barracks
+    description: Barracks for miners
+  - probability: 1
+    name: Bedroom
+    description: Bedroom for a supervisor or manager
+  - probability: 1
+    name: Chapel
+    description: Chapel dedicated to a patron deity of miners, earth, or protection
+  - probability: 1
+    name: Cistern
+    description: Cistern providing drinking water for miners
+  - probability: 2
+    name: Guardroom
+    description: Guardroom
+  - probability: 1
+    name: Kitchen
+    description: Kitchen used to feed workers
+  - probability: 1
+    name: Laboratory
+    description: Laboratory used to conduct tests on strange minerals extracted from the mine
+  - probability: 6
+    name: Lode
+    description: Lode where metal ore is mined (75 percent chance of being depleted)
+  - probability: 1
+    name: Office
+    description: Office used by the mine supervisor
+  - probability: 1
+    name: Smithy
+    description: Smithy for repairing damaged tools
+  - probability: 2
+    name: Storage
+    description: Storage for tools and other equipment
+  - probability: 1
+    name: Vault
+    description: Strong room or vault used to store ore for transport to the surface

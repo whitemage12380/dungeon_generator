@@ -1,0 +1,37 @@
+tomb:
+  - probability: 1
+    name: Antechamber
+    description: Antechamber for those who have come to pay respect to the dead or prepare themselves for burial rituals
+  - probability: 2
+    name: Chapel
+    description: Chapel dedicated to the deities that watch over the dead and protect their resting places
+  - probability: 5
+    name: Crypt
+    description: Crypt for the less important burials
+  - probability: 1
+    name: Divination Room
+    description: Divination room, used in rituals to contact the dead for guidance
+  - probability: 1
+    name: False Crypt
+    description: False crypt (trapped) to kill or capture thieves
+  - probability: 1
+    name: Gallery
+    description: Gallery to display the deeds of the deceased through trophies, statues, paintings, and so forth
+  - probability: 1
+    name: Grand Crypt
+    description: Grand crypt for a noble, high priest, or other important individual
+  - probability: 2
+    name: Guardroom
+    description: Guardroom, usually guarded by undead, constructs, or other creatures that don't need to eat or sleep
+  - probability: 1
+    name: Robing Room
+    description: Robing room for priests to prepare for burial rituals
+  - probability: 2
+    name: Storage
+    description: Storage, stocked with tools for maintaining the tomb and preparing the dead for burial
+  - probability: 1
+    name: Tomb
+    description: Tomb where the wealthiest and most important folk are interred, protected by secret doors and traps
+  - probability: 2
+    name: Workshop
+    description: Workshop for embalming the dead

@@ -89,7 +89,7 @@ class DungeonGeneratorContent < Gtk::Box
       Gtk::Label.new("#{i.name} (#{i.worth} gp)")
     }
     puts treasure_stash.coins.to_a.to_s
-    labels.concat treasure_stash.coins.to_a.sort_by { |c| puts "c[0]: #{c[0]}"; puts ['pp', 'gp', 'ep', 'sp', 'cp'].index(c[0]); ['pp', 'gp', 'ep', 'sp', 'cp'].index(c[0]) }.collect { |c|
+    labels.concat treasure_stash.coins.to_a.sort_by { |c| ['pp', 'gp', 'ep', 'sp', 'cp'].index(c[0]) }.collect { |c|
       Gtk::Label.new("#{c[1]} #{c[0]}")
     }
     return labels

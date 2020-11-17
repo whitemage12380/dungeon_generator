@@ -1,0 +1,85 @@
+temple:
+  - probability: 3
+    name: Armory
+    description: Armory filled with weapons and armor, battle banners, and pennants
+  - probability: 2
+    name: Audience Chamber
+    description: Audience chamber where priests of the temple receive commoners and low-ranking visitors
+  - probability: 2
+    name: Banquet Room
+    description: Banquet room used for celebrations and holy days
+  - probability: 3
+    name: Barracks
+    description: Barracks for the temple's military arm or its hired guards
+  - probability: 4
+    name: Meditation Chamber
+    description: Cells where the faithful can sit in quiet contemplation
+  - probability: 10
+    name: Ritual Chamber
+    description: Central temple built to accommodate rituals
+  - probability: 4
+    name: Chapel
+    description: Chapel dedicated to a lesser deity associated with the temple's major deity
+  - probability: 3
+    name: Classroom
+    description: Classroom used to train initiates and priests
+  - probability: 3
+    name: Conjuring Room
+    description: Conjuring room, specially sanctified and used to summon extraplanar creatures
+  - probability: 6
+    name: Crypt
+    description: Crypt for a high priest or similar figure, hidden and heavily guarded by creatures and traps
+  - probability: 2
+    name: Dining Room
+    description: Dining room (large) for the temple's servants and lesser priests
+  - probability: 1
+    name: Dining Room
+    description: Dining room (small) for the temple's high priests
+  - probability: 3
+    name: Divination Room
+    description: Divination room, inscribed with runes and stocked with soothsaying implements
+  - probability: 4
+    name: Dormitory
+    description: Dormitory for lesser priests or students
+  - probability: 6
+    name: Guardroom
+    description: Guardroom
+  - probability: 1
+    name: Kennel
+    description: Kennel for animals or monsters associated with the temple's deity
+  - probability: 3
+    name: Kitchen
+    description: Kitchen (might bear a disturbing resemblence to a torture chamber in an evil temple)
+  - probability: 5
+    name: Library
+    description: Library, well stocked with religious treatises
+  - probability: 3
+    name: Prison
+    description: Prison for captured enemies (in good or neutral temples) or those designated as sacrifices (in evil temples)
+  - probability: 5
+    name: Robing Room
+    description: Robing room containing ceremonial outfits and items
+  - probability: 1
+    name: Stable
+    description: Stable for riding horses and mounts belonging to the temple, or for visiting messengers and caravans
+  - probability: 5
+    name: Storage
+    description: Storage holding mundane supplies
+  - probability: 1
+    name: Vault
+    description: Strong room or vault holding important relics and ceremonial items, heavily trapped
+  - probability: 2
+    name: Torture Chamber
+    description: Torture chamber, used in inquisitions (in good or neutral temples with a lawful bent) or for the sheer joy of causing pain (evil temples)
+  - probability: 7
+    name: Trophy Room
+    description: Trophy room where art celebrating key figures and events from mythology is displayed
+  - probability: 1
+    name: Bathroom
+    description: Latrine or bath
+  - probability: 4
+    name: Well
+    description: Well for drinking water, defendable in the case of attack or siege
+  - probability: 6
+    name: Workshop
+    description: Workshop for repairing or creating weapons, religious items, and tools

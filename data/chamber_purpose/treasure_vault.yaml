@@ -1,0 +1,37 @@
+treasure_vault:
+  - probability: 1
+    name: Antechamber
+    description: Antechamber for visiting dignitaries
+  - probability: 1
+    name: Armory
+    description: Armory containing mundane and magic gear used by the treasure vault's guards
+  - probability: 2
+    name: Barracks
+    description: Barracks for the guards
+  - probability: 1
+    name: Cistern
+    description: Cistern providing fresh water
+  - probability: 4
+    name: Guardroom
+    description: Guardroom to defend against intruders
+  - probability: 1
+    name: Kennel
+    description: Kennel for trained beasts used to guard the treasure vault
+  - probability: 1
+    name: Kitchen
+    description: Kitchen for feeding guards
+  - probability: 1
+    name: Watch Room
+    description: Watch room that allows guards to observe those who approach the dungeon
+  - probability: 1
+    name: Prison
+    description: Prison for holding captured intruders
+  - probability: 2
+    name: Vault
+    description: Strong room or vault, for guarding the treasure hidden in the dungeon, accessible only by locked or secret door
+  - probability: 1
+    name: Torture Chamber
+    description: Torture chamber for extracting information from captured intruders
+  - probability: 4
+    name: Trap Room
+    description: Trap or other trick designed to kill or capture creatures that enter the dungeon

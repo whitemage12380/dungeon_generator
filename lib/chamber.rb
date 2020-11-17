@@ -413,8 +413,6 @@ class Chamber < MapObject
       case c
       when /^monster/
         category = c.split("_").last
-        #puts "category: #{category}"
-        #contents[:monsters] << MonsterGroup.new(category: category)
         case category
         when "dominant"
           log "Dominant creatures not yet supported; using random encounter instead"

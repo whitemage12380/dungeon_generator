@@ -1,0 +1,85 @@
+stronghold:
+  - probability: 2
+    name: Antechamber
+    description: Antechamber where visitors seeking access to the stronghold wait
+  - probability: 3
+    name: Armory
+    description: Armory holding high-quality gear, including light siege weapons such as ballistas
+  - probability: 1
+    name: Audience Chamber
+    description: Audience chamber used by the master of the stronghold to receive visitors
+  - probability: 1
+    name: Zoo
+    description: Aviary or zoo for keeping exotic creatures
+  - probability: 4
+    name: Banquet Room
+    description: Banquet room for hosting celebrations and guests
+  - probability: 4
+    name: Barracks
+    description: Barracks used by elite guards
+  - probability: 1
+    name: Bath
+    description: Bath outfitted for use by the stronghold's master or important guests
+  - probability: 1
+    name: Chapel
+    description: Chapel dedicated to a deity associated with the stronghold's master
+  - probability: 3
+    name: Cistern
+    description: Cistern providing drinking water
+  - probability: 4
+    name: Dining Room
+    description: Dining room for intimate gatherings or informal meals
+  - probability: 1
+    name: Dressing Room
+    description: Dressing room featuring a number of wardrobes
+  - probability: 3
+    name: Gallery
+    description: Gallery for the display of expensive works of art and trophies
+  - probability: 3
+    name: Game Room
+    description: Game room used to entertain visitors
+  - probability: 8
+    name: Guardroom
+    description: Guardroom
+  - probability: 1
+    name: Kennel
+    description: Kennel where monsters or trained animals that protect the stronghold are kept
+  - probability: 6
+    name: Kitchen
+    description: Kitchen designed to prepare exotic foods for large numbers of guests
+  - probability: 4
+    name: Library
+    description: Library with an extensive collection of rare books
+  - probability: 1
+    name: Lounge
+    description: Lounge used to entertain guests
+  - probability: 8
+    name: Pantry
+    description: Pantry, including cellar for wine or spirits
+  - probability: 4
+    name: Sitting Room
+    description: Sitting room for family and intimate guests
+  - probability: 4
+    name: Stable
+    description: Stable
+  - probability: 8
+    name: Storage
+    description: Storage for mundane goods and supplies
+  - probability: 1
+    name: Vault
+    description: Strong room or vault for protecting important treasures (75 percent chance of being hidden behind a secret door)
+  - probability: 5
+    name: Study
+    description: Study, including a writing desk
+  - probability: 1
+    name: Throne Room
+    description: Throne room, elaborately decorated
+  - probability: 3
+    name: Waiting Room
+    description: Waiting room where lesser guests are held before receiving an audience
+  - probability: 2
+    name: Bathroom
+    description: Latrine or bath
+  - probability: 2
+    name: Crypt
+    description: Crypt belonging to the stronghold's master or someone else of importance

@@ -12,7 +12,7 @@ chamber_contents:
     description: "Monster (pet or allied creature)"
     contents:
       - monster_ally
-  - probability: 2
+  - probability: 3
     description: "Monster (pet or allied creature) guarding treasure"
     contents:
       - monster_ally
@@ -54,7 +54,7 @@ chamber_contents:
     description: "Empty room with dungeon hazard"
     contents:
       - hazard
-  - probability: 6
+  - probability: 8
     description: "Empty room with treasure"
     contents:
       - treasure

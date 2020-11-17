@@ -1,7 +1,6 @@
 require_relative 'dungeon_generator_helper'
 require_relative 'encounter'
 require_relative 'monster'
-puts $LOADED_FEATURES
 
 class EncounterTable
   include DungeonGeneratorHelper

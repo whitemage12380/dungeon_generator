@@ -11,17 +11,17 @@ class MapGenerator
   class << self
     def generate_map(map_size = $configuration['map_size'], theme: nil)
       log "Beginning map generation"
-      if theme.nil?
-        case $configuration['theme']
-        when "random"
-          theme = random_theme()
-        when nil
-          # Let theme be nil
-        else
-          theme = $configuration['theme']
-        end
-      end
-      map = Map.new(map_size, theme: theme)
+      # if theme.nil?
+      #   case $configuration['theme']
+      #   when "random"
+      #     themes = random_themes()
+      #   when nil
+      #     # Let theme be nil
+      #   else
+      #     theme = $configuration['theme']
+      #   end
+      # end
+      map = Map.new(map_size)
       starting_area = map.generate_starting_area()
       starting_area.all_connectors.each {|c| generate_passage_recursive(c)}
       log "Completed map generation"
@@ -155,63 +155,20 @@ class MapGenerator
     end
 
     def generate_chamber_name_and_description(map = nil)
-      case $configuration["chamber_purpose_theme"]
-      when "map"
-        theme = map.theme
-      when "all"
-        theme = all_themes()
+      # case $configuration["chamber_purpose_theme"]
+      # when "map"
+      #   theme = map.theme
+      # when "all"
+      #   theme = all_themes()
+      # end
+      if map.nil?
+        theme = $configuration.fetch('theme', all_themes.sample)
+      else
+        theme = map.themes.sample
       end
       purpose = random_chamber_purpose(theme)
       return purpose["name"], purpose["description"]
     end
-
-    # def generate_chamber_contents(map = nil)
-    #   contents_yaml = random_yaml_element("chamber_contents")
-    #   contents = {
-    #     description: contents_yaml["description"],
-    #     hazards: [],
-    #     monsters: [],
-    #     obstacles: [],
-    #     traps: [],
-    #     treasure: [],
-    #     tricks: [],
-    #   }
-    #   return contents if contents_yaml["contents"].nil?
-    #   contents_yaml["contents"].each { |c|
-    #     case c
-    #     when /^monster/
-    #       category = c.split("_").last
-    #       #puts "category: #{category}"
-    #       #contents[:monsters] << MonsterGroup.new(category: category)
-    #       case category # NEED CHAMBER SIZE AND ENCOUNTER TABLE OBJECT
-    #       when "dominant"
-    #         log "Dominant creatures not yet supported; using random encounter instead"
-    #         encounter = encounter_table.random_encounter(chamber_size)
-    #       when "ally"
-    #         log "Dominant creatures not yet supported; using random encounter instead"
-    #         encounter = encounter_table.random_encounter(chamber_size)
-    #       when "random"
-    #         encounter = encounter_table.random_encounter(chamber_size)
-    #       else
-    #         raise "Unrecognized monster category: #{category}"
-    #       end
-    #       contents[:monsters] << encounter
-    #     when "hazard"
-    #       contents[:hazards] << random_yaml_element("hazards")["description"]
-    #     when "obstacle"
-    #       contents[:obstacles] << random_yaml_element("obstacles")["description"]
-    #     when "trap"
-    #       contents[:traps] << Trap.new()
-    #     when "trick"
-    #       contents[:tricks] << Trick.new()
-    #     when "treasure"
-    #       contents[:treasure] << c
-    #     else
-    #       raise "Unknown chamber content type: #{c}"
-    #     end
-    #   }
-    #   return contents
-    # end
 
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]
@@ -233,21 +190,30 @@ class MapGenerator
       return available_facings.sample
     end
 
+    def select_themes()
+      theme = $configuration.fetch('theme', 'random')
+      if theme == 'random'
+        theme_tables = $configuration.fetch('theme_tables', 1)
+        theme_table_list = $configuration.fetch('theme_table_list', 'all')
+        if theme_table_list == 'all'
+          theme_table_list = all_themes()
+        end
+        theme_table_list.sample(theme_tables)
+      else
+        theme
+      end
+    end
+
     def random_theme()
       return all_themes.sample
     end
 
     def all_themes()
-      return Dir["#{DATA_PATH}/chamber_purpose/*"].collect { |f| File.basename(f, ".yaml") }
+      return Dir["#{DATA_PATH}/chamber_purpose/*.yaml"].collect { |f| File.basename(f, ".yaml") }
     end
 
-    def random_chamber_purpose(theme = all_themes())
-      if theme.kind_of? String
-        return random_yaml_element("chamber_purpose/#{theme}")
-      else
-        # Haven't implemented chamber purpose from multiple possible themes yet
-        return random_yaml_element("chamber_purpose/#{theme.first}")
-      end
+    def random_chamber_purpose(theme)
+      random_yaml_element("chamber_purpose/#{theme}")
     end
 
     def random_monsters(table, category)

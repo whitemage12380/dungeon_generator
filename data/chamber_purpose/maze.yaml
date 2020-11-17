@@ -1,0 +1,28 @@
+maze:
+  - probability: 1
+    name: Conjuring Room
+    description: Conjuring room, used to summon creatures that guard the maze
+  - probability: 4
+    name: Guardroom
+    description: Guardroom for sentinels that patrol the maze
+  - probability: 5
+    name: Lair
+    description: Lair for guard beasts that patrol the maze
+  - probability: 1
+    name: Prison
+    description: Pen or prison accessible only by secret door, used to hold captives condemned to the maze
+  - probability: 1
+    name: Shrine
+    description: Shrine dedicated to a god or other entity
+  - probability: 2
+    name: Storage
+    description: Storage for food, as well as tools used by the maze’s guardians to keep the complex in working order
+  - probability: 4
+    name: Trap Room
+    description: Trap to confound or kill those sent into the maze
+  - probability: 1
+    name: Well
+    description: Well that provides drinking water
+  - probability: 1
+    name: Workshop
+    description: Workshop where doors, torch sconces, and other furnishings are repaired and maintained
