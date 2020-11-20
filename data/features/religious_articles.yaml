@@ -1,0 +1,85 @@
+---
+- probability: 5
+  name: Altar
+- probability: 3
+  name: Bells
+- probability: 3
+  name: Brazier(s)
+- probability: 1
+  name: Candleabra
+- probability: 2
+  name: Candles
+- probability: 1
+  name: Candlesticks
+- probability: 1
+  name: Cassocks
+- probability: 1
+  name: Chimes
+- probability: 2
+  name: Cloth, altar
+- probability: 4
+  name: Columns or pillars
+- probability: 1
+  name: Religious curtain or tapestry
+- probability: 1
+  name: Drum
+- probability: 2
+  name: Font
+  contents:
+    container_contents: 0-1
+- probability: 2
+  name: Gong
+- probability: 6
+  name: Holy or unholy symbols
+- probability: 2
+  name: Holy or unholy writings
+- probability: 6
+  name: Idol
+- probability: 5
+  name: Incense burner
+- probability: 1
+  name: Kneeling bench
+- probability: 4
+  name: Lamp
+- probability: 1
+  name: Lectern
+- probability: 1
+  name: Mosaic
+- probability: 3
+  name: Offertory container
+- probability: 1
+  name: Religious paintings or frescoes
+- probability: 2
+  name: Pews
+- probability: 1
+  name: Pipes, musical
+- probability: 1
+  name: Prayer rug
+- probability: 1
+  name: Pulpit
+- probability: 1
+  name: Rail
+- probability: 4
+  name: Robes
+- probability: 2
+  name: Screen
+- probability: 5
+  name: Shrine
+- probability: 1
+  name: Side chairs
+- probability: 2
+  name: Stand
+- probability: 3
+  name: Statue
+- probability: 1
+  name: Throne
+- probability: 2
+  name: Thurible
+- probability: 5
+  name: Tripod
+- probability: 7
+  name: Vestments
+- probability: 2
+  name: Votive light
+- probability: 1
+  name: Whistle

@@ -1,0 +1,135 @@
+---
+- probability: 3
+  name: Alembic
+- probability: 2
+  name: Balance and weights
+- probability: 4
+  name: Beaker
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Bellows
+- probability: 4
+  name: Book
+  contents:
+    books: 1
+- probability: 2
+  name: Bottle
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Bowl
+- probability: 1
+  name: Box
+- probability: 4
+  name: Brazier
+- probability: 1
+  name: Cage
+- probability: 1
+  name: Candle
+- probability: 2
+  name: Candlestick
+- probability: 2
+  name: Cauldron
+  contents:
+    container_contents: 0-1
+- probability: 2
+  name: Chalk
+- probability: 2
+  name: Crucible
+- probability: 1
+  name: Crystal ball
+- probability: 1
+  name: Decanter
+- probability: 1
+  name: Desk
+- probability: 1
+  name: Dish
+- probability: 4
+  name: Flask or jar
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Funnel
+- probability: 1
+  name: Furnace
+- probability: 2
+  name: Herbs
+- probability: 1
+  name: Horn
+- probability: 2
+  name: Hourglass
+- probability: 2
+  name: Jug
+- probability: 1
+  name: Kettle
+- probability: 1
+  name: Ladle
+- probability: 1
+  name: Lamp or lantern
+- probability: 1
+  name: Lens (concave or convex)
+- probability: 1
+  name: Magic circle
+- probability: 1
+  name: Mortar and pestle
+- probability: 1
+  name: Pan
+- probability: 2
+  name: Parchment
+- probability: 1
+  name: Pentacle
+- probability: 1
+  name: Pentagram
+- probability: 1
+  name: Pipe, smoking
+- probability: 1
+  name: Pot
+- probability: 1
+  name: Prism
+- probability: 2
+  name: Quill
+- probability: 3
+  name: Retort
+- probability: 1
+  name: Rod, mixing or stirring
+- probability: 3
+  name: Scroll
+- probability: 1
+  name: Scroll tube
+- probability: 2
+  name: Skull
+- probability: 1
+  name: Spatula
+- probability: 1
+  name: Spoon, measuring
+- probability: 1
+  name: Stand
+- probability: 1
+  name: Stool
+- probability: 1
+  name: Stuffed animal
+- probability: 1
+  name: Tank (container)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Tongs
+- probability: 1
+  name: Tripod
+- probability: 1
+  name: Tube (container)
+- probability: 2
+  name: Tube (piping)
+- probability: 1
+  name: Tweezers
+- probability: 3
+  name: Vial
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Water clock
+- probability: 1
+  name: Wire
+- probability: 8
+  name: Workbench

@@ -1,0 +1,79 @@
+---
+- probability: 2
+  name: Account records
+- probability: 2
+  name: Alchemist's notebook
+- probability: 2
+  name: Almanac
+- probability: 2
+  name: Bestiary
+- probability: 3
+  name: Biography
+- probability: 3
+  name: Book of heraldry
+- probability: 2
+  name: Book of myths
+- probability: 2
+  name: Book of pressed flowers
+- probability: 1
+  name: Calendar
+- probability: 5
+  name: Catalog
+- probability: 3
+  name: Diary
+- probability: 2
+  name: Dictionary
+- probability: 3
+  name: Doodles or sketches
+- probability: 1
+  name: Grammar workbook
+- probability: 2
+  name: Heretical text
+- probability: 5
+  name: Historical text
+- probability: 1
+  name: Lunatic's ravings
+- probability: 1
+  name: Magic tricks (not a spellbook)
+- probability: 1
+  name: Map or atlas
+- probability: 1
+  name: Memoir
+- probability: 2
+  name: Novel
+- probability: 2
+  name: Poetry
+- probability: 2
+  name: Prayer book
+- probability: 4
+  name: Recipe book or cookbook
+- probability: 1
+  name: Sheet music
+- probability: 1
+  name: Spellbook
+- probability: 1
+  name: Text on armor making
+- probability: 2
+  name: Text on astrology
+- probability: 2
+  name: Text on brewing
+- probability: 2
+  name: Text on exotic flora or fauna
+- probability: 2
+  name: Text on herbalism
+- probability: 2
+  name: Text on local flora
+- probability: 2
+  name: Text on mathematics
+- probability: 1
+  name: Text on masonry
+- probability: 1
+  name: Text on medicine
+- probability: 1
+  name: Theological text
+- probability: 2
+  name: Tome of forbidden lore
+- probability: 3
+  name: Travelogue for an exotic land
+- probability: 1
+  name: Travelogue of the planes

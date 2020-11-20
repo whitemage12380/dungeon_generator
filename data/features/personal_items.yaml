@@ -1,0 +1,155 @@
+---
+- probability: 1
+  name: Awl
+- probability: 1
+  name: Bandages
+- probability: 1
+  name: Basin
+- probability: 2
+  name: Basket
+- probability: 2
+  name: Book
+- probability: 2
+  name: Bottle
+- probability: 1
+  name: Bowl
+- probability: 1
+  name: Box (small)
+- probability: 2
+  name: Brush
+- probability: 1
+  name: Candle
+- probability: 1
+  name: Candle snuffer
+- probability: 1
+  name: Candlestick
+- probability: 1
+  name: Cane or walking stick
+- probability: 1
+  name: Case
+- probability: 1
+  name: Casket (small)
+- probability: 2
+  name: Coffer
+- probability: 1
+  name: Cologne or perfume
+- probability: 1
+  name: Comb
+- probability: 1
+  name: Cup
+- probability: 1
+  name: Decanter
+- probability: 2
+  name: Dish
+- probability: 1
+  name: Ear spoon
+- probability: 1
+  name: Ewer
+- probability: 1
+  name: Flagon, mug, or tankard
+- probability: 2
+  name: Flask or jar
+- probability: 1
+  name: Food
+- probability: 1
+  name: Fork
+- probability: 1
+  name: Grater
+- probability: 1
+  name: Grinder
+- probability: 1
+  name: Horn, drinking
+- probability: 1
+  name: Hourglass
+- probability: 1
+  name: Jug or pitcher
+- probability: 1
+  name: Kettle
+- probability: 1
+  name: Key
+- probability: 1
+  name: Knife
+- probability: 1
+  name: Knucklebones or dice
+- probability: 1
+  name: Ladle
+- probability: 2
+  name: Lamp or lantern
+- probability: 2
+  name: Mirror
+- probability: 1
+  name: Needle(s)
+- probability: 1
+  name: Oil, cooking
+- probability: 1
+  name: Oil, fuel
+- probability: 1
+  name: Oil, scented
+- probability: 1
+  name: Pan
+- probability: 2
+  name: Parchment
+- probability: 1
+  name: Pipe, musical
+- probability: 1
+  name: Pipe, smoking
+- probability: 1
+  name: Plate, platter, or saucer
+- probability: 1
+  name: Pot
+- probability: 2
+  name: Pouch
+- probability: 1
+  name: Powder puff
+- probability: 1
+  name: Quill
+- probability: 1
+  name: Razor
+- probability: 1
+  name: Rope
+- probability: 1
+  name: Salve
+- probability: 2
+  name: Scroll
+- probability: 1
+  name: Shaker
+- probability: 1
+  name: Sifter or strainer
+- probability: 2
+  name: Soap
+- probability: 1
+  name: Spigot
+- probability: 1
+  name: Spoon
+- probability: 1
+  name: Stopper
+- probability: 2
+  name: Statuette or figurine
+- probability: 2
+  name: Thread
+- probability: 3
+  name: Tinderbox (with flint & steel)
+- probability: 1
+  name: Towel
+- probability: 1
+  name: Tray
+- probability: 1
+  name: Trivet or tripod
+- probability: 1
+  name: Tureen
+- probability: 2
+  name: Twine
+- probability: 2
+  name: Vase
+- probability: 2
+  name: Vial
+- probability: 1
+  name: Washcloth
+- probability: 1
+  name: Whetstone
+- probability: 2
+  name: Wig
+- probability: 2
+  name: Wool
+- probability: 2
+  name: Yarn

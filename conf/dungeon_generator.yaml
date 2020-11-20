@@ -19,6 +19,7 @@ encounters:
     hard: 3
     deadly: 2
   xp_threshold_strategy: random # balanced or random
+feature_chance: 0.4
 generate_chamber_contents: on
 generate_chamber_purpose: on
 generate_monster_motivation: on

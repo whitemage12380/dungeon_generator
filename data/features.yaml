@@ -1,0 +1,63 @@
+features:
+  - probability: 2
+    contents:
+      books: 1-8
+  - probability: 5
+    contents:
+      general_features: 1-4
+  - probability: 6
+    contents:
+      general_furnishings: 1-3
+  - probability: 4
+    contents:
+      mage_furnishings: 1-3
+  - probability: 3
+    contents:
+      personal_items: 1-5
+  - probability: 4
+    contents:
+      religious_articles: 1-3
+  - probability: 2
+    contents:
+      scrolls: 1-8
+  - probability: 3
+    contents:
+      general_furnishings: 1-3
+      books: 0-3
+      scrolls: 0-3
+  - probability: 4
+    contents:
+      general_furnishings: 1-3
+      general_features: 1-3
+  - probability: 5
+    contents:
+      general_furnishings: 1-3
+      personal_items: 1-5
+  - probability: 3
+    contents:
+      general_furnishings: 1-2
+      mage_furnishings: 1-2
+  - probability: 3
+    contents:
+      general_furnishings: 1-2
+      religious_articles: 1-2
+  - probability: 4
+    contents:
+      mage_furnishings: 1-2
+      books: 0-4
+      scrolls: 0-4
+  - probability: 4
+    contents:
+      religious_articles: 1-2
+      books: 0-4
+      scrolls: 0-4
+  - probability: 3
+    contents:
+      mage_furnishings: 1-2
+      general_features: 0-2
+      personal_items: 0-2
+  - probability: 3
+    contents:
+      religious_articles: 1-2
+      general_features: 0-2
+      personal_items: 0-2

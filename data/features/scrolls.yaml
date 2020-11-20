@@ -1,0 +1,79 @@
+---
+- probability: 2
+  name: Account records
+- probability: 2
+  name: Bestiary
+- probability: 1
+  name: Biography
+- probability: 2
+  name: Calendar
+- probability: 5
+  name: Catalog
+- probability: 2
+  name: Contract
+- probability: 2
+  name: Diary
+- probability: 3
+  name: Doodles or sketches
+- probability: 1
+  name: Forged document
+- probability: 2
+  name: Heretical text
+- probability: 4
+  name: Historical text
+- probability: 2
+  name: Last will and testament
+- probability: 2
+  name: Legal code
+- probability: 8
+  name: Letter
+- probability: 1
+  name: Lunatic's ravings
+- probability: 1
+  name: Magic tricks (not a spellbook)
+- probability: 1
+  name: Magic scroll
+- probability: 3
+  name: Map or atlas
+- probability: 1
+  name: Memoir
+- probability: 2
+  name: Navigational chart or star chart
+- probability: 1
+  name: Painting
+- probability: 2
+  name: Poetry
+- probability: 1
+  name: Property deed
+- probability: 2
+  name: Recipe
+- probability: 1
+  name: Record of a criminal trial
+- probability: 1
+  name: Royal proclamation
+- probability: 2
+  name: Sheet music
+- probability: 1
+  name: Text on armor making
+- probability: 2
+  name: Text on astrology
+- probability: 2
+  name: Text on brewing
+- probability: 2
+  name: Text on exotic flora or fauna
+- probability: 2
+  name: Text on herbalism
+- probability: 2
+  name: Text on local flora
+- probability: 2
+  name: Text on mathematics
+- probability: 1
+  name: Text on masonry
+- probability: 1
+  name: Text on medicine
+- probability: 1
+  name: Theological text
+- probability: 3
+  name: Travelogue for an exotic land
+- probability: 1
+  name: Travelogue of the planes

@@ -1,0 +1,208 @@
+---
+- probability: 1
+  name: Altar
+  contents:
+    general_features: 0-1
+- probability: 1
+  name: Armchair
+- probability: 1
+  name: Armoire
+  contents:
+    personal_items: 0-3
+    general_features: 0-1
+- probability: 1
+  name: Curtain
+- probability: 1
+  name: Bag
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Barrel (40 gallons)
+  contents:
+    container_contents: 0-1
+- probability: 2
+  name: Bed
+- probability: 1
+  name: Bench
+- probability: 1
+  name: Blanket
+- probability: 1
+  name: Box (large)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Brazier and charcoal
+- probability: 1
+  name: Bucket
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Buffet cabinet
+- probability: 1
+  name: Bunks
+- probability: 1
+  name: Butt (huge cask, 125 gallons)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Cabinet
+- probability: 1
+  name: Candelabrum
+- probability: 1
+  name: Carpet (large)
+- probability: 1
+  name: Cask (40 gallons)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Chandelier
+- probability: 1
+  name: Charcoal
+- probability: 2
+  name: Chair, plain
+- probability: 1
+  name: Chair, padded
+- probability: 1
+  name: Chair, padded, or divan
+- probability: 1
+  name: Chest, large
+- probability: 1
+  name: Chest, medium
+- probability: 1
+  name: Chest of drawers
+- probability: 1
+  name: Closet (wardrobe)
+- probability: 1
+  name: Coal
+- probability: 2
+  name: Couch
+- probability: 1
+  name: Crate
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Cresset
+- probability: 1
+  name: Cupboard
+- probability: 1
+  name: Cushion
+- probability: 1
+  name: Dais
+- probability: 1
+  name: Desk
+- probability: 3
+  name: Fireplace and wood
+- probability: 1
+  name: Fireplace with mantle
+- probability: 1
+  name: Firkin (small cask, 10 gallons)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Fountain
+- probability: 1
+  name: Fresco
+- probability: 1
+  name: Grindstone
+- probability: 1
+  name: Hamper
+- probability: 1
+  name: Hassock
+- probability: 1
+  name: Hogshead (large cask, 65 gallons)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Idol (large)
+- probability: 1
+  name: Keg (small barrel, 20 gallons)
+- probability: 1
+  name: Loom
+- probability: 1
+  name: Mat
+- probability: 1
+  name: Mattress
+- probability: 1
+  name: Pail
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Painting
+- probability: 3
+  name: Pallet
+- probability: 1
+  name: Pedestal
+- probability: 3
+  name: Pegs
+- probability: 1
+  name: Pillow
+- probability: 1
+  name: Pipe (large cask, 105 gallons)
+- probability: 1
+  name: Quilt
+- probability: 3
+  name: Rug (small/medium)
+- probability: 1
+  name: Rushes
+- probability: 1
+  name: Sack
+- probability: 1
+  name: Sconce
+- probability: 1
+  name: Screen
+- probability: 1
+  name: Sheet
+- probability: 2
+  name: Shelf
+- probability: 1
+  name: Shrine
+- probability: 1
+  name: Sideboard
+- probability: 1
+  name: Sofa
+- probability: 1
+  name: Staff, normal
+- probability: 1
+  name: Stand
+- probability: 1
+  name: Statue
+- probability: 1
+  name: Stool, high
+- probability: 1
+  name: Stool, normal
+- probability: 1
+  name: Table, large
+- probability: 1
+  name: Table, long
+- probability: 1
+  name: Table, low
+- probability: 1
+  name: Table, round
+- probability: 1
+  name: Table, small
+- probability: 1
+  name: Table, trestle
+- probability: 1
+  name: Tapestry
+- probability: 1
+  name: Throne
+- probability: 1
+  name: Trunk
+- probability: 1
+  name: Tub
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Tun (huge cask, 250 gallons)
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Urn
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Wall basin and font
+- probability: 1
+  name: Wood billets
+- probability: 1
+  name: Workbench

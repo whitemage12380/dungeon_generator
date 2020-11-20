@@ -1,0 +1,55 @@
+---
+- probability: 3
+  name: Ash
+- probability: 3
+  name: Bark
+- probability: 3
+  name: Bodily organs
+- probability: 5
+  name: Bones
+- probability: 3
+  name: Cinders
+- probability: 5
+  name: Crystals
+- probability: 4
+  name: Dust
+- probability: 2
+  name: Fibers
+- probability: 3
+  name: Gelatin
+- probability: 4
+  name: Grains
+- probability: 3
+  name: Grease
+- probability: 3
+  name: Husks
+- probability: 5
+  name: Leaves
+- probability: 8
+  name: Liquid, thin
+- probability: 5
+  name: Liquid, viscous
+- probability: 2
+  name: Lumps, unidentifiable
+- probability: 3
+  name: Oil
+- probability: 4
+  name: Paste
+- probability: 3
+  name: Pellets
+- probability: 13
+  name: Powder
+- probability: 2
+  name: Semiliquid suspension
+- probability: 2
+  name: Skin or hide
+- probability: 2
+  name: Spheres (metal, stone, or wood)
+- probability: 2
+  name: Splinters
+- probability: 2
+  name: Stalks
+- probability: 3
+  name: Strands
+- probability: 3
+  name: Strips

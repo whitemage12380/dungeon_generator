@@ -1,0 +1,109 @@
+---
+- probability: 1
+  name: Arrow, broken
+- probability: 3
+  name: Ashes
+- probability: 2
+  name: Bones
+- probability: 1
+  name: Bottle, broken
+- probability: 1
+  name: Chain, corroded
+- probability: 1
+  name: Club, splintered
+- probability: 10
+  name: Cobwebs
+- probability: 1
+  name: Coin, copper
+- probability: 2
+  name: Cracks, ceiling
+- probability: 2
+  name: Cracks, floor
+- probability: 2
+  name: Cracks, wall
+- probability: 1
+  name: Dagger hilt
+- probability: 2
+  name: Dampness, ceiling
+- probability: 4
+  name: Dampness, wall
+- probability: 3
+  name: Dried blood
+- probability: 5
+  name: Dripping blood
+- probability: 3
+  name: Dung
+- probability: 5
+  name: Dust
+- probability: 1
+  name: Flask, cracked
+  contents:
+    container_contents: 0-1
+- probability: 1
+  name: Food scraps
+- probability: 1
+  name: Fungi (common)
+- probability: 3
+  name: Guano
+- probability: 1
+  name: Hair or fur
+- probability: 1
+  name: Hammer head, cracked
+- probability: 1
+  name: Helmet, badly dented
+- probability: 1
+  name: Iron bar, bent and rusted
+- probability: 1
+  name: Javelin head, blunt
+- probability: 1
+  name: Leather boot
+- probability: 3
+  name: Leaves and twigs
+- probability: 4
+  name: Mold (common)
+- probability: 1
+  name: Pick handle
+- probability: 1
+  name: Pole, broken (5 ft. long)
+- probability: 1
+  name: Pottery shards
+- probability: 2
+  name: Rags
+- probability: 1
+  name: Rope, rotten
+- probability: 2
+  name: Rubble & dirt
+- probability: 1
+  name: Sack, torn
+  contents:
+    container_contents: 0-1
+- probability: 3
+  name: Slime (harmless)
+- probability: 1
+  name: Spike, rusted
+- probability: 2
+  name: Sticks
+- probability: 1
+  name: Stones, small
+- probability: 1
+  name: Straw
+- probability: 1
+  name: Sword blade, broken
+- probability: 1
+  name: Teeth or fangs, scattered
+- probability: 1
+  name: Torch stub
+- probability: 1
+  name: Wall scratchings
+- probability: 2
+  name: Water, large puddle
+- probability: 2
+  name: Water, small puddle
+- probability: 2
+  name: Water, trickle
+- probability: 1
+  name: Wax blob (candle stub)
+- probability: 1
+  name: Wax drippings
+- probability: 3
+  name: Wood pieces, rotting
