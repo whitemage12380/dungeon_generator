@@ -9,10 +9,6 @@
     container_contents: 0-1
 - probability: 1
   name: Bellows
-- probability: 4
-  name: Book
-  contents:
-    books: 1
 - probability: 2
   name: Bottle
   contents:
@@ -93,10 +89,10 @@
   name: Retort
 - probability: 1
   name: Rod, mixing or stirring
-- probability: 3
-  name: Scroll
-- probability: 1
+- probability: 2
   name: Scroll tube
+  contents:
+    scrolls: 0-1
 - probability: 2
   name: Skull
 - probability: 1

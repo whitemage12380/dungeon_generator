@@ -8,7 +8,7 @@
 - probability: 1
   name: Armoire
   contents:
-    personal_items: 0-3
+    personal_items: 0-2
     general_features: 0-1
 - probability: 1
   name: Curtain
@@ -38,6 +38,9 @@
     container_contents: 0-1
 - probability: 1
   name: Buffet cabinet
+  contents:
+    personal_items: 0-2
+    general_features: 0-1
 - probability: 1
   name: Bunks
 - probability: 1
@@ -70,8 +73,14 @@
   name: Chest, medium
 - probability: 1
   name: Chest of drawers
+  contents:
+    personal_items: 0-2
+    general_features: 0-1
 - probability: 1
   name: Closet (wardrobe)
+  contents:
+    personal_items: 0-2
+    general_features: 0-1
 - probability: 1
   name: Coal
 - probability: 2
@@ -84,12 +93,20 @@
   name: Cresset
 - probability: 1
   name: Cupboard
+  contents:
+    personal_items: 0-2
+    general_features: 0-1
 - probability: 1
   name: Cushion
 - probability: 1
   name: Dais
 - probability: 1
   name: Desk
+  contents:
+    general_features: 0-1
+    personal_items: 0-1
+    books: 0-1
+    scrolls: 0-1
 - probability: 3
   name: Fireplace and wood
 - probability: 1
@@ -116,6 +133,8 @@
   name: Idol (large)
 - probability: 1
   name: Keg (small barrel, 20 gallons)
+  contents:
+    container_contents: 0-1
 - probability: 1
   name: Loom
 - probability: 1
@@ -202,6 +221,8 @@
     container_contents: 0-1
 - probability: 1
   name: Wall basin and font
+  contents:
+    container_contents: 0-1
 - probability: 1
   name: Wood billets
 - probability: 1

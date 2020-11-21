@@ -8,9 +8,9 @@
 - probability: 2
   name: Basket
 - probability: 2
-  name: Book
-- probability: 2
   name: Bottle
+  contents:
+    container_contents: 0-1
 - probability: 1
   name: Bowl
 - probability: 1
@@ -27,6 +27,10 @@
   name: Cane or walking stick
 - probability: 1
   name: Case
+  contents:
+    personal_items: 0-1
+    book: 0-1
+    scroll: 0-1
 - probability: 1
   name: Casket (small)
 - probability: 2
@@ -49,6 +53,8 @@
   name: Flagon, mug, or tankard
 - probability: 2
   name: Flask or jar
+  contents:
+    container_contents: 0-1
 - probability: 1
   name: Food
 - probability: 1
@@ -109,8 +115,6 @@
   name: Rope
 - probability: 1
   name: Salve
-- probability: 2
-  name: Scroll
 - probability: 1
   name: Shaker
 - probability: 1
@@ -143,6 +147,8 @@
   name: Vase
 - probability: 2
   name: Vial
+  contents:
+    container_contents: 0-1
 - probability: 1
   name: Washcloth
 - probability: 1
