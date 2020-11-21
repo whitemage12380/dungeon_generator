@@ -5,6 +5,7 @@ require_relative 'exit_proposal'
 require_relative 'trap'
 require_relative 'trick'
 require_relative 'treasure_stash'
+require_relative 'feature_set'
 
 class Chamber < MapObject
   attr_reader :width, :length
@@ -407,7 +408,9 @@ class Chamber < MapObject
       traps: [],
       treasure: [],
       tricks: [],
+      features: []
     }
+    generate_features(contents)
     return contents if contents_yaml["contents"].nil?
     contents_yaml["contents"].each { |c|
       case c
@@ -450,6 +453,18 @@ class Chamber < MapObject
       # end
     end
     @contents = contents
+    return contents
+  end
+
+  def generate_features(contents = @contents)
+    return unless rand() < $configuration.fetch('feature_chance', 0)
+    contents[:features] = Array.new if contents[:features].nil?
+    feature_set = FeatureSet.new()
+    random_yaml_element('features')['contents'].each_pair { |table, count|
+      feature_set.concat read_datafile("features/#{table}").sample(random_count(count)).collect { |f| puts table; puts f; Feature.new(table, f) }
+    }
+    log "Adding features: #{feature_set.join(", ")}"
+    contents[:features] << feature_set
     return contents
   end
 

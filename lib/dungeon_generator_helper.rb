@@ -94,6 +94,16 @@ module DungeonGeneratorHelper
     end
   end
 
+  def random_count(count)
+    min, max = count.split('-').collect(&:to_i)
+    max = min if max.nil?
+    rand(Range.new(min, max))
+  end
+
+  def read_datafile(file)
+    YAML.load(File.read("#{DATA_PATH}/#{file}.yaml"))
+  end
+
   def random_yaml_element(type_path, type = nil)
     yaml_data(type_path, type)
   end

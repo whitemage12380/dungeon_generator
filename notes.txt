@@ -568,10 +568,13 @@ Roadmap Order:
 - DONE - Treasure - Random spells for spell scrolls
 - DONE - Add additional content combo possibilities for chambers
 - DONE - Chamber Purpose
-- Chamber Features
+- DONE - Chamber Features
+- DONE - Features - Specify book/scroll
 - Door types
 - Encounters - show XP threshold for encounters in UI
 - Encounters - Use "Roll" strategy on special encounters
+- Features - Allow features to contain other features
+- Features - Allow chamber types to be more likely to contain certain features
 - Treasure - Set treasure chances based on room contents
 - Make certain chamber purposes increase odds of certain contents
 - Encounters - Dominant Inhabitants
@@ -583,3 +586,4 @@ Roadmap Order:
 - Encounters - Increase chance of finish when monster count gets higher
 - Encounters - Allow (optionally) a handful of any-level encounters that always use the "Roll" strategy
 - Ability to edit chamber contents (this must be split out per content type)
+- Passage width

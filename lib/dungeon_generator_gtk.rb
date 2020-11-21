@@ -56,6 +56,12 @@ class DungeonGeneratorContent < Gtk::Box
         treasure_stash = (content.kind_of? TreasureStash) ? content : content.first
         treasure_stash_labels(treasure_stash).each { |l| pack_start(l)}
       end
+    when :features
+      #pack_start(Gtk::Label.new(content))
+       puts content.to_s
+       puts content.class
+       content.sort_by { |c| c.to_s }.collect { |f| Gtk::Label.new(f.to_s)}
+         .each { |l| pack_start(l)}
     end
     children.select{ |c| c.kind_of? Gtk::Label }.each { |c|
       c.xalign = 0
@@ -139,7 +145,7 @@ class DungeonGeneratorInfoPanel < Gtk::Box
   include DungeonGeneratorGtkHelper
   type_register
 
-  CONTENT_SECTION_NAMES = [:hazards, :monsters, :obstacles, :traps, :treasure, :tricks]
+  CONTENT_SECTION_NAMES = [:hazards, :monsters, :obstacles, :traps, :treasure, :tricks, :features]
   class << self
     def init
       set_template(resource: "/ui/dungeon_generator_info_panel.ui")
