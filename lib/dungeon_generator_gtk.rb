@@ -57,11 +57,11 @@ class DungeonGeneratorContent < Gtk::Box
         treasure_stash_labels(treasure_stash).each { |l| pack_start(l)}
       end
     when :features
-      #pack_start(Gtk::Label.new(content))
-       puts content.to_s
-       puts content.class
-       content.sort_by { |c| c.to_s }.collect { |f| Gtk::Label.new(f.to_s)}
-         .each { |l| pack_start(l)}
+      content.sort_by { |c| c.to_s }.collect { |f| Gtk::Label.new(f.to_s)}
+        .each { |l| pack_start(l)}
+    when :doors
+      label = Gtk::Label.new(content[:door].exit_string(content[:starting_connector]))
+      pack_start(label)
     end
     children.select{ |c| c.kind_of? Gtk::Label }.each { |c|
       c.xalign = 0
@@ -116,18 +116,58 @@ class DungeonGeneratorContentSection < Gtk::Expander
     puts map_object.contents.to_s
     return if map_object.nil? or map_object.contents.nil? or map_object.contents[section].nil? or map_object.contents[section].empty?
     if @section_container.nil?
-      @section_container = Gtk::Box.new(:vertical, 8)
-      @section_container.set_margin_left(30)
-      @section_container.set_margin_top(8)
-      @section_container.set_margin_bottom(8)
+      @section_container = DungeonGeneratorInfoPanelBox.new()
       add(@section_container)
     else
-      @section_container.children.each { |s| @section_container.remove_child(s) }
+      @section_container.clean()
     end
     map_object.contents[section].each { |c|
       entry = DungeonGeneratorContent.new(c, section)
       @section_container.pack_end(entry)
     }
+  end
+end
+
+class DungeonGeneratorDoorSection < Gtk::Expander
+  include DungeonGeneratorGtkHelper
+
+  def initialize(map_object)
+    super("Doors")
+    display_doors(map_object)
+    set_expanded(true)
+  end
+
+  def display_doors(map_object)
+    puts map_object.doors
+    return if map_object.nil? or ((map_object.doors.nil? or map_object.doors.empty?) and map_object.starting_connector_type != "door")
+    if @section_container.nil?
+      @section_container = DungeonGeneratorInfoPanelBox.new()
+      add(@section_container)
+    else
+      @section_container.clean()
+    end
+    puts "Starting connector: #{map_object.starting_connector}"
+    if map_object.starting_connector_type == "door"
+      @section_container.pack_start(DungeonGeneratorContent.new({door: map_object.starting_connector, starting_connector: true}, :doors))
+    end
+    map_object.doors.each { |door|
+      @section_container.pack_start(DungeonGeneratorContent.new({door: door, starting_connector: false}, :doors))
+    }
+  end
+end
+
+class DungeonGeneratorInfoPanelBox < Gtk::Box
+  include DungeonGeneratorGtkHelper
+
+  def initialize()
+    super(:vertical, 8)
+    set_margin_left(30)
+    set_margin_top(8)
+    set_margin_bottom(8)
+  end
+
+  def clean()
+    children.each { |s| remove_child(s) }
   end
 end
 
@@ -198,6 +238,7 @@ class DungeonGeneratorInfoPanel < Gtk::Box
     text_description.buffer.text = map_object.description
     content_section_widgets.each { |s| info_panel_content.remove_child(s) }
     CONTENT_SECTION_NAMES.each { |type| display_map_object_content_section(map_object, type) }
+    display_door_info(map_object)
     info_panel_content.show()
   end
 
@@ -214,6 +255,17 @@ class DungeonGeneratorInfoPanel < Gtk::Box
       info_panel_content.pack_start(section, padding: 0)
     end
     section.show_all()
+  end
+
+  def display_door_info(map_object)
+    return unless (map_object.doors.any? { |door| not (door.style.nil? and door.state.nil?) }) or map_object.starting_connector_type == "door"
+    if @door_section.nil?
+      @door_section = DungeonGeneratorDoorSection.new(map_object)
+      info_panel_content.pack_start(@door_section, padding: 0)
+    else
+      @door_section.display_doors(map_object)
+    end
+    @door_section.show_all()
   end
 
   def randomize_chamber_purpose(map_object)

@@ -25,10 +25,13 @@ class Connector
   end
 
   def exit_string(starting_connector = false)
-    if type == "connector"
+    case type
+    when "connector"
       exit_type = "Exit"
+    when "door"
+      exit_type = door_description()
     else
-      exit_type = type.capitalize()
+      raise "Exit type #{type} not supported"
     end
     if starting_connector
       connecting_to = @map_object.name
@@ -37,8 +40,6 @@ class Connector
       connecting_to = @connecting_map_object ? @connecting_map_object.name : "nothing!"
       facing_string = @facing
     end
-    puts "map_x: #{map_x}"
-    puts "map_y: #{map_y}"
     return "#{exit_type} at (#{map_x}, #{map_y}) facing #{facing_string} to #{connecting_to}"
   end
 

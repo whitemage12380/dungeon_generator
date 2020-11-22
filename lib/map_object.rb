@@ -56,6 +56,17 @@ class MapObject
     end
   end
 
+  def starting_connector_type()
+    case @starting_connector
+    when Door
+      return "door"
+    when Connector
+      return "connector"
+    else
+      return nil
+    end
+  end
+
   def success?
     status == :success
   end

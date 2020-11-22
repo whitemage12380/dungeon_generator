@@ -1,0 +1,56 @@
+door_types:
+  - probability: 20
+    description: Wooden
+    style: wooden door
+  - probability: 2
+    description: Wooden, barred
+    style: wooden door
+    state: barred
+  - probability: 2
+    description: Wooden, locked  
+    style: wooden door
+    state: locked
+  - probability: 2
+    description: Stone
+    style: stone door
+  - probability: 1
+    description: Stone, barred
+    style: stone door
+    state: barred
+  - probability: 1
+    description: Stone, locked
+    style: stone door
+    state: locked
+  - probability: 2
+    description: Iron
+    style: iron door
+  - probability: 1
+    description: Iron, barred
+    style: iron door
+    state: barred
+  - probability: 1
+    description: Iron, locked
+    style: iron door
+    state: locked
+  - probability: 2
+    description: Portcullis
+    style: portcullis
+  - probability: 1
+    description: Portcullis, barred
+    style: portcullis
+    state: barred
+  - probability: 1
+    description: Portcullis, locked
+    style: portcullis
+    state: locked
+  - probability: 2
+    description: Secret door
+    style: secret door
+  - probability: 1
+    description: Secret door, barred
+    style: secret door
+    state: barred
+  - probability: 1
+    description: Secret door, locked
+    style: secret door
+    state: locked

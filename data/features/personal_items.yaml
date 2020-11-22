@@ -29,8 +29,8 @@
   name: Case
   contents:
     personal_items: 0-1
-    book: 0-1
-    scroll: 0-1
+    books: 0-1
+    scrolls: 0-1
 - probability: 1
   name: Casket (small)
 - probability: 2

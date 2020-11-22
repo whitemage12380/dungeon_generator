@@ -570,11 +570,12 @@ Roadmap Order:
 - DONE - Chamber Purpose
 - DONE - Chamber Features
 - DONE - Features - Specify book/scroll
-- Door types
-- Encounters - show XP threshold for encounters in UI
+- DONE - Features - Allow features to contain other features
+- DONE - Door types
+- Encounters - Show XP threshold for encounters in UI
 - Encounters - Use "Roll" strategy on special encounters
-- Features - Allow features to contain other features
 - Features - Allow chamber types to be more likely to contain certain features
+- Contents - Allow chamber types to be more likely to contain certain contents (e.g. traps)
 - Treasure - Set treasure chances based on room contents
 - Make certain chamber purposes increase odds of certain contents
 - Encounters - Dominant Inhabitants
