@@ -5,9 +5,9 @@ require_relative 'monster'
 class Encounter
   include DungeonGeneratorHelper
 
-  attr_reader :monster_groups, :probability, :relationship, :xp_threshold_target
+  attr_reader :monster_groups, :probability, :relationship, :xp_threshold_target, :special
 
-  def initialize(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, probability)
+  def initialize(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, probability, special = false)
     # Data includes each monster and a range of how many there can be of that monster.
     # To generate the encounter, it must decide whether to generate it simply (randomly between min and max)
     #   or intelligently (aim for a certain xp threshold with randomness and jitter).
@@ -16,11 +16,12 @@ class Encounter
     # Space available must be considered here, as we can't overcrowd a chamber.
     @monster_groups = Array.new
     @probability = probability
+    @special = special
     @xp_threshold_target = xp_threshold_target
-    generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+    generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, special)
   end
 
-  def generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+  def generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, special = false)
     encounters_data = [encounters_data] unless encounters_data.kind_of? Array
     encounters_data.each { |encounter_data|
       # First add the minimum count of each monster.
@@ -32,6 +33,7 @@ class Encounter
       #   * All monster count limits have been reached
       encounter_data = {encounter_data => 1} if encounter_data.kind_of? String
       strategy = :chaos
+      strategy = :roll if @special
       monsters = minimum_monsters(encounter_data, space_available)
       monsters.concat(case strategy
         when :solo
@@ -115,6 +117,19 @@ class Encounter
   end
 
   def random_monsters_strategy_roll(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+    log "Adding monsters with strategy: Roll"
+    monsters = Array.new
+    encounter_data.to_a.shuffle.to_h.each_pair { |monster_name, monster_count|
+      low, high = (monster_count.kind_of? Integer) ? monster_count : monster_count.split("-").collect(&:to_i)
+      high = low if high.nil?
+      roll = rand(Range.new(low, high)) - low # Minimum monsters already added, so reduce by minimum
+      roll.times do
+        monster = Monster.new(monster_name)
+        break unless sufficient_space?(monster, space_available)
+        add_monster(monsters, monster)
+      end
+    }
+    return monsters
   end
 
   def add_monster(monsters, monster)

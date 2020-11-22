@@ -94,6 +94,22 @@ module DungeonGeneratorHelper
     end
   end
 
+  def party_xp_thresholds(party_level = $configuration["party_level"], party_members = $configuration["party_members"])
+    @xp_threshold_table = YAML.load(File.read("#{DATA_PATH}/xp_thresholds.yaml"))["xp_thresholds"] if @xp_threshold_table.nil?
+    t = @xp_threshold_table[party_level]
+    {easy: t[0] * party_members, medium: t[1] * party_members, hard: t[2] * party_members, deadly: t[3] * party_members}
+  end
+
+  def xp_threshold(xp)
+    t = party_xp_thresholds
+    return :impossible if xp > (t[:deadly] * 2)
+    return :deadly if xp > t[:deadly]
+    return :hard if xp > t[:hard]
+    return :medium if xp > t[:medium]
+    return :easy if xp > t[:easy]
+    return :trivial
+  end
+
   def random_count(count)
     min, max = count.split('-').collect(&:to_i)
     max = min if max.nil?

@@ -78,7 +78,7 @@ class DungeonGeneratorContent < Gtk::Box
       labels << label
     }
     xp_label = Gtk::Label.new()
-    xp_label.markup = "<b>XP:</b> #{monster_group.xp}"
+    xp_label.markup = "<b>XP:</b> #{monster_group.xp} (#{xp_threshold(monster_group.xp).to_s.capitalize})"
     labels << xp_label
     unless monster_group.motivation.nil?
       motivation = Gtk::Label.new()

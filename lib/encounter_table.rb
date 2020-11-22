@@ -84,15 +84,6 @@ class EncounterTable
         break
       end
       possible_encounters.delete(next_encounter)
-      # Notes:
-      #   Usually encounters in lists have random counts of each enemy. What we probably need to do
-      #   instead is to have a single encounter entry with a single probability then have several possible subchoices.
-      #   The alternative is to forsake the idea of randomly generating monster numbers based on an encounter block and
-      #   simply add several encounter blocks where needed.
-      #   Option 3: Keep what I have but store the entire block as the encounter; figure out the right encounter as the chamber
-      #   is being generated. I think that's my favorite, since I need to be dynamic based on chamber size anyway. 
-      #   Also, if I want a small handful of not-necessarily-level-appropriate encounters, I'll need to add those separately
-      #   from the possible_encounters list.
       next_encounter["encounter"] = [next_encounter["encounter"]] unless next_encounter["encounter"].kind_of? Array
       encounter_list << next_encounter
     end
@@ -100,7 +91,7 @@ class EncounterTable
     encounter_list.each { |e|
       log "  Encounter: #{e["encounter"].to_s}"
     }
-    return encounter_list.collect { |e| e.select { |k,v| ["encounter", "probability", "xp"].include? k }}
+    return encounter_list.collect { |e| e.select { |k,v| ["encounter", "probability", "xp", "special"].include? k }}
   end
 
   def random_encounter(chamber, encounter_list = @encounter_list)
@@ -128,7 +119,7 @@ class EncounterTable
     monster_group_proposals = Array.new(monster_group_proposal_count) {
       e = weighted_random(@encounter_list)
       min_xp, max_xp = encounter_xp_values(e["xp"])
-      encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"])
+      encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"], e.fetch("special", false))
       probability = e.fetch("probability", 4)
       probability = (probability * 0.75).to_i unless encounter.current_xp_threshold(party_xp_thresholds) == xp_threshold_target
       probability = (probability * 0.75).to_i unless encounter.total_xp <= (party_xp_thresholds[:deadly] * max_xp_threshold_multiplier)
@@ -215,12 +206,6 @@ class EncounterTable
   def random_encounter_choices()
     choices_str = encounter_configuration.fetch("random_encounter_choices", "all")
     YAML.load(File.read("#{DATA_PATH}/encounters/#{choices_str}.yaml"))["encounters"]
-  end
-
-  def party_xp_thresholds(party_level = $configuration["party_level"], party_members = $configuration["party_members"])
-    @xp_threshold_table = YAML.load(File.read("#{DATA_PATH}/xp_thresholds.yaml"))["xp_thresholds"] if @xp_threshold_table.nil?
-    t = @xp_threshold_table[party_level]
-    {easy: t[0] * party_members, medium: t[1] * party_members, hard: t[2] * party_members, deadly: t[3] * party_members}
   end
 
   def max_xp_threshold_multiplier()
