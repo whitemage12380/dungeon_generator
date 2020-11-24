@@ -455,11 +455,14 @@ class Chamber < MapObject
         raise "Unknown chamber content type: #{c}"
       end
     }
-    unless contents[:treasure].empty?
-      contents[:treasure].each { |t|
-        t.generate(treasure_level(contents))
-      }
+    if contents[:treasure].empty?
+      # If treasure isn't already present, chamber purpose may add some
+      generate_purpose_treasure(contents)
+    else
+      # If treasure is present, generate it, increasing chance of more based on contents and purpose
+      contents[:treasure].each { |t| t.generate(treasure_level(contents)) }
     end
+    contents[:traps].concat(generate_purpose_traps())
     @contents = contents
     return contents
   end
@@ -499,7 +502,7 @@ class Chamber < MapObject
   end
 
   def generate_features(contents = @contents, purpose_contents = @purpose_contents)
-    return unless rand() < $configuration.fetch('feature_chance', 0)
+    return [] unless rand() < $configuration.fetch('feature_chance', 0)
     contents[:features] = Array.new if contents[:features].nil?
     feature_set = FeatureSet.new()
     random_yaml_element('features')['contents'].each_pair { |table, count|
@@ -525,6 +528,21 @@ class Chamber < MapObject
     }
     log "Adding features based on chamber purpose: #{purpose_features.collect { |f| f.name}.join(", ")}"
     return purpose_features
+  end
+
+  def generate_purpose_treasure(contents = @contents, purpose_contents = @purpose_contents)
+    return [] if purpose_contents.nil? or purpose_contents['treasure'].nil?
+    if rand() < purpose_contents['treasure']['chance']
+      log "Adding treasure due to chamber purpose"
+      contents[:treasure] << TreasureStash.new(true, treasure_level(contents, purpose_contents))
+    end
+    return contents
+  end
+
+  def generate_purpose_traps(purpose_contents = @purpose_contents)
+    return [] if purpose_contents.nil? or purpose_contents['traps'].nil?
+    return [] unless rand() < purpose_contents['traps']['chance']
+    return Array.new(random_count(purpose_contents['traps'].fetch('count', 1))) { Trap.new() }
   end
 
 

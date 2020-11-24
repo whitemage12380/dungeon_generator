@@ -576,8 +576,8 @@ Roadmap Order:
 - DONE - Encounters - Use "Roll" strategy on special encounters
 - DONE - Treasure - Set treasure chances based on room contents
 - DONE - Features - Allow chamber types to be more likely to contain certain features
-- Contents - Allow chamber types to be more likely to contain treasure
-- Contents - Allow chamber types to be more likely to contain traps
+- DONE - Contents - Allow chamber types to be more likely to contain treasure
+- DONE - Contents - Allow chamber types to be more likely to contain traps
 - Contents - Allow chamber types to be more likely to contain monsters
 - Encounters - Dominant Inhabitants
 - Encounters - Allies

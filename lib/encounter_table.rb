@@ -58,8 +58,6 @@ class EncounterTable
       end
       encounter_monsters.collect { |m| Monster.new(m) }
     }
-    puts '???'
-    puts monsters.to_s
     return monsters
   end
 

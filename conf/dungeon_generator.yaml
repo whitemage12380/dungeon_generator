@@ -29,12 +29,12 @@ map_size: 50
 party_level: 13
 party_members: 4
 saved_map_directory: data/maps
-theme: random
+theme: death_trap
 theme_tables: 2
 theme_table_list: all
 treasure:
   initial_treasure_chance: 0.1
-  extra_treasure_chance: 0.1
+  extra_treasure_chance: 0.0
   extra_treasure_max: 3
   #extra_treasure_stash_chance: 0.3
   #extra_treasure_stash_max: 2

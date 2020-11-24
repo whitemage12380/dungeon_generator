@@ -27,13 +27,15 @@ class TreasureStash
     base_treasure_type = ["coins", "valuables", "items"].sample
     treasure_counts[base_treasure_type] += 1
     treasure_table.keys.each { |type|
+      log "Initial treasure chance for #{type}: #{treasure_configuration['initial_treasure_chance']} + #{treasure_level * 0.1} = #{treasure_configuration['initial_treasure_chance'] + (treasure_level * 0.1)}"
       if rand() < treasure_configuration['initial_treasure_chance'] + (treasure_level * 0.1)
         treasure_counts[type] += 1
         extra_treasure_chance = treasure_configuration['extra_treasure_chance']
         treasure_configuration['extra_treasure_max'].times do
+          log "Extra treasure chance: #{extra_treasure_chance} + #{treasure_level * 0.1} = #{extra_treasure_chance + (treasure_level * 0.1)}"
           break unless rand() < extra_treasure_chance + (treasure_level * 0.1)
           treasure_counts[type] += 1
-          extra_treasure_chance = [extra_treasure_chance - 0.1, 0].max
+          extra_treasure_chance -= 0.1
         end
       end
     }
