@@ -155,19 +155,17 @@ class MapGenerator
     end
 
     def generate_chamber_name_and_description(map = nil)
-      # case $configuration["chamber_purpose_theme"]
-      # when "map"
-      #   theme = map.theme
-      # when "all"
-      #   theme = all_themes()
-      # end
+      purpose = generate_chamber_purpose(map)
+      return purpose["name"], purpose.fetch("description", "")
+    end
+
+    def generate_chamber_purpose(map = nil)
       if map.nil?
         theme = $configuration.fetch('theme', all_themes.sample)
       else
         theme = map.themes.sample
       end
-      purpose = random_chamber_purpose(theme)
-      return purpose["name"], purpose.fetch("description", "")
+      return random_chamber_purpose(theme)
     end
 
     def random_chamber_exits(size_category)
@@ -213,7 +211,7 @@ class MapGenerator
     end
 
     def random_chamber_purpose(theme)
-      random_yaml_element("chamber_purpose/#{theme}")
+      random_yaml_element("chamber_purpose/#{theme}").merge({"theme" => theme})
     end
 
     def random_monsters(table, category)

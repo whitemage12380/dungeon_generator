@@ -3,52 +3,150 @@ general:
     name: Antechamber
   - probability: 2
     name: Armory
+    contents:
+      items:
+        weapons:
+          count: 1-4
+          chance: 0.5
+        armor:
+          count: 1-2
+          chance: 0.5
   - probability: 1
     name: Audience Chamber
   - probability: 1
     name: Aviary
+    contents:
+      monsters:
+        chance: 0.3
   - probability: 2
     name: Banquet Room
+    contents:
+      features:
+        table:
+          chance: 0.8
+        food:
+          chance: 0.3
+        personal_items:
+          count: 1-3
+          chance: 0.4
   - probability: 3
     name: Barracks
+    contents:
+      features:
+        bed:
+          count: 3-8
+          chance: 0.8
   - probability: 1
     name: Bathroom
+    contents:
+      features:
+        bath:
+          chance: 0.9
   - probability: 1
     name: Bedroom
+    contents:
+      features:
+        bed:
+          chance: 0.9
+        clothing:
+          chance: 0.3
   - probability: 1
     name: Bestiary
+    contents:
+      features:
+        monsters:
+          chance: 0.4
   - probability: 3
     name: Cell
   - probability: 1
     name: Chantry
+    contents:
+      features:
+        religious_articles:
+          count: 1-2
+          chance: 0.8
   - probability: 1
     name: Chapel
+    contents:
+      features:
+        religious_articles:
+          count: 1-2
+          chance: 0.8
   - probability: 2
     name: Cistern
   - probability: 1
     name: Classroom
   - probability: 1
     name: Closet
+    contents:
+      items:
+        adventuring_gear: 
+          count: 1-2
+          chance: 0.4
+      features:
+        clothing:
+          count: 1-3
+          chance: 0.5
   - probability: 2
     name: Conjuring Room
+    contents:
+      features:
+        mage_furnishings:
+          count: 1-2
+          chance: 0.7
   - probability: 2
     name: Court
   - probability: 3
     name: Crypt
   - probability: 2
     name: Dining Room
+    contents:
+      features:
+        table:
+          chance: 0.8
+        food:
+          chance: 0.3
+        personal_items:
+          count: 1-3
+          chance: 0.4
   - probability: 2
     name: Divination Room
+    contents:
+      features:
+          mage_furnishings:
+            count: 1-2
+            chance: 0.7
   - probability: 1
     name: Dormitory
+    contents:
+      features:
+        bed:
+          count: 2-6
+          chance: 0.8
   - probability: 1
     name: Dressing Room
+    contents:
+      features:
+        clothing:
+          count: 1-4
+          chance: 0.5
   - probability: 1
     name: Entry Room
   - probability: 2
     name: Gallery
+    contents:
+      features:
+        painting:
+          count: 1-8
+          chance: 0.6
+        statue:
+          count: 1-4
+          chance: 0.4
   - probability: 2
     name: Guardroom
+    contents:
+      monsters:
+        chance: 0.4
   - probability: 2
     name: Hall
   - probability: 2
@@ -57,52 +155,159 @@ general:
     name: Hallway
   - probability: 1
     name: Kennel
+    contents:
+      monsters:
+        chance: 0.3
   - probability: 2
     name: Kitchen
+    contents:
+      features:
+        personal_items:
+          count: 1-3
+          chance: 0.4
   - probability: 2
     name: Laboratory
+    contents:
+      features:
+        mage_furnishings:
+          count: 1-2
+          chance: 0.5
+        scrolls:
+          count: 1-2
+          chance: 0.3
   - probability: 3
     name: Library
+    contents:
+      features:
+        books:
+          count: 1-6
+          chance: 0.8
+        scrolls:
+          count: 1-4
+          chance: 0.7
   - probability: 2
     name: Lounge
   - probability: 1
     name: Meditation Chamber
+    contents:
+      features:
+        religious_articles:
+          count: 1-2
+          chance: 0.5
   - probability: 1
     name: Observatory
   - probability: 1
     name: Office
+    contents:
+      features:
+        general_furnishings:
+          chance: 0.6
+        mage_furnishings:
+          chance: 0.3
+        books:
+          count: 1-2
+          chance: 0.3
+        scrolls:
+          count: 1-2
+          chance: 0.4
   - probability: 2
     name: Pantry
+    contents:
+      features:
+        food:
+          chance: 0.6
   - probability: 2
     name: Prison
   - probability: 2
     name: Refectory
+    contents:
+      features:
+        table:
+          chance: 0.5
+        food:
+          chance: 0.3
   - probability: 1
     name: Robing Room
+    contents:
+      features:
+        clothing:
+          chance: 0.5
+        robes:
+          count: 1-3
+          chance: 0.6
   - probability: 1
     name: Salon
   - probability: 2
     name: Shrine
+    contents:
+      features:
+        religious_articles:
+          count: 1-2
+          chance: 0.7
   - probability: 2
     name: Sitting Room
   - probability: 2
     name: Smithy
+    contents:
+      items:
+        weapons:
+          count: 1-3
+          chance: 0.5
+        armor:
+          chance: 0.5
   - probability: 1
     name: Stable
+    contents:
+      monsters:
+        chance: 0.2
   - probability: 2
-    name: Storage Room
+    name: Storage
+    contents:
+      items:
+        adventuring_gear:
+          count: 1-3
+          chance: 0.5
+        tools:
+          count: 1-2
+          chance: 0.5
+    max_doors: 2
   - probability: 2
     name: Vault
+    contents:
+      treasure:
+        chance: 0.7
   - probability: 2
     name: Study
+    contents:
+      features:
+        general_furnishings:
+          chance: 0.6
+        mage_furnishings:
+          chance: 0.3
+        books:
+          count: 1-2
+          chance: 0.3
+        scrolls:
+          count: 1-2
+          chance: 0.4
   - probability: 3
     name: Temple
+    contents:
+      features:
+        religious_articles:
+          count: 1-2
+          chance: 0.7
   - probability: 2
     name: Throne Room
   - probability: 1
     name: Torture Chamber
   - probability: 2
     name: Training Room
+    contents:
+      items:
+        weapons:
+          count: 1-2
+          chance: 0.4
   - probability: 1
     name: Trophy Room
   - probability: 1
@@ -115,3 +320,10 @@ general:
     name: Schoolroom
   - probability: 2
     name: Workshop
+    contents:
+      features:
+        general_furnishings:
+          chance: 0.6
+        scrolls:
+          count: 1-2
+          chance: 0.4

@@ -5,15 +5,30 @@ death_trap:
   - probability: 7
     name: "Guardroom"
     description: Guardroom fortified against intruders
+    contents:
+      monsters:
+        chance: 0.3
   - probability: 3
     name: "Vault"
     description: "Vault for holding important treasures, accessible only by locked or secret door (75 percent chance of being trapped)"
+    contents:
+      treasure:
+        chance: 0.7
   - probability: 3
     name: "Puzzle Chamber"
     description: "Room containing a puzzle that must be solved to bypass a trap or monster"
+    contents:
+      traps:
+        chance: 0.5
+      monsters:
+        chance: 0.3
   - probability: 5
     name: "Trap Room"
     description: "Trap designed to kill or capture creatures"
+    contents:
+      traps:
+        count: 1-2
+        chance: 0.7
   - probability: 1
     name: "Observation Room"
     description: "Observation room, allowing guards or spectators to observe creatures moving through the dungeon"

@@ -110,7 +110,6 @@ class Map
         chamber = Chamber.new(map: self, starting_connector: connector, width: width, length: length)
       else
         chamber = Chamber.new(map: self, width: width, length: length, facing: facing, connector_x: x, connector_y: y, entrance_width: entrance_width)
-        puts ">>>>>>>>>>>>>>>>>>>>> #{chamber.map_offset_x}, #{chamber.map_offset_y}"
       end
     end
     return add_map_object(chamber, connector)

@@ -1,0 +1,31 @@
+---
+- name: Backpack
+  worth: 2 gp
+  probability: 1
+- name: Blanket
+  worth: 5 sp
+  probability: 2
+- name: Clothes, common
+  worth: 5 sp
+  probability: 4
+- name: Clothes, costume
+  worth: 5 gp
+  probability: 4
+- name: Clothes, fine
+  worth: 15 gp
+  probability: 4
+- name: Clothes, traveler’s
+  worth: 2 gp
+  probability: 4
+- name: Mirror, steel
+  worth: 5 gp
+  probability: 1
+- name: Perfume (vial)
+  worth: 5 gp
+  probability: 1
+- name: Pouch
+  worth: 5 sp
+  probability: 1
+- name: Robes
+  worth: 1 gp
+  probability: 4

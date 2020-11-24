@@ -270,14 +270,13 @@ class DungeonGeneratorInfoPanel < Gtk::Box
 
   def randomize_chamber_purpose(map_object)
     return unless map_object.kind_of? Chamber
-    name, purpose = MapGenerator.generate_chamber_name_and_description(map_object.map)
-    map_object.name = name
+    map_object.generate_purpose()
     info_panel_header.subtitle = map_object.name
+    text_description.buffer.text = map_object.description
   end
 
   def randomize_chamber_contents(map_object)
     return unless map_object.kind_of? Chamber
-    #map_object.contents = MapGenerator.generate_chamber_contents(map_object.map)
     map_object.generate_contents()
     display_map_object(map_object)
   end

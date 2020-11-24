@@ -111,6 +111,7 @@ module DungeonGeneratorHelper
   end
 
   def random_count(count)
+    return count if count.kind_of? Integer
     min, max = count.split('-').collect(&:to_i)
     max = min if max.nil?
     rand(Range.new(min, max))
@@ -124,9 +125,10 @@ module DungeonGeneratorHelper
     yaml_data(type_path, type)
   end
 
-  def yaml_data(type_path, index = nil, type = nil)
+  def yaml_data(type_path, type = nil, index = nil)
     type = type_path.split("/").last if type.nil?
-    arr = YAML.load(File.read("#{DATA_PATH}/#{type_path}.yaml"))[type]
+    obj = YAML.load(File.read("#{DATA_PATH}/#{type_path}.yaml"))
+    arr = (type == :none) ? obj : obj[type]
     return weighted_random(arr) unless index
     return arr[index]
   end

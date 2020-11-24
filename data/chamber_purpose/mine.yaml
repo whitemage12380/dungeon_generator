@@ -2,36 +2,106 @@ mine:
   - probability: 2
     name: Barracks
     description: Barracks for miners
+    contents:
+      features:
+        bed:
+          count: 3-8
+          chance: 0.8
   - probability: 1
     name: Bedroom
     description: Bedroom for a supervisor or manager
+    contents:
+      features:
+        bed:
+          chance: 0.9
+        clothing:
+          chance: 0.3
   - probability: 1
     name: Chapel
     description: Chapel dedicated to a patron deity of miners, earth, or protection
+    contents:
+      features:
+        religious_articles:
+          count: 1-2
+          chance: 0.8
   - probability: 1
     name: Cistern
     description: Cistern providing drinking water for miners
   - probability: 2
     name: Guardroom
     description: Guardroom
+    contents:
+      monsters:
+        chance: 0.3
   - probability: 1
     name: Kitchen
     description: Kitchen used to feed workers
+    contents:
+      features:
+        personal_items:
+          count: 1-3
+          chance: 0.4
   - probability: 1
     name: Laboratory
     description: Laboratory used to conduct tests on strange minerals extracted from the mine
+    contents:
+      features:
+        mage_furnishings:
+          count: 1-2
+          chance: 0.5
+        scrolls:
+          count: 1-2
+          chance: 0.3
   - probability: 6
     name: Lode
     description: Lode where metal ore is mined (75 percent chance of being depleted)
   - probability: 1
     name: Office
     description: Office used by the mine supervisor
+    contents:
+      features:
+        general_furnishings:
+          chance: 0.6
+        books:
+          count: 1-2
+          chance: 0.3
+        scrolls:
+          count: 1-2
+          chance: 0.4
   - probability: 1
     name: Smithy
     description: Smithy for repairing damaged tools
+    contents:
+      items:
+        weapons:
+          count: 1-3
+          chance: 0.3
+        Pick, miner’s:
+          count: 1-3
+          chance: 0.7
+        Piton:
+          count: 1-3
+          chance: 0.4
   - probability: 2
     name: Storage
     description: Storage for tools and other equipment
+    contents:
+      items:
+        adventuring_gear:
+          count: 1-3
+          chance: 0.5
+        tools:
+          count: 1-2
+          chance: 0.5
+        Pick, miner’s:
+          count: 1-3
+          chance: 0.8
+        Piton:
+          count: 1-3
+          chance: 0.6
   - probability: 1
     name: Vault
     description: Strong room or vault used to store ore for transport to the surface
+    contents:
+      treasure:
+        chance: 0.7

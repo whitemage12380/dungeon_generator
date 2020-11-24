@@ -5,21 +5,47 @@ treasure_vault:
   - probability: 1
     name: Armory
     description: Armory containing mundane and magic gear used by the treasure vault's guards
+    contents:
+      items:
+        weapons:
+          count: 1-4
+          chance: 0.5
+        armor:
+          count: 1-2
+          chance: 0.5
+      treasure:
+        chance: 0.2
   - probability: 2
     name: Barracks
     description: Barracks for the guards
+    contents:
+      features:
+        bed:
+          count: 3-8
+          chance: 0.8
   - probability: 1
     name: Cistern
     description: Cistern providing fresh water
   - probability: 4
     name: Guardroom
     description: Guardroom to defend against intruders
+    contents:
+      monsters:
+        chance: 0.4
   - probability: 1
     name: Kennel
     description: Kennel for trained beasts used to guard the treasure vault
+    contents:
+      monsters:
+        chance: 0.3
   - probability: 1
     name: Kitchen
     description: Kitchen for feeding guards
+    contents:
+      features:
+        personal_items:
+          count: 1-3
+          chance: 0.4
   - probability: 1
     name: Watch Room
     description: Watch room that allows guards to observe those who approach the dungeon
@@ -29,9 +55,16 @@ treasure_vault:
   - probability: 2
     name: Vault
     description: Strong room or vault, for guarding the treasure hidden in the dungeon, accessible only by locked or secret door
+    contents:
+      treasure:
+        chance: 0.7
   - probability: 1
     name: Torture Chamber
     description: Torture chamber for extracting information from captured intruders
   - probability: 4
     name: Trap Room
     description: Trap or other trick designed to kill or capture creatures that enter the dungeon
+    contents:
+      traps:
+        count: 1-2
+        chance: 0.7

@@ -8,7 +8,7 @@ require_relative 'treasure_stash'
 require_relative 'feature_set'
 
 class Chamber < MapObject
-  attr_reader :width, :length
+  attr_reader :width, :length, :purpose_contents, :purpose_description, :purpose_theme
 
   def initialize(map:, width:, length:, facing: nil, starting_connector: nil, connector_x: nil, connector_y: nil, entrance_width: nil,
                  name: nil, description: nil, contents: nil)
@@ -25,13 +25,7 @@ class Chamber < MapObject
     @length = length
     @facing = facing
     if $configuration["generate_chamber_purpose"] == true and name.nil? and description.nil?
-      @name, @description = MapGenerator.generate_chamber_name_and_description(map)
-    end
-    if $configuration["generate_chamber_contents"] == true and contents.nil?
-      #@contents = MapGenerator.generate_chamber_contents(map)
-      generate_contents()
-    else
-      @contents = contents ? contents : Hash.new()
+      generate_purpose()
     end
     proposal = create_proposal(width: width,
                               length: length,
@@ -43,6 +37,11 @@ class Chamber < MapObject
     if proposal
       set_attributes_from_proposal(proposal, connector_x, connector_y)
       draw_chamber()
+      if $configuration["generate_chamber_contents"] == true and contents.nil?
+        generate_contents()
+      else
+        @contents = contents ? contents : Hash.new()
+      end
       log "Created #{id_str}"
       @status = :success
     else
@@ -55,6 +54,19 @@ class Chamber < MapObject
 
   def id()
     map.chambers.find_index(self)
+  end
+
+  def generate_purpose()
+    purpose_data = MapGenerator.generate_chamber_purpose(map)
+    @name = purpose_data["name"]
+    puts "'#{@description}' vs '#{@purpose_description}'"
+    if (@description == @purpose_description) or @description.nil? or @description.empty?
+      @description = purpose_data.fetch("description", "")
+    end
+    @purpose_description = purpose_data["description"]
+    @purpose_theme = purpose_data["theme"]
+    puts purpose_data.to_s
+    @purpose_contents = purpose_data["contents"]
   end
 
   # Position coordinate hash of Northwest corner
@@ -411,7 +423,7 @@ class Chamber < MapObject
       features: []
     }
     generate_features(contents)
-    return contents if contents_yaml["contents"].nil?
+    return contents if contents_yaml["contents"].nil? # TODO: Is this still correct? With features in play?
     contents_yaml["contents"].each { |c|
       case c
       when /^monster/
@@ -444,28 +456,75 @@ class Chamber < MapObject
       end
     }
     unless contents[:treasure].empty?
-      contents[:treasure].each { |t| t.generate() }
-      # max_treasure_stashes = $configuration['treasure']['extra_treasure_stash_max']
-      # treasure_stash_chance = $configuration['treasure']['extra_treasure_stash_chance']
-      # max_treasure_stashes.times do
-      #   if rand() < treasure_stash_chance - ((content.size - 1) * 0.1)
-      #     content << 
-      # end
+      contents[:treasure].each { |t|
+        t.generate(treasure_level(contents))
+      }
     end
     @contents = contents
     return contents
   end
 
-  def generate_features(contents = @contents)
+  def treasure_level(contents = @contents, purpose_contents = @purpose_contents)
+    if contents[:monsters].nil? or contents[:monsters].empty?
+        monster_treasure_bonus = 0
+      else
+        monster_treasure_bonus = case xp_threshold(contents[:monsters][0].monster_groups[0].xp)
+        when :impossible; 4
+        when :deadly;     3
+        when :hard;       2
+        when :medium;     1
+        else;             0
+        end
+      end
+      if contents[:traps].nil? or contents[:traps].empty?
+        trap_treasure_bonus = 0
+      else
+        trap_treasure_bonus = case contents[:traps][0].severity.downcase
+        when "deadly";    3
+        when "dangerous"; 2
+        when "setback";   1
+        end
+      end
+      obstacle_treasure_bonus = (contents[:obstacles].nil? or contents[:obstacles].empty?) ? 0 : 1
+      if purpose_contents.nil? or purpose_contents['treasure'].nil?
+        purpose_treasure_bonus = 0
+      else
+        purpose_treasure_bonus = [(@purpose_contents['treasure'].fetch("chance", 0) * 10).to_i, 4].min
+      end
+      treasure_level_bonus = monster_treasure_bonus + trap_treasure_bonus + obstacle_treasure_bonus + purpose_treasure_bonus
+      final_treasure_level = 1 + treasure_level_bonus
+      log "Generating level #{final_treasure_level} treasure for #{label}"
+      log "(#{monster_treasure_bonus} + #{trap_treasure_bonus} + #{obstacle_treasure_bonus} + #{purpose_treasure_bonus})"
+      return final_treasure_level
+  end
+
+  def generate_features(contents = @contents, purpose_contents = @purpose_contents)
     return unless rand() < $configuration.fetch('feature_chance', 0)
     contents[:features] = Array.new if contents[:features].nil?
     feature_set = FeatureSet.new()
     random_yaml_element('features')['contents'].each_pair { |table, count|
-      feature_set.concat read_datafile("features/#{table}").sample(random_count(count)).collect { |f| puts table; puts f; Feature.new(table, f) }
+      feature_set.concat Array.new(random_count(count)) { random_yaml_element("features/#{table}", :none) }.collect { |f| Feature.new(table, f) }
     }
     log "Adding features: #{feature_set.join(", ")}"
+    feature_set.concat generate_purpose_features(purpose_contents)
     contents[:features] << feature_set
     return contents
+  end
+
+  def generate_purpose_features(purpose_contents = @purpose_contents)
+    return [] if purpose_contents.nil? or purpose_contents['features'].nil? or purpose_contents['features'].empty?
+    purpose_features = Array.new
+    purpose_contents['features'].each_pair { |feature, feature_data|
+      next unless rand() < feature_data.fetch('chance', 1.0)
+      count = random_count(feature_data.fetch('count', 1))
+      if Dir["#{DATA_PATH}/features/*.yaml"].collect { |f| File.basename(f, ".yaml") }.include? feature
+        purpose_features.concat Array.new(count) { random_yaml_element("features/#{feature}", :none) }.collect { |f| Feature.new(feature, f) }
+      else
+        purpose_features.concat Array.new(count) { Feature.new(nil, {'name' => feature.capitalize}) }
+      end
+    }
+    log "Adding features based on chamber purpose: #{purpose_features.collect { |f| f.name}.join(", ")}"
+    return purpose_features
   end
 
 

@@ -574,10 +574,11 @@ Roadmap Order:
 - DONE - Door types
 - DONE - Encounters - Show XP threshold for encounters in UI
 - DONE - Encounters - Use "Roll" strategy on special encounters
-- Features - Allow chamber types to be more likely to contain certain features
-- Contents - Allow chamber types to be more likely to contain certain contents (e.g. traps)
-- Treasure - Set treasure chances based on room contents
-- Make certain chamber purposes increase odds of certain contents
+- DONE - Treasure - Set treasure chances based on room contents
+- DONE - Features - Allow chamber types to be more likely to contain certain features
+- Contents - Allow chamber types to be more likely to contain treasure
+- Contents - Allow chamber types to be more likely to contain traps
+- Contents - Allow chamber types to be more likely to contain monsters
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
 - Ability to reroll specific chamber content categories

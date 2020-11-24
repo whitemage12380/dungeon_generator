@@ -3,10 +3,12 @@
 require_relative '../lib/configuration'
 require_relative '../lib/map_generator'
 
-if ARGV[0]
-  m = Map.load(ARGV[0])
-else
-  m = MapGenerator.generate_map()
+unless $configuration['app_mode'] == 'gtk'
+  if ARGV[0]
+    m = Map.load(ARGV[0])
+  else
+    m = MapGenerator.generate_map()
+  end
 end
 
 case $configuration['app_mode']

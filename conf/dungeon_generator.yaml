@@ -36,8 +36,8 @@ treasure:
   initial_treasure_chance: 0.1
   extra_treasure_chance: 0.1
   extra_treasure_max: 3
-  extra_treasure_stash_chance: 0.3
-  extra_treasure_stash_max: 2
+  #extra_treasure_stash_chance: 0.3
+  #extra_treasure_stash_max: 2
 weights:
   align_weight: 1.0
   area_weight: 1.0

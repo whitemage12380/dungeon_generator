@@ -6,7 +6,8 @@ require_relative 'connector'
 class MapObject
   include DungeonGeneratorHelper
 
-  attr_accessor :description, :contents
+  attr_writer :description
+  attr_accessor :contents
   attr_reader :map, :grid, :cursor, :starting_connector, :map_offset_x, :map_offset_y, :connectors, :doors, :status
 
   MAX_SIZE = 20
@@ -20,7 +21,7 @@ class MapObject
     @connectors = []
     @doors = []
     @starting_connector.connect_to(self) if @starting_connector
-    @description = "This #{type.downcase} does not have a description."
+    #@description = "This #{type.downcase} does not have a description."
   end
 
   def id()
@@ -37,10 +38,15 @@ class MapObject
 
   def name=(val)
     @name = val.empty? ? nil : val
+    # Search themes for name and set chamber purpose attributes if relevent
+  end
+
+  def description()
+    (@description.nil? or @description.empty?) ? "This #{type.downcase} does not have a description." : @description
   end
 
   def label()
-    name == id_str ? name : "#{id_str} - #{name}"
+    (name == id_str) ? name : "#{id_str} - #{name}"
   end
 
   def type()
