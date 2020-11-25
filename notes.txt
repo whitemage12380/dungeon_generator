@@ -578,7 +578,7 @@ Roadmap Order:
 - DONE - Features - Allow chamber types to be more likely to contain certain features
 - DONE - Contents - Allow chamber types to be more likely to contain treasure
 - DONE - Contents - Allow chamber types to be more likely to contain traps
-- Contents - Allow chamber types to be more likely to contain monsters
+- DONE - Contents - Allow chamber types to be more likely to contain monsters
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
 - Ability to reroll specific chamber content categories

@@ -455,6 +455,11 @@ class Chamber < MapObject
         raise "Unknown chamber content type: #{c}"
       end
     }
+    # Add encounter based on chamber purpose if monsters are not already present
+    purpose_encounter = generate_purpose_monsters() if contents[:monsters].empty?
+    contents[:monsters] << purpose_encounter unless purpose_encounter.nil?
+    # Add traps based on chamber purpose regardless of whether traps are already present
+    contents[:traps].concat(generate_purpose_traps())
     if contents[:treasure].empty?
       # If treasure isn't already present, chamber purpose may add some
       generate_purpose_treasure(contents)
@@ -462,7 +467,6 @@ class Chamber < MapObject
       # If treasure is present, generate it, increasing chance of more based on contents and purpose
       contents[:treasure].each { |t| t.generate(treasure_level(contents)) }
     end
-    contents[:traps].concat(generate_purpose_traps())
     @contents = contents
     return contents
   end
@@ -542,7 +546,15 @@ class Chamber < MapObject
   def generate_purpose_traps(purpose_contents = @purpose_contents)
     return [] if purpose_contents.nil? or purpose_contents['traps'].nil?
     return [] unless rand() < purpose_contents['traps']['chance']
+    log "Adding traps based on chamber purpose"
     return Array.new(random_count(purpose_contents['traps'].fetch('count', 1))) { Trap.new() }
+  end
+
+  def generate_purpose_monsters(purpose_contents = @purpose_contents)
+    return nil if purpose_contents.nil? or purpose_contents['monsters'].nil?
+    return nil unless rand() < purpose_contents['monsters']['chance']
+    log "Adding monsters based on chamber purpose"
+    return @map.encounter_table.random_encounter(size)
   end
 
 
