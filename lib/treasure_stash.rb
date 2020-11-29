@@ -16,7 +16,6 @@ class TreasureStash
     }
     treasure_table = treasure_tables[treasure_table_level]
     treasure_counts = random_treasure_counts(treasure_table, treasure_level)
-    puts treasure_counts.to_s
     generate_coins(treasure_table, treasure_counts['coins'])
     generate_valuables(treasure_table, treasure_counts['valuables'])
     generate_items(treasure_table, treasure_counts['items'])
@@ -94,8 +93,3 @@ class TreasureStash
     $configuration['treasure']
   end
 end
-
-# t = TreasureStash.new(true, 3)
-# puts t.coins.to_s
-# puts t.valuables.to_s
-# puts t.items.to_s

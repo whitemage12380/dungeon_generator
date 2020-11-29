@@ -5,8 +5,11 @@ require_relative 'dungeon_generator_helper'
 
 class Configuration < Hash
 
+  attr_accessor :indent
+
   def initialize()
-    self.merge!(YAML.load_file(Configuration.configuration_path))
+    self.deep_merge!(YAML.load_file(Configuration.default_configuration_path))
+    self.deep_merge!(YAML.load_file(Configuration.configuration_path))
     self.transform_values! { |v|
       if v.kind_of? String
         case v.downcase
@@ -23,9 +26,15 @@ class Configuration < Hash
     }
     puts "Configurations loaded: #{to_s}"
   end
+
   def self.configuration_path()
     "#{self.project_path}/conf/dungeon_generator.yaml"
   end
+
+  def self.default_configuration_path()
+    "#{self.project_path}/conf/dungeon_generator.defaults.yaml"
+  end
+
   def self.project_path()
     File.expand_path('../', File.dirname(__FILE__))
   end

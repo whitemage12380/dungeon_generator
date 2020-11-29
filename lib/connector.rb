@@ -128,7 +128,6 @@ class Connector
 
   def connect_forward()
     raise "Cannot connect forward!" unless can_connect_forward?
-    log "Connecting forward to existing object"
     map = @map_object.map
     cursor = Cursor.new(map: map,
                           x: map_x,
@@ -138,19 +137,15 @@ class Connector
     cursor.turn!(:back)
     cursor.shift!(:left, @width-1)
     connecting_map_object = map.square(cursor.pos).map_object
-    log "Connecting to #{connecting_map_object.name}"
+    log "Connecting #{@map_object.name} to #{connecting_map_object.name}"
     connect_to(connecting_map_object)
-    # Have other map object create connector and connect back to our map object
-    # Map coordinates are easy, but how do I figure out the correct map object coordinates?
-    # Are there special issues around potentially having to "redraw" a map object from the map's perspective?
-    # A simple redraw would draw any additions or changes to squares, but not erasures.
     other_cursor = Cursor.new(map: map,
                                 x: cursor.x - connecting_map_object.map_offset_x,
                                 y: cursor.y - connecting_map_object.map_offset_y,
                                 facing: cursor.facing,
                                 map_offset_x: connecting_map_object.map_offset_x,
                                 map_offset_y: connecting_map_object.map_offset_y)
-    log "Creating reciprocal connection back to #{@map_object.name}"
+    debug "Creating reciprocal connection back to #{@map_object.name}"
     if self.kind_of? Door
       other_connector = connecting_map_object.create_door(other_cursor, @width)
     else
@@ -161,6 +156,7 @@ class Connector
   end
 
   def to_s()
+    output = self.kind_of?(Door) ? "Door: " : "Connector: "
     output = "Connector: "
     output += "Connects from #{map_object.name} " if map_object
     output += "Connects to #{connecting_map_object.name}. " if connecting_map_object

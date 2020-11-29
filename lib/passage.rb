@@ -18,6 +18,7 @@ class Passage < MapObject
     size = 10 + width
     super(map: map, size: size, starting_connector: starting_connector)
     log "Creating #{id_str} at (#{connector_x}, #{connector_y}, facing #{facing})"
+    log_indent()
     @width = width
     cursor_pos = initial_cursor_pos(facing)
     @map_offset_x = connector_x ? connector_x - cursor_pos[:x] : 0
@@ -34,6 +35,7 @@ class Passage < MapObject
       starting_connector.disconnect()
       starting_connector.map_object.blocked_connector_behavior(starting_connector)
       @status = :failure
+      log_outdent()
       return
     end
     instructions.each { |instruction|
@@ -47,10 +49,12 @@ class Passage < MapObject
     draw_starting_connector(cursor: initial_cursor)
     log "Created #{id_str}"
     @status = :success
+    log_outdent
   end
 
   def id()
-    map.passages.find_index(self)
+    i = map.passages.find_index(self)
+    i ? i : map.passages.length
   end
 
   def initial_cursor_pos(facing)

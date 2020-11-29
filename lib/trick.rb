@@ -6,8 +6,8 @@ class Trick
   attr_accessor :object, :effect
 
   def initialize(object: nil, effect: nil)
-    object = MapGenerator.random_yaml_element("trick_objects") if object.nil?
-    effect = MapGenerator.random_yaml_element("trick_effects")["description"] if effect.nil?
+    object = random_yaml_element("trick_objects") if object.nil?
+    effect = random_yaml_element("trick_effects")["description"] if effect.nil?
     @object = object
     @effect = effect
   end

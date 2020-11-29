@@ -94,7 +94,6 @@ class DungeonGeneratorContent < Gtk::Box
     labels.concat treasure_stash.valuables.sort_by { |i| [i.worth, i.name] }.collect { |i|
       Gtk::Label.new("#{i.name} (#{i.worth} gp)")
     }
-    puts treasure_stash.coins.to_a.to_s
     labels.concat treasure_stash.coins.to_a.sort_by { |c| ['pp', 'gp', 'ep', 'sp', 'cp'].index(c[0]) }.collect { |c|
       Gtk::Label.new("#{c[1]} #{c[0]}")
     }
@@ -112,8 +111,6 @@ class DungeonGeneratorContentSection < Gtk::Expander
   end
 
   def display_contents(map_object, section)
-    puts section
-    puts map_object.contents.to_s
     return if map_object.nil? or map_object.contents.nil? or map_object.contents[section].nil? or map_object.contents[section].empty?
     if @section_container.nil?
       @section_container = DungeonGeneratorInfoPanelBox.new()
@@ -138,7 +135,6 @@ class DungeonGeneratorDoorSection < Gtk::Expander
   end
 
   def display_doors(map_object)
-    puts map_object.doors
     return if map_object.nil? or ((map_object.doors.nil? or map_object.doors.empty?) and map_object.starting_connector_type != "door")
     if @section_container.nil?
       @section_container = DungeonGeneratorInfoPanelBox.new()
@@ -146,7 +142,6 @@ class DungeonGeneratorDoorSection < Gtk::Expander
     else
       @section_container.clean()
     end
-    puts "Starting connector: #{map_object.starting_connector}"
     if map_object.starting_connector_type == "door"
       @section_container.pack_start(DungeonGeneratorContent.new({door: map_object.starting_connector, starting_connector: true}, :doors))
     end
@@ -565,7 +560,6 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       map_canvas.queue_draw()
       load_info_panel(selected_map_object)
     when Gdk::BUTTON_SECONDARY
-      puts "2"
     end
   end 
 end
@@ -577,6 +571,8 @@ class DungeonGeneratorGui < Gtk::Application
     super('com.github.whitemage12380.dungeon_generator', Gio::ApplicationFlags::FLAGS_NONE)
     signal_connect :activate do |application|
       window = DungeonGeneratorWindow.new(application)
+      window.set_wmclass "Dungeon Generator", "Dungeon Generator"
+      window.icon_name = 'dungeon-generator'
       window.present
     end
   end

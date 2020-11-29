@@ -8,18 +8,15 @@ class Encounter
   attr_reader :monster_groups, :probability, :relationship, :xp_threshold_target, :special
 
   def initialize(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, probability, special = false)
-    # Data includes each monster and a range of how many there can be of that monster.
-    # To generate the encounter, it must decide whether to generate it simply (randomly between min and max)
-    #   or intelligently (aim for a certain xp threshold with randomness and jitter).
-    # It could also include an array of multiple encounter, indicating multiple monster groups in the same encounter/chamber
-    #   with potential relationships
-    # Space available must be considered here, as we can't overcrowd a chamber.
     @monster_groups = Array.new
     @probability = probability
     @special = special
     @xp_threshold_target = xp_threshold_target
     generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, special)
   end
+
+  ######### Encounter Generation
+  ####
 
   def generate(encounters_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, special = false)
     encounters_data = [encounters_data] unless encounters_data.kind_of? Array
@@ -34,22 +31,25 @@ class Encounter
       encounter_data = {encounter_data => 1} if encounter_data.kind_of? String
       strategy = :chaos
       strategy = :roll if @special
+      log "Creating monster encounter (Target XP Threshold: #{xp_threshold_target.to_s.capitalize}, Space Available: #{space_available})"
       monsters = minimum_monsters(encounter_data, space_available)
-      monsters.concat(case strategy
+      space_remaining = space_available - total_monster_squares(monsters)
+      monsters = (case strategy
         when :solo
-          random_monsters_strategy_solo(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+          random_monsters_strategy_solo(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_remaining, min_xp, max_xp)
         when :chaos
-          random_monsters_strategy_chaos(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+          random_monsters_strategy_chaos(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_remaining, min_xp, max_xp)
         when :order
-          random_monsters_strategy_order(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+          random_monsters_strategy_order(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_remaining, min_xp, max_xp)
         when :roll
-          random_monsters_strategy_roll(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+          random_monsters_strategy_roll(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_remaining, min_xp, max_xp)
+        else
+          log_error "Unknown strategy: #{strategy}. Skipping further monster placement."
         end
       ) unless monsters.count > 0 and finished?(xp_thresholds, xp_threshold_target, total_xp(monsters))
       monster_group = MonsterGroup.new(monsters: monsters)
       log "Monster group created:"
       log "  Monsters: #{monster_group.grouped_monster_lines.join(",")}"
-      # #{monsters.collect{|m| m.name}.group_by(&:itself).transform_values(&:count).to_a.collect{|m| m[1] == 1 ? m[0] : "#{m[0]} x#{m[1]}"}.join(", ")}"
       log "  XP: #{total_xp(monsters)}"
       log "  Challenge: #{current_xp_threshold(xp_thresholds, total_xp(monsters)).to_s.pretty}"
       @monster_groups << monster_group
@@ -64,13 +64,28 @@ class Encounter
     return @relationship
   end
 
+  # Add a monster group generated in another encounter and create a relationship
+
+  def add_monster_group(monster_group, relationship = nil)
+    raise "Only 2 monster groups are currently supported in an encounter" if @monster_groups.count == 2
+    @monster_groups << monster_group
+    if relationship.nil?
+      generate_monster_group_relationship()
+    else
+      @relationship = relationship
+    end
+  end
+
+  ######### Adding Monsters
+  ####
+
   def minimum_monsters(encounter_data, space_available)
-    log "Adding minimum monsters"
+    debug "Adding minimum monsters"
     monsters = Array.new
     encounter_data.to_a.shuffle.each { |e|
       monster_min(e[1]).times do
         monster = Monster.new(e[0])
-        return monsters unless sufficient_space?(monster, space_available)
+        return monsters unless sufficient_space?(monsters, monster, space_available)
         add_monster(monsters, monster)
       end
     }
@@ -78,15 +93,15 @@ class Encounter
   end
 
   # Choose a random monster from the encounter and add that monster until an end condition is met
-  def random_monsters_strategy_solo(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+  def random_monsters_strategy_solo(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
     log "Adding monsters with strategy: Solo"
     monster_name, monster_count = encounter_data.to_a.sample
-    monsters = Array.new
+    monsters = Array.new if monsters.nil?
     while true
       break if monster_limit_reached?(monsters, monster_name, monster_count)
       monster = Monster.new(monster_name)
       new_xp = total_xp(monsters) + monster.xp
-      break unless sufficient_space?(monster, space_available)
+      break unless sufficient_space?(monsters, monster, space_available)
       break if maximum_xp_reached?(max_xp, new_xp)
       add_monster(monsters, monster)
       break if minimum_xp_reached?(min_xp, new_xp) and finished?(xp_thresholds, xp_threshold_target, new_xp)
@@ -95,16 +110,16 @@ class Encounter
   end
 
   # Randomly add monsters (who have not hit their limit) in the encounter until an end condition is met
-  def random_monsters_strategy_chaos(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+  def random_monsters_strategy_chaos(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
     log "Adding monsters with strategy: Chaos"
-    monsters = Array.new
+    monsters = Array.new if monsters.nil?
     while true
       monster_list = available_monsters(encounter_data, monsters, xp_thresholds)
       break if monster_list.empty?
       monster_name, monster_count = monster_list.sample
       monster = Monster.new(monster_name)
       new_xp = total_xp(monsters) + monster.xp
-      break unless sufficient_space?(monster, space_available)
+      break unless sufficient_space?(monsters, monster, space_available)
       break if maximum_xp_reached?(max_xp, new_xp)
       add_monster(monsters, monster)
       break if minimum_xp_reached?(min_xp, new_xp) and finished?(xp_thresholds, xp_threshold_target, new_xp)
@@ -113,19 +128,20 @@ class Encounter
   end
 
   # Order the monsters. Take random amount of first one below threshold, move on to next if threshold is not yet met, etc
-  def random_monsters_strategy_order(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+  def random_monsters_strategy_order(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
   end
 
-  def random_monsters_strategy_roll(encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
+  # For each monster type (in a random order) take a fully-random count between min and max, stopping until done or no space left
+  def random_monsters_strategy_roll(monsters, encounter_data, xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp)
     log "Adding monsters with strategy: Roll"
-    monsters = Array.new
+    monsters = Array.new if monsters.nil?
     encounter_data.to_a.shuffle.to_h.each_pair { |monster_name, monster_count|
       low, high = (monster_count.kind_of? Integer) ? monster_count : monster_count.split("-").collect(&:to_i)
       high = low if high.nil?
       roll = rand(Range.new(low, high)) - low # Minimum monsters already added, so reduce by minimum
       roll.times do
         monster = Monster.new(monster_name)
-        break unless sufficient_space?(monster, space_available)
+        break unless sufficient_space?(monsters, monster, space_available)
         add_monster(monsters, monster)
       end
     }
@@ -134,11 +150,14 @@ class Encounter
 
   def add_monster(monsters, monster)
     monsters << monster
-    log "Added monster to encounter: #{monster.name} (Total Space: #{total_monster_squares + total_monster_squares(monsters)}, Total XP: #{total_xp(monsters)})"
+    log "Added monster to encounter: #{monster.name} (Total Space for strategy: #{total_monster_squares + total_monster_squares(monsters)}, Total XP: #{total_xp(monsters)})"
   end
 
-  def sufficient_space?(monster, space_available)
-    res = (total_monster_squares + monster.squares) <= (space_available * $configuration['encounters']['maximum_chamber_occupancy_percent'])
+  ######### Encounter-building Helpers
+  ####
+
+  def sufficient_space?(monsters, monster, space_available)
+    res = (total_monster_squares(monsters + [monster])) <= (space_available * $configuration['encounters']['maximum_chamber_occupancy_percent'])
     log "Insufficient space in chamber for monster: #{monster.name} (squares: #{monster.squares})" unless res
     return res
   end
@@ -150,12 +169,23 @@ class Encounter
   end
 
   def maximum_xp_reached?(max_xp, xp = total_xp)
-    res = xp >= max_xp
+    res = xp > max_xp
     log "Maximum encounter XP reached" if res
     return res
   end
 
   def finished?(xp_thresholds, xp_threshold_target, xp = total_xp)
+    chance = chance_to_finish(xp_thresholds, xp_threshold_target, xp)
+    if rand() < chance
+      log "Finishing monster placement (chance to finish was #{(chance * 100).to_i}%)"
+      return true
+    else
+      log "Continuing to place monsters (chance to finish was #{(chance * 100).to_i}%)"
+      return false
+    end
+  end
+
+  def chance_to_finish(xp_thresholds, xp_threshold_target, xp = total_xp)
     # 4 below: 0
     # 3 below: 0
     # 2 below: .1
@@ -164,7 +194,7 @@ class Encounter
     # 1 above: .9
     # 2 above: .9
     # 3 above: .9
-    chance = case xp_threshold_target
+    case xp_threshold_target
     when :easy
       case current_xp_threshold(xp_thresholds, xp) 
       when :trivial;  0.2
@@ -198,25 +228,13 @@ class Encounter
       when :deadly;   0.75
       end
     end
-    puts "Chance to finish: #{chance}"
-    return (rand() < chance)
   end
-
-  # Do I make a method to pull monsters that have not yet hit max?
 
   def available_monsters(encounter_data, monsters, xp_thresholds)
     available_monsters = encounter_data.to_a.reject { |e| monster_limit_reached?(monsters, e[0], e[1]) }
                                             .reject { |e| Monster.new(e[0]).xp > max_monster_xp(xp_thresholds)}
     log "There are no more available monsters in XP range" if available_monsters.empty?
     return available_monsters
-  end
-
-  def monster_limits_reached?(encounter_data, monsters)
-    if encounter_data.to_a.all? { |e| monster_limit_reached(monsters, e[0], e[1]) }
-      log "Reached all monster limits for encounter"
-      return true
-    end
-    return false
   end
 
   def monster_limit_reached?(monsters, monster_name, monster_count)
@@ -239,6 +257,9 @@ class Encounter
     xp_thresholds[:deadly] * $configuration["encounters"]["max_xp_threshold_multiplier"]
   end
 
+  ######### Generally Useful Helpers
+  ####
+
   def total_xp(monsters = @monster_groups.flatten)
     monsters.sum { |m| (m.kind_of? Monster) ? m.xp : Monster.new(m).xp }
   end
@@ -254,25 +275,4 @@ class Encounter
     }
     return :trivial
   end
-
-  def add_monster_group(monster_group, relationship = nil)
-    raise "Only 2 monster groups are currently supported in an encounter" if @monster_groups.count == 2
-    @monster_groups << monster_group
-    if relationship.nil?
-      generate_monster_group_relationship()
-    else
-      @relationship = relationship
-    end
-  end
 end
-
-# e = Encounter.new(
-#   {"goblin" => '1-4', "hobgoblin" => "0-3"},
-#   {easy: 100, medium: 200, hard: 300, deadly: 400},
-#   :medium,
-#   20,
-#   100,
-#   200,
-#   4
-#   )
-# puts e.monster_groups.to_s

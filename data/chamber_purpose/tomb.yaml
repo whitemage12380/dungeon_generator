@@ -43,7 +43,7 @@ tomb:
     description: Grand crypt for a noble, high priest, or other important individual
     contents:
       treasure:
-        count: 0.7
+        chance: 0.7
   - probability: 2
     name: Guardroom
     description: Guardroom, usually guarded by undead, constructs, or other creatures that don't need to eat or sleep

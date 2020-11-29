@@ -80,11 +80,6 @@ class MapObjectSquare
     return true unless has_wall(facing) or has_door(facing)
   end
 
-  def rotate()
-  end
-  def rotate!()
-  end
-
   def to_cursor(facing)
     Cursor.new(map: map_object.map,
                  x: pos[:x],

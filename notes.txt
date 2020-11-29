@@ -503,12 +503,22 @@ I, [2020-11-15T00:35:36.427214 #3554095]  INFO -- : Monster group created:
 I, [2020-11-15T00:35:36.427386 #3554095]  INFO -- :   Monsters:
 I, [2020-11-15T00:35:36.427489 #3554095]  INFO -- :   XP: 0
 I, [2020-11-15T00:35:36.427627 #3554095]  INFO -- :   Challenge: Trivial
+If this is related to the but with the encounter with the misspelled key, this could be resolved.
 
 Bug - Re-generate encounter operation occasionally produces the exact same encounter as before, even when it is so specific that the odds for it are near-impossible. E.g.
 {:description=>"Monster (random creature) with treasure", :hazards=>[], :monsters=>[#<Encounter:0x0055aa7ff50c10 @monster_groups=[[#<Monster:0x0055aa7ff50760 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f6e9298 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f649fb8 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f473158 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f3a4a10 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>, #<Monster:0x0055aa7f2c09f0 @name="Tlincalli", @size="large", @type="monstrosity", @alignment="ne", @challenge=5, @xp=1800, @book="Volo's Guide to Monsters", @page=193>], [#<Monster:0x0055aa7f0d70f8 @name="Drow Mage", @size="medium", @type="humanoid", @alignment="ne", @challenge=7, @xp=2900, @book="Monster Manual", @page=129>, #<Monster:0x0055aa7f03b7c0 @name="Drow Elite Warrior", @size="medium", @type="humanoid", @alignment="ne", @challenge=5, @xp=1800, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7efa0a90 @name="Drow", @size="medium", @type="humanoid", @alignment="ne", @challenge=0.25, @xp=50, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7e3d4888 @name="Drow", @size="medium", @type="humanoid", @alignment="ne", @challenge=0.25, @xp=50, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7e1acfb0 @name="Drow Elite Warrior", @size="medium", @type="humanoid", @alignment="ne", @challenge=5, @xp=1800, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7e0b7b78 @name="Drow Elite Warrior", @size="medium", @type="humanoid", @alignment="ne", @challenge=5, @xp=1800, @book="Monster Manual", @page=128>, #<Monster:0x0055aa7dfa7be8 @name="Drow Mage", @size="medium", @type="humanoid", @alignment="ne", @challenge=7, @xp=2900, @book="Monster Manual", @page=129>]], @probability=4, @xp_threshold_target=:hard, @relationship="Captured by">], :obstacles=>[], :traps=>[], :treasure=>[#<TreasureStash:0x0055aa804bae58 @coins={"gp"=>121}, @valuables=[], @items=[#<Item:0x0055aa8041d9c8 @name="Flask", @worth="2 cp">, #<Item:0x0055aa804756f0 @name="Quiver", @worth="1 gp">, #<Item:0x0055aa804497d0 @name="Spikes, iron (10)", @worth="1 gp">]>], :tricks=>[]}
 [["gp", 121]]
 
 Bug - there may be code that behaves inappropriately with fetch since I didn't know that intentionally-set nil will cause it to fail to default. I should take a peek at where I use the construct and make sure I used it correctly.
+RESOLVED. I found no instance of inappropriately-used fetches.
+
+Bug - It is possible for encounter table generation to pull a [null] as a possible encounter. This is odd since it shouldn't be making any changes to the encounter data provided from the file.
+RESOLVED PROBABLY. There was an encounter with a misspelled key.
+
+Bug - Still possible for a door to only have half of it opening to a room. "facing east to nothing!" Very rare, but noticed 11/27/2020.
+
+Bug - Based on the code, it looks like minimum monsters won't count when it comes to further monster choices to determine e.g. whether a monster has it its count limit or possibly XP limits either.
+RESOlVED. Encounter-building strategies now start with the array of minimum monsters.
 
 Project tracking:
 
@@ -579,6 +589,10 @@ Roadmap Order:
 - DONE - Contents - Allow chamber types to be more likely to contain treasure
 - DONE - Contents - Allow chamber types to be more likely to contain traps
 - DONE - Contents - Allow chamber types to be more likely to contain monsters
+- NPC Encounters
+- Dungeon Name
+- Dungeon Description
+- Better Save mechanics
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
 - Ability to reroll specific chamber content categories
@@ -589,3 +603,5 @@ Roadmap Order:
 - Encounters - Allow (optionally) a handful of any-level encounters that always use the "Roll" strategy
 - Ability to edit chamber contents (this must be split out per content type)
 - Passage width
+- Multiple floors (large feature)
+- Adjust settings in app

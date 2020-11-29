@@ -36,13 +36,6 @@ when 'gtk'
   app = DungeonGeneratorGui.new
 
   puts app.run
-when 'fox'
-  require_relative '../lib/dungeon_generator_gui'
-  puts m.to_s
-  app = FXApp.new("Dungeon Generator", "Egan Neuhengen")
-  window = DungeonGeneratorGui.new(app, m)
-  app.create()
-  app.run()
 else
   puts "Invalid app_mode: #{$configuration['app_mode']}"
   exit 1

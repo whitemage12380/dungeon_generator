@@ -15,6 +15,7 @@ class Chamber < MapObject
     size = [width, length].max
     super(map: map, size: size, starting_connector: starting_connector)
     log "Creating #{id_str} with intended dimensions: #{width}x#{length}"
+    log_indent()
     if starting_connector
       connector_x = starting_connector.map_x if not connector_x
       connector_y = starting_connector.map_y if not connector_y
@@ -50,24 +51,202 @@ class Chamber < MapObject
       starting_connector.map_object.blocked_connector_behavior(starting_connector)
       @status = :failure
     end
+    log_outdent()
   end
 
   def id()
-    map.chambers.find_index(self)
+    i = map.chambers.find_index(self)
+    i ? i : map.chambers.length
   end
+
+  def size()
+    @length * @width
+  end
+
+  def size_category()
+    if size > 1600
+      return "large"
+    else
+      return "normal"
+    end
+  end
+
+  ########################################
+  #### PURPOSE
+  ########################################
 
   def generate_purpose()
     purpose_data = MapGenerator.generate_chamber_purpose(map)
     @name = purpose_data["name"]
-    puts "'#{@description}' vs '#{@purpose_description}'"
     if (@description == @purpose_description) or @description.nil? or @description.empty?
       @description = purpose_data.fetch("description", "")
     end
     @purpose_description = purpose_data["description"]
     @purpose_theme = purpose_data["theme"]
-    puts purpose_data.to_s
     @purpose_contents = purpose_data["contents"]
   end
+
+  ########################################
+  #### PLACEMENT AND SIZING
+  ########################################
+
+
+  ######### Placement Proposal Creation
+  ####
+
+  def create_proposal(width:, length:, map_x:, map_y:, facing:, entrance_width:)
+    # SETUP: Cursor, length, width-related calculations
+    cursor = Cursor.new(map: map,
+                          x: map_x,
+                          y: map_y,
+                     facing: facing)
+    debug "Checking how clear it is outward from entrance (length: #{length}, entrance_width: #{entrance_width})"
+    debug "Cursor: #{cursor.to_s}"
+    length = clear_distance(cursor, length, entrance_width)
+    debug "Length after initial truncate: #{length}"
+    if length < 2
+      log "Cannot place chamber (not enough space outward from entrance)"
+      return
+    end
+    horizontal_offset = 0
+    entrance_width = 1 if entrance_width.nil?
+    width_from_connector = width - entrance_width
+    width_from_connector_left = (width_from_connector/2.to_f).floor.to_i - horizontal_offset
+    width_from_connector_right = (width_from_connector/2.to_f).ceil.to_i + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
+    debug "Width left: #{width_from_connector_left}"
+    debug "Width right: #{width_from_connector_right}"
+    # STEP 1: Use default layout proposal if possible
+    p = default_proposal( cursor: cursor,
+       width_from_connector_left: width_from_connector_left,
+      width_from_connector_right: width_from_connector_right,
+                           width: width,
+                          length: length,
+      )
+    return p if p
+    # STEP 2: Check each point in length and generate proposals
+    chamber_proposals = create_chamber_proposals(
+      cursor: cursor,
+      length: length,
+      width:  width,
+      entrance_width: entrance_width,
+      width_from_connector_left: width_from_connector_left,
+      width_from_connector_right: width_from_connector_right,
+    )
+    # STEP 3: Choose a proposal
+    # To be replaced with a more nuanced selection mechanism at a later time
+    chosen_proposal = chamber_proposals.sort_by {|p| p.score }.last
+    log "Chose chamber proposal: #{chosen_proposal.to_h}"
+    return chosen_proposal
+  end
+
+  def default_proposal(cursor:, width_from_connector_left:, width_from_connector_right:, width:, length:)
+    tmp_cursor = cursor.copy
+    for length_point in 1..length # Start at base of room (from entrance) and move outward
+      debug "Trying length point #{length_point}"
+      tmp_cursor.forward!()
+      unless sides_clear?(tmp_cursor, width_from_connector_left, width_from_connector_right)
+        debug "Sides not clear at point #{length_point}"
+        return nil
+      end
+    end
+    log "Placing as-is."
+    proposal = ChamberProposal.new(chamber: self,
+        cursor: cursor,
+        width_left: width_from_connector_left,
+        width: width,
+        length: length,
+        length_threshold: length,
+    )
+    debug "Proposal: #{proposal.to_h}"
+    return proposal
+  end
+
+  def create_chamber_proposals(cursor:, length:, width:, entrance_width:, width_from_connector_left:, width_from_connector_right:)
+    chamber_proposals = Array.new
+    tmp_cursor = cursor.copy
+    for length_point in 1..length
+      debug "Checking at length point #{length_point} (of #{length})"
+      # STEP 2A: Advance to the next point along the room and get clearance
+      tmp_cursor.forward!()
+      debug "  Cursor: #{tmp_cursor.to_s}"
+      clearance = side_clearance(tmp_cursor, (width-entrance_width), (width-1))
+      # STEP 2B: Skip from consideration if there are no left/right obstacles
+      debug "  Skipping from consideration" if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
+      next if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
+      # STEP 2C: Get the number of proposals and first left starting point
+      # (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_right))
+      left_proposal_restriction = width - [clearance[:left] + entrance_width, width].min
+      right_proposal_restriction = width - [clearance[:right] + entrance_width, width].min
+      point_proposals = (width + 1 - entrance_width) - left_proposal_restriction - right_proposal_restriction
+      starting_point_offset = clearance[:left]
+      debug "  #{point_proposals} proposals for this point, with starting offset of #{starting_point_offset}"
+      # STEP 2D: Try to build each proposal
+      for proposal_num in 0...point_proposals
+        proposal = ChamberProposal.new(chamber: self,
+          cursor: cursor,
+          width_left: clearance[:left] - proposal_num,
+          width: width,
+          length: length,
+          length_threshold: length_point,
+          )
+        debug "  Proposal created: #{proposal.to_h}"
+        chamber_proposals << proposal if proposal and not chamber_proposals.collect { |p| p.to_h }.include? proposal.to_h
+      end
+    end
+    debug "Chamber Proposals:"
+    chamber_proposals.each { |p| debug "  #{p.to_h}"}
+  end
+
+  def set_attributes_from_proposal(proposal, map_x, map_y)
+    @width = proposal.width
+    @length = proposal.length
+    cursor_pos = initial_cursor_pos(@facing)
+    offset_cursor = Cursor.new(map: map,
+                                 x: map_x - cursor_pos[:x],
+                                 y: map_y - cursor_pos[:y],
+                                 facing: @facing)
+    offset_cursor.shift!(:left, proposal.width_left)
+    @map_offset_x = offset_cursor.x
+    @map_offset_y = offset_cursor.y
+    @cursor = Cursor.new(map: map,
+                           x: cursor_pos[:x],
+                           y: cursor_pos[:y],
+                      facing: @facing,
+                map_offset_x: @map_offset_x,
+                map_offset_y: @map_offset_y)
+    debug @cursor.to_s
+  end
+
+  ######### Drawing
+  ####
+
+  def draw_chamber()
+    initial_cursor = @cursor.copy()
+    draw_forward(@length)
+    draw_near_wall(cursor: initial_cursor)
+    draw_far_wall()
+    draw_starting_connector(cursor: initial_cursor)
+  end
+
+  def draw_near_wall(cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    tmp_cursor.forward!
+    tmp_cursor.turn!(:back)
+    add_wall_width(cursor: tmp_cursor, direction: :left)
+  end
+
+  def draw_far_wall(cursor: @cursor)
+    tmp_cursor = cursor.copy()
+    add_wall_width(cursor: tmp_cursor)
+  end
+
+  def draw_exit(cursor, exit_proposal)
+    # Currently assumes cursor is at the left edge of the room we want to draw the exit on
+    add_connector(exit_proposal.to_connector, exit_proposal.distance_from_left, cursor: cursor) # Currently ignores doors; should be add_door for doors
+  end
+
+  ######### Placement Helpers
+  ####
 
   # Position coordinate hash of Northwest corner
   def abs_map_pos()
@@ -182,159 +361,16 @@ class Chamber < MapObject
     return true
   end
 
-  def default_proposal(cursor:, width_from_connector_left:, width_from_connector_right:, width:, length:)
-    tmp_cursor = cursor.copy
-    for length_point in 1..length # Start at base of room (from entrance) and move outward
-      debug "Trying length point #{length_point}"
-      tmp_cursor.forward!()
-      unless sides_clear?(tmp_cursor, width_from_connector_left, width_from_connector_right)
-        debug "Sides not clear at point #{length_point}"
-        return nil
-      end
-    end
-    log "Placing as-is."
-    proposal = ChamberProposal.new(chamber: self,
-        cursor: cursor,
-        width_left: width_from_connector_left,
-        width: width,
-        length: length,
-        length_threshold: length,
-    )
-    debug "Proposal: #{proposal.to_h}"
-    return proposal
-  end
-
-  def create_proposal(width:, length:, map_x:, map_y:, facing:, entrance_width:)
-    # SETUP: Cursor, length, width-related calculations
-    cursor = Cursor.new(map: map,
-                          x: map_x,
-                          y: map_y,
-                     facing: facing)
-    debug "Checking how clear it is outward from entrance (length: #{length}, entrance_width: #{entrance_width})"
-    debug "Cursor: #{cursor.to_s}"
-    length = clear_distance(cursor, length, entrance_width)
-    debug "Length after initial truncate: #{length}"
-    if length < 2
-      log "Cannot place chamber (not enough space outward from entrance)"
-      return
-    end
-    horizontal_offset = 0
-    entrance_width = 1 if entrance_width.nil?
-    width_from_connector = width - entrance_width
-    width_from_connector_left = (width_from_connector/2.to_f).floor.to_i - horizontal_offset
-    width_from_connector_right = (width_from_connector/2.to_f).ceil.to_i + entrance_width + horizontal_offset - 1 # "- 1": Don't count current space
-    debug "Width left: #{width_from_connector_left}"
-    debug "Width right: #{width_from_connector_right}"
-    # STEP 1: Use default layout proposal if possible
-    p = default_proposal( cursor: cursor,
-       width_from_connector_left: width_from_connector_left,
-      width_from_connector_right: width_from_connector_right,
-                           width: width,
-                          length: length,
-      )
-    return p if p
-    # STEP 2: Check each point in length and generate proposals
-    chamber_proposals = create_chamber_proposals(
-      cursor: cursor,
-      length: length,
-      width:  width,
-      entrance_width: entrance_width,
-      width_from_connector_left: width_from_connector_left,
-      width_from_connector_right: width_from_connector_right,
-    )
-    # STEP 3: Choose a proposal
-    # To be replaced with a more nuanced selection mechanism at a later time
-    chosen_proposal = chamber_proposals.sort_by {|p| p.score }.last
-    log "Chose chamber proposal: #{chosen_proposal.to_h}"
-    return chosen_proposal
-  end
-
-  # TODO: Make this method work when there is no entrance (it's the starting chamber).
-  def create_chamber_proposals(cursor:, length:, width:, entrance_width:, width_from_connector_left:, width_from_connector_right:)
-    chamber_proposals = Array.new
-    tmp_cursor = cursor.copy
-    for length_point in 1..length
-      debug "Checking at length point #{length_point} (of #{length})"
-      # STEP 2A: Advance to the next point along the room and get clearance
-      tmp_cursor.forward!()
-      debug "  Cursor: #{tmp_cursor.to_s}"
-      clearance = side_clearance(tmp_cursor, (width-entrance_width), (width-1))
-      # STEP 2B: Skip from consideration if there are no left/right obstacles
-      debug "  Skipping from consideration" if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
-      next if clearance[:left] >= width_from_connector_left and clearance[:right] >= width_from_connector_right
-      # STEP 2C: Get the number of proposals and first left starting point
-      # (width + 1 - pwidth) - (width - min(clear_spaces_from_entrance_right))
-      left_proposal_restriction = width - [clearance[:left] + entrance_width, width].min
-      right_proposal_restriction = width - [clearance[:right] + entrance_width, width].min
-      point_proposals = (width + 1 - entrance_width) - left_proposal_restriction - right_proposal_restriction
-      starting_point_offset = clearance[:left]
-      debug "  #{point_proposals} proposals for this point, with starting offset of #{starting_point_offset}"
-      # STEP 2D: Try to build each proposal
-      for proposal_num in 0...point_proposals
-        proposal = ChamberProposal.new(chamber: self,
-          cursor: cursor,
-          width_left: clearance[:left] - proposal_num,
-          width: width,
-          length: length,
-          length_threshold: length_point,
-          )
-        debug "  Proposal created: #{proposal.to_h}"
-        chamber_proposals << proposal if proposal and not chamber_proposals.collect { |p| p.to_h }.include? proposal.to_h
-      end
-    end
-    debug "Chamber Proposals:"
-    chamber_proposals.each { |p| debug "  #{p.to_h}"}
-  end
-
-  def set_attributes_from_proposal(proposal, map_x, map_y)
-    @width = proposal.width
-    @length = proposal.length
-    cursor_pos = initial_cursor_pos(@facing)
-    offset_cursor = Cursor.new(map: map,
-                                 x: map_x - cursor_pos[:x],
-                                 y: map_y - cursor_pos[:y],
-                                 facing: @facing)
-    offset_cursor.shift!(:left, proposal.width_left)
-    @map_offset_x = offset_cursor.x
-    @map_offset_y = offset_cursor.y
-    @cursor = Cursor.new(map: map,
-                           x: cursor_pos[:x],
-                           y: cursor_pos[:y],
-                      facing: @facing,
-                map_offset_x: @map_offset_x,
-                map_offset_y: @map_offset_y)
-    debug @cursor.to_s
-  end
-
-  def draw_chamber()
-    initial_cursor = @cursor.copy()
-    draw_forward(@length)
-    draw_near_wall(cursor: initial_cursor)
-    draw_far_wall()
-    draw_starting_connector(cursor: initial_cursor)
-  end
-
-  def draw_near_wall(cursor: @cursor)
-    tmp_cursor = cursor.copy()
-    tmp_cursor.forward!
-    tmp_cursor.turn!(:back)
-    add_wall_width(cursor: tmp_cursor, direction: :left)
-  end
-
-  def draw_far_wall(cursor: @cursor)
-    tmp_cursor = cursor.copy()
-    add_wall_width(cursor: tmp_cursor)
-  end
-
-  def draw_exit(cursor, exit_proposal)
-    # Currently assumes cursor is at the left edge of the room we want to draw the exit on
-    add_connector(exit_proposal.to_connector, exit_proposal.distance_from_left, cursor: cursor) # Currently ignores doors; should be add_door for doors
-  end
+  ########################################
+  #### EXITS
+  ########################################
 
   def add_exits(exits = MapGenerator.random_chamber_exits(size_category))
+    log_indent()
     exits.each { |exit|
       add_exit(exit)
     }
+    log_outdent()
   end
 
   def add_exit(exit)
@@ -365,7 +401,7 @@ class Chamber < MapObject
       return
     end
     chosen_proposal = MapGenerator.weighted_random(exit_proposals.collect { |p| {proposal: p, "probability" => p.score} })[:proposal]
-    log "#{id_str}: Chose exit proposal: #{chosen_proposal.to_h}"
+    debug "#{id_str}: Chose exit proposal: #{chosen_proposal.to_h}"
     # STEP 3: Attach the exit (door, connector or passage)
     case exit[:type]
     when "passage"
@@ -384,31 +420,23 @@ class Chamber < MapObject
   def create_exit_proposals(cursor:, wall_width:, exit_width: 2)
     exit_proposals = Array.new
     for width_point in 0..(wall_width - exit_width)
-      log "Creating proposal at width_point #{width_point} (#{cursor.pos})"
+      debug "Creating proposal at width_point #{width_point} (#{cursor.pos})"
       proposal = ExitProposal.new(cursor: cursor, map: @map, chamber: self, wall_width: wall_width, width: exit_width, distance_from_left: width_point)
-      log "#{id_str}: Proposal: #{proposal.to_h}"
-      log "#{id_str}: Checking whether exit is allowed at cursor: #{proposal.cursor.to_s}"
+      debug "#{id_str}: Proposal: #{proposal.to_h}"
+      debug "#{id_str}: Checking whether exit is allowed at cursor: #{proposal.cursor.to_s}"
       if proposal.exit_allowed?
         exit_proposals << proposal
       else
-        log "#{id_str}: Exit proposal not allowed."
+        debug "#{id_str}: Exit proposal not allowed."
       end
     end
     debug "Proposal list: #{exit_proposals.collect{|p| p.to_h }}"
     return exit_proposals
   end
 
-  def size()
-    @length * @width
-  end
-
-  def size_category()
-    if size > 1600
-      return "large"
-    else
-      return "normal"
-    end
-  end
+  ########################################
+  #### CONTENTS
+  ########################################
 
   def generate_contents()
     contents_yaml = random_yaml_element("chamber_contents")
@@ -422,9 +450,8 @@ class Chamber < MapObject
       tricks: [],
       features: []
     }
-    generate_features(contents)
-    return contents if contents_yaml["contents"].nil? # TODO: Is this still correct? With features in play?
-    contents_yaml["contents"].each { |c|
+    contents[:features].concat(generate_features(contents))
+    contents_yaml.fetch("contents", []).each { |c|
       case c
       when /^monster/
         category = c.split("_").last
@@ -456,54 +483,27 @@ class Chamber < MapObject
       end
     }
     # Add encounter based on chamber purpose if monsters are not already present
-    purpose_encounter = generate_purpose_monsters() if contents[:monsters].empty?
-    contents[:monsters] << purpose_encounter unless purpose_encounter.nil?
+    contents[:monsters].concat(generate_purpose_monsters()) if contents[:monsters].empty?
     # Add traps based on chamber purpose regardless of whether traps are already present
     contents[:traps].concat(generate_purpose_traps())
     if contents[:treasure].empty?
       # If treasure isn't already present, chamber purpose may add some
-      generate_purpose_treasure(contents)
+      contents[:treasure].concat(generate_purpose_treasure(contents))
     else
       # If treasure is present, generate it, increasing chance of more based on contents and purpose
       contents[:treasure].each { |t| t.generate(treasure_level(contents)) }
     end
     @contents = contents
+    log "Added contents: #{contents.to_s}"
     return contents
   end
 
-  def treasure_level(contents = @contents, purpose_contents = @purpose_contents)
-    if contents[:monsters].nil? or contents[:monsters].empty?
-        monster_treasure_bonus = 0
-      else
-        monster_treasure_bonus = case xp_threshold(contents[:monsters][0].monster_groups[0].xp)
-        when :impossible; 4
-        when :deadly;     3
-        when :hard;       2
-        when :medium;     1
-        else;             0
-        end
-      end
-      if contents[:traps].nil? or contents[:traps].empty?
-        trap_treasure_bonus = 0
-      else
-        trap_treasure_bonus = case contents[:traps][0].severity.downcase
-        when "deadly";    3
-        when "dangerous"; 2
-        when "setback";   1
-        end
-      end
-      obstacle_treasure_bonus = (contents[:obstacles].nil? or contents[:obstacles].empty?) ? 0 : 1
-      if purpose_contents.nil? or purpose_contents['treasure'].nil?
-        purpose_treasure_bonus = 0
-      else
-        purpose_treasure_bonus = [(@purpose_contents['treasure'].fetch("chance", 0) * 10).to_i, 4].min
-      end
-      treasure_level_bonus = monster_treasure_bonus + trap_treasure_bonus + obstacle_treasure_bonus + purpose_treasure_bonus
-      final_treasure_level = 1 + treasure_level_bonus
-      log "Generating level #{final_treasure_level} treasure for #{label}"
-      log "(#{monster_treasure_bonus} + #{trap_treasure_bonus} + #{obstacle_treasure_bonus} + #{purpose_treasure_bonus})"
-      return final_treasure_level
-  end
+  ######### Content Generation
+  ####
+
+  # The following generator methods return arrays due to all content keys accepting arrays
+  # of elements for their content type, even if not all content types contain more than one
+  # by nature.
 
   def generate_features(contents = @contents, purpose_contents = @purpose_contents)
     return [] unless rand() < $configuration.fetch('feature_chance', 0)
@@ -514,8 +514,7 @@ class Chamber < MapObject
     }
     log "Adding features: #{feature_set.join(", ")}"
     feature_set.concat generate_purpose_features(purpose_contents)
-    contents[:features] << feature_set
-    return contents
+    return [feature_set]
   end
 
   def generate_purpose_features(purpose_contents = @purpose_contents)
@@ -536,11 +535,9 @@ class Chamber < MapObject
 
   def generate_purpose_treasure(contents = @contents, purpose_contents = @purpose_contents)
     return [] if purpose_contents.nil? or purpose_contents['treasure'].nil?
-    if rand() < purpose_contents['treasure']['chance']
-      log "Adding treasure due to chamber purpose"
-      contents[:treasure] << TreasureStash.new(true, treasure_level(contents, purpose_contents))
-    end
-    return contents
+    return [] unless rand() < purpose_contents['treasure']['chance']
+    log "Adding treasure due to chamber purpose"
+    return [TreasureStash.new(true, treasure_level(contents, purpose_contents))]
   end
 
   def generate_purpose_traps(purpose_contents = @purpose_contents)
@@ -551,12 +548,48 @@ class Chamber < MapObject
   end
 
   def generate_purpose_monsters(purpose_contents = @purpose_contents)
-    return nil if purpose_contents.nil? or purpose_contents['monsters'].nil?
-    return nil unless rand() < purpose_contents['monsters']['chance']
+    return [] if purpose_contents.nil? or purpose_contents['monsters'].nil?
+    return [] unless rand() < purpose_contents['monsters']['chance']
     log "Adding monsters based on chamber purpose"
-    return @map.encounter_table.random_encounter(size)
+    return [@map.encounter_table.random_encounter(size)]
   end
 
+  ######### Content Creation Helpers
+  ####
+
+  def treasure_level(contents = @contents, purpose_contents = @purpose_contents)
+    if contents[:monsters].nil? or contents[:monsters].empty?
+      monster_treasure_bonus = 0
+    else
+      monster_treasure_bonus = case xp_threshold(contents[:monsters][0].monster_groups[0].xp)
+      when :impossible; 4
+      when :deadly;     3
+      when :hard;       2
+      when :medium;     1
+      else;             0
+      end
+    end
+    if contents[:traps].nil? or contents[:traps].empty?
+      trap_treasure_bonus = 0
+    else
+      trap_treasure_bonus = case contents[:traps][0].severity.downcase
+      when "deadly";    3
+      when "dangerous"; 2
+      when "setback";   1
+      end
+    end
+    obstacle_treasure_bonus = (contents[:obstacles].nil? or contents[:obstacles].empty?) ? 0 : 1
+    if purpose_contents.nil? or purpose_contents['treasure'].nil?
+      purpose_treasure_bonus = 0
+    else
+      purpose_treasure_bonus = [(@purpose_contents['treasure'].fetch("chance", 0) * 10).to_i, 4].min
+    end
+    treasure_level_bonus = monster_treasure_bonus + trap_treasure_bonus + obstacle_treasure_bonus + purpose_treasure_bonus
+    final_treasure_level = 1 + treasure_level_bonus
+    log "Generating level #{final_treasure_level} treasure for #{label}"
+    debug "(#{monster_treasure_bonus} + #{trap_treasure_bonus} + #{obstacle_treasure_bonus} + #{purpose_treasure_bonus})"
+    return final_treasure_level
+  end
 
   ######
   ### CLASS METHODS

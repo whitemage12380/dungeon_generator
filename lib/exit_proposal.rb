@@ -23,15 +23,15 @@ class ExitProposal
     for width_point in 1..width
       square = map.square(tmp_cursor.map_pos)
       return false if square.nil?
-      log "#{chamber.name}: #{tmp_cursor.pos} (#{tmp_cursor.facing}) - #{square.to_s}"
+      debug "#{chamber.name}: #{tmp_cursor.pos} (#{tmp_cursor.facing}) - #{square.to_s}"
       return false unless tmp_cursor.pos_valid?()
       return false if chamber.square_empty?(tmp_cursor.pos)
       return false unless square.edges[tmp_cursor.facing] == :wall
       return false unless map.square_available?(tmp_cursor.map_pos_forward(1))
-      log "Shifting..."
+      debug "Shifting..."
       tmp_cursor.shift!(:right)
     end
-    log "#{@chamber.name}: Exit is allowed"
+    debug "#{@chamber.name}: Exit is allowed"
     return true
   end
 

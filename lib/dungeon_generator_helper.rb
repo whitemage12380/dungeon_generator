@@ -1,6 +1,6 @@
 require_relative 'configuration'
 
-class String
+class ::String
   def pretty()
     output = split(/ |\_/).map(&:capitalize).join(" ")
             .split("-").map(&:capitalize).join("-")
@@ -39,6 +39,18 @@ class String
   end
 end
 
+class ::Hash
+    def deep_merge(second)
+        merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
+        self.merge(second, &merger)
+    end
+
+    def deep_merge!(second)
+      merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
+      self.merge!(second, &merger)
+    end
+end
+
 module DungeonGeneratorHelper
   require 'stringio'
   require 'logger'
@@ -52,27 +64,28 @@ module DungeonGeneratorHelper
     $messages = StringIO.new() if $messages.nil?
     $message_log = Logger.new($messages) if $message_log.nil?
     $message_log.level = Logger::INFO
+    $configuration.indent = "" if $configuration.indent.nil?
   end
 
   def debug(message)
     init_logger()
-    $log.debug(message)
+    $log.debug($configuration.indent + message)
   end
 
   def log(message)
     init_logger()
-    $log.info(message)
+    $log.info($configuration.indent + message)
   end
 
   def log_error(message)
     init_logger()
-    $log.error(message)
+    $log.error($configuration.indent + message)
   end
 
   def log_important(message)
     init_logger()
-    $log.info(message)
-    $message_log.info(message)
+    $log.info($configuration.indent + message)
+    $message_log.info($configuration.indent + message)
   end
 
   def print_messages()
@@ -82,6 +95,14 @@ module DungeonGeneratorHelper
       $message_log = nil
       $messages = nil
     end
+  end
+
+  def log_indent()
+    $configuration.indent = "  "
+  end
+
+  def log_outdent()
+    $configuration.indent = ""
   end
 
   def opposite_facing(facing)

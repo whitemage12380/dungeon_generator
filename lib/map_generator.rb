@@ -11,16 +11,6 @@ class MapGenerator
   class << self
     def generate_map(map_size = $configuration['map_size'], theme: nil)
       log "Beginning map generation"
-      # if theme.nil?
-      #   case $configuration['theme']
-      #   when "random"
-      #     themes = random_themes()
-      #   when nil
-      #     # Let theme be nil
-      #   else
-      #     theme = $configuration['theme']
-      #   end
-      # end
       map = Map.new(map_size)
       starting_area = map.generate_starting_area()
       starting_area.all_connectors.each {|c| generate_passage_recursive(c)}
@@ -31,6 +21,10 @@ class MapGenerator
       map.save()
       return map
     end
+
+    ########################################
+    #### STARTING AREA
+    ########################################
 
     def generate_starting_area_configuration()
       random_yaml_element("starting_areas")
@@ -87,6 +81,10 @@ class MapGenerator
       return {x: rand_x, y: rand_y, facing: facing}
     end
 
+    ########################################
+    #### MAIN MAP GENERATION LOGIC
+    ########################################
+
     def generate_passage_recursive(connector)
       #chamber_strategy = :wait # immediate: generate from chamber when it appears. 
       #                         # wait: Generate from chambers after passages are complete
@@ -94,7 +92,7 @@ class MapGenerator
       from_map_object = connector.map_object
       to_map_object = connector.connecting_map_object
       if to_map_object and to_map_object.drawn?
-        log_important "Map object #{to_map_object.name} is already connected and drawn, skipping generation step from #{from_map_object.name}"
+        log "Map object #{to_map_object.name} is already connected and drawn, skipping generation step from #{from_map_object.name}"
         return
       end
       if to_map_object.nil?
@@ -138,7 +136,7 @@ class MapGenerator
         if to_map_object.nil?
           passage = map.add_passage(connector: connector, instructions: passage_data["passage"])
         else
-          log_important "#{connector.connecting_map_object.name} already exists"
+          debug "#{connector.connecting_map_object.name} already exists"
           unless to_map_object.kind_of? Passage
             log_important "#{to_map_object.name} is not a passage but got assumed to be such in the generator! This should never happen."
             return
@@ -154,19 +152,9 @@ class MapGenerator
       end
     end
 
-    def generate_chamber_name_and_description(map = nil)
-      purpose = generate_chamber_purpose(map)
-      return purpose["name"], purpose.fetch("description", "")
-    end
-
-    def generate_chamber_purpose(map = nil)
-      if map.nil?
-        theme = $configuration.fetch('theme', all_themes.sample)
-      else
-        theme = map.themes.sample
-      end
-      return random_chamber_purpose(theme)
-    end
+    ########################################
+    #### EXITS
+    ########################################
 
     def random_chamber_exits(size_category)
       exit_count = random_yaml_element("chamber_exits")[size_category]
@@ -183,9 +171,17 @@ class MapGenerator
       return exits
     end
 
-    def random_facing(exceptions = [])
-      available_facings = FACINGS - exceptions
-      return available_facings.sample
+    ########################################
+    #### THEME AND PURPOSE
+    ########################################
+
+    def generate_chamber_purpose(map = nil)
+      if map.nil?
+        theme = $configuration.fetch('theme', all_themes.sample)
+      else
+        theme = map.themes.sample
+      end
+      return random_chamber_purpose(theme)
     end
 
     def select_themes()
@@ -214,29 +210,14 @@ class MapGenerator
       random_yaml_element("chamber_purpose/#{theme}").merge({"theme" => theme})
     end
 
-    def random_monsters(table, category)
-      arr = YAML.load(File.read("#{DATA_PATH}/monsters/#{table}.yaml"))[table][category]
-      group = weighted_random(arr)['encounter']
-      monster_list = Array.new()
-      case group
-      when String
-        monster_list << group
-      when Hash
-        group.each_pair {|monster, count_str|
-          if count_str.kind_of? Integer or count_str =~ /^\d+$/
-            count = count_str.to_i
-          else
-            min, max = count_str.split("-").collect {|n| n.to_i}
-            count = rand(min..max)
-          end
-          count.times { monster_list << monster }
-        }
-      else
-        raise "Incorrectly typed monster group: #{group.to_s}"
-      end
-      return monster_list
-    end
+    ########################################
+    #### MISC
+    ########################################
 
+    def random_facing(exceptions = [])
+      available_facings = FACINGS - exceptions
+      return available_facings.sample
+    end
 
   end
 end

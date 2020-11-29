@@ -36,14 +36,6 @@ class Map
     @grid[x][y] = value
   end
 
-  #def [] (coordinates)
-  #  @grid[coordinates[:x]][coordinates[:y]]
-  #end
-#
-#  def []=(coordinates, value)
-#    @grid[coordinates[:x]][coordinates[:y]] = value
-#  end
-
   def square(x:, y:)
     return nil if @grid.nil? or @grid[x].nil?
     return nil if x < 0 or y < 0
@@ -93,6 +85,22 @@ class Map
     map_objects.collect { |mo| mo.doors }.flatten.uniq
   end
 
+  def to_s()
+    output = ""
+    for y in 0...@grid[0].length do
+      for x in 0...@grid.length do
+        square = @grid[x][y]
+        output.concat(square ? square.to_character : '.')
+      end
+      output.concat("\n")
+    end
+    output
+  end
+
+  ########################################
+  #### ADDING MAP OBJECTS
+  ########################################
+
   def add_passage(passage: nil, connector: nil, width: nil, x: nil, y: nil, facing: nil, instructions: nil)
     if passage.nil?
       if connector
@@ -141,17 +149,9 @@ class Map
     end
   end
 
-  def can_draw_map_object?(map_object)
-    offset_x = map_object.map_offset_x
-    offset_y = map_object.map_offset_y
-    map_object.grid.each_with_index { |x_obj, x|
-      x_obj.each_with_index { |y_obj, y|
-        next if x_obj[y].nil?
-        return false unless self[x + offset_x, y + offset_y].nil?
-      }
-    }
-    return true
-  end
+  ########################################
+  #### DRAWING MAP OBJECTS
+  ########################################
 
   def draw_map_object(map_object)
     return false unless can_draw_map_object?(map_object)
@@ -166,6 +166,22 @@ class Map
     map_object.drawn
     return true
   end
+
+  def can_draw_map_object?(map_object)
+    offset_x = map_object.map_offset_x
+    offset_y = map_object.map_offset_y
+    map_object.grid.each_with_index { |x_obj, x|
+      x_obj.each_with_index { |y_obj, y|
+        next if x_obj[y].nil?
+        return false unless self[x + offset_x, y + offset_y].nil?
+      }
+    }
+    return true
+  end
+
+  ########################################
+  #### STARTING AREA
+  ########################################
 
   def generate_starting_area()
     configuration = MapGenerator.generate_starting_area_configuration()
@@ -193,17 +209,9 @@ class Map
     return map_object
   end
 
-  def to_s()
-    output = ""
-    for y in 0...@grid[0].length do
-      for x in 0...@grid.length do
-        square = @grid[x][y]
-        output.concat(square ? square.to_character : '.')
-      end
-      output.concat("\n")
-    end
-    output
-  end
+  ########################################
+  #### SAVING AND LOADING
+  ########################################
 
   def save(filename = 'latest', filepath = $configuration['saved_map_directory'])
     if filename =~ /^\/.*\.yaml$/

@@ -2082,7 +2082,7 @@ encounters: # Default probability is 4
       Rothe: 1-3
     xp: 50-150
     special: true
-  - encouter:
+  - encounter:
       Deep Rothe: 1-3
     xp: 50-150
     special: true

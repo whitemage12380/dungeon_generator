@@ -19,10 +19,6 @@ class Item
     tags = Hash.new if tags.nil?
     require_tags = tags[:require] || []
     exclude_tags = tags[:exclude] || []
-    puts table.to_s
-    puts tags.to_s
-    puts require_tags.to_s
-    puts exclude_tags.to_s
     possible_items = YAML.load(File.read("#{DATA_PATH}/treasure/items/#{table}.yaml"))
       .select { |i| require_tags.all? { |t| i.fetch('tags', []).include? t } }
       .reject { |i| exclude_tags.any? { |t| i.fetch('tags', []).include? t } }

@@ -11,6 +11,9 @@ class EncounterTable
     generate(party_level: party_level, encounter_configuration: encounter_configuration())
   end
 
+  ######### Encounter Table Generation
+  ####
+
   def generate(party_level: $configuration["party_level"], encounter_configuration: encounter_configuration())
     case encounter_configuration["encounter_list"]
     when "custom"
@@ -92,14 +95,19 @@ class EncounterTable
     return encounter_list.collect { |e| e.select { |k,v| ["encounter", "probability", "xp", "special"].include? k }}
   end
 
+  ######### Random Encounters
+  ####
+
   def random_encounter(chamber, encounter_list = @encounter_list)
     # Allow input to be the chamber object or just the space available
     # Currently all we need is the chamber size
     space_available = (chamber.kind_of? Chamber) ? chamber.size : chamber
     size_category = (space_available > 1600) ? "large" : "small"
-    encounter = random_monster_group(space_available, encounter_list)
     if rand() < encounter_configuration["multiple_monster_group_chance"][size_category]
-      encounter.add_monster_group(random_monster_group(space_available).monster_groups[0])
+      encounter = random_monster_group((space_available / 2).to_i, encounter_list)
+      encounter.add_monster_group(random_monster_group((space_available / 2).to_i).monster_groups[0])
+    else
+      encounter = random_monster_group(space_available, encounter_list)
     end
     log "Encounter Chosen:"
     log "  #{encounter.monster_groups[0].grouped_monster_lines.join(",")}"
@@ -175,29 +183,7 @@ class EncounterTable
   end
 
   def encounter_configuration()
-    if @encounter_configuration.nil?
-      @encounter_configuration = $configuration.fetch("encounters", {})
-      # Defaults # TODO: This is not a good way to do this, as it defaults only for this class.
-      defaults = {
-        "dominant_inhabitants" => 1,
-        "allies" => 1,
-        "encounter_list" => "custom",
-        "encounter_list_choices" => 20,
-        "maximum_chamber_occupancy_percent" => 0.75,
-        "max_xp_threshold_multiplier" => 1.1,
-        "random_encounter_choice_list" => "all",
-        "xp_threshold_balance" => {
-          "easy" => 2,
-          "medium" => 3,
-          "hard" => 3,
-          "deadly" => 2
-        },
-        "xp_threshold_strategy" => "balanced"
-      }
-      defaults.each_pair { |conf_name, conf_val|
-        @encounter_configuration[conf_name] = conf_val if @encounter_configuration[conf_name].nil?
-      }
-    end
+    @encounter_configuration = $configuration["encounters"] if @encounter_configuration.nil?
     return @encounter_configuration
   end
 
