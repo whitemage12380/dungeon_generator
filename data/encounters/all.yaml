@@ -2340,7 +2340,12 @@ encounters: # Default probability is 4
       Warlord: 0-1
   - encounter:
       Apprentice Wizard: 0-4
-      Mage: 0-4
+      Mage: 0-2
+      Archmage: 0-2
+    xp: 50-21500
+  - encounter:
+      Apprentice Wizard: 0-2
+      Mage: 0-3
       Archmage: 0-2
       Abjurer: 0-3
       Conjurer: 0-3
@@ -2351,3 +2356,167 @@ encounters: # Default probability is 4
       Necromancer: 0-3
       Transmuter: 0-3
     xp: 50-25000
+  - encounter:
+      Abjurer: 0-3
+      Conjurer: 0-3
+      Diviner: 0-3
+      Enchanter: 0-3
+      Evoker: 0-3
+      Illusionist: 0-3
+      Necromancer: 0-3
+      Transmuter: 0-3
+    xp: 700-15000
+  - encounter:
+      Bandit: 1-6
+      Bandit Captain: 0-1
+      Thug: 0-5
+    xp: 25-1000
+  - encounter:
+      Cultist: 1-6
+      Cult Fanatic: 0-3
+    xp: 25-1400
+  - encounter:
+      Cultist: 1-3
+      Cult Fanatic: 0-2
+      Acolyte: 0-3
+      Necromancer: 0-2
+      Priest: 0-2
+    xp: 25-14500
+  - encounter:
+      Cultist: 0-3
+      Cult Fanatic: 0-2
+      Warlock of the Archfey: 1-3
+    xp: 1100-4250
+  - encounter:
+      Cultist: 0-3
+      Cult Fanatic: 0-2
+      Warlock of the Fiend: 1-3
+    xp: 2900-9650
+  - encounter:
+      Cultist: 0-3
+      Cult Fanatic: 0-2
+      Warlock of the Great Old One: 1-3
+    xp: 2300-7850
+  - encounter:
+      Acolyte: 0-3
+      Priest: 0-3
+      War Priest: 0-2
+    xp: 50-10900
+  - encounter:
+      Druid: 1-4
+      Archdruid: 0-3
+    xp: 450-25200
+  - encounter:
+      Assassin: 1-5
+    xp: 3900-19500
+  - encounter:
+      Bard: 1-3
+    xp: 450-1350
+    special: true
+  - encounter:
+      Berserker: 1-4
+      Thug: 0-3
+    xp: 450-2000
+  - encounter:
+      Blackguard: 1-3
+      Knight: 0-3
+    xp: 3900-13100
+  - encounter:
+      Gladiator: 1-3
+      Champion: 0-1
+    xp: 1800- 10400
+  - encounter:
+      Champion: 1-3
+      Gladiator: 0-2
+    xp: 5000-16800
+  - encounter:
+      Commoner: 1-6
+      Cultist: 0-3
+    xp: 10-125
+    special: true
+  - encounter:
+      Commoner: 1-5
+      Veteran: 0-1
+    xp: 10-750
+    special: true
+  - encounter:
+      Knight: 1-4
+      Champion: 0-2
+    xp: 700-12800
+  - encounter:
+      Martial Arts Adept: 1-5
+    xp: 700-3500
+  - encounter: Master Thief
+    xp: 1800
+    special: true
+  - encounter:
+      Noble: 1-4
+      Guard: 0-3
+    xp: 25-175
+  - encounter:
+      Necromancer: 1-2
+      Skeleton: 0-5
+      Minotaur Skeleton: 0-2
+      Warhorse Skeleton: 0-2
+      Zombie: 0-4
+      Ogre Zombie: 0-2
+      Beholder Zombie: 0-2
+    xp: 5100-13600
+  - encounter:
+      Necromancer: 1-2
+      Ghoul: 0-4
+      Ghast: 0-4
+    xp: 5200-11800
+  - encounter:
+      Scout: 1-4
+    xp: 100-400
+  - encounter: Spy
+    xp: 200
+    special: true
+  - encounter:
+      Swashbuckler: 1-4
+      Archer: 0-2
+    xp: 700-4200
+  - encounter:
+      Thug: 1-5
+    xp: 100-500
+  - encounter:
+      Tribal Warrior: 1-6
+      Veteran: 0-3
+      Warlord: 0-1
+    xp: 25-9900
+  - encounter:
+      Warlord: 1
+      Knight: 1-3
+      Blackguard: 0-2
+      Champion: 0-1
+    xp: 8400-20000
+  - encounter:
+      Acolyte: 0-1
+      Apprentice Wizard: 0-1
+      Guard: 0-1
+      Scout: 0-1
+      Thug: 0-1
+    xp: 75-325
+  - encounter:
+      Archer: 0-1
+      Bard: 0-1
+      Berserker: 0-1
+      Druid: 0-1
+      Mage: 0-1
+      Priest: 0-1
+      Martial Arts Adept: 0-1
+      Knight: 0-1
+      Gladiator: 0-1
+      Swashbuckler: 0-1
+      Veteran: 0-1
+    xp: 900-5600
+  - encounter:
+      Archdruid: 0-1
+      Archmage: 0-1
+      Assassin: 0-1
+      Champion: 0-1
+      Evoker: 0-1
+      Master Thief: 0-1
+      War Priest: 0-1
+    xp: 5700-26800
