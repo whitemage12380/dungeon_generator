@@ -589,8 +589,8 @@ Roadmap Order:
 - DONE - Contents - Allow chamber types to be more likely to contain treasure
 - DONE - Contents - Allow chamber types to be more likely to contain traps
 - DONE - Contents - Allow chamber types to be more likely to contain monsters
-- NPC Encounters
-- Dungeon Name
+- DONE - NPC Encounters
+- DONE - Dungeon Name
 - Dungeon Description
 - Better Save mechanics
 - Encounters - Dominant Inhabitants

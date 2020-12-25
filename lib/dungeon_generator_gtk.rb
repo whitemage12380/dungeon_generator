@@ -317,6 +317,10 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       bind_template_child('file_save_as')
       bind_template_child('file_quit')
       #############
+      bind_template_child('map_header')
+      bind_template_child('map_header_stack')
+      bind_template_child('map_header_edit')
+      bind_template_child('map_header_eventbox')
       bind_template_child('map_canvas')
       bind_template_child('info_pane')
       bind_template_child('panes')
@@ -328,6 +332,20 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     setup_menubar()
     load_info_panel()
     load_map()
+
+    map_header.title = @map.name
+    map_header_eventbox.add_events(:button_press_mask)
+    map_header_eventbox.signal_connect('button-press-event') do |eventbox, event, user_data|
+      map_header_edit.set_text(map_header.title)
+      map_header_stack.set_visible_child(map_header_edit)
+      map_header_edit.grab_focus()
+    end
+    map_header_edit.signal_connect('activate') do |entry, event, user_data|
+      @map.name = entry.text
+      map_header.set_title(@map.name)
+      map_header_stack.set_visible_child(map_header_eventbox)
+    end
+
     map_canvas.add_events(:button_press_mask) # Enable mouse events on map
     map_canvas.signal_connect('draw') do |map_canvas, ctx|
       draw_map(ctx)
