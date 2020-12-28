@@ -2,6 +2,51 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-about</property>
+  </object>
+  <object class="GtkMenu" id="map_menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem" id="map_menu_new">
+        <property name="label">gtk-new</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="map_menu_open">
+        <property name="label">gtk-open</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="map_menu_save">
+        <property name="label">gtk-save</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="map_menu_save_as">
+        <property name="label">gtk-save-as</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+      </object>
+    </child>
+  </object>
   <template class="DungeonGeneratorWindow" parent="GtkApplicationWindow">
     <property name="width_request">1200</property>
     <property name="height_request">700</property>
@@ -17,16 +62,15 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar" id="menubar">
-            <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkMenuItem">
+              <object class="GtkMenuItem" id="file_menu_item">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu">
+                  <object class="GtkMenu" id="file_menu">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -85,13 +129,13 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem">
+              <object class="GtkMenuItem" id="edit_menu_item">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Edit</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu">
+                  <object class="GtkMenu" id="edit_menu">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -135,7 +179,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem">
+              <object class="GtkMenuItem" id="view_menu_item">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_View</property>
@@ -143,13 +187,13 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem">
+              <object class="GtkMenuItem" id="help_menu_item">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu">
+                  <object class="GtkMenu" id="help_menu">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -197,7 +241,36 @@
                             <property name="can_focus">False</property>
                             <property name="title">Dungeon</property>
                             <child>
-                              <placeholder/>
+                              <object class="GtkMenuButton" id="map_menu_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="focus_on_click">False</property>
+                                <property name="receives_default">True</property>
+                                <property name="popup">map_menu</property>
+                                <property name="align_widget">map_scroll</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="stock">gtk-justify-fill</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="pack_type">end</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton" id="toggle_map_details_button">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="image">image1</property>
+                              </object>
+                              <packing>
+                                <property name="pack_type">end</property>
+                                <property name="position">1</property>
+                              </packing>
                             </child>
                           </object>
                         </child>

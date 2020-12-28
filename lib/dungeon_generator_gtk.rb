@@ -211,9 +211,11 @@ class DungeonGeneratorInfoPanel < Gtk::Box
       randomize_chamber_purpose(map_object)
     end
     info_panel_header_eventbox.signal_connect('button-press-event') do |eventbox, event, user_data|
-      info_panel_header_edit.set_text(info_panel_header.subtitle)
-      info_panel_header_stack.set_visible_child(info_panel_header_edit)
-      info_panel_header_edit.grab_focus()
+      unless info_panel_header.subtitle.nil?
+        info_panel_header_edit.set_text(info_panel_header.subtitle)
+        info_panel_header_stack.set_visible_child(info_panel_header_edit)
+        info_panel_header_edit.grab_focus()
+      end
     end
     info_panel_header_edit.signal_connect('activate') do |entry, event, user_data|
       map_object.name = entry.text
@@ -309,7 +311,9 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   class << self
     def init
       set_template(resource: "/ui/dungeon_generator_window.ui")
-      #### MENU ###
+      #### MENU BUTTON ###
+      bind_template_child('map_menu_button')
+      #### MENU BAR ###
       bind_template_child('menubar')
       bind_template_child('file_new')
       bind_template_child('file_open')
@@ -330,6 +334,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   def initialize(application, map = nil)
     super(application: application)
     setup_menubar()
+    setup_map_menu()
     load_info_panel()
     load_map()
 
@@ -370,6 +375,26 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       end
     end
     file_save_as.signal_connect('activate') do |menu_item, event, user_data|
+      map_dialog(:save, @map)
+    end
+  end
+
+  def setup_map_menu
+    menu = map_menu_button.popup
+    menu.children.select{|m|m.label=='gtk-new'}[0].signal_connect('activate') do |menu_item, event, user_data|
+      load_map()
+      load_info_panel()
+      map_canvas.queue_draw()
+    end
+    menu.children.select{|m|m.label=='gtk-open'}[0].signal_connect('activate') do |menu_item, event, user_data|
+      map = map_dialog(:open)
+      if map.kind_of? Map
+        load_map(map)
+        load_info_panel()
+        map_canvas.queue_draw()
+      end
+    end
+    menu.children.select{|m|m.label=='gtk-save-as'}[0].signal_connect('activate') do |menu_item, event, user_data|
       map_dialog(:save, @map)
     end
   end
