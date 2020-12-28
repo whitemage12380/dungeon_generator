@@ -311,8 +311,6 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   class << self
     def init
       set_template(resource: "/ui/dungeon_generator_window.ui")
-      #### MENU BUTTON ###
-      bind_template_child('map_menu_button')
       #### MENU BAR ###
       bind_template_child('menubar')
       bind_template_child('file_new')
@@ -320,14 +318,20 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       bind_template_child('file_save')
       bind_template_child('file_save_as')
       bind_template_child('file_quit')
-      #############
+      ### MAP HEADER ###
       bind_template_child('map_header')
       bind_template_child('map_header_stack')
       bind_template_child('map_header_edit')
       bind_template_child('map_header_eventbox')
+      bind_template_child('map_menu_button')
+      bind_template_child('toggle_map_details_button')
+      ### PANES ###
+      bind_template_child('panes')
+      bind_template_child('map_stack')
+      bind_template_child('map_scroll')
+      bind_template_child('map_details')
       bind_template_child('map_canvas')
       bind_template_child('info_pane')
-      bind_template_child('panes')
     end
   end
 
@@ -350,6 +354,14 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       map_header.set_title(@map.name)
       map_header_stack.set_visible_child(map_header_eventbox)
     end
+    toggle_map_details_button.signal_connect('toggled') do |entry, event, user_data|
+      if toggle_map_details_button.active?
+        map_stack.set_visible_child(map_details)
+      else
+        map_stack.set_visible_child(map_scroll)
+      end
+    end
+
 
     map_canvas.add_events(:button_press_mask) # Enable mouse events on map
     map_canvas.signal_connect('draw') do |map_canvas, ctx|
