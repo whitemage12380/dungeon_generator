@@ -328,10 +328,13 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       ### PANES ###
       bind_template_child('panes')
       bind_template_child('map_stack')
-      bind_template_child('map_scroll')
-      bind_template_child('map_details')
-      bind_template_child('map_canvas')
       bind_template_child('info_pane')
+      ### MAP ###
+      bind_template_child('map_scroll')
+      bind_template_child('map_canvas')
+      ### MAP DETAILS ###
+      bind_template_child('map_details')
+      bind_template_child('text_map_description')
     end
   end
 
@@ -342,7 +345,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     load_info_panel()
     load_map()
 
-    map_header.title = @map.name
+    ### MAP HEADER ###
     map_header_eventbox.add_events(:button_press_mask)
     map_header_eventbox.signal_connect('button-press-event') do |eventbox, event, user_data|
       map_header_edit.set_text(map_header.title)
@@ -361,14 +364,17 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
         map_stack.set_visible_child(map_scroll)
       end
     end
-
-
+    ### MAP CANVAS ###
     map_canvas.add_events(:button_press_mask) # Enable mouse events on map
     map_canvas.signal_connect('draw') do |map_canvas, ctx|
       draw_map(ctx)
     end
     map_canvas.signal_connect('button-press-event') do |map_canvas, event, user_data|
       map_canvas_mouse_click(map_canvas, event)
+    end
+    ### MAP DETAILS ###
+    text_map_description.buffer.signal_connect('changed') do |textbuffer, event, user_data|
+      @map.description = textbuffer.text
     end
   end
 
@@ -440,6 +446,12 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     map = MapGenerator.generate_map() if map.nil?
     @map = map
     @selected_map_object = nil
+    display_map_details(map)
+  end
+
+  def display_map_details(map = @map)
+    map_header.title = map.name
+    text_map_description.buffer.text = map.description
   end
 
   def draw_map(ctx, map = @map)

@@ -9,7 +9,7 @@ require_relative 'encounter_table'
 class Map
   include DungeonGeneratorHelper
   extend DungeonGeneratorHelper
-  attr_accessor :map_name, :grid, :map_objects, :file, :themes, :encounter_table
+  attr_accessor :map_name, :grid, :map_objects, :file, :themes, :encounter_table, :description
 
   MAX_SIZE = 500
 
@@ -22,6 +22,7 @@ class Map
     @grid = Array.new(size) {Array.new(size)}
     @map_objects = Array.new
     @encounter_table = EncounterTable.new()
+    @description = ""
   end
 
   def name()
