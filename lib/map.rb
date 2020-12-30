@@ -222,17 +222,26 @@ class Map
   #### SAVING AND LOADING
   ########################################
 
-  def save(filename = 'latest', filepath = $configuration['saved_map_directory'])
-    if filename =~ /^\/.*\.yaml$/
+  def save(filename = (@file ? @file : 'latest'), filepath = $configuration['saved_map_directory'])
+    filename += ".yaml" unless filename =~ /\.yaml$/
+    if filename =~ /^\//
       fullpath = filename
     else
       filepath = File.expand_path("#{File.dirname(__FILE__)}/../#{filepath}") unless filepath[0] == '/'
-      fullpath = "#{filepath}/#{filename}.yaml"
+      fullpath = "#{filepath}/#{filename}"
     end
+    @file = fullpath unless @file == fullpath
     log "Saving map to file: #{fullpath}"
-    File.open(fullpath, "w") do |f|
-      YAML::dump(self, f)
+    begin
+      File.open(fullpath, "w") do |f|
+        YAML::dump(self, f)
+      end
+    rescue SystemCallError => e
+      log_error "Failed to save map:"
+      log_error e.message
+      return false
     end
+    return true
   end
 
   def self.load(filename, filepath = $configuration['saved_map_directory'])
@@ -247,6 +256,7 @@ class Map
     File.open(fullpath, "r") do |f|
       map = YAML::load(f)
     end
+    map.file = fullpath
     return map
   end
 end

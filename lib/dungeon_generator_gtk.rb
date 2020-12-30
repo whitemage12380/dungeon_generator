@@ -412,6 +412,24 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
         map_canvas.queue_draw()
       end
     end
+    menu.children.select{|m|m.label=='gtk-save'}[0].signal_connect('activate') do |menu_item, event, user_data|
+      if @map.save()
+        popup = Gtk::MessageDialog.new(parent: self,
+                                       flags: Gtk::DialogFlags::DESTROY_WITH_PARENT,
+                                       buttons: :ok,
+                                       message: "Map saved to #{@map.file}")
+        popup.run
+        popup.destroy
+      else
+        popup = Gtk::MessageDialog.new(parent: self,
+                                       flags: Gtk::DialogFlags::DESTROY_WITH_PARENT,
+                                       type: :error,
+                                       buttons: :ok,
+                                       message: "Failed to save map to #{@map.file}")
+        popup.run
+        popup.destroy
+      end
+    end
     menu.children.select{|m|m.label=='gtk-save-as'}[0].signal_connect('activate') do |menu_item, event, user_data|
       map_dialog(:save, @map)
     end
@@ -420,9 +438,11 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   def map_dialog(mode, map = nil)
     dialog = Gtk::FileChooserNative.new("#{mode.to_s.capitalize} Map Yaml File", self, mode)
     filter = Gtk::FileFilter.new()
+    filter.name = "YAML files"
     filter.add_pattern("*.yaml")
     dialog.add_filter(filter)
     dialog.add_shortcut_folder("#{Configuration.project_path}/data/maps")
+    dialog.filename = map.file unless map.file.nil?
     response = dialog.run()
     case response
     when Gtk::ResponseType::ACCEPT
