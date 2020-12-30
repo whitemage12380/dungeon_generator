@@ -222,6 +222,9 @@ class DungeonGeneratorInfoPanel < Gtk::Box
       info_panel_header.set_subtitle(map_object.name)
       info_panel_header_stack.set_visible_child(info_panel_header_eventbox)
     end
+    info_panel_header_edit.signal_connect('focus-out-event') do |entry, event, user_data|
+      info_panel_header_stack.set_visible_child(info_panel_header_eventbox)
+    end
   end
 
   def display_map_object(map_object = nil)
@@ -355,6 +358,9 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     map_header_edit.signal_connect('activate') do |entry, event, user_data|
       @map.name = entry.text
       map_header.set_title(@map.name)
+      map_header_stack.set_visible_child(map_header_eventbox)
+    end
+    map_header_edit.signal_connect('focus-out-event') do |entry, event, user_data|
       map_header_stack.set_visible_child(map_header_eventbox)
     end
     toggle_map_details_button.signal_connect('toggled') do |entry, event, user_data|

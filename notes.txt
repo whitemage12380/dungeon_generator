@@ -592,7 +592,7 @@ Roadmap Order:
 - DONE - NPC Encounters
 - DONE - Dungeon Name
 - DONE - Dungeon Description
-- Better Save mechanics (include proper filter/automatic extension)
+- DONE - Better Save mechanics (include proper filter/automatic extension)
 - Encounters - Dominant Inhabitants
 - Encounters - Allies
 - Ability to reroll specific chamber content categories
