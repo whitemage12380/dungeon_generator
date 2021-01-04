@@ -5,7 +5,7 @@ require_relative 'monster'
 class EncounterTable
   include DungeonGeneratorHelper
 
-  attr_reader :dominant_inhabitants, :allies, :encounter_list, :encounters_chosen
+  attr_reader :dominant_inhabitants, :allies, :random_encounters, :encounters_chosen
 
   def initialize(party_level: $configuration["party_level"], encounter_configuration: encounter_configuration())
     generate(party_level: party_level, encounter_configuration: encounter_configuration())
@@ -18,7 +18,9 @@ class EncounterTable
     case encounter_configuration["encounter_list"]
     when "custom"
       log "Generating custom encounter list"
-      @encounter_list = generate_encounter_list()
+      @dominant_inhabitants = generate_dominant_inhabitants()
+      @allies = generate_allies()
+      @random_encounters = generate_random_encounters()
     when "random"
       raise "Selecting a random encounter list is not yet supported"
     else
@@ -27,6 +29,7 @@ class EncounterTable
       encounter_data = YAML.load(File.read("#{DATA_PATH}/encounters/#{chosen_list}.yaml")).values.first
       case encounter_data
       when Hash
+        # TODO: Below logic needs revisiting
         @dominant_inhabitants = encounter_data.fetch("dominant", generate_dominant_inhabitants())
         @allies = encounter_data.fetch("allies", generate_allies())
         @encounter_list = encounter_data["random"]
@@ -39,45 +42,25 @@ class EncounterTable
   end
 
   def generate_dominant_inhabitants(dominant_inhabitants_data = encounter_configuration.fetch("dominant_inhabitants", 1))
-    # Choose n encounters based on dominant_probability and pull out the monsters involved
-    encounters = case dominant_inhabitants_data
-    when Array
-      dominant_inhabitants_data
-    when Integer
-      Array.new(dominant_inhabitants_data) { nil }
-    when /[0-9]+-[0-9]+/
-      Array.new(rand(Range.new(*dominant_inhabitants_data.split("-").collect{|n|n.to_i})))
-    when String
-      [dominant_inhabitants_data]
-    else
-      raise "Unexpected format for dominant_inhabitants: #{dominant_inhabitants_data}"
-    end
-    monsters = encounters.collect { |e|
-      if e.nil?
-        random_encounter_data = weighted_random(level_appropriate_encounters)["encounter"]
-        encounter_monsters = (random_encounter_data.kind_of? Hash) ? random_encounter_data.keys.sample(4) : [random_encounter_data]
-      else
-        encounter_monsters = [e]
-      end
-      encounter_monsters.collect { |m| Monster.new(m) }
-    }
-    return monsters
+    return nil unless encounter_configuration["enable_dominant_inhabitants"]
+    possible_encounters = level_appropriate_encounters(dominant_inhabitant_choices())
+    list_size = random_count(dominant_inhabitants_data)
+    log "Generating #{list_size} dominant inhabitants"
+    return generate_encounter_list(possible_encounters, list_size)
   end
 
   def generate_allies(allies_data = encounter_configuration.fetch("allies", 1))
-    encounters = case allies_data
-    when Array
-    when Integer
-    when /[0-9]+-[0-9]+/
-    when String
-    else
-    end
+    return nil
   end
 
-  def generate_encounter_list(list_size = $configuration["encounters"]["encounter_list_choices"])
-    possible_encounters = level_appropriate_encounters()
+  def generate_random_encounters()
+    log "Generating random encounters"
+    generate_encounter_list(level_appropriate_encounters)
+  end
+
+  def generate_encounter_list(possible_encounters, list_size = $configuration["encounters"]["encounter_list_choices"])
     encounter_list = Array.new
-    while encounter_list.count <= list_size
+    while encounter_list.count < list_size
       @monster_data = YAML.load(File.read("#{DATA_PATH}/monsters.yaml")) if @monster_data.nil?
       next_encounter = weighted_random(possible_encounters)
       if next_encounter.nil?
@@ -98,14 +81,31 @@ class EncounterTable
   ######### Random Encounters
   ####
 
-  def random_encounter(chamber, encounter_list = @encounter_list)
+  def random_dominant_inhabitants(chamber)
+    log "Generating dominant inhabitants"
+    return random_encounter(chamber, @dominant_inhabitants) unless @dominant_inhabitants.nil? or @dominant_inhabitants.empty? or not encounter_configuration["enable_dominant_inhabitants"]
+    if encounter_configuration["enable_dominant_inhabitants"] != true
+      log "Dominant inhabitants are not enabled"
+    elsif @dominant_inhabitants.nil? or @dominant_inhabitants.empty?
+      log_warn "Could not find any dominant inhabitants in the encounter table!"
+    else
+      raise "A problem occurred in random_dominant_inhabitants(). This should never be reached."
+    end
+    log "Using a random encounter instead"
+    return random_encounter(chamber)
+  end
+
+  def random_allies(chamber)
+  end
+
+  def random_encounter(chamber, encounter_list = @random_encounters)
     # Allow input to be the chamber object or just the space available
     # Currently all we need is the chamber size
     space_available = (chamber.kind_of? Chamber) ? chamber.size : chamber
     size_category = (space_available > 1600) ? "large" : "small"
     if rand() < encounter_configuration["multiple_monster_group_chance"][size_category]
       encounter = random_monster_group((space_available / 2).to_i, encounter_list)
-      encounter.add_monster_group(random_monster_group((space_available / 2).to_i).monster_groups[0])
+      encounter.add_monster_group(random_monster_group((space_available / 2).to_i, encounter_list).monster_groups[0])
     else
       encounter = random_monster_group(space_available, encounter_list)
     end
@@ -118,12 +118,12 @@ class EncounterTable
     return encounter
   end
 
-  def random_monster_group(space_available, max_tries = 3, try = 1)
+  def random_monster_group(space_available, encounter_list = @random_encounters, max_tries = 3, try = 1)
     log "Attempting to find a suitable monster group, try #{try}"
     monster_group_proposal_count = 3
     xp_threshold_target = random_xp_threshold_target()
     monster_group_proposals = Array.new(monster_group_proposal_count) {
-      e = weighted_random(@encounter_list)
+      e = weighted_random(encounter_list)
       min_xp, max_xp = encounter_xp_values(e["xp"])
       encounter = Encounter.new(e["encounter"], party_xp_thresholds, xp_threshold_target, space_available, min_xp, max_xp, e["probability"], e.fetch("special", false))
       probability = e.fetch("probability", 4)
@@ -137,7 +137,7 @@ class EncounterTable
     if monster_group_proposals.any? { |mg| mg[:probability] > 0 }
       return weighted_random(monster_group_proposals)[:encounter]
     elsif try < max_tries
-      return random_monster_group(space_available, max_tries, try+1)
+      return random_monster_group(space_available, encounter_list, max_tries, try+1)
     else
       raise "Could not create an encounter after #{max_tries} tries. The encounter table is likely poor. In the future, this should be handled better than with an exception."
     end
@@ -159,8 +159,9 @@ class EncounterTable
     end
   end
 
-  def level_appropriate_encounters()
-    @level_appropriate_encounters = random_encounter_choices.select { |encounter|
+  def level_appropriate_encounters(encounter_choices = random_encounter_choices)
+    return nil if encounter_choices.nil?
+    @level_appropriate_encounters = encounter_choices.select { |encounter|
       t = party_xp_thresholds()
       # Reject if probability is 0
       # Select if overlap exists between encounter xp range and xp threshold range
@@ -187,9 +188,47 @@ class EncounterTable
     return @encounter_configuration
   end
 
+  def dominant_inhabitant_choices()
+    files = [encounter_configuration["choice_list_dominant_inhabitants"], encounter_configuration["choice_list_default"]]
+    keys = ["dominant", "dominant_inhabitants", "encounters"]
+    choices = encounter_choices(files, keys)
+    log_error "Could not find any choices for dominant inhabitants!" if choices.nil?
+    return choices
+  end
+
+  def ally_choices()
+  end
+
   def random_encounter_choices()
-    choices_str = encounter_configuration.fetch("random_encounter_choices", "all")
-    YAML.load(File.read("#{DATA_PATH}/encounters/#{choices_str}.yaml"))["encounters"]
+    files = [encounter_configuration["choice_list_random"], encounter_configuration["choice_list_default"]]
+    keys = ["random", "encounters"]
+    choices = encounter_choices(files, keys)
+    log_error "Could not find any choices for random encounters!" if choices.nil?
+    return choices
+  end
+
+  def encounter_choices(list_files, list_keys = ["encounters"])
+    list_files = [list_files] unless list_files.kind_of? Array
+    list_keys = [list_keys] unless list_keys.kind_of? Array
+    list_files.each { |list_file|
+      list_yaml = encounter_yaml(list_file)
+      next if list_yaml.nil?
+      list_keys.each { |key|
+        return list_yaml[key] unless list_yaml[key].nil?
+      }
+      debug "Could not find encounter choices for #{list_file}"
+      debug "Key choices: #{list_keys.join(", ")}"
+      puts "Could not find encounter choices for #{list_file}"
+      puts "Key choices: #{list_keys.join(", ")}"
+    }
+    return nil
+  end
+
+  def encounter_yaml(list_file)
+    # TODO: Allow list_file to be a full path
+    # Return nil if can't find file? Or allow an error?
+    return nil if list_file.nil?
+    return YAML.load(File.read("#{DATA_PATH}/encounters/#{list_file}.yaml"))
   end
 
   def max_xp_threshold_multiplier()

@@ -457,8 +457,7 @@ class Chamber < MapObject
         category = c.split("_").last
         case category
         when "dominant"
-          log "Dominant creatures not yet supported; using random encounter instead"
-          encounter = @map.encounter_table.random_encounter(size)
+          encounter = @map.encounter_table.random_dominant_inhabitants(size)
         when "ally"
           log "Dominant creatures not yet supported; using random encounter instead"
           encounter = @map.encounter_table.random_encounter(size)
