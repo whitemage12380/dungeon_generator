@@ -594,8 +594,10 @@ Roadmap Order:
 - DONE - Dungeon Description
 - DONE - Better Save mechanics (include proper filter/automatic extension)
 - DONE - Encounters - Dominant Inhabitants
-- Encounters - Allies
+- DONE - Encounters - Allies
 - Ability to reroll specific chamber content categories
+- Encounters - Allow a second monster group to have a different type (a/d/r)
+- Encounters - Keep track of whether an encounter has allies, dominant, random
 - Chamber Noises
 - Chamber State
 - Encounters - "Order" encounter-building strategy

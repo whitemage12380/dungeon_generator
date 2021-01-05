@@ -459,8 +459,7 @@ class Chamber < MapObject
         when "dominant"
           encounter = @map.encounter_table.random_dominant_inhabitants(size)
         when "ally"
-          log "Dominant creatures not yet supported; using random encounter instead"
-          encounter = @map.encounter_table.random_encounter(size)
+          encounter = @map.encounter_table.random_allies(size)
         when "random"
           encounter = @map.encounter_table.random_encounter(size)
         else
@@ -557,7 +556,7 @@ class Chamber < MapObject
   ####
 
   def treasure_level(contents = @contents, purpose_contents = @purpose_contents)
-    if contents[:monsters].nil? or contents[:monsters].empty?
+    if contents[:monsters].nil? or contents[:monsters].empty? or contents[:monsters][0].nil?
       monster_treasure_bonus = 0
     else
       monster_treasure_bonus = case xp_threshold(contents[:monsters][0].monster_groups[0].xp)

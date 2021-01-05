@@ -50,7 +50,11 @@ class EncounterTable
   end
 
   def generate_allies(allies_data = encounter_configuration.fetch("allies", 1))
-    return nil
+    return nil unless encounter_configuration["enable_allies"]
+    possible_encounters = level_appropriate_encounters(ally_choices())
+    list_size = random_count(allies_data)
+    log "Generating #{list_size} allies/pets"
+    return generate_encounter_list(possible_encounters, list_size)
   end
 
   def generate_random_encounters()
@@ -96,6 +100,17 @@ class EncounterTable
   end
 
   def random_allies(chamber)
+    log "Generating allies"
+    return random_encounter(chamber, @allies) unless @allies.nil? or @allies.empty? or not encounter_configuration["enable_allies"]
+    if encounter_configuration["enable_allies"] != true
+      log "Allies are not enabled"
+    elsif @allies.nil? or @allies.empty?
+      log_warn "Could not find any allies in the encounter table!"
+    else
+      raise "A problem occurred in random_allies(). This should never be reached."
+    end
+    log "Using a random encounter instead"
+    return random_encounter(chamber)
   end
 
   def random_encounter(chamber, encounter_list = @random_encounters)
@@ -197,6 +212,11 @@ class EncounterTable
   end
 
   def ally_choices()
+    files = [encounter_configuration["choice_list_allies"], encounter_configuration["choice_list_default"]]
+    keys = ["allies", "encounters"]
+    choices = encounter_choices(files, keys)
+    log_error "Could not find any choices for allies/pets!" if choices.nil?
+    return choices
   end
 
   def random_encounter_choices()

@@ -30,4 +30,8 @@ class MonsterGroup < Array
   def xp()
     self.sum { |m| m.xp }
   end
+
+  def to_s()
+    grouped_monster_lines.join(", ")
+  end
 end
