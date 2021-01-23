@@ -595,6 +595,7 @@ Roadmap Order:
 - DONE - Better Save mechanics (include proper filter/automatic extension)
 - DONE - Encounters - Dominant Inhabitants
 - DONE - Encounters - Allies
+- New Map options pane, so things like level don't have to be set via settings
 - Ability to reroll specific chamber content categories
 - Encounters - Allow a second monster group to have a different type (a/d/r)
 - Encounters - Keep track of whether an encounter has allies, dominant, random

@@ -338,6 +338,12 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       ### MAP DETAILS ###
       bind_template_child('map_details')
       bind_template_child('text_map_description')
+      ### NEW MAP ###
+      bind_template_child('new_map_options_scroll')
+      bind_template_child('new_map_option_party_members')
+      bind_template_child('new_map_option_party_level')
+      bind_template_child('button_new_map')
+      bind_template_child('button_new_map_cancel')
     end
   end
 
@@ -382,6 +388,14 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     text_map_description.buffer.signal_connect('changed') do |textbuffer, event, user_data|
       @map.description = textbuffer.text
     end
+    ### NEW MAP ###
+    button_new_map.signal_connect('button-press-event') do |button, event, user_data|
+      update_map_config()
+      new_map()
+    end
+    button_new_map_cancel.signal_connect('button-press-event') do |button, event, user_data|
+      map_stack.set_visible_child(map_scroll)
+    end
   end
 
   def setup_menubar
@@ -406,17 +420,15 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
   def setup_map_menu
     menu = map_menu_button.popup
     menu.children.select{|m|m.label=='gtk-new'}[0].signal_connect('activate') do |menu_item, event, user_data|
-      load_map()
-      load_info_panel()
-      map_canvas.queue_draw()
+      update_new_map_ui()
+      map_stack.set_visible_child(new_map_options_scroll)
+    end
+    menu.children.select{|m|m.label=='New (Same Settings)'}[0].signal_connect('activate') do |menu_item, event, user_data|
+      new_map()
     end
     menu.children.select{|m|m.label=='gtk-open'}[0].signal_connect('activate') do |menu_item, event, user_data|
       map = map_dialog(:open)
-      if map.kind_of? Map
-        load_map(map)
-        load_info_panel()
-        map_canvas.queue_draw()
-      end
+      load_map(map) if map.kind_of? Map
     end
     menu.children.select{|m|m.label=='gtk-save'}[0].signal_connect('activate') do |menu_item, event, user_data|
       if @map.save()
@@ -468,11 +480,30 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     return map
   end
 
+  def update_new_map_ui()
+    new_map_option_party_members.value = $configuration['party_members'].clone
+    new_map_option_party_level.value = $configuration['party_level'].clone
+  end
+
+  def update_map_config()
+    $configuration['party_members'] = new_map_option_party_members.value.to_i
+    $configuration['party_level'] = new_map_option_party_level.value.to_i
+  end
+
+  def new_map()
+    load_map()
+    #load_info_panel()
+    #map_canvas.queue_draw()
+  end
+
   def load_map(map = nil)
     map = MapGenerator.generate_map() if map.nil?
     @map = map
     @selected_map_object = nil
     display_map_details(map)
+    load_info_panel()
+    map_canvas.queue_draw()
+    map_stack.set_visible_child(map_scroll)
   end
 
   def display_map_details(map = @map)
