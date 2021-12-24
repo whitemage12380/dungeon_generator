@@ -3,5 +3,6 @@
   <gresource prefix="/ui">
     <file preprocess="xml-stripblanks">dungeon_generator_window.ui</file>
     <file preprocess="xml-stripblanks">dungeon_generator_info_panel.ui</file>
+    <file preprocess="xml-stripblanks">dungeon_generator_content_section_menu.ui</file>
   </gresource>
 </gresources>

@@ -275,4 +275,7 @@ class Encounter
     }
     return :trivial
   end
+
+  def to_s()
+  end
 end

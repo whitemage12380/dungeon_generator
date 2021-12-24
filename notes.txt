@@ -595,10 +595,11 @@ Roadmap Order:
 - DONE - Better Save mechanics (include proper filter/automatic extension)
 - DONE - Encounters - Dominant Inhabitants
 - DONE - Encounters - Allies
-- New Map options pane, so things like level don't have to be set via settings
+- DONE - New Map Options pane, so things like level don't have to be set via settings (Bare bones)
 - Ability to reroll specific chamber content categories
 - Encounters - Allow a second monster group to have a different type (a/d/r)
 - Encounters - Keep track of whether an encounter has allies, dominant, random
+- New Map Options - Basic (map size, theme(s), special encounters on/off)
 - Chamber Noises
 - Chamber State
 - Encounters - "Order" encounter-building strategy
@@ -606,5 +607,6 @@ Roadmap Order:
 - Encounters - Allow (optionally) a handful of any-level encounters that always use the "Roll" strategy
 - Ability to edit chamber contents (this must be split out per content type)
 - Passage width
+- New Map Options - Advanced
 - Multiple floors (large feature)
-- Adjust settings in app
+- Adjust settings in app permanently
