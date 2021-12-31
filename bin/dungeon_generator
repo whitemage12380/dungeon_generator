@@ -3,6 +3,8 @@
 require_relative '../lib/configuration'
 require_relative '../lib/map_generator'
 
+$configuration = Configuration.new()
+
 unless $configuration['app_mode'] == 'gtk'
   if ARGV[0]
     m = Map.load(ARGV[0])

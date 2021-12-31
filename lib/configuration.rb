@@ -7,7 +7,7 @@ class Configuration < Hash
 
   attr_accessor :indent
 
-  def initialize()
+  def initialize(quiet: false)
     self.deep_merge!(YAML.load_file(Configuration.default_configuration_path))
     self.deep_merge!(YAML.load_file(Configuration.configuration_path))
     self.transform_values! { |v|
@@ -24,7 +24,7 @@ class Configuration < Hash
         v
       end
     }
-    puts "Configurations loaded: #{to_s}"
+    puts "Configurations loaded: #{to_s}" unless quiet
   end
 
   def self.configuration_path()
@@ -39,4 +39,3 @@ class Configuration < Hash
     File.expand_path('../', File.dirname(__FILE__))
   end
 end
-$configuration = Configuration.new()

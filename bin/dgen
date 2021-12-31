@@ -22,4 +22,7 @@
 # - Level
 
 require_relative '../lib/dgen_cli'
+
+$configuration = Configuration.new(quiet: true)
+
 DgenCli.execute(*ARGV)

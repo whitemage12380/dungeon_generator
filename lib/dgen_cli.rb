@@ -1,6 +1,8 @@
 require 'optparse'
+require_relative 'dungeon_generator_helper'
 
 class DgenCli
+  extend DungeonGeneratorHelper
 
   AVAILABLE_COMMANDS = [
   'encounter',
@@ -24,7 +26,8 @@ class DgenCli
       command = args.shift()
       raise ArgumentError.new("No command found") if command.nil?
       raise ArgumentError.new("Invalid command: #{command}") unless AVAILABLE_COMMANDS.include?(command)
-      send("command_#{command}", *args)
+      output = send("command_#{command}", *args)
+      puts output
     end
 
     def command_encounter(*args)
@@ -44,7 +47,7 @@ class DgenCli
     end
 
     def command_hazard(*args)
-    
+      return random_yaml_element("hazards")["description"]
     end
 
     def command_item(*args)

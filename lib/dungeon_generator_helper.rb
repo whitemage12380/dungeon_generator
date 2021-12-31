@@ -1,5 +1,3 @@
-require_relative 'configuration'
-
 class ::String
   def pretty()
     output = split(/ |\_/).map(&:capitalize).join(" ")
@@ -50,6 +48,8 @@ class ::Hash
       self.merge!(second, &merger)
     end
 end
+
+require_relative 'configuration' # Requiring it here because configuration uses methods patched in above
 
 module DungeonGeneratorHelper
   require 'stringio'
