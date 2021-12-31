@@ -1,4 +1,5 @@
 require_relative 'configuration'
+require_relative 'map_generator'
 
 class Trap
   include DungeonGeneratorHelper
@@ -96,5 +97,13 @@ class Trap
 
   def to_h()
     {trigger: @trigger, severity: @severity, effect: @effect}
+  end
+
+  def to_s()
+    [
+      "Trigger:  #{@trigger}",
+      "Severity: #{@severity} (DC #{@dc}, +#{@attack} to hit, #{damage} damage)",
+      "Effect:   #{@effect}",
+    ].join("\n")
   end
 end

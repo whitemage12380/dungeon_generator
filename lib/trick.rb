@@ -15,4 +15,8 @@ class Trick
   def to_h()
     {object: @object, effect: @effect}
   end
+
+  def to_s()
+    "#{object}. #{effect}"
+  end
 end
