@@ -1,2 +1,25 @@
 #!/usr/bin/env ruby
 # Command-line utility for generating individual dungeon elements
+
+# Things to generate, and their special arguments:
+# - Encounter
+# - Monster Group
+# - Monster
+# - Feature Set
+# - Feature
+# - Trap
+# - Trick
+# - Hazard
+# - Room (empty or filled)
+# - Room type
+# - Treasure stash
+# - Treasure hoard
+# - Item
+#   - Item type
+#   - Magic item table
+
+# Common arguments:
+# - Level
+
+require_relative '../lib/dgen_cli'
+DgenCli.execute(*ARGV)
