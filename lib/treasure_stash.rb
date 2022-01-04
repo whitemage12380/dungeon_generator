@@ -92,4 +92,12 @@ class TreasureStash
   def treasure_configuration()
     $configuration['treasure']
   end
+
+  def to_s()
+    (
+      (@coins.empty? ? [] : ["Coins:", @coins.collect { |coin_type, coins| "  #{coins} #{coin_type}" }]) +
+      (@valuables.empty? ? [] : ["Valuables:", @valuables.collect { |item| "  #{item.to_s}" }]) +
+      (@items.empty? ? [] : ["Items:", @items.collect { |item| "  #{item.to_s}" }])
+    ).flatten.join("\n")
+  end
 end

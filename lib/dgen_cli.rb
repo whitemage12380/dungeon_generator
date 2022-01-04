@@ -27,22 +27,47 @@ class DgenCli
     def execute(*args)
       parse_arguments(args)
       command = args.shift()
-      raise ArgumentError.new("No command found") if command.nil?
-      raise ArgumentError.new("Invalid command: #{command}") unless AVAILABLE_COMMANDS.include?(command)
       output = send("command_#{command}", *args)
       puts output
     end
 
     def parse_arguments(args)
-      OptionParser.new do |opts|
+      args = ["-h"] if args.empty?
+      optparse = OptionParser.new do |opts|
         opts.banner = "Usage: dgen command [subcommand ...] [options]"
         opts.on("-lLEVEL", "--level", "Party level") do |v|
           $configuration['party_level'] = v.to_i
         end
-        opts.on("-nMEMBERS", "--members=MEMBERS", "Number of party members") do |v|
+        opts.on("-mMEMBERS", "--members=MEMBERS", "Number of party members") do |v|
           $configuration['party_members'] = v.to_i
         end
-      end.parse!(args)
+        opts.on_tail("-h", "--help", "Show this message") do
+          puts opts
+          exit
+        end
+      end
+      begin
+        optparse.parse!(args)
+        command = args.first
+        raise OptionParser::MissingArgument if command.nil?
+        raise OptionParser::InvalidArgument unless AVAILABLE_COMMANDS.include?(command)
+      rescue OptionParser::InvalidOption, OptionParser::InvalidArgument, OptionParser::MissingArgument => e
+        if command.nil?
+          puts "No command found."
+        elsif not AVAILABLE_COMMANDS.include?(command)
+          puts "Invalid command: #{command}"
+        else
+          puts e.to_s
+        end
+        usage(optparse)
+      end
+    end
+
+    def usage(optparse, exit_code = 0)
+      puts "Available Commands:"
+      puts AVAILABLE_COMMANDS.collect { |c| "  #{c}" }.join("\n")
+      puts optparse
+      exit exit_code
     end
 
     def command_encounter(*args)
@@ -105,7 +130,8 @@ class DgenCli
     end
 
     def command_treasure(*args)
-    
+      require_relative 'treasure_stash'
+      return TreasureStash.new(true).to_s()
     end
 
     def command_trick(*args)

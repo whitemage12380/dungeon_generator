@@ -6,7 +6,7 @@ class Item
 
   def initialize(name, worth = nil, roll = nil, table = nil, tags = nil)
     @name = name
-    @worth = worth
+    @worth = worth # TODO: Apparently some worths are coming in with gp attached, others are not
     generate_subitem(roll) unless roll.nil?
     generate_details(table, tags) unless table.nil?
   end
