@@ -276,6 +276,19 @@ class Encounter
     return :trivial
   end
 
+  def to_s_lines()
+    if monster_groups.size == 1
+      [monster_groups.first.to_s(include_motivation: true)]
+    else
+      [
+        "Group 1: #{monster_groups[0].to_s(include_motivation: true)}",
+        "Group 2: #{monster_groups[1].to_s(include_motivation: true)}",
+        "Relationship: #{@relationship}"
+      ]
+    end
+  end
+
   def to_s()
+    to_s_lines.join("\n")
   end
 end

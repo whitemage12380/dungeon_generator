@@ -31,7 +31,7 @@ class MonsterGroup < Array
     self.sum { |m| m.xp }
   end
 
-  def to_s()
-    grouped_monster_lines.join(", ")
+  def to_s(include_motivation: false)
+    grouped_monster_lines.join(", ") + (include_motivation and @motivation ? ". Motivation: #{@motivation}" : "")
   end
 end

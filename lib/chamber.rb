@@ -259,7 +259,6 @@ class Chamber < MapObject
     )
     cursor.forward!()
     while square(cursor.pos).nil?
-      puts cursor.pos
       cursor.shift!(:right)
       return nil unless cursor.pos_valid?
     end
@@ -587,6 +586,31 @@ class Chamber < MapObject
     log "Generating level #{final_treasure_level} treasure for #{label}"
     debug "(#{monster_treasure_bonus} + #{trap_treasure_bonus} + #{obstacle_treasure_bonus} + #{purpose_treasure_bonus})"
     return final_treasure_level
+  end
+
+  def contents_lines()
+    [
+      contents[:monsters].empty? ? nil : ["Monsters:"] + contents[:monsters].first.to_s_lines.collect{|l| "  #{l}"},
+      contents[:hazards].empty? ? nil : ["Hazards:"] + contents[:hazards].collect{|h| "  #{h}"},
+      contents[:obstacles].empty? ? nil : ["Obstacles:"] + contents[:obstacles].collect{|o| "  #{o}"},
+      contents[:traps].empty? ? nil : ["Traps:"] + contents[:traps].collect { |t|
+        t.to_s_lines.collect{ |l| "  #{l}" }
+      },
+      contents[:tricks].empty? ? nil : ["Tricks:"] + contents[:tricks].collect { |t| t.to_s },
+      contents[:treasure].empty? ? nil : ["Treasure:"] + contents[:treasure].first.to_s_lines.collect{|l| "  #{l}"},
+    ]
+  end
+
+  def to_s()
+    [
+      (@purpose_description and @purpose_description.include?(name) ? nil : name),
+      @purpose_description ? @purpose_description : nil,
+      "Size: #{size_category} (#{@width*5}ft x #{@length*5}ft)",
+      "Exits:",
+      @starting_connector ? "  #{@starting_connector.exit_string(true, false, false)}" : nil,
+      exits.collect { |e| "  #{e.exit_string(false, false, false)}"},
+      contents_lines,
+    ].flatten.compact.join("\n")
   end
 
   ######

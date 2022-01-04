@@ -89,7 +89,7 @@ module DungeonGeneratorHelper
   end
 
   def print_messages()
-    unless $message_log.nil? or $messages.nil?
+    unless $message_log.nil? or $messages.nil? or $messages.string.empty?
       puts "Important messages:"
       puts $messages.string
       $message_log = nil

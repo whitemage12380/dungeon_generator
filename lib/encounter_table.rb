@@ -148,7 +148,6 @@ class EncounterTable
       probability = 0 if encounter.monster_groups.nil? or encounter.monster_groups[0].nil?
       {encounter: encounter, probability: probability}
     }
-    puts monster_group_proposals.to_s
     if monster_group_proposals.any? { |mg| mg[:probability] > 0 }
       return weighted_random(monster_group_proposals)[:encounter]
     elsif try < max_tries
@@ -238,8 +237,6 @@ class EncounterTable
       }
       debug "Could not find encounter choices for #{list_file}"
       debug "Key choices: #{list_keys.join(", ")}"
-      puts "Could not find encounter choices for #{list_file}"
-      puts "Key choices: #{list_keys.join(", ")}"
     }
     return nil
   end

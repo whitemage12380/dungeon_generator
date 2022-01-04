@@ -24,7 +24,7 @@ class Connector
     end
   end
 
-  def exit_string(starting_connector = false)
+  def exit_string(starting_connector = false, include_destination = true, include_coordinates = true)
     case type
     when "connector"
       exit_type = "Exit"
@@ -40,7 +40,12 @@ class Connector
       connecting_to = @connecting_map_object ? @connecting_map_object.name : "nothing!"
       facing_string = @facing
     end
-    return "#{exit_type} at (#{map_x}, #{map_y}) facing #{facing_string} to #{connecting_to}"
+    return [
+      exit_type,
+      include_coordinates ? "at (#{map_x}, #{map_y})" : nil,
+      "facing #{facing_string}",
+      include_destination ? "to #{connecting_to}" : nil
+    ].compact.join(" ")
   end
 
   def x()
@@ -156,8 +161,7 @@ class Connector
   end
 
   def to_s()
-    output = self.kind_of?(Door) ? "Door: " : "Connector: "
-    output = "Connector: "
+    output = self.kind_of?(Door) ? "Door: " : "Exit: "
     output += "Connects from #{map_object.name} " if map_object
     output += "Connects to #{connecting_map_object.name}. " if connecting_map_object
     output += "facing: #{facing}, width: #{width}, coordinates: (#{map_x}, #{map_y})."

@@ -99,11 +99,15 @@ class Trap
     {trigger: @trigger, severity: @severity, effect: @effect}
   end
 
-  def to_s()
+  def to_s_lines()
     [
       "Trigger:  #{@trigger}",
       "Severity: #{@severity} (DC #{@dc}, +#{@attack} to hit, #{damage} damage)",
       "Effect:   #{@effect}",
-    ].join("\n")
+    ]
+  end
+
+  def to_s()
+    to_s_lines.join("\n")
   end
 end

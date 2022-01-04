@@ -93,11 +93,15 @@ class TreasureStash
     $configuration['treasure']
   end
 
+  def to_s_lines()
+    [
+      @coins.empty? ? nil : ["Coins"] + @coins.collect { |coin_type, coins| "  #{coins} #{coin_type}" },
+      @valuables.empty? ? nil : ["Valuables"] + @valuables.collect { |item| "  #{item.to_s}" },
+      @items.empty? ? nil : ["Items"] + @items.collect { |item| "  #{item.to_s}" },
+    ].flatten.compact
+  end
+
   def to_s()
-    (
-      (@coins.empty? ? [] : ["Coins:", @coins.collect { |coin_type, coins| "  #{coins} #{coin_type}" }]) +
-      (@valuables.empty? ? [] : ["Valuables:", @valuables.collect { |item| "  #{item.to_s}" }]) +
-      (@items.empty? ? [] : ["Items:", @items.collect { |item| "  #{item.to_s}" }])
-    ).flatten.join("\n")
+    to_s_lines.join("\n")
   end
 end

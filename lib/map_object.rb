@@ -148,7 +148,7 @@ class MapObject
   ########################################
 
   def create_connector(cursor = @cursor, width = @width)
-    puts "Creating connector cursor: #{cursor}"
+    debug "Creating connector cursor: #{cursor}"
     connector = Connector.new(map_object: self,
                                   square: square(cursor.pos),
                                    map_x: cursor.map_x.clone,
@@ -323,7 +323,6 @@ class MapObject
     rescue Exception => e
       log_error "Erroring cursor: #{cursor.to_s}"
       log_error to_s
-      puts map.to_s
       raise
     end
   end

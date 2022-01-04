@@ -25,6 +25,8 @@ class DgenCli
   class << self
 
     def execute(*args)
+      $configuration['log_level'] = 'warn'
+      init_logger()
       parse_arguments(args)
       command = args.shift()
       output = send("command_#{command}", *args)
@@ -114,6 +116,9 @@ class DgenCli
     end
 
     def command_room(*args)
+      require_relative 'map_generator'
+      return MapGenerator.generate_map.chambers.sample.to_s
+
     
     end
 
