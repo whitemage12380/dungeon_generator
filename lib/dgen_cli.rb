@@ -118,8 +118,6 @@ class DgenCli
     def command_room(*args)
       require_relative 'map_generator'
       return MapGenerator.generate_map.chambers.sample.to_s
-
-    
     end
 
     def command_roomtype(*args)

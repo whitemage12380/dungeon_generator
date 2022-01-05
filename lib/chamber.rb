@@ -598,13 +598,14 @@ class Chamber < MapObject
       },
       contents[:tricks].empty? ? nil : ["Tricks:"] + contents[:tricks].collect { |t| t.to_s },
       contents[:treasure].empty? ? nil : ["Treasure:"] + contents[:treasure].first.to_s_lines.collect{|l| "  #{l}"},
-    ]
+      contents[:features].empty? ? nil : ["Features:"] + contents[:features].flatten.collect{|f| "  #{f.to_s}"}
+    ].flatten.compact
   end
 
   def to_s()
     [
-      (@purpose_description and @purpose_description.include?(name) ? nil : name),
-      @purpose_description ? @purpose_description : nil,
+      (@description and @description.include?(name) ? nil : name),
+      @description ? @description : nil,
       "Size: #{size_category} (#{@width*5}ft x #{@length*5}ft)",
       "Exits:",
       @starting_connector ? "  #{@starting_connector.exit_string(true, false, false)}" : nil,
