@@ -3,7 +3,7 @@ require_relative 'item'
 
 class TreasureStash
   include DungeonGeneratorHelper
-  attr_reader :coins, :valuables, :items
+  attr_reader :coins, :valuables, :items, :treasure_table, :treasure_level
 
   def initialize(generate = false, treasure_level = 1, party_level = $configuration['party_level'])
     generate(treasure_level, party_level) if generate
@@ -14,14 +14,15 @@ class TreasureStash
     treasure_table_level = treasure_tables.keys.sort.reduce(1) { |memo, level|
       ((level > memo) and (level < party_level)) ? level : memo
     }
-    treasure_table = treasure_tables[treasure_table_level]
-    treasure_counts = random_treasure_counts(treasure_table, treasure_level)
-    generate_coins(treasure_table, treasure_counts['coins'])
-    generate_valuables(treasure_table, treasure_counts['valuables'])
-    generate_items(treasure_table, treasure_counts['items'])
+    @treasure_table = treasure_tables[treasure_table_level]
+    @treasure_level = treasure_level
+    treasure_counts = random_treasure_counts()
+    generate_coins(treasure_counts['coins'])
+    generate_valuables(treasure_counts['valuables'])
+    generate_items(treasure_counts['items'])
   end
 
-  def random_treasure_counts(treasure_table, treasure_level = 1)
+  def random_treasure_counts(treasure_table = @treasure_table, treasure_level = @treasure_level)
     treasure_counts = {"coins" => 0, "valuables" => 0, "items" => 0}
     base_treasure_type = ["coins", "valuables", "items"].sample
     treasure_counts[base_treasure_type] += 1
@@ -41,7 +42,7 @@ class TreasureStash
     return treasure_counts
   end
 
-  def generate_coins(treasure_table, count)
+  def generate_coins(count, treasure_table = @treasure_table)
     coins_table = treasure_table['coins'].to_a.collect { |c| {'type' => c[0]}.merge(c[1]) }
     @coins = Hash.new
     count.times do
@@ -52,15 +53,15 @@ class TreasureStash
     end
   end
 
-  def generate_valuables(treasure_table, count)
-    @valuables = random_treasure(treasure_table, count, 'valuables')
+  def generate_valuables(count, treasure_table = @treasure_table)
+    @valuables = random_treasure('valuables', count, treasure_table)
   end
 
-  def generate_items(treasure_table, count)
-    @items = random_treasure(treasure_table, count, 'items')
+  def generate_items(count, treasure_table = @treasure_table)
+    @items = random_treasure('items', count, treasure_table)
   end
 
-  def random_treasure(treasure_table, count, type)
+  def random_treasure(type, count, treasure_table = @treasure_table)
     table = treasure_table[type].to_a.collect { |c| {'type' => c[0]}.merge(c[1]) }
     chosen_items = Array.new
     count.times do

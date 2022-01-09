@@ -113,7 +113,8 @@ class DgenCli
     end
 
     def command_item(*args)
-    
+      require_relative 'treasure_stash'
+      return TreasureStash.new(true).random_treasure('items', 1).first.to_s
     end
 
     def command_monster(*args)
