@@ -82,22 +82,12 @@ class DgenCli
     end
 
     def command_encounter(*args)
-      require_relative 'map_generator'
-      chamber = MapGenerator.generate_map.chambers.sample
-      contents_with_monsters = read_datafile("chamber_contents")["chamber_contents"]
-        .select { |c|
-          ["dominant_monster", "monster_ally", "monster_random"].any? { |m|
-            c["contents"] and c["contents"].include? m
-          }
-        }
-      contents_yaml = weighted_random(contents_with_monsters)
-      chamber.generate_contents(contents_yaml)
-      return chamber.contents[:monsters].flatten.sample.to_s
+      return random_encounter.flatten.sample.to_s
     end
 
     def command_encountertable(*args)
       require_relative 'encounter_table'
-      return EncounterTable.new().to_s()
+      return EncounterTable.new.to_s
     end
 
     def command_feature(*args)
@@ -121,15 +111,15 @@ class DgenCli
     end
 
     def command_monster(*args)
-    
+      return random_encounter.first.monster_groups.first.sample.to_s
     end
 
     def command_monsters(*args)
-    
+      return command_monstergroup(*args)
     end
 
     def command_monstergroup(*args)
-    
+      return random_encounter.first.monster_groups.first.to_s(include_motivation: true)
     end
 
     def command_obstacle(*args)
@@ -146,17 +136,31 @@ class DgenCli
 
     def command_trap(*args)
       require_relative 'trap'
-      return Trap.new().to_s()
+      return Trap.new.to_s
     end
 
     def command_treasure(*args)
       require_relative 'treasure_stash'
-      return TreasureStash.new(true).to_s()
+      return TreasureStash.new(true).to_s
     end
 
     def command_trick(*args)
       require_relative 'trick'
-      return Trick.new().to_s()
+      return Trick.new.to_s
+    end
+
+    def random_encounter()
+      require_relative 'map_generator'
+      contents_with_monsters = read_datafile("chamber_contents")["chamber_contents"]
+        .select { |c|
+          ["dominant_monster", "monster_ally", "monster_random"].any? { |m|
+            c["contents"] and c["contents"].include? m
+          }
+        }
+      contents_yaml = weighted_random(contents_with_monsters)
+      chamber = MapGenerator.generate_map.chambers.sample
+      chamber.generate_contents(contents_yaml)
+      return chamber.contents[:monsters]
     end
   end
 end

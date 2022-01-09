@@ -34,4 +34,8 @@ class Monster
       raise "Invalid monster size label: #{size_str}"
     end
   end
+
+  def to_s()
+    return name
+  end
 end

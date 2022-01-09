@@ -32,6 +32,6 @@ class MonsterGroup < Array
   end
 
   def to_s(include_motivation: false)
-    grouped_monster_lines.join(", ") + (include_motivation and @motivation ? ". Motivation: #{@motivation}" : "")
+    grouped_monster_lines.join(", ") + ((include_motivation and @motivation) ? ". Motivation: #{@motivation}" : "")
   end
 end
