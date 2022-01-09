@@ -178,6 +178,7 @@ class MapGenerator
     def generate_chamber_purpose(map = nil)
       if map.nil?
         theme = $configuration.fetch('theme', all_themes.sample)
+        theme = all_themes.sample if theme == "random"
       else
         theme = map.themes.sample
       end

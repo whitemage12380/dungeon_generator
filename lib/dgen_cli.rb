@@ -79,6 +79,12 @@ class DgenCli
     end
 
     def command_chambertype(*args)
+      require_relative 'map_generator'
+      purpose = MapGenerator.generate_chamber_purpose()
+      return [
+        purpose["name"],
+        purpose["description"]
+      ].join("\n")
     end
 
     def command_encounter(*args)
