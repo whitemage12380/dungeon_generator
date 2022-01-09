@@ -251,4 +251,26 @@ class EncounterTable
   def max_xp_threshold_multiplier()
     encounter_configuration.fetch("max_xp_threshold_multiplier", 1.1)
   end
+
+  def to_s()
+    tables = {
+      'Dominant Inhabitants' => @dominant_inhabitants,
+      'Allies' => @allies,
+      'Random Encounters' => @random_encounters
+    }
+    tables.collect { |title, table|
+      die_roll = 1
+      [
+        "#{title}:",
+        table.collect { |e|
+          die_range = "#{die_roll}-#{die_roll + e["probability"] - 1}"
+          die_roll += e["probability"]
+          monsters = e["encounter"].collect { |m|
+            m.kind_of?(Hash) ? m.collect { |monster, count| "#{monster} #{count}" } : m
+          }.flatten.join(", ")
+          "#{die_range}: #{monsters}"
+        }
+      ]
+    }.flatten.join("\n")
+  end
 end

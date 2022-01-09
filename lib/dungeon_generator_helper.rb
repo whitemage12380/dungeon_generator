@@ -148,7 +148,7 @@ module DungeonGeneratorHelper
 
   def yaml_data(type_path, type = nil, index = nil)
     type = type_path.split("/").last if type.nil?
-    obj = YAML.load(File.read("#{DATA_PATH}/#{type_path}.yaml"))
+    obj = read_datafile(type_path)
     arr = (type == :none) ? obj : obj[type]
     return weighted_random(arr) unless index
     return arr[index]

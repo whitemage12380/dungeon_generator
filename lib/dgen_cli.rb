@@ -5,11 +5,12 @@ class DgenCli
   extend DungeonGeneratorHelper
 
   AVAILABLE_COMMANDS = [
+  'chamber',
+  'chambertype',
   'encounter',
   'encountertable',
   'feature',
   'features',
-  'featureset',
   'hazard',
   'item',
   'monster',
@@ -72,23 +73,43 @@ class DgenCli
       exit exit_code
     end
 
+    def command_chamber(*args)
+      require_relative 'map_generator'
+      return MapGenerator.generate_map.chambers.sample.to_s
+    end
+
+    def command_chambertype(*args)
+    end
+
     def command_encounter(*args)
-    
+      require_relative 'map_generator'
+      chamber = MapGenerator.generate_map.chambers.sample
+      contents_with_monsters = read_datafile("chamber_contents")["chamber_contents"]
+        .select { |c|
+          ["dominant_monster", "monster_ally", "monster_random"].any? { |m|
+            c["contents"] and c["contents"].include? m
+          }
+        }
+      contents_yaml = weighted_random(contents_with_monsters)
+      chamber.generate_contents(contents_yaml)
+      return chamber.contents[:monsters].flatten.sample.to_s
     end
 
     def command_encountertable(*args)
+      require_relative 'encounter_table'
+      return EncounterTable.new().to_s()
     end
 
     def command_feature(*args)
-    
+      require_relative 'map_generator'
+      return MapGenerator.generate_map.chambers.reject { |c| c.contents[:features].empty? }
+        .sample.contents[:features].flatten.sample.to_s
     end
 
     def command_features(*args)
-    
-    end
-
-    def command_featureset(*args)
-    
+      require_relative 'map_generator'
+      return MapGenerator.generate_map.chambers.reject { |c| c.contents[:features].empty? }
+        .sample.contents[:features].flatten.collect { |f| f.to_s }.join("\n")
     end
 
     def command_hazard(*args)
@@ -116,20 +137,16 @@ class DgenCli
     end
 
     def command_room(*args)
-      require_relative 'map_generator'
-      return MapGenerator.generate_map.chambers.sample.to_s
+      command_chamber(*args)
     end
 
     def command_roomtype(*args)
-    
+      command_chambertype(*args)
     end
 
     def command_trap(*args)
       require_relative 'trap'
-      trap = Trap.new()
-      trap.generate_dc() # TODO: Figure out why Trap is set up to require setting these separately from init
-      trap.generate_attack()
-      return trap.to_s()
+      return Trap.new().to_s()
     end
 
     def command_treasure(*args)

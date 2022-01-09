@@ -437,8 +437,7 @@ class Chamber < MapObject
   #### CONTENTS
   ########################################
 
-  def generate_contents()
-    contents_yaml = random_yaml_element("chamber_contents")
+  def generate_contents(contents_yaml = random_yaml_element("chamber_contents"))
     contents = {
       description: contents_yaml["description"],
       hazards: [],
@@ -596,7 +595,7 @@ class Chamber < MapObject
       contents[:traps].empty? ? nil : ["Traps:"] + contents[:traps].collect { |t|
         t.to_s_lines.collect{ |l| "  #{l}" }
       },
-      contents[:tricks].empty? ? nil : ["Tricks:"] + contents[:tricks].collect { |t| t.to_s },
+      contents[:tricks].empty? ? nil : ["Tricks:"] + contents[:tricks].collect { |t| "  #{t.to_s}" },
       contents[:treasure].empty? ? nil : ["Treasure:"] + contents[:treasure].first.to_s_lines.collect{|l| "  #{l}"},
       contents[:features].empty? ? nil : ["Features:"] + contents[:features].flatten.collect{|f| "  #{f.to_s}"}
     ].flatten.compact

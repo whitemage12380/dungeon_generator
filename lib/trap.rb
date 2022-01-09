@@ -102,7 +102,7 @@ class Trap
   def to_s_lines()
     [
       "Trigger:  #{@trigger}",
-      "Severity: #{@severity} (DC #{@dc}, +#{@attack} to hit, #{damage} damage)",
+      "Severity: #{@severity} (DC #{dc}, +#{attack} to hit, #{damage} damage)",
       "Effect:   #{@effect}",
     ]
   end
