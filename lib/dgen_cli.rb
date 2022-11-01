@@ -73,6 +73,8 @@ class DgenCli
       exit exit_code
     end
 
+    # TODO: -c <content type> to specify chamber content types
+    # TODO: -n <name> (or maybe just subcommand) to specify chamber name
     def command_chamber(*args)
       require_relative 'map_generator'
       return MapGenerator.generate_map.chambers.sample.to_s
@@ -87,10 +89,12 @@ class DgenCli
       ].join("\n")
     end
 
+    # TODO: -t <table> to specify encounter table
     def command_encounter(*args)
       return random_encounter.flatten.sample.to_s
     end
 
+    # TODO: -f <file> to specify encounter table file
     def command_encountertable(*args)
       require_relative 'encounter_table'
       return EncounterTable.new.to_s

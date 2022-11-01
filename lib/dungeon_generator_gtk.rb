@@ -143,6 +143,9 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     menu.children.select{|m|m.label=='gtk-save-as'}[0].signal_connect('activate') do |menu_item, event, user_data|
       map_dialog(:save, @map)
     end
+    menu.children.select{|m|m.label=='Export to SVG'}[0].signal_connect('activate') do |menu_item, event, user_data|
+      svg_dialog(@map)
+    end
   end
 
   def map_dialog(mode, map = nil)
@@ -170,6 +173,26 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
       end
     end
     return map
+  end
+
+  def svg_dialog(map)
+    dialog = Gtk::FileChooserNative.new("Export Map to SVG", self, :save)
+    filter = Gtk::FileFilter.new()
+    filter.name = "SVG files"
+    filter.add_pattern("*.svg")
+    dialog.add_filter(filter)
+    dialog.add_shortcut_folder("#{Configuration.project_path}/data/svg")
+    dialog.filename = map.svg_file unless map.svg_file.nil?
+    response = dialog.run()
+    case response
+    when Gtk::ResponseType::ACCEPT
+      begin
+        map.export_svg(dialog.filename)
+      rescue StandardError => e
+        log_error e.to_s
+        log_error "Could not export to svg file: #{dialog.filename}"
+      end
+    end
   end
 
   def update_new_map_ui()

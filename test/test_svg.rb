@@ -15,7 +15,7 @@ def test_random_map_svg()
 end
 
 def blarg()
-  m = Map.load("ubc_try6")
+  m = Map.load("latest")
   DungeonSvg.new(m)
 end
 

@@ -26,7 +26,7 @@ class DungeonSvg
     wall: {stroke: COLORS[:wall], stroke_width: WALL_PIXELS},
   }
 
-  def initialize(map)
+  def initialize(map, filename = "#{Configuration.project_path}/data/svg")
     @map = map
     size = @map.size * SQUARE_PIXELS
     @svg = SVG.new(width: size, height: size, style: { background: COLORS[:background] })
@@ -35,8 +35,10 @@ class DungeonSvg
     svg_passages()
     svg_stairs()
     svg_doors()
-    log "SVG Export: Saving to <file>"
-    @svg.save(File.expand_path('data/svg/mytest'))
+    file = File.expand_path(filename)
+    log "SVG Export: Saving to #{file}"
+    @svg.save(file)
+    map.svg_file = file
   end
 
   def svg_chambers(map = @map, svg = @svg)

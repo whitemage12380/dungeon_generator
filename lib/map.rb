@@ -5,11 +5,12 @@ require_relative 'passage'
 require_relative 'chamber'
 require_relative 'stairs'
 require_relative 'encounter_table'
+require_relative 'dungeon_svg'
 
 class Map
   include DungeonGeneratorHelper
   extend DungeonGeneratorHelper
-  attr_accessor :map_name, :grid, :map_objects, :file, :themes, :encounter_table, :description
+  attr_accessor :map_name, :grid, :map_objects, :file, :svg_file, :themes, :encounter_table, :description
 
   MAX_SIZE = 500
 
@@ -221,6 +222,10 @@ class Map
   ########################################
   #### SAVING AND LOADING
   ########################################
+
+  def export_svg(file = @svg_file ? @svg_file : "#{Configuration.project_path}/data/svg")
+    DungeonSvg.new(self, file)
+  end
 
   def save(filename = (@file ? @file : 'latest'), filepath = $configuration['saved_map_directory'])
     filename += ".yaml" unless filename =~ /\.yaml$/
