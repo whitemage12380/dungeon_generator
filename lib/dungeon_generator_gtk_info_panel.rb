@@ -125,8 +125,6 @@ class DungeonGeneratorContent < Gtk::Box
   end
 end
 
-#class DungeonGeneratorContentSectionMenu < 
-
 class DungeonGeneratorContentSection < Gtk::Expander
   include DungeonGeneratorGtkHelper
 
