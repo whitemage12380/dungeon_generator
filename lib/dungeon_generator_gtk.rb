@@ -155,7 +155,7 @@ class DungeonGeneratorWindow < Gtk::ApplicationWindow
     filter.add_pattern("*.yaml")
     dialog.add_filter(filter)
     dialog.add_shortcut_folder("#{Configuration.project_path}/data/maps")
-    dialog.filename = map.file unless map.file.nil?
+    dialog.filename = map.file unless map.nil? or map.file.nil?
     response = dialog.run()
     case response
     when Gtk::ResponseType::ACCEPT
